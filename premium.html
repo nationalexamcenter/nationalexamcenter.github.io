@@ -97,23 +97,77 @@
             font-size: 14px;
             color: #2e5e3a;
         }
-        .topics-grid {
+        /* Subject cards – new style */
+        .subject-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
         }
-        .topic-item {
-            background: #f0f8f0;
-            padding: 15px 18px;
-            border-radius: 14px;
-            border-left: 6px solid #2E7D32;
-            font-size: 16px;
-            font-weight: 500;
-            color: #1e3c2c;
-            box-shadow: 0 2px 6px rgba(0,30,0,0.05);
+        .subject-card {
+            background: #F8FBF8;
+            border-radius: 18px;
+            padding: 22px 20px;
+            border: 1px solid #C8E6C9;
+            box-shadow: 0 4px 10px rgba(0,30,0,0.05);
+            transition: all 0.2s;
         }
-        .topic-item strong {
+        .subject-card:hover {
+            box-shadow: 0 10px 20px rgba(0,60,0,0.1);
+            border-color: #81C784;
+        }
+        .subject-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #A5D6A7;
+            padding-bottom: 10px;
+        }
+        .subject-icon {
+            font-size: 32px;
+        }
+        .subject-header h3 {
+            font-size: 20px;
             color: #1B5E20;
+            font-weight: 600;
+        }
+        .chapter-list {
+            list-style: none;
+            padding: 0;
+        }
+        .chapter-list li {
+            padding: 8px 0 8px 24px;
+            position: relative;
+            font-size: 15px;
+            color: #2d5a3a;
+            border-bottom: 1px dotted #e0f0e0;
+        }
+        .chapter-list li:last-child {
+            border-bottom: none;
+        }
+        .chapter-list li::before {
+            content: "✓";
+            color: #2E7D32;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .chapter-list ul {
+            list-style: none;
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+        .chapter-list ul li {
+            border-bottom: none;
+            padding: 4px 0 4px 20px;
+            font-size: 14px;
+            color: #3e6b4e;
+        }
+        .chapter-list ul li::before {
+            content: "•";
+            color: #66BB6A;
+            font-size: 16px;
         }
         .pricing-box {
             background: linear-gradient(145deg, #fff9c4, #fff3e0);
@@ -222,11 +276,6 @@
             text-decoration: none;
             margin: 10px;
         }
-        .amazon-badge img {
-            width: 24px;
-            height: 24px;
-            filter: invert(1);
-        }
         @media (max-width: 600px) {
             .header h1 { font-size: 28px; }
             .content { padding: 25px 20px; }
@@ -275,20 +324,124 @@
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
                     <h3>৩০ দিন অফলাইন</h3>
-                    <p>একবার রেজিস্ট্রেশন করলে ৩০ দিন ইন্টারনেট ছাড়া চলবে</p>
+                    <p>একবার রেজিস্ট্রেশন করলে ৩০ দিন ইন্টারনেট ছাড়া চলে</p>
                 </div>
             </div>
 
-            <!-- Topics Covered -->
-            <h2 class="section-title">📌 কভার করা টপিকসমূহ (SSC শর্ট সিলেবাস ২০২৬)</h2>
-            <div class="topics-grid">
-                <div class="topic-item"><strong>পদার্থবিজ্ঞান:</strong> ভৌত রাশি, গতি, বল, কাজ, শক্তি, তরঙ্গ, আলো, স্থির বিদ্যুৎ (সম্পূর্ণ অধ্যায়)</div>
-                <div class="topic-item"><strong>রসায়ন:</strong> পরমাণুর গঠন, পর্যায় সারণী, রাসায়নিক বন্ধন, এসিড-ক্ষার, জারণ-বিজারণ, জৈব রসায়ন</div>
-                <div class="topic-item"><strong>জীববিজ্ঞান:</strong> কোষ ও টিস্যু, কোষ বিভাজন, সালোকসংশ্লেষণ, শ্বসন, প্রজনন, বংশগতি, বাস্তুতন্ত্র</div>
-                <div class="topic-item"><strong>বাংলাদেশ ও বিশ্বপরিচয়:</strong> স্বাধীনতা, সৌরজগৎ, রাষ্ট্র ও নাগরিকতা, জাতীয় সম্পদ, অর্থনীতি, পরিবার ও সামাজিকীকরণ</div>
-                <div class="topic-item"><strong>ICT:</strong> কম্পিউটার রক্ষণাবেক্ষণ, ওয়ার্ড, স্প্রেডশিট, পাওয়ারপয়েন্ট, পাইথন প্রোগ্রামিং</div>
-                <div class="topic-item"><strong>বাংলা ২য় পত্র:</strong> ধ্বনি ও বর্ণ, শব্দ গঠন (উপসর্গ, প্রত্যয়), সমাস, বাগধারা</div>
-                <div class="topic-item"><strong>English 2nd Paper:</strong> Tense, Voice, Narration, Articles, Prepositions, Connectors</div>
+            <!-- Subject-wise Syllabus Coverage (NEW) -->
+            <h2 class="section-title">📌 বিষয়ভিত্তিক সিলেবাস (SSC শর্ট সিলেবাস ২০২৬)</h2>
+            <div class="subject-grid">
+
+                <!-- পদার্থবিজ্ঞান -->
+                <div class="subject-card">
+                    <div class="subject-header">
+                        <span class="subject-icon">⚛️</span>
+                        <h3>পদার্থবিজ্ঞান</h3>
+                    </div>
+                    <ul class="chapter-list">
+                        <li>প্রথম অধ্যায়: ভৌত রাশি ও পরিমাপ</li>
+                        <li>দ্বিতীয় অধ্যায়: গতি</li>
+                        <li>তৃতীয় অধ্যায়: বল</li>
+                        <li>চতুর্থ অধ্যায়: কাজ, ক্ষমতা ও শক্তি</li>
+                        <li>সপ্তম অধ্যায়: তরঙ্গ ও শব্দ</li>
+                        <li>অষ্টম অধ্যায়: আলোর প্রতিফলন</li>
+                        <li>দশম অধ্যায়: স্থির বিদ্যুৎ</li>
+                    </ul>
+                </div>
+
+                <!-- রসায়ন -->
+                <div class="subject-card">
+                    <div class="subject-header">
+                        <span class="subject-icon">🧪</span>
+                        <h3>রসায়ন</h3>
+                    </div>
+                    <ul class="chapter-list">
+                        <li>পরমাণুর গঠন, পর্যায় সারণী</li>
+                        <li>রাসায়নিক বন্ধন ও মোলের ধারণা</li>
+                        <li>এসিড, ক্ষার, লবণ</li>
+                        <li>জারণ ও বিজারণ</li>
+                        <li>রাসায়নিক বিক্রিয়া ও বিক্রিয়ার হার</li>
+                        <li>জৈব রসায়ন (হাইড্রোকার্বন, অ্যালকোহল)</li>
+                    </ul>
+                </div>
+
+                <!-- জীববিজ্ঞান -->
+                <div class="subject-card">
+                    <div class="subject-header">
+                        <span class="subject-icon">🧬</span>
+                        <h3>জীববিজ্ঞান</h3>
+                    </div>
+                    <ul class="chapter-list">
+                        <li>প্রথম অধ্যায়: জীবন পাঠ (শ্রেণিবিন্যাস, দ্বিপদ নামকরণ)</li>
+                        <li>দ্বিতীয় অধ্যায়: জীবকোষ ও টিস্যু</li>
+                        <li>তৃতীয় অধ্যায়: কোষ বিভাজন (মাইটোসিস, মিয়োসিস)</li>
+                        <li>চতুর্থ অধ্যায়: জীবনীশক্তি (সালোকসংশ্লেষণ, শ্বসন)</li>
+                        <li>একাদশ অধ্যায়: জীবে প্রজনন (ফুলের গঠন, সপুষ্পক)</li>
+                        <li>দ্বাদশ অধ্যায়: বংশগতি ও জৈব অভিব্যক্তি (ডিএনএ, থ্যালাসেমিয়া)</li>
+                        <li>ত্রয়োদশ অধ্যায়: জীবের পরিবেশ (বাস্তুতন্ত্র, খাদ্যশৃঙ্খল)</li>
+                    </ul>
+                </div>
+
+                <!-- বাংলাদেশ ও বিশ্বপরিচয় -->
+                <div class="subject-card">
+                    <div class="subject-header">
+                        <span class="subject-icon">🌍</span>
+                        <h3>বাংলাদেশ ও বিশ্বপরিচয়</h3>
+                    </div>
+                    <ul class="chapter-list">
+                        <li>দ্বিতীয় অধ্যায়: বাংলাদেশের স্বাধীনতা</li>
+                        <li>তৃতীয় অধ্যায়: সৌরজগৎ ও ভূমণ্ডল</li>
+                        <li>অষ্টম অধ্যায়: রাষ্ট্র, নাগরিকতা ও আইন</li>
+                        <li>দশম অধ্যায়: জাতীয় সম্পদ ও অর্থনৈতিক ব্যবস্থা</li>
+                        <li>একাদশ অধ্যায়: অর্থনৈতিক নির্দেশক ও বাংলাদেশের অর্থনীতি</li>
+                        <li>দ্বাদশ অধ্যায়: বাংলাদেশের পারিবারিক কাঠামো ও সামাজিকীকরণ</li>
+                    </ul>
+                </div>
+
+                <!-- ICT -->
+                <div class="subject-card">
+                    <div class="subject-header">
+                        <span class="subject-icon">💻</span>
+                        <h3>তথ্য ও যোগাযোগ প্রযুক্তি</h3>
+                    </div>
+                    <ul class="chapter-list">
+                        <li>দ্বিতীয় অধ্যায়: কম্পিউটার রক্ষণাবেক্ষণ ও সাইবার নিরাপত্তা</li>
+                        <li>চতুর্থ অধ্যায়: আমার লেখালেখি ও হিসাব (ওয়ার্ড, স্প্রেডশিট)</li>
+                        <li>পঞ্চম অধ্যায়: মাল্টিমিডিয়া ও গ্রাফিক্স (পাওয়ারপয়েন্ট)</li>
+                        <li>ষষ্ঠ অধ্যায়: প্রোগ্রামিংয়ের মাধ্যমে সমস্যার সমাধান (পাইথন)</li>
+                    </ul>
+                </div>
+
+                <!-- বাংলা ২য় পত্র -->
+                <div class="subject-card">
+                    <div class="subject-header">
+                        <span class="subject-icon">📘</span>
+                        <h3>বাংলা ২য় পত্র (ব্যাকরণ)</h3>
+                    </div>
+                    <ul class="chapter-list">
+                        <li>ধ্বনি ও বর্ণ (পরিচ্ছেদ ৫-৮)</li>
+                        <li>শব্দ ও পদের গঠন – উপসর্গ, প্রত্যয় (পরিচ্ছেদ ৯-১১)</li>
+                        <li>সমাস (পরিচ্ছেদ ১২)</li>
+                        <li>যৌগিক বাক্য (পরিচ্ছেদ ১৭-১৮)</li>
+                        <li>বাগধারা, প্রতিশব্দ, বিপরীত শব্দ, শব্দজোড় (পরিচ্ছেদ ৩৯-৪৩)</li>
+                    </ul>
+                </div>
+
+                <!-- English 2nd Paper -->
+                <div class="subject-card">
+                    <div class="subject-header">
+                        <span class="subject-icon">📗</span>
+                        <h3>English 2nd Paper</h3>
+                    </div>
+                    <ul class="chapter-list">
+                        <li>Adjectives, Articles, Determiners, Degree, Quantifiers</li>
+                        <li>Verbs and Tenses (Regular/Irregular, Be Verbs, Modals, Infinitive, Gerund, Participle)</li>
+                        <li>Adverb and Adverbials</li>
+                        <li>Prepositions</li>
+                        <li>Sentences (Affirmative, Negative, Interrogative, Exclamatory, Simple, Complex, Compound) <br> WH Questions, Tag Questions, Connectors, Punctuation</li>
+                    </ul>
+                </div>
+
             </div>
 
             <!-- Premium Offer -->
@@ -302,12 +455,12 @@
                     <li>✅ সীমাহীন MCQ পরীক্ষা (কোন limit নেই)</li>
                     <li>✅ CQ + SQ + থিওরি স্টাডি</li>
                     <li>✅ প্রগ্রেস ট্র্যাকিং</li>
-                    <li>✅ ৩০ দিন অফলাইন এক্সেস (ইন্টারনেট ছাড়া চলে)</li>
+                    <li>✅ ৩০ দিন অফলাইন এক্সেস (ইন্টারনেট ছাড়া চলেবে)</li>
                     <li>✅ কোন বিজ্ঞাপন নেই (Ad‑free)</li>
                 </ul>
                 <!-- WhatsApp purchase link -->
-                <a href="https://wa.me/8801602105447?text=আমি%20SSC%202026%20প্রিমিয়াম%20ভার্সন%20(৩০%২০দিন)%20কিনতে%20চাই" class="cta-button">🚀 এখনই কিনুন (WhatsApp)</a>
-                <p style="margin-top: 15px; font-size: 14px; color: #555;">পেমেন্ট করার ২৪ ঘন্টার মধ্যে আপনার ৩০ দিনের অ্যাক্সেস সক্রিয় করা হবে।</p>
+                <a href="https://wa.me/8801602105447?text=আমি%20SSC%202026%20প্রিমিয়াম%20ভার্সন%20(৩০%20দিন)%20কিনতে%20চাই" class="cta-button">🚀 এখনই কিনুন (WhatsApp)</a>
+                <p style="margin-top: 15px; font-size: 14px; color: #555;">পেমেন্ট করার ১ ঘন্টার মধ্যে আপনার ৩০ দিনের অ্যাক্সেস সক্রিয় করা হবে।</p>
             </div>
 
             <!-- Contact & Support -->
@@ -339,14 +492,14 @@
                 <a href="#" class="amazon-badge" target="_blank" style="background: #232f3e;">
                     <span>📲</span> Amazon Appstore – শীঘ্রই আসছে
                 </a>
-                <p style="margin-top: 10px;">বর্তমানে সরাসরি Google Drive থেকে প্রিমিয়াম ভার্সন নিচ্ছে।</p>
+                <p style="margin-top: 10px;">বর্তমানে সরাসরি Google Drive থেকে প্রিমিয়াম ভার্সন দেওয়া হচ্ছে</p>
             </div>
 
             <hr>
 
             <!-- Additional Info -->
             <p style="text-align: center; font-style: italic; color: #4e6b4e;">
-                * ১০০ টাকা এককালীন পেমেন্টের বিনিময়ে ৩০ দিনের প্রিমিয়াম অ্যাক্সেস। পেমেন্ট করে WhatsApp এ স্ক্রিনশট পাঠালে ২৪ ঘন্টার মধ্যে আপনার অ্যাক্সেস সক্রিয় করা হবে। 
+                * ১০০ টাকা এককালীন পেমেন্টের বিনিময়ে ৩০ দিনের প্রিমিয়াম অ্যাক্সেস। পেমেন্ট করে WhatsApp এ স্ক্রিনশট পাঠালে ১ ঘন্টার মধ্যে আপনার অ্যাক্সেস সক্রিয় করা হবে। 
             </p>
         </div>
 
