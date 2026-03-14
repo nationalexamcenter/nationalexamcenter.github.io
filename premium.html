@@ -331,7 +331,7 @@
                 </div>
             </div>
 
-            <!-- Subject-wise Syllabus Coverage (NEW) -->
+            <!-- Subject-wise Syllabus Coverage -->
             <h2 class="section-title">📌 বিষয়ভিত্তিক সিলেবাস (SSC শর্ট সিলেবাস ২০২৬)</h2>
             <div class="subject-grid">
 
@@ -451,7 +451,7 @@
             <h2 class="section-title">💰 প্রিমিয়াম ভার্সন – মাত্র ১০০ টাকা (২০ মে পর্যন্ত)</h2>
             <div class="pricing-box">
                 <div class="price">১০০ <small>টাকা</small></div>
-                <div class="price-note">২০ মে পর্যন্ত সম্পূর্ণ অ্যাক্সেস! (আজ ১৪ মার্চ, পাচ্ছেন ~৬৭ দিন)</div>
+                <div class="price-note" id="access-note">২০ মে পর্যন্ত সম্পূর্ণ অ্যাক্সেস! (লোড হচ্ছে...)</div>
                 <p style="margin: 15px 0; font-size: 18px;">যা পাচ্ছেন:</p>
                 <ul style="list-style: none; padding: 0; font-size: 16px;">
                     <li>✅ সব বিষয় ও অধ্যায় আনলক</li>
@@ -462,10 +462,10 @@
                     <li>✅ কোন বিজ্ঞাপন নেই (Ad‑free)</li>
                 </ul>
                 
-                <!-- Amazon Store Button (UPDATED) -->
+                <!-- Amazon Store Button -->
                 <a href="https://www.amazon.com/gp/product/B0GS1KFJ59" class="cta-button" style="background: #232f3e; box-shadow: 0 6px 0 #0f1b2e;">📥 Amazon Appstore থেকে ডাউনলোড করুন</a>
                 
-                <p style="margin-top: 15px; font-size: 14px; color: #555;">অ্যাপ ডাউনলোড完成后, রেজিস্ট্রেশন করে ১০০ টাকা পেমেন্ট করুন। পেমেন্টের পর ১ ঘন্টার মধ্যে আপনার অ্যাক্সেস সক্রিয় করা হবে।</p>
+                <p style="margin-top: 15px; font-size: 14px; color: #555;">অ্যাপ ডাউনলোড করার পর, রেজিস্ট্রেশন করে ১০০ টাকা পেমেন্ট করুন। পেমেন্টের পর ১ ঘন্টার মধ্যে আপনার অ্যাক্সেস সক্রিয় করা হবে।</p>
             </div>
 
             <!-- Contact & Support -->
@@ -492,7 +492,7 @@
                 </div>
             </div>
 
-            <!-- Link to Amazon Store (UPDATED) -->
+            <!-- Link to Amazon Store -->
             <div class="app-links">
                 <a href="https://www.amazon.com/gp/product/B0GS1KFJ59" class="amazon-badge" target="_blank">
                     <span>📲</span> Amazon Appstore – এখনই ডাউনলোড করুন
@@ -504,7 +504,7 @@
 
             <!-- Additional Info -->
             <p style="text-align: center; font-style: italic; color: #4e6b4e;">
-                * ১০০ টাকা এককালীন পেমেন্টের বিনিময়ে ২০ মে পর্যন্ত প্রিমিয়াম অ্যাক্সেস। আজ ১৪ মার্চ থেকে নিলে ~৬৭ দিন! পেমেন্ট করে WhatsApp এ স্ক্রিনশট পাঠালে ১ ঘন্টার মধ্যে আপনার অ্যাক্সেস সক্রিয় করা হবে। 
+                * ১০০ টাকা এককালীন পেমেন্টের বিনিময়ে ২০ মে পর্যন্ত প্রিমিয়াম অ্যাক্সেস। পেমেন্ট করে WhatsApp এ স্ক্রিনশট পাঠালে ১ ঘন্টার মধ্যে আপনার অ্যাক্সেস সক্রিয় করা হবে।
             </p>
         </div>
 
@@ -516,5 +516,32 @@
             <p>📧 nationalexamcenter@gmail.com</p>
         </div>
     </div>
+
+    <script>
+        // Calculate days from today until May 20, 2026
+        function updateAccessNote() {
+            const today = new Date();
+            const examEndDate = new Date(2026, 4, 20); // May 20, 2026 (month is 0-indexed: 4 = May)
+            
+            const diffTime = examEndDate - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            // Bangla month names
+            const banglaMonths = [
+                'জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন',
+                'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'
+            ];
+            
+            const currentMonth = banglaMonths[today.getMonth()];
+            const currentDay = today.getDate();
+            
+            const noteElement = document.getElementById('access-note');
+            if (noteElement) {
+                noteElement.innerHTML = `২০ মে পর্যন্ত সম্পূর্ণ অ্যাক্সেস! (আজ ${currentDay} ${currentMonth}, পাচ্ছেন ${diffDays} দিন)`;
+            }
+        }
+        
+        updateAccessNote();
+    </script>
 </body>
 </html>
