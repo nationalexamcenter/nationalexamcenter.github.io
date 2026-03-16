@@ -97,7 +97,7 @@
             font-size: 14px;
             color: #2e5e3a;
         }
-        /* Subject cards – new style */
+        /* Subject cards */
         .subject-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -152,22 +152,6 @@
             font-weight: bold;
             position: absolute;
             left: 0;
-        }
-        .chapter-list ul {
-            list-style: none;
-            padding-left: 20px;
-            margin-top: 5px;
-        }
-        .chapter-list ul li {
-            border-bottom: none;
-            padding: 4px 0 4px 20px;
-            font-size: 14px;
-            color: #3e6b4e;
-        }
-        .chapter-list ul li::before {
-            content: "•";
-            color: #66BB6A;
-            font-size: 16px;
         }
         .pricing-box {
             background: linear-gradient(145deg, #fff9c4, #fff3e0);
@@ -334,7 +318,6 @@
             <!-- Subject-wise Syllabus Coverage -->
             <h2 class="section-title">📌 বিষয়ভিত্তিক সিলেবাস (SSC শর্ট সিলেবাস ২০২৬)</h2>
             <div class="subject-grid">
-
                 <!-- পদার্থবিজ্ঞান -->
                 <div class="subject-card">
                     <div class="subject-header">
@@ -441,10 +424,9 @@
                         <li>Verbs and Tenses (Regular/Irregular, Be Verbs, Modals, Infinitive, Gerund, Participle)</li>
                         <li>Adverb and Adverbials</li>
                         <li>Prepositions</li>
-                        <li>Sentences (Affirmative, Negative, Interrogative, Exclamatory, Simple, Complex, Compound) <br> WH Questions, Tag Questions, Connectors, Punctuation</li>
+                        <li>Sentences (Affirmative, Negative, Interrogative, Exclamatory, Simple, Complex, Compound) WH Questions, Tag Questions, Connectors, Punctuation</li>
                     </ul>
                 </div>
-
             </div>
 
             <!-- Premium Offer -->
@@ -463,7 +445,37 @@
                 </ul>
                 
                 <!-- Amazon Store Button -->
-                <a href="https://www.amazon.com/gp/product/B0GS1KFJ59" class="cta-button" style="background: #232f3e; box-shadow: 0 6px 0 #0f1b2e;">📥 Amazon Appstore থেকে ডাউনলোড করুন</a>
+                <a href="https://www.amazon.com/gp/product/B0GS1KFJ59" class="cta-button" style="background: #232f3e; box-shadow: 0 6px 0 #0f1b2e; margin-bottom: 15px;">📥 Amazon Appstore থেকে ডাউনলোড করুন</a>
+                
+                <!-- GOOGLE DRIVE DOWNLOAD BUTTON -->
+                <div style="margin: 20px 0; position: relative;">
+                    <div style="position: relative; display: inline-block; width: 100%;">
+                        <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" 
+                           class="cta-button" 
+                           style="background: #4285F4; box-shadow: 0 6px 0 #2A56C6; width: 90%; font-size: 20px;"
+                           target="_blank">
+                           📥 Google Drive থেকে ডাউনলোড করুন (39MB)
+                        </a>
+                        
+                        <!-- Download Info -->
+                        <div style="background: #E8F0FE; border-radius: 12px; padding: 15px; margin-top: 15px; text-align: left;">
+                            <p style="margin: 5px 0; font-size: 15px; color: #333;">
+                                📦 ফাইল সাইজ: <strong>39MB</strong>
+                            </p>
+                            <p style="margin: 5px 0; font-size: 14px; color: #555;">
+                                ⏱️ 4G/5G: ~30 সেকেন্ড | 3G: ~1 মিনিট
+                            </p>
+                            <p style="margin: 10px 0 0 0; font-size: 13px; color: #d32f2f; background: #FFEBEE; padding: 10px; border-radius: 8px;">
+                                ⚠️ গুগল ড্রাইভ থেকে ডাউনলোড করার পর, Android setting → "Unknown sources" অনুমতি দিন।
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Data saving note -->
+                <p style="margin: 10px 0; font-size: 13px; color: #666;">
+                    💡 মোবাইল ডেটা বাঁচাতে? Amazon Appstore থেকে ডাউনলোড করলে অটোমেটিক ইনস্টল হবে।
+                </p>
                 
                 <p style="margin-top: 15px; font-size: 14px; color: #555;">অ্যাপ ডাউনলোড করার পর, রেজিস্ট্রেশন করে ১০০ টাকা পেমেন্ট করুন। পেমেন্টের পর ১ ঘন্টার মধ্যে আপনার অ্যাক্সেস সক্রিয় করা হবে।</p>
             </div>
@@ -482,6 +494,10 @@
                 <div class="contact-item">
                     <span class="contact-icon">💬</span>
                     <a href="https://m.me/sheikh.saheb.nec" target="_blank">Messenger: sheikh.saheb.nec</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <a href="tel:+8801602105447">কল করুন: +8801602105447</a>
                 </div>
                 <div style="text-align: center; margin-top: 20px;">
                     <p>যেকোনো প্রশ্ন, সমস্যা বা পেমেন্ট সংক্রান্ত জিজ্ঞাসায় সরাসরি যোগাযোগ করুন।</p>
@@ -507,7 +523,6 @@
         <div class="footer">
             <p>© ২০২৬ National Exam Center. All rights reserved.</p>
             <p>এই সাইটটি SSC ২০২৬ পরীক্ষার্থীদের জন্য তৈরি।</p>
-            <!-- Link to your existing privacy policy (index.html) -->
             <p><a href="index.html">প্রাইভেসি পলিসি</a> | <a href="#">টার্মস এন্ড কন্ডিশনস</a></p>
             <p>📧 nationalexamcenter@gmail.com</p>
         </div>
@@ -517,12 +532,11 @@
         // Calculate days from today until May 20, 2026
         function updateAccessNote() {
             const today = new Date();
-            const examEndDate = new Date(2026, 4, 20); // May 20, 2026 (month is 0-indexed: 4 = May)
+            const examEndDate = new Date(2026, 4, 20); // May 20, 2026
             
             const diffTime = examEndDate - today;
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             
-            // Bangla month names
             const banglaMonths = [
                 'জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন',
                 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'
