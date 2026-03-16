@@ -272,7 +272,7 @@
             background: #37475A;
         }
         
-        /* New styles for modern features */
+        /* Modern features */
         .trust-badge {
             background: white;
             padding: 10px 20px;
@@ -408,8 +408,6 @@
             border-radius: 5px;
             overflow: hidden;
         }
-        
-        /* Manual registration notice */
         .manual-reg-notice {
             background: #FFF3CD;
             border: 1px solid #FFE69C;
@@ -422,6 +420,22 @@
         }
         .manual-reg-notice strong {
             color: #533F03;
+        }
+        /* Visitor counter section */
+        .visitor-counter {
+            background: #f0f8f0;
+            border-radius: 16px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+            border: 1px solid #c8e6c9;
+            box-shadow: 0 4px 10px rgba(0,30,0,0.05);
+        }
+        .visitor-counter img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid #A5D6A7;
         }
         
         @media (max-width: 600px) {
@@ -614,6 +628,24 @@
                 </div>
             </div>
 
+            <!-- Visitor Counter Section (Option 2) -->
+            <div class="visitor-counter">
+                <h3 style="color: #1B5E20; margin-bottom: 15px;">👁️ মোট দর্শক</h3>
+                
+                <a href="https://clustrmaps.com/site/1c9gw" title="ClustrMaps" target="_blank" style="display: inline-block;">
+                    <img src="//www.clustrmaps.com/map_v2.png?d=tls9HH8N44Z4-jBbc648Lwwz9aF9tyCha_cbZCQeH0c&cl=ffffff" 
+                         style="width: 100%; max-width: 300px; border-radius: 12px; border: 1px solid #A5D6A7;"
+                         alt="Visitor Map">
+                </a>
+                
+                <p style="font-size: 14px; color: #4e6b4e; margin-top: 15px;">
+                    📊 গত ৩০ দিনে <strong>২</strong> জন ভিজিটর আমাদের সাথে যুক্ত হয়েছেন
+                </p>
+                <p style="font-size: 12px; color: #666;">
+                    বিশ্বের বিভিন্ন প্রান্ত থেকে দর্শক – আপনিও যোগ দিন!
+                </p>
+            </div>
+
             <!-- Live Stats Counter -->
             <div class="stats-box">
                 <h3 style="font-size: 24px; margin-bottom: 20px;">📊 আমাদের অগ্রগতি</h3>
@@ -700,7 +732,7 @@
                 </table>
             </div>
 
-            <!-- Manual Registration Notice (NEW) -->
+            <!-- Manual Registration Notice -->
             <div class="manual-reg-notice">
                 <strong>📢 ম্যানুয়াল রেজিস্ট্রেশন:</strong> পেমেন্ট করার পর আপনি ইমেইল ও পাসওয়ার্ড পাবেন। কোনো অটোমেটিক রেজিস্ট্রেশন নেই। পেমেন্ট সম্পন্ন হলে WhatsApp এ জানালে ১ ঘন্টার মধ্যে আপনার এক্সেস দিয়ে দেওয়া হবে।
             </div>
@@ -753,7 +785,7 @@
                     💡 মোবাইল ডেটা বাঁচাতে? Amazon Appstore থেকে ডাউনলোড করলে অটোমেটিক ইনস্টল হবে।
                 </p>
                 
-                <!-- Manual Registration Instructions (UPDATED) -->
+                <!-- Manual Registration Instructions -->
                 <div style="background: #E8F5E9; border-radius: 16px; padding: 20px; margin: 20px 0; text-align: left;">
                     <h4 style="color: #1B5E20; margin-bottom: 10px;">📋 রেজিস্ট্রেশন প্রক্রিয়া:</h4>
                     <ol style="margin-left: 20px; color: #2e5e3a;">
@@ -786,7 +818,7 @@
                         <span style="font-size: 20px;">▼</span>
                     </button>
                     <div class="faq-answer" id="faq-2">
-                        BKash এর মাধ্যমে পেমেন্ট করা যাবে। পেমেন্ট নম্বর জানতে WhatsApp এ যোগাযোগ করুন: <strong>+8801602105447</strong>
+                        bKash, Nagad, বা Rocket এর মাধ্যমে পেমেন্ট করা যাবে। পেমেন্ট নম্বর জানতে WhatsApp এ যোগাযোগ করুন: <strong>+8801602105447</strong>
                     </div>
                 </div>
                 
@@ -796,7 +828,7 @@
                         <span style="font-size: 20px;">▼</span>
                     </button>
                     <div class="faq-answer" id="faq-3">
-                        না, একটি ইমেইল ও পাসওয়ার্ড দিয়ে আপনি ১ টি ডিভাইসে লগইন করতে পারবেন।
+                        হ্যাঁ, একই ইমেইল ও পাসওয়ার্ড দিয়ে আপনি ৩টি পর্যন্ত ডিভাইসে লগইন করতে পারবেন।
                     </div>
                 </div>
                 
@@ -821,7 +853,7 @@
                 </div>
             </div>
 
-            <!-- Contact & Support -->
+            <!-- Contact & Support (Call section removed) -->
             <h2 class="section-title">📞 যোগাযোগ ও সাপোর্ট</h2>
             <div class="contact-box">
                 <div class="contact-item">
@@ -835,6 +867,8 @@
                 <div class="contact-item">
                     <span class="contact-icon">💬</span>
                     <a href="https://m.me/sheikh.saheb.nec" target="_blank">Messenger: sheikh.saheb.nec</a>
+                </div>
+                <!-- Call section removed -->
                 <div style="text-align: center; margin-top: 20px;">
                     <p>যেকোনো প্রশ্ন, সমস্যা বা পেমেন্ট সংক্রান্ত জিজ্ঞাসায় সরাসরি যোগাযোগ করুন।</p>
                 </div>
@@ -850,7 +884,7 @@
 
             <hr>
 
-            <!-- Additional Info (UPDATED) -->
+            <!-- Additional Info -->
             <p style="text-align: center; font-style: italic; color: #4e6b4e;">
                 * ১০০ টাকা এককালীন পেমেন্টের বিনিময়ে ২০ মে পর্যন্ত প্রিমিয়াম অ্যাক্সেস। পেমেন্ট করে WhatsApp এ স্ক্রিনশট পাঠালে ১ ঘন্টার মধ্যে ইমেইল ও পাসওয়ার্ড দিয়ে দেওয়া হবে। কোনো অটোমেটিক রেজিস্ট্রেশন নেই।
             </p>
