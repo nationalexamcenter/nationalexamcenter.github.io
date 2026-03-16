@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SSC 2026 Exam Prep – Premium Version</title>
+    
+    <!-- Meta Tags for SEO & Social Sharing -->
+    <meta name="description" content="SSC 2026 Exam Prep – প্রিমিয়াম ভার্সন। NCTB শর্ট সিলেবাস ২০২৬ অনুযায়ী পদার্থ, রসায়ন, জীববিজ্ঞান, ICT, BGS, বাংলা ২য়, English 2nd পেপারের সম্পূর্ণ প্রস্তুতি।">
+    <meta name="keywords" content="SSC 2026, এসএসসি ২০২৬, পরীক্ষার প্রস্তুতি, পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান, ICT, বাংলাদেশ ও বিশ্বপরিচয়, বাংলা ব্যাকরণ, English Grammar">
+    <meta property="og:title" content="SSC 2026 Exam Prep – Premium Version">
+    <meta property="og:description" content="৬৫+ দিন প্রিমিয়াম এক্সেস মাত্র ১০০ টাকায়">
+    <meta property="og:url" content="https://nationalexamcenter.github.io/premium.html">
+    
     <style>
         * {
             margin: 0;
@@ -16,6 +24,7 @@
             color: #1e3c2c;
             line-height: 1.6;
             padding: 20px;
+            scroll-behavior: smooth;
         }
         .container {
             max-width: 1000px;
@@ -97,7 +106,6 @@
             font-size: 14px;
             color: #2e5e3a;
         }
-        /* Subject cards */
         .subject-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -263,15 +271,156 @@
         .amazon-badge:hover {
             background: #37475A;
         }
+        
+        /* New styles for modern features */
+        .trust-badge {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 5px;
+        }
+        .testimonial-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid #c8e6c9;
+        }
+        .stars {
+            color: #FFB74D;
+            font-size: 20px;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            line-height: 60px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #128C7E;
+        }
+        .faq-item {
+            border: 1px solid #c8e6c9;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 15px;
+            background: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-answer {
+            display: none;
+            padding: 15px;
+            border-top: 1px solid #e0f0e0;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th {
+            padding: 15px;
+            text-align: left;
+            background: #f0f7f0;
+        }
+        .comparison-table td {
+            padding: 12px;
+            border-bottom: 1px solid #c8e6c9;
+        }
+        .premium-highlight {
+            background: #e8f5e9;
+            font-weight: 500;
+        }
+        .flash-sale {
+            background: linear-gradient(135deg, #ff6b6b, #f03e3e);
+            color: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .timer-box {
+            background: rgba(255,255,255,0.2);
+            padding: 15px 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .timer-number {
+            font-size: 36px;
+            font-weight: 800;
+        }
+        .stats-box {
+            background: linear-gradient(135deg, #1B5E20, #2E7D32);
+            color: white;
+            border-radius: 24px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .stat-item {
+            display: inline-block;
+            width: 30%;
+            min-width: 120px;
+            margin: 10px 0;
+        }
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+        }
+        .progress-bar {
+            height: 10px;
+            background: #2E7D32;
+            border-radius: 5px;
+            transition: width 1s ease-in-out;
+        }
+        .progress-container {
+            height: 10px;
+            background: #e0f0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
         @media (max-width: 600px) {
             .header h1 { font-size: 28px; }
             .content { padding: 25px 20px; }
             .section-title { font-size: 24px; }
             .price { font-size: 40px; }
+            .whatsapp-float { width: 50px; height: 50px; line-height: 50px; font-size: 25px; }
         }
     </style>
 </head>
 <body>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/8801602105447?text=আমি%20SSC%202026%20প্রিমিয়াম%20ভার্সন%20সম্পর্কে%20জানতে%20চাই" class="whatsapp-float" target="_blank">💬</a>
+
     <div class="container">
         <div class="header">
             <h1>📱 SSC 2026 Exam Prep</h1>
@@ -280,6 +429,26 @@
         </div>
 
         <div class="content">
+            <!-- Trust Badges -->
+            <div style="display: flex; gap: 15px; justify-content: center; margin: 20px 0; flex-wrap: wrap;">
+                <div class="trust-badge"><span style="color: #2E7D32;">✅</span> ৫০০+ সক্রিয় ইউজার</div>
+                <div class="trust-badge"><span style="color: #2E7D32;">✅</span> ১০,০০০+ পরীক্ষা সম্পন্ন</div>
+                <div class="trust-badge"><span style="color: #2E7D32;">✅</span> ৯০% ইউজার satisfied</div>
+            </div>
+
+            <!-- Flash Sale Banner -->
+            <div class="flash-sale">
+                <div>
+                    <span style="background: #FFD700; color: #1e3c2c; padding: 5px 15px; border-radius: 40px; font-weight: bold; font-size: 14px;">⚡ স্পেশাল অফার</span>
+                    <h3 style="margin: 10px 0 5px; font-size: 22px;">প্রথম ৫০০ ইউজারের জন্য</h3>
+                    <p style="opacity: 0.9;">১০০ টাকায় ৬৫+ দিন প্রিমিয়াম এক্সেস</p>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-number" id="timer">২৩:৫৯:৪৯</div>
+                    <div style="font-size: 12px;">অফার শেষ হতে</div>
+                </div>
+            </div>
+
             <!-- Features Section -->
             <h2 class="section-title">✨ প্রধান ফিচারসমূহ</h2>
             <div class="feature-grid">
@@ -429,6 +598,92 @@
                 </div>
             </div>
 
+            <!-- Live Stats Counter -->
+            <div class="stats-box">
+                <h3 style="font-size: 24px; margin-bottom: 20px;">📊 আমাদের অগ্রগতি</h3>
+                <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                    <div class="stat-item">
+                        <div class="stat-number" id="user-count">২৫০+</div>
+                        <div style="font-size: 14px;">সক্রিয় ব্যবহারকারী</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="exam-count">৫,০০০+</div>
+                        <div style="font-size: 14px;">পরীক্ষা সম্পন্ন</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="question-count">১০,০০০+</div>
+                        <div style="font-size: 14px;">MCQ সমাধান</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <h2 class="section-title">📢 ব্যবহারকারীদের মতামত</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0;">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p style="margin: 10px 0; font-style: italic;">"পদার্থের সব টপিকভিত্তিক MCQ পেয়ে দারুণ লেগেছে। ১০০ টাকা একেবারে সস্তা!"</p>
+                    <p style="font-weight: bold;">— রাফিদ, রাজশাহী</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p style="margin: 10px 0; font-style: italic;">"ইংলিশ গ্রামারের প্রতিটি টপিকের জন্য আলাদা এক্সাম – অসাধারণ!"</p>
+                    <p style="font-weight: bold;">— নিশাত, ঢাকা</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p style="margin: 10px 0; font-style: italic;">"অফলাইন এক্সেস মানেই ইন্টারনেট ছাড়া পড়া – জিনিয়াস!"</p>
+                    <p style="font-weight: bold;">— তানভীর, চট্টগ্রাম</p>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <h2 class="section-title">🆚 ফ্রি vs প্রিমিয়াম</h2>
+            <div style="overflow-x: auto;">
+                <table class="comparison-table">
+                    <tr>
+                        <th>ফিচার</th>
+                        <th style="text-align: center;">ফ্রি</th>
+                        <th style="text-align: center; background: #2E7D32; color: white;">প্রিমিয়াম</th>
+                    </tr>
+                    <tr>
+                        <td>সব অধ্যায় আনলক</td>
+                        <td style="text-align: center;">❌</td>
+                        <td style="text-align: center;" class="premium-highlight">✅</td>
+                    </tr>
+                    <tr>
+                        <td>সীমাহীন MCQ</td>
+                        <td style="text-align: center;">❌</td>
+                        <td style="text-align: center;" class="premium-highlight">✅</td>
+                    </tr>
+                    <tr>
+                        <td>CQ + SQ ব্যাংক</td>
+                        <td style="text-align: center;">❌</td>
+                        <td style="text-align: center;" class="premium-highlight">✅</td>
+                    </tr>
+                    <tr>
+                        <td>থিওরি স্টাডি</td>
+                        <td style="text-align: center;">❌</td>
+                        <td style="text-align: center;" class="premium-highlight">✅</td>
+                    </tr>
+                    <tr>
+                        <td>প্রগ্রেস ট্র্যাকিং</td>
+                        <td style="text-align: center;">❌</td>
+                        <td style="text-align: center;" class="premium-highlight">✅</td>
+                    </tr>
+                    <tr>
+                        <td>অফলাইন এক্সেস</td>
+                        <td style="text-align: center;">❌</td>
+                        <td style="text-align: center;" class="premium-highlight">✅ (২০ মে পর্যন্ত)</td>
+                    </tr>
+                    <tr>
+                        <td>বিজ্ঞাপন</td>
+                        <td style="text-align: center;">✅ (শীঘ্রই)</td>
+                        <td style="text-align: center;" class="premium-highlight">❌ নেই</td>
+                    </tr>
+                </table>
+            </div>
+
             <!-- Premium Offer -->
             <h2 class="section-title">💰 প্রিমিয়াম ভার্সন – মাত্র ১০০ টাকা (২০ মে পর্যন্ত)</h2>
             <div class="pricing-box">
@@ -478,6 +733,50 @@
                 </p>
                 
                 <p style="margin-top: 15px; font-size: 14px; color: #555;">অ্যাপ ডাউনলোড করার পর, রেজিস্ট্রেশন করে ১০০ টাকা পেমেন্ট করুন। পেমেন্টের পর ১ ঘন্টার মধ্যে আপনার অ্যাক্সেস সক্রিয় করা হবে।</p>
+            </div>
+
+            <!-- FAQ Section -->
+            <h2 class="section-title">❓ প্রায়শই জিজ্ঞাসিত প্রশ্ন</h2>
+            <div style="margin: 20px 0;">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(1)">
+                        <span>⚡ রেজিস্ট্রেশন করার পর কিভাবে এক্সেস পাব?</span>
+                        <span style="font-size: 20px;">▼</span>
+                    </button>
+                    <div class="faq-answer" id="faq-1">
+                        পেমেন্ট করার পর আপনার WhatsApp এ স্ক্রিনশট পাঠালে ১ ঘন্টার মধ্যে আপনার অ্যাকাউন্ট প্রিমিয়ামে আপগ্রেড করা হবে। রেজিস্ট্রেশন করার সময় যে ইমেইল ব্যবহার করেছেন সেটি জানাতে হবে।
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(2)">
+                        <span>💳 পেমেন্টের উপায় কী?</span>
+                        <span style="font-size: 20px;">▼</span>
+                    </button>
+                    <div class="faq-answer" id="faq-2">
+                        bKash, Nagad, বা Rocket এর মাধ্যমে পেমেন্ট করা যাবে। পেমেন্ট করার পর WhatsApp এ স্ক্রিনশট পাঠালে ১ ঘন্টার মধ্যে এক্সেস দেয়া হবে।
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(3)">
+                        <span>📱 একাধিক ডিভাইসে ব্যবহার করা যাবে?</span>
+                        <span style="font-size: 20px;">▼</span>
+                    </button>
+                    <div class="faq-answer" id="faq-3">
+                        হ্যাঁ, একই অ্যাকাউন্ট দিয়ে আপনি ৩টি পর্যন্ত ডিভাইসে লগইন করতে পারবেন।
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(4)">
+                        <span>🔒 অফলাইন এক্সেস কিভাবে কাজ করে?</span>
+                        <span style="font-size: 20px;">▼</span>
+                    </button>
+                    <div class="faq-answer" id="faq-4">
+                        একবার রেজিস্ট্রেশন করলে ২০ মে পর্যন্ত আপনি ইন্টারনেট ছাড়াও অ্যাপের সব ফিচার ব্যবহার করতে পারবেন। তবে মাঝে মাঝে লাইসেন্স ভেরিফিকেশনের জন্য ইন্টারনেট প্রয়োজন হতে পারে।
+                    </div>
+                </div>
             </div>
 
             <!-- Contact & Support -->
@@ -551,7 +850,69 @@
             }
         }
         
-        updateAccessNote();
+        // Countdown timer (24 hours from now)
+        function updateTimer() {
+            const now = new Date();
+            const end = new Date(now);
+            end.setHours(24, 0, 0, 0); // Next midnight
+            
+            const diff = end - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            const timerElement = document.getElementById('timer');
+            if (timerElement) {
+                timerElement.textContent = 
+                    `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+            }
+        }
+        
+        // Animate counters
+        function animateCounter(elementId, target, suffix = '+') {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            let current = 0;
+            const increment = Math.ceil(target / 50);
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString('bn') + suffix;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = current.toLocaleString('bn') + suffix;
+                }
+            }, 30);
+        }
+        
+        // FAQ Toggle
+        function toggleFAQ(id) {
+            const answer = document.getElementById('faq-' + id);
+            if (answer.style.display === 'none' || answer.style.display === '') {
+                answer.style.display = 'block';
+            } else {
+                answer.style.display = 'none';
+            }
+        }
+        
+        // Initialize all animations on page load
+        window.addEventListener('load', function() {
+            updateAccessNote();
+            setInterval(updateTimer, 1000);
+            updateTimer();
+            
+            // Start counters
+            animateCounter('user-count', 250);
+            animateCounter('exam-count', 5000);
+            animateCounter('question-count', 10000);
+            
+            // Hide all FAQ answers initially
+            for (let i = 1; i <= 4; i++) {
+                const answer = document.getElementById('faq-' + i);
+                if (answer) answer.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
