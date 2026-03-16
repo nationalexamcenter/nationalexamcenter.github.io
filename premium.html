@@ -408,6 +408,22 @@
             border-radius: 5px;
             overflow: hidden;
         }
+        
+        /* Manual registration notice */
+        .manual-reg-notice {
+            background: #FFF3CD;
+            border: 1px solid #FFE69C;
+            color: #856404;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+        .manual-reg-notice strong {
+            color: #533F03;
+        }
+        
         @media (max-width: 600px) {
             .header h1 { font-size: 28px; }
             .content { padding: 25px 20px; }
@@ -684,6 +700,11 @@
                 </table>
             </div>
 
+            <!-- Manual Registration Notice (NEW) -->
+            <div class="manual-reg-notice">
+                <strong>📢 ম্যানুয়াল রেজিস্ট্রেশন:</strong> পেমেন্ট করার পর আপনি ইমেইল ও পাসওয়ার্ড পাবেন। কোনো অটোমেটিক রেজিস্ট্রেশন নেই। পেমেন্ট সম্পন্ন হলে WhatsApp এ জানালে ১ ঘন্টার মধ্যে আপনার এক্সেস দিয়ে দেওয়া হবে।
+            </div>
+
             <!-- Premium Offer -->
             <h2 class="section-title">💰 প্রিমিয়াম ভার্সন – মাত্র ১০০ টাকা (২০ মে পর্যন্ত)</h2>
             <div class="pricing-box">
@@ -732,7 +753,18 @@
                     💡 মোবাইল ডেটা বাঁচাতে? Amazon Appstore থেকে ডাউনলোড করলে অটোমেটিক ইনস্টল হবে।
                 </p>
                 
-                <p style="margin-top: 15px; font-size: 14px; color: #555;">অ্যাপ ডাউনলোড করার পর, রেজিস্ট্রেশন করে ১০০ টাকা পেমেন্ট করুন। পেমেন্টের পর ১ ঘন্টার মধ্যে আপনার অ্যাক্সেস সক্রিয় করা হবে।</p>
+                <!-- Manual Registration Instructions (UPDATED) -->
+                <div style="background: #E8F5E9; border-radius: 16px; padding: 20px; margin: 20px 0; text-align: left;">
+                    <h4 style="color: #1B5E20; margin-bottom: 10px;">📋 রেজিস্ট্রেশন প্রক্রিয়া:</h4>
+                    <ol style="margin-left: 20px; color: #2e5e3a;">
+                        <li style="margin-bottom: 8px;">অ্যাপ ডাউনলোড করুন (Amazon বা Drive থেকে)</li>
+                        <li style="margin-bottom: 8px;">১০০ টাকা পেমেন্ট করুন (WhatsApp এ জানাবো)</li>
+                        <li style="margin-bottom: 8px;">পেমেন্টের স্ক্রিনশট WhatsApp এ পাঠান: <strong>+8801602105447</strong></li>
+                        <li style="margin-bottom: 8px;">আমরা আপনার জন্য ইমেইল ও পাসওয়ার্ড তৈরি করে দেব (১ ঘন্টার মধ্যে)</li>
+                        <li style="margin-bottom: 8px;">প্রদত্ত ইমেইল ও পাসওয়ার্ড দিয়ে লগইন করুন</li>
+                    </ol>
+                    <p style="margin-top: 10px; font-weight: 500; color: #1B5E20;">🔐 কোনো অটোমেটিক রেজিস্ট্রেশন নেই – সম্পূর্ণ ম্যানুয়াল।</p>
+                </div>
             </div>
 
             <!-- FAQ Section -->
@@ -740,11 +772,11 @@
             <div style="margin: 20px 0;">
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(1)">
-                        <span>⚡ রেজিস্ট্রেশন করার পর কিভাবে এক্সেস পাব?</span>
+                        <span>⚡ পেমেন্ট করার পর কিভাবে এক্সেস পাব?</span>
                         <span style="font-size: 20px;">▼</span>
                     </button>
                     <div class="faq-answer" id="faq-1">
-                        পেমেন্ট করার পর আপনার WhatsApp এ স্ক্রিনশট পাঠালে ১ ঘন্টার মধ্যে আপনার অ্যাকাউন্ট প্রিমিয়ামে আপগ্রেড করা হবে। রেজিস্ট্রেশন করার সময় যে ইমেইল ব্যবহার করেছেন সেটি জানাতে হবে।
+                        পেমেন্ট করার পর WhatsApp এ স্ক্রিনশট পাঠালে আমরা আপনার জন্য একটি ইমেইল ও পাসওয়ার্ড তৈরি করে ১ ঘন্টার মধ্যে দিয়ে দেব। এই তথ্য দিয়ে আপনি লগইন করে প্রিমিয়াম এক্সেস পাবেন।
                     </div>
                 </div>
                 
@@ -754,7 +786,7 @@
                         <span style="font-size: 20px;">▼</span>
                     </button>
                     <div class="faq-answer" id="faq-2">
-                        bKash, Nagad, বা Rocket এর মাধ্যমে পেমেন্ট করা যাবে। পেমেন্ট করার পর WhatsApp এ স্ক্রিনশট পাঠালে ১ ঘন্টার মধ্যে এক্সেস দেয়া হবে।
+                        bKash, Nagad, বা Rocket এর মাধ্যমে পেমেন্ট করা যাবে। পেমেন্ট নম্বর জানতে WhatsApp এ যোগাযোগ করুন: <strong>+8801602105447</strong>
                     </div>
                 </div>
                 
@@ -764,7 +796,7 @@
                         <span style="font-size: 20px;">▼</span>
                     </button>
                     <div class="faq-answer" id="faq-3">
-                        হ্যাঁ, একই অ্যাকাউন্ট দিয়ে আপনি ৩টি পর্যন্ত ডিভাইসে লগইন করতে পারবেন।
+                        হ্যাঁ, একই ইমেইল ও পাসওয়ার্ড দিয়ে আপনি ৩টি পর্যন্ত ডিভাইসে লগইন করতে পারবেন।
                     </div>
                 </div>
                 
@@ -774,7 +806,17 @@
                         <span style="font-size: 20px;">▼</span>
                     </button>
                     <div class="faq-answer" id="faq-4">
-                        একবার রেজিস্ট্রেশন করলে ২০ মে পর্যন্ত আপনি ইন্টারনেট ছাড়াও অ্যাপের সব ফিচার ব্যবহার করতে পারবেন। তবে মাঝে মাঝে লাইসেন্স ভেরিফিকেশনের জন্য ইন্টারনেট প্রয়োজন হতে পারে।
+                        একবার লগইন করলে ২০ মে পর্যন্ত আপনি ইন্টারনেট ছাড়াও অ্যাপের সব ফিচার ব্যবহার করতে পারবেন। তবে মাঝে মাঝে লাইসেন্স ভেরিফিকেশনের জন্য ইন্টারনেট প্রয়োজন হতে পারে।
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(5)">
+                        <span>✉️ ইমেইল না পেলে কী করব?</span>
+                        <span style="font-size: 20px;">▼</span>
+                    </button>
+                    <div class="faq-answer" id="faq-5">
+                        পেমেন্টের ১ ঘন্টার মধ্যে ইমেইল না পেলে WhatsApp এ জানান। আপনার পেমেন্টের তথ্য দিয়ে আমরা চেক করে সাথে সাথে ইমেইল পাঠিয়ে দেব।
                     </div>
                 </div>
             </div>
@@ -813,9 +855,9 @@
 
             <hr>
 
-            <!-- Additional Info -->
+            <!-- Additional Info (UPDATED) -->
             <p style="text-align: center; font-style: italic; color: #4e6b4e;">
-                * ১০০ টাকা এককালীন পেমেন্টের বিনিময়ে ২০ মে পর্যন্ত প্রিমিয়াম অ্যাক্সেস। পেমেন্ট করে WhatsApp এ স্ক্রিনশট পাঠালে ১ ঘন্টার মধ্যে আপনার অ্যাক্সেস সক্রিয় করা হবে।
+                * ১০০ টাকা এককালীন পেমেন্টের বিনিময়ে ২০ মে পর্যন্ত প্রিমিয়াম অ্যাক্সেস। পেমেন্ট করে WhatsApp এ স্ক্রিনশট পাঠালে ১ ঘন্টার মধ্যে ইমেইল ও পাসওয়ার্ড দিয়ে দেওয়া হবে। কোনো অটোমেটিক রেজিস্ট্রেশন নেই।
             </p>
         </div>
 
@@ -908,7 +950,7 @@
             animateCounter('question-count', 10000);
             
             // Hide all FAQ answers initially
-            for (let i = 1; i <= 4; i++) {
+            for (let i = 1; i <= 5; i++) {
                 const answer = document.getElementById('faq-' + i);
                 if (answer) answer.style.display = 'none';
             }
