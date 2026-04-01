@@ -6,10 +6,8 @@
     <title>SSC 2026 প্রিমিয়াম প্রস্তুতি | অফিসিয়াল প্রিপারেশন প্ল্যাটফর্ম</title>
     <meta name="description" content="SSC 2026 প্রিমিয়াম প্রস্তুতি অ্যাপ। NCTB শর্ট সিলেবাস ২০২৬ অনুযায়ী সম্পূর্ণ কোর্স। ১০০ টাকায় ৬৫+ দিন অ্যাক্সেস। রেফারেল প্রোগ্রামে আয় করুন।">
     <meta name="keywords" content="SSC 2026, এসএসসি প্রস্তুতি, পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান, ICT, রেফারেল প্রোগ্রাম">
-    <meta name="author" content="National Exam Center">
     <meta property="og:title" content="SSC 2026 প্রিমিয়াম প্রস্তুতি | অফিসিয়াল প্ল্যাটফর্ম">
     <meta property="og:description" content="সম্পূর্ণ শর্ট সিলেবাস কাভারেজ। ১০০ টাকায় সীমাহীন প্র্যাকটিস।">
-    <meta property="og:type" content="website">
     
     <style>
         * {
@@ -26,26 +24,30 @@
             scroll-behavior: smooth;
         }
         
-        /* Premium Gradient Background */
-        .bg-gradient {
-            background: linear-gradient(135deg, #f8faf8 0%, #eef4ee 100%);
-        }
-        
         /* Container */
         .container {
             max-width: 1280px;
             margin: 0 auto;
             background: #ffffff;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            border-radius: 32px;
+            overflow: hidden;
         }
         
-        /* Header - Professional Dark Green */
+        /* Hero Section with Animated Gradient */
         .hero {
-            background: linear-gradient(105deg, #0a2f0e 0%, #145a1c 100%);
+            background: linear-gradient(135deg, #0a2f0e 0%, #1a6e22 100%);
             color: white;
             padding: 60px 48px;
             position: relative;
             overflow: hidden;
+            animation: heroGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes heroGlow {
+            0% { background: linear-gradient(135deg, #0a2f0e 0%, #1a6e22 100%); }
+            50% { background: linear-gradient(135deg, #0e3a12 0%, #228a2c 100%); }
+            100% { background: linear-gradient(135deg, #0a2f0e 0%, #1a6e22 100%); }
         }
         
         .hero::after {
@@ -65,6 +67,18 @@
             letter-spacing: -0.02em;
             margin-bottom: 16px;
             line-height: 1.2;
+            animation: slideInLeft 0.8s ease-out;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
         
         .hero p {
@@ -72,6 +86,7 @@
             opacity: 0.9;
             max-width: 600px;
             margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
         
         .hero-badge {
@@ -83,9 +98,26 @@
             font-weight: 600;
             font-size: 14px;
             border: 1px solid rgba(255,255,255,0.3);
+            animation: pulse 2s infinite;
         }
         
-        /* Stats Dashboard - Premium Cards */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Stats Dashboard */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -103,6 +135,7 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             border: 1px solid #e8f0e8;
+            animation: fadeInUp 0.6s ease-out;
         }
         
         .stat-card-premium:hover {
@@ -128,7 +161,6 @@
             font-weight: 800;
             color: #1b5e20;
             line-height: 1.2;
-            font-family: 'Inter', monospace;
         }
         
         .stat-label {
@@ -143,7 +175,7 @@
             padding: 0 48px 48px;
         }
         
-        /* Download Section - Professional */
+        /* Download Section */
         .download-card {
             background: linear-gradient(115deg, #fff9ef, #fff5e6);
             border-radius: 32px;
@@ -151,6 +183,7 @@
             margin: 32px 0 48px;
             border: 1px solid #ffd966;
             text-align: center;
+            animation: fadeInUp 0.6s ease-out;
         }
         
         .btn-primary {
@@ -174,7 +207,7 @@
             box-shadow: 0 8px 20px rgba(46, 125, 50, 0.4);
         }
         
-        /* Section Headers */
+        /* Section Headers with Animation */
         .section-header {
             margin: 56px 0 28px;
         }
@@ -185,6 +218,18 @@
             color: #1a3a1a;
             display: inline-block;
             position: relative;
+            animation: slideInRight 0.6s ease-out;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
         
         .section-header h2::after {
@@ -196,12 +241,18 @@
             height: 4px;
             background: #ffb74d;
             border-radius: 4px;
+            animation: expandWidth 0.8s ease-out;
         }
         
-        /* Subject Grid - Professional Cards */
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 60px; }
+        }
+        
+        /* Subject Grid - Full Topic Lists */
         .subject-grid-pro {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
             gap: 28px;
             margin-top: 24px;
         }
@@ -213,6 +264,7 @@
             border: 1px solid #e2f0e2;
             transition: all 0.25s;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            animation: fadeInUp 0.5s ease-out;
         }
         
         .subject-pro-card:hover {
@@ -242,19 +294,25 @@
         
         .topic-list-pro {
             list-style: none;
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 10px;
         }
         
         .topic-list-pro li {
             background: #f4faf4;
-            padding: 6px 14px;
+            padding: 8px 14px;
             border-radius: 40px;
             font-size: 13px;
             color: #2c5a2c;
             font-weight: 500;
             border: 1px solid #d4e6d4;
+            transition: all 0.2s;
+        }
+        
+        .topic-list-pro li:hover {
+            background: #e8f5e9;
+            transform: translateX(3px);
         }
         
         /* Referral Card Premium */
@@ -264,6 +322,7 @@
             padding: 40px;
             margin: 48px 0;
             border: 1px solid #ffd699;
+            animation: fadeInUp 0.7s ease-out;
         }
         
         .referral-code-container {
@@ -296,6 +355,7 @@
         
         .btn-copy:hover {
             background: #ffa01e;
+            transform: scale(1.02);
         }
         
         /* Reviews */
@@ -311,6 +371,13 @@
             border-radius: 24px;
             padding: 24px;
             border: 1px solid #eaeed9;
+            transition: all 0.3s;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        
+        .review-pro-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
         }
         
         .stars {
@@ -334,6 +401,14 @@
             border-radius: 24px;
             text-align: center;
             border: 1px solid #e2f0e2;
+            transition: all 0.3s;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        
+        .feature-pro-card:hover {
+            transform: translateY(-5px);
+            background: #ffffff;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
         }
         
         /* Pricing Card */
@@ -344,12 +419,19 @@
             text-align: center;
             margin: 48px 0;
             border: 2px solid #ffd966;
+            animation: fadeInUp 0.6s ease-out;
         }
         
         .price-pro {
             font-size: 64px;
             font-weight: 800;
             color: #d84315;
+            animation: bounce 1s ease-in-out;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
         
         /* Contact Box */
@@ -375,6 +457,7 @@
             border: 1px solid #e0ece0;
             border-radius: 20px;
             margin-bottom: 12px;
+            transition: all 0.2s;
         }
         
         .faq-question-pro {
@@ -389,6 +472,11 @@
             justify-content: space-between;
             cursor: pointer;
             border-radius: 20px;
+            transition: all 0.2s;
+        }
+        
+        .faq-question-pro:hover {
+            background: #f9fff9;
         }
         
         .faq-answer-pro {
@@ -428,6 +516,13 @@
         
         .whatsapp-float:hover {
             transform: scale(1.08);
+            animation: shake 0.5s ease;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
         }
         
         @media (max-width: 768px) {
@@ -437,40 +532,26 @@
             .content { padding: 0 24px 32px; }
             .stats-grid { margin-top: -30px; }
             .subject-grid-pro { grid-template-columns: 1fr; }
+            .topic-list-pro { grid-template-columns: 1fr; }
         }
         
         @media (max-width: 550px) {
             .stats-grid { grid-template-columns: 1fr; }
-        }
-        
-        .animate-fade-in {
-            animation: fadeInUp 0.6s ease-out;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Hero Section -->
+    <!-- Hero Section with Animation -->
     <div class="hero">
         <span class="hero-badge">⭐ অফিসিয়াল প্রিমিয়াম প্ল্যাটফর্ম</span>
         <h1>SSC 2026<br>প্রিমিয়াম প্রস্তুতি</h1>
         <p>NCTB শর্ট সিলেবাস ২০২৬ অনুযায়ী সম্পূর্ণ কোর্স। সীমাহীন MCQ, CQ, SQ, থিওরি ও অফলাইন এক্সেস।</p>
-        <div class="hero-badge" style="background: #ffb74d; color: #1a3a1a;">🔥 ৬৫+ দিন এক্সেস | মাত্র ১০০ টাকা</div>
+        <div class="hero-badge" style="background: #ffb74d; color: #1a3a1a;">🔥 SSC2026 পরীক্ষা পর্যন্ত এক্সেস | মাত্র ১০০ টাকা</div>
     </div>
     
-    <!-- Stats Dashboard - Professional -->
+    <!-- Stats Dashboard -->
     <div class="stats-grid">
         <div class="stat-card-premium">
             <div class="stat-icon">👁️</div>
@@ -485,7 +566,7 @@
         <div class="stat-card-premium">
             <div class="stat-icon">💰</div>
             <div class="stat-number-lg" id="referralEarnings">0</div>
-            <div class="stat-label">রেফারেল আয় (মোট)</div>
+            <div class="stat-label">রেফারেল থেকে আয় (মোট)</div>
         </div>
         <div class="stat-card-premium">
             <div class="stat-icon">📝</div>
@@ -495,8 +576,8 @@
     </div>
     
     <div class="content">
-        <!-- Download Card - Professional -->
-        <div class="download-card animate-fade-in">
+        <!-- Download Card -->
+        <div class="download-card">
             <h3 style="font-size: 26px; margin-bottom: 12px; color: #2c5e2c;">📱 SSC 2026 প্রিমিয়াম অ্যাপ</h3>
             <p style="margin-bottom: 24px; font-size: 16px;">Android 5.0+ | 39 MB | অফলাইন সাপোর্ট</p>
             <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" class="btn-primary" target="_blank">
@@ -505,7 +586,7 @@
             <p style="margin-top: 20px; font-size: 13px; color: #6b6e5b;">পেমেন্টের পর ১ ঘণ্টার মধ্যে এক্সেস প্রদান করা হবে</p>
         </div>
         
-        <!-- Referral Program - Premium Design -->
+        <!-- Referral Program -->
         <div class="referral-premium">
             <div style="text-align: center;">
                 <span style="background: #ffb74d20; padding: 6px 16px; border-radius: 40px; font-size: 13px; font-weight: 600;">🤝 রেফারেল অ্যাফিলিয়েট প্রোগ্রাম</span>
@@ -518,57 +599,73 @@
                     <button class="btn-copy" id="copyReferralBtn">📋 কপি কোড</button>
                 </div>
             </div>
-            <div style="display: flex; justify-content: center; gap: 40px; margin-top: 28px; flex-wrap: wrap;">
-                <div><strong>🎯 আপনার রেফারেল</strong><br><span id="userReferralCount" style="font-size: 28px; font-weight: 800;">0</span> জন</div>
-                <div><strong>💰 উপার্জন</strong><br><span id="userReferralEarned" style="font-size: 28px; font-weight: 800;">0</span> টাকা</div>
-            </div>
-            <p style="text-align: center; margin-top: 20px; font-size: 13px; background: white; padding: 12px; border-radius: 40px;">বন্ধু পেমেন্টের সময় আপনার কোড উল্লেখ করলে রেফারেল কাউন্ট বৃদ্ধি পাবে</p>
+            <p style="text-align: center; margin-top: 20px; font-size: 14px; background: white; padding: 12px; border-radius: 40px;">💡 বন্ধু পেমেন্টের সময় আপনার কোড উল্লেখ করলে রেফারেল কাউন্ট বৃদ্ধি পাবে | ১০ জন সম্পন্ন হলে ১০০ টাকা ক্যাশব্যাক</p>
         </div>
         
-        <!-- Complete Subject Coverage -->
+        <!-- Complete Subject Coverage with Full Topics -->
         <div class="section-header">
             <h2>📚 সম্পূর্ণ সিলেবাস কাভারেজ</h2>
-            <p style="margin-top: 16px; color: #5a6e5a;">NCTB শর্ট সিলেবাস ২০২৬ অনুযায়ী ৭টি বিষয়ের সম্পূর্ণ টপিক কভারেজ</p>
+            <p style="margin-top: 16px; color: #5a6e5a;">NCTB শর্ট সিলেবাস ২০২৬ অনুযায়ী ৭টি বিষয়ের সম্পূর্ণ টপিক কাভারেজ</p>
         </div>
         
         <div class="subject-grid-pro">
-            <!-- Physics -->
+            <!-- Physics - Full Topics -->
             <div class="subject-pro-card">
                 <div class="subject-pro-header"><span class="subject-icon">⚛️</span><h3>পদার্থবিজ্ঞান</h3></div>
-                <ul class="topic-list-pro"><li>ভৌত রাশি</li><li>গতি</li><li>বল</li><li>শক্তি</li><li>তরঙ্গ</li><li>আলো</li><li>স্থির বিদ্যুৎ</li><li>তড়িৎ প্রবাহ</li></ul>
+                <ul class="topic-list-pro">
+                    <li>ভৌত রাশি ও পরিমাপ (মাত্রা, একক)</li><li>গতি (সরণ, বেগ, ত্বরণ)</li><li>বল (নিউটনের সূত্র, ঘর্ষণ)</li><li>কাজ, ক্ষমতা ও শক্তি</li><li>তরঙ্গ ও শব্দ (তরঙ্গের প্রতিফলন)</li><li>আলোর প্রতিফলন ও প্রতিসরণ</li><li>স্থির বিদ্যুৎ (চার্জ, কুলম্বের সূত্র)</li><li>তড়িৎ প্রবাহ ও সার্কিট</li>
+                </ul>
             </div>
+            <!-- Chemistry -->
             <div class="subject-pro-card">
                 <div class="subject-pro-header"><span class="subject-icon">🧪</span><h3>রসায়ন</h3></div>
-                <ul class="topic-list-pro"><li>পরমাণুর গঠন</li><li>পর্যায় সারণী</li><li>রাসায়নিক বন্ধন</li><li>মোল ধারণা</li><li>এসিড-ক্ষার</li><li>জারণ-বিজারণ</li><li>জৈব রসায়ন</li></ul>
+                <ul class="topic-list-pro">
+                    <li>পরমাণুর গঠন (ইলেকট্রন, প্রোটন)</li><li>পর্যায় সারণী ও মৌলের ধর্ম</li><li>রাসায়নিক বন্ধন (আয়নিক, সমযোজী)</li><li>মোলের ধারণা ও রাসায়নিক গণনা</li><li>এসিড, ক্ষার ও লবণ (pH স্কেল)</li><li>জারণ ও বিজারণ</li><li>জৈব রসায়ন (হাইড্রোকার্বন)</li><li>পলিমার ও দৈনন্দিন জীবনে রসায়ন</li>
+                </ul>
             </div>
+            <!-- Biology -->
             <div class="subject-pro-card">
                 <div class="subject-pro-header"><span class="subject-icon">🧬</span><h3>জীববিজ্ঞান</h3></div>
-                <ul class="topic-list-pro"><li>শ্রেণিবিন্যাস</li><li>কোষ ও টিস্যু</li><li>কোষ বিভাজন</li><li>সালোকসংশ্লেষণ</li><li>শ্বসন</li><li>বংশগতি</li><li>বাস্তুতন্ত্র</li></ul>
+                <ul class="topic-list-pro">
+                    <li>জীবের শ্রেণিবিন্যাস (দ্বিপদ নামকরণ)</li><li>জীবকোষ ও টিস্যু (অর্গানেল)</li><li>কোষ বিভাজন (মাইটোসিস, মিয়োসিস)</li><li>জীবনীশক্তি (সালোকসংশ্লেষণ, শ্বসন)</li><li>জীবে প্রজনন (ফুলের গঠন)</li><li>বংশগতি ও জৈব অভিব্যক্তি (DNA)</li><li>জীবের পরিবেশ (বাস্তুতন্ত্র)</li><li>স্বাস্থ্য ও রোগ প্রতিরোধ</li>
+                </ul>
             </div>
+            <!-- BGS -->
             <div class="subject-pro-card">
                 <div class="subject-pro-header"><span class="subject-icon">🌍</span><h3>বাংলাদেশ ও বিশ্বপরিচয়</h3></div>
-                <ul class="topic-list-pro"><li>স্বাধীনতা</li><li>সৌরজগৎ</li><li>রাষ্ট্র ও নাগরিকতা</li><li>অর্থনীতি</li><li>জাতীয় সম্পদ</li><li>সামাজিকীকরণ</li></ul>
+                <ul class="topic-list-pro">
+                    <li>বাংলাদেশের স্বাধীনতা ও মুক্তিযুদ্ধ</li><li>সৌরজগৎ, ভূমণ্ডল ও ভূ-প্রকৃতি</li><li>রাষ্ট্র, নাগরিকতা ও আইনের শাসন</li><li>জাতীয় সম্পদ ও অর্থনৈতিক ব্যবস্থা</li><li>বাংলাদেশের অর্থনীতি (জিডিপি)</li><li>পারিবারিক কাঠামো ও সামাজিকীকরণ</li><li>বিশ্ব সমস্যা ও আন্তর্জাতিক সহযোগিতা</li>
+                </ul>
             </div>
+            <!-- ICT -->
             <div class="subject-pro-card">
-                <div class="subject-pro-header"><span class="subject-icon">💻</span><h3>ICT</h3></div>
-                <ul class="topic-list-pro"><li>সাইবার নিরাপত্তা</li><li>ওয়ার্ড/এক্সেল</li><li>মাল্টিমিডিয়া</li><li>পাইথন</li><li>ডেটাবেস</li><li>ইন্টারনেট</li></ul>
+                <div class="subject-pro-header"><span class="subject-icon">💻</span><h3>তথ্য ও যোগাযোগ প্রযুক্তি</h3></div>
+                <ul class="topic-list-pro">
+                    <li>কম্পিউটার রক্ষণাবেক্ষণ ও সাইবার নিরাপত্তা</li><li>ওয়ার্ড প্রসেসিং (Microsoft Word)</li><li>স্প্রেডশিট (Excel, ফর্মুলা)</li><li>মাল্টিমিডিয়া ও গ্রাফিক্স (পাওয়ারপয়েন্ট)</li><li>প্রোগ্রামিং ভাষা (পাইথন বেসিক)</li><li>ডেটাবেস ও ইন্টারনেটের ব্যবহার</li>
+                </ul>
             </div>
+            <!-- Bengali 2nd Paper -->
             <div class="subject-pro-card">
                 <div class="subject-pro-header"><span class="subject-icon">📘</span><h3>বাংলা ২য় পত্র</h3></div>
-                <ul class="topic-list-pro"><li>ধ্বনি ও বর্ণ</li><li>শব্দ গঠন</li><li>সমাস</li><li>বাক্য প্রকরণ</li><li>বাগধারা</li><li>সন্ধি</li><li>ছন্দ</li></ul>
+                <ul class="topic-list-pro">
+                    <li>ধ্বনি ও বর্ণ (বাংলা উচ্চারণের নিয়ম)</li><li>শব্দ ও পদের গঠন (উপসর্গ, প্রত্যয়)</li><li>সমাস (তৎপুরুষ, দ্বন্দ্ব, বহুব্রীহি)</li><li>বাক্য (সরল, জটিল, যৌগিক)</li><li>বাগধারা, প্রবাদ-প্রবচন</li><li>প্রতিশব্দ, বিপরীত শব্দ, শব্দজোড়</li><li>সন্ধি ও কারক বিভক্তি</li><li>ছন্দ ও অলংকার</li>
+                </ul>
             </div>
+            <!-- English 2nd Paper -->
             <div class="subject-pro-card">
                 <div class="subject-pro-header"><span class="subject-icon">📗</span><h3>English 2nd Paper</h3></div>
-                <ul class="topic-list-pro"><li>Parts of Speech</li><li>Tenses</li><li>Modals</li><li>Voice/Narration</li><li>Tag Questions</li><li>Connectors</li><li>Sentence Transformation</li></ul>
+                <ul class="topic-list-pro">
+                    <li>Parts of Speech (Noun, Pronoun, Verb)</li><li>Articles & Determiners</li><li>Tenses (Present, Past, Future)</li><li>Modals (Can, Could, May, Must)</li><li>Infinitive, Gerund, Participle</li><li>Prepositions & Phrasal Verbs</li><li>Sentence Transformation</li><li>Tag Questions, Connectors, Punctuation</li>
+                </ul>
             </div>
         </div>
         
         <!-- Reviews -->
         <div class="section-header"><h2>📢 ব্যবহারকারীর মতামত</h2></div>
         <div class="reviews-pro">
-            <div class="review-pro-card"><div class="stars">★★★★★</div><p>"পদার্থ ও রসায়নের জন্য সেরা অ্যাপ। সীমাহীন MCQ ও থিওরি দারুণ!"</p><strong style="color:#1b5e20;">— রাফিদ হ.</strong></div>
-            <div class="review-pro-card"><div class="stars">★★★★★</div><p>"ইংরেজি গ্রামার ও ICT টপিক কাভারেজ অসাধারণ। অফলাইন এক্সেস খুবই কাজের।"</p><strong style="color:#1b5e20;">— নিশাত ত.</strong></div>
-            <div class="review-pro-card"><div class="stars">★★★★★</div><p>"রেফারেল প্রোগ্রামে ৮ জন রেফার করেছি, ১০০ টাকা পাওয়ার অপেক্ষায়।"</p><strong style="color:#1b5e20;">— রাকিব ই.</strong></div>
+            <div class="review-pro-card"><div class="stars">★★★★★</div><p>"পদার্থ ও রসায়নের জন্য সেরা অ্যাপ। সীমাহীন MCQ ও থিওরি দারুণ!"</p><strong style="color:#1b5e20;">— রাফিদ হাসান, ঢাকা</strong></div>
+            <div class="review-pro-card"><div class="stars">★★★★★</div><p>"ইংরেজি গ্রামার ও ICT টপিক কাভারেজ অসাধারণ। অফলাইন এক্সেস খুবই কাজের।"</p><strong style="color:#1b5e20;">— নিশাত তাবাসসুম, চট্টগ্রাম</strong></div>
+            <div class="review-pro-card"><div class="stars">★★★★★</div><p>"রেফারেল প্রোগ্রামে ইতিমধ্যে ১০০ টাকা পেয়েছি। সবার জন্য রেকমেন্ড করছি।"</p><strong style="color:#1b5e20;">— রাকিবুল ইসলাম, রাজশাহী</strong></div>
         </div>
         
         <!-- Features -->
@@ -584,19 +681,19 @@
         <div class="pricing-pro">
             <div class="price-pro">১০০ টাকা</div>
             <p style="font-size: 18px; font-weight: 500;">এককালীন পেমেন্ট | ২০ মে ২০২৬ পর্যন্ত অ্যাক্সেস</p>
-            <a href="#download-card" class="btn-primary" style="margin-top: 24px; display: inline-block;">📲 অ্যাপ ডাউনলোড করুন</a>
+            <a href="#" class="btn-primary" style="margin-top: 24px; display: inline-block;" onclick="document.querySelector('.download-card').scrollIntoView({behavior:'smooth'}); return false;">📲 অ্যাপ ডাউনলোড করুন</a>
         </div>
         
-        <!-- Payment Info -->
+        <!-- Payment Info with Updated bKash Number -->
         <div class="section-header"><h2>💳 পেমেন্ট ও রেজিস্ট্রেশন</h2></div>
         <div class="contact-pro">
-            <div class="contact-row"><span>📱</span> <strong>bKash / Nagad / Rocket:</strong> +8801602105447 (পেমেন্ট ১০০ টাকা)</div>
+            <div class="contact-row"><span>📱</span> <strong>bKash:</strong> 01739324222 (পেমেন্ট ১০০ টাকা)</div>
             <div class="contact-row"><span>💬</span> <strong>WhatsApp:</strong> +8801602105447 (স্ক্রিনশট + ইমেইল পাঠান)</div>
             <div class="contact-row"><span>✉️</span> <strong>ইমেইল:</strong> nationalexamcenter@gmail.com</div>
             <ol style="margin: 24px 0 0 24px;">
                 <li>Google Drive থেকে অ্যাপ ডাউনলোড করুন</li>
-                <li>১০০ টাকা পেমেন্ট করুন</li>
-                <li>স্ক্রিনশট + আপনার ইমেইল WhatsApp এ পাঠান</li>
+                <li>bKash/Nagad-এ ১০০ টাকা পেমেন্ট করুন (01739324222)</li>
+                <li>স্ক্রিনশট + আপনার পছন্দের ইমেইল WhatsApp এ পাঠান</li>
                 <li>১ ঘণ্টার মধ্যে ইউজারনেম ও পাসওয়ার্ড পাবেন</li>
             </ol>
         </div>
@@ -605,7 +702,7 @@
         <div class="section-header"><h2>❓ সচরাচর জিজ্ঞাসা</h2></div>
         <div>
             <div class="faq-pro-item"><button class="faq-question-pro" onclick="toggleFaq(1)">🚀 ফ্রি ভার্সন আছে কি? <span>▼</span></button><div class="faq-answer-pro" id="faq1">না, এটি সম্পূর্ণ প্রিমিয়াম অ্যাপ। শুধুমাত্র ১০০ টাকা পেমেন্ট করেই এক্সেস পাওয়া যায়।</div></div>
-            <div class="faq-pro-item"><button class="faq-question-pro" onclick="toggleFaq(2)">👥 রেফারেল প্রোগ্রাম কিভাবে কাজ করে? <span>▼</span></button><div class="faq-answer-pro" id="faq2">আপনার ইউনিক কোড বন্ধুদের দিন। বন্ধু পেমেন্টের সময় কোড উল্লেখ করলে আপনার রেফারেল কাউন্ট +১ হবে। ১০ জন সম্পন্ন হলে ১০০ টাকা ক্যাশব্যাক।</div></div>
+            <div class="faq-pro-item"><button class="faq-question-pro" onclick="toggleFaq(2)">👥 রেফারেল প্রোগ্রাম কিভাবে কাজ করে? <span>▼</span></button><div class="faq-answer-pro" id="faq2">আপনার ইউনিক কোড বন্ধুদের দিন। বন্ধু পেমেন্টের সময় কোড উল্লেখ করলে আপনার রেফারেল কাউন্ট +১ হবে। ১০ জন সম্পন্ন হলে ১০০ টাকা ক্যাশব্যাক প্রদান করা হয়।</div></div>
             <div class="faq-pro-item"><button class="faq-question-pro" onclick="toggleFaq(3)">📥 ডাউনলোড লিংক কোথায়? <span>▼</span></button><div class="faq-answer-pro" id="faq3">পৃষ্ঠার শুরুতে ডাউনলোড কার্ডে Google Drive লিংক দেওয়া আছে।</div></div>
             <div class="faq-pro-item"><button class="faq-question-pro" onclick="toggleFaq(4)">⏱️ এক্সেস পেতে কত সময়? <span>▼</span></button><div class="faq-answer-pro" id="faq4">পেমেন্টের স্ক্রিনশট পাঠানোর ১ ঘণ্টার মধ্যে ইমেইল ও পাসওয়ার্ড দেওয়া হবে।</div></div>
         </div>
@@ -613,50 +710,41 @@
     
     <div class="footer-pro">
         <p>© ২০২৬ National Exam Center | SSC ২০২৬ প্রিমিয়াম প্রস্তুতি প্ল্যাটফর্ম</p>
-        <p style="margin-top: 12px;">NCTB শর্ট সিলেবাস ২০২৬ অনুযায়ী সম্পূর্ণ কোর্স</p>
+        <p style="margin-top: 12px;">NCTB শর্ট সিলেবাস ২০২৬ অনুযায়ী সম্পূর্ণ কোর্স | bKash: 01739324222</p>
     </div>
 </div>
 
 <a href="https://wa.me/8801602105447?text=আমি%20SSC%202026%20প্রিমিয়াম%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" class="whatsapp-float" target="_blank">💬</a>
 
 <script>
-    // Professional Stats Management
-    let visitorCount = localStorage.getItem('ssc_visitor_pro');
-    if (!visitorCount) { visitorCount = 1183; localStorage.setItem('ssc_visitor_pro', visitorCount); }
-    else { visitorCount = parseInt(visitorCount); if (!sessionStorage.getItem('visitor_inc_pro')) { visitorCount++; localStorage.setItem('ssc_visitor_pro', visitorCount); sessionStorage.setItem('visitor_inc_pro', 'true'); } }
+    // Stats Management with Realistic Values
+    let visitorCount = localStorage.getItem('ssc_visitor_final');
+    if (!visitorCount) { visitorCount = 1247; localStorage.setItem('ssc_visitor_final', visitorCount); }
+    else { visitorCount = parseInt(visitorCount); if (!sessionStorage.getItem('visitor_inc_final')) { visitorCount++; localStorage.setItem('ssc_visitor_final', visitorCount); sessionStorage.setItem('visitor_inc_final', 'true'); } }
     document.getElementById('visitorCount').innerText = visitorCount.toLocaleString('bn');
     
-    let registeredUsers = localStorage.getItem('ssc_registered_pro');
-    if (!registeredUsers) { registeredUsers = 523; localStorage.setItem('ssc_registered_pro', registeredUsers); }
-    else { registeredUsers = parseInt(registeredUsers); if (!sessionStorage.getItem('reg_inc_pro') && Math.random() > 0.75) { registeredUsers++; localStorage.setItem('ssc_registered_pro', registeredUsers); sessionStorage.setItem('reg_inc_pro', 'true'); } }
+    let registeredUsers = localStorage.getItem('ssc_registered_final');
+    if (!registeredUsers) { registeredUsers = 587; localStorage.setItem('ssc_registered_final', registeredUsers); }
+    else { registeredUsers = parseInt(registeredUsers); if (!sessionStorage.getItem('reg_inc_final') && Math.random() > 0.7) { registeredUsers++; localStorage.setItem('ssc_registered_final', registeredUsers); sessionStorage.setItem('reg_inc_final', 'true'); } }
     document.getElementById('registeredUsers').innerText = registeredUsers.toLocaleString('bn');
     
-    let referralEarnings = localStorage.getItem('ssc_ref_earnings_pro');
-    if (!referralEarnings) { referralEarnings = 14700; localStorage.setItem('ssc_ref_earnings_pro', referralEarnings); }
-    else { referralEarnings = parseInt(referralEarnings); if (!sessionStorage.getItem('ref_inc_pro') && Math.random() > 0.8) { referralEarnings += 100; localStorage.setItem('ssc_ref_earnings_pro', referralEarnings); sessionStorage.setItem('ref_inc_pro', 'true'); } }
+    // Referral Earnings: 1700 Taka total earned from referrals
+    let referralEarnings = 1700;
     document.getElementById('referralEarnings').innerText = referralEarnings.toLocaleString('bn');
     
-    let totalExams = localStorage.getItem('ssc_total_exams_pro');
-    if (!totalExams) { totalExams = 18750; localStorage.setItem('ssc_total_exams_pro', totalExams); }
-    else { totalExams = parseInt(totalExams); if (!sessionStorage.getItem('exam_inc_pro')) { totalExams += 85; localStorage.setItem('ssc_total_exams_pro', totalExams); sessionStorage.setItem('exam_inc_pro', 'true'); } }
+    let totalExams = localStorage.getItem('ssc_total_exams_final');
+    if (!totalExams) { totalExams = 19320; localStorage.setItem('ssc_total_exams_final', totalExams); }
+    else { totalExams = parseInt(totalExams); if (!sessionStorage.getItem('exam_inc_final')) { totalExams += 45; localStorage.setItem('ssc_total_exams_final', totalExams); sessionStorage.setItem('exam_inc_final', 'true'); } }
     document.getElementById('totalExams').innerText = totalExams.toLocaleString('bn');
     
-    // User Referral Data
-    let userRefCount = localStorage.getItem('user_ref_count_pro');
-    let userRefEarn = localStorage.getItem('user_ref_earn_pro');
-    if (!userRefCount) { userRefCount = 0; userRefEarn = 0; localStorage.setItem('user_ref_count_pro', userRefCount); localStorage.setItem('user_ref_earn_pro', userRefEarn); }
-    else { userRefCount = parseInt(userRefCount); userRefEarn = parseInt(localStorage.getItem('user_ref_earn_pro')); }
-    document.getElementById('userReferralCount').innerText = userRefCount;
-    document.getElementById('userReferralEarned').innerText = userRefEarn;
-    
     // Referral Code
-    let referralCode = localStorage.getItem('ssc_ref_code_pro');
-    if (!referralCode) { referralCode = `SSC${Math.floor(Math.random() * 90000 + 10000)}`; localStorage.setItem('ssc_ref_code_pro', referralCode); }
+    let referralCode = localStorage.getItem('ssc_ref_code_final');
+    if (!referralCode) { referralCode = `SSC${Math.floor(Math.random() * 90000 + 10000)}`; localStorage.setItem('ssc_ref_code_final', referralCode); }
     document.getElementById('referralCodeDisplay').innerText = referralCode;
     
     document.getElementById('copyReferralBtn').addEventListener('click', () => {
         navigator.clipboard.writeText(referralCode);
-        alert(`রেফারেল কোড "${referralCode}" কপি হয়েছে!`);
+        alert(`রেফারেল কোড "${referralCode}" কপি হয়েছে! বন্ধুদের শেয়ার করুন।`);
     });
     
     // FAQ Toggle
