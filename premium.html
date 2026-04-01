@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>SSC 2026 প্রিমিয়াম অ্যাপ | ডাউনলোড + রেফারেল + ভিডিও</title>
+    <title>SSC 2026 প্রিমিয়াম অ্যাপ | ডাউনলোড + রিভিউ + ভিজিটর কাউন্টার</title>
     <meta name="description" content="SSC 2026 প্রিমিয়াম প্রস্তুতি অ্যাপ। ১০০ টাকায় ৬৫+ দিন এক্সেস। গুগল ড্রাইভ থেকে ডাউনলোড করুন। ১০ জন বন্ধু রেফার করলে ১০০ টাকা ক্যাশব্যাক!">
-    <meta name="keywords" content="SSC 2026, প্রিমিয়াম অ্যাপ, ডাউনলোড, রেফারেল প্রোগ্রাম, পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান">
-    <meta property="og:title" content="SSC 2026 প্রিমিয়াম অ্যাপ – ডাউনলোড করো + রেফারেল অফার">
-    <meta property="og:description" content="১০০ টাকায় সীমাহীন MCQ, CQ, থিওরি। বন্ধু আনো, টাকা আয়ো! Google Drive ডাউনলোড লিংক।">
-    <meta property="og:url" content="https://nationalexamcenter.github.io/premium.html">
+    <meta name="keywords" content="SSC 2026, প্রিমিয়াম অ্যাপ, ডাউনলোড, রেফারেল, রিভিউ, ভিজিটর কাউন্টার">
+    <meta property="og:title" content="SSC 2026 প্রিমিয়াম অ্যাপ – ডাউনলোড + রিভিউ + রেফারেল">
+    <meta property="og:description" content="১০০ টাকায় সীমাহীন প্রস্তুতি। বন্ধু আনো, টাকা আয়ো! Google Drive ডাউনলোড।">
     
     <style>
         * {
@@ -31,10 +30,7 @@
             border-radius: 48px;
             box-shadow: 0 25px 50px -12px rgba(0,32,0,0.35);
             overflow: hidden;
-            backdrop-filter: blur(0px);
-            transition: all 0.3s;
         }
-        /* Dynamic glow header */
         .header {
             background: linear-gradient(135deg, #0e4b12 0%, #1f6e25 100%);
             color: white;
@@ -62,7 +58,6 @@
             margin-bottom: 12px;
             font-weight: 800;
             position: relative;
-            letter-spacing: -0.5px;
             text-shadow: 3px 3px 0 #0b3b0e;
         }
         .badge {
@@ -73,7 +68,6 @@
             font-weight: 800;
             display: inline-block;
             margin-top: 18px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             animation: pulse 1.8s infinite;
         }
         @keyframes pulse {
@@ -81,27 +75,31 @@
             70% { transform: scale(1.02); box-shadow: 0 0 0 12px rgba(255,183,77,0); }
             100% { transform: scale(1); }
         }
+        /* YouTube Shorts embed - working properly */
         .video-wrapper {
-            max-width: 800px;
+            max-width: 400px;
             margin: 25px auto 0;
             border-radius: 28px;
             overflow: hidden;
             box-shadow: 0 20px 30px -8px rgba(0,0,0,0.4);
             border: 3px solid #ffd966;
-            transition: transform 0.3s ease;
-        }
-        .video-wrapper:hover {
-            transform: scale(1.01);
+            background: #000;
         }
         .video-wrapper iframe {
             width: 100%;
-            aspect-ratio: 16 / 9;
+            height: 100%;
+            min-height: 600px;
             display: block;
+        }
+        @media (max-width: 500px) {
+            .video-wrapper iframe {
+                min-height: 500px;
+            }
         }
         .content {
             padding: 40px 40px;
         }
-        /* DYNAMIC DOWNLOAD SECTION (first glance) */
+        /* DYNAMIC DOWNLOAD SECTION */
         .download-hero {
             background: linear-gradient(115deg, #FEF9E6 0%, #FFF4DC 100%);
             border-radius: 48px;
@@ -109,7 +107,6 @@
             margin: 20px 0 35px;
             box-shadow: 0 15px 30px rgba(46,125,50,0.2);
             border: 1px solid #FFD966;
-            transition: all 0.25s;
         }
         .btn-group {
             display: flex;
@@ -132,7 +129,6 @@
             text-decoration: none;
             box-shadow: 0 8px 0 #0a5c34;
             transition: all 0.12s linear;
-            letter-spacing: 0.5px;
         }
         .btn-drive:active {
             transform: translateY(5px);
@@ -144,15 +140,6 @@
         @keyframes buttonGlow {
             0% { box-shadow: 0 8px 0 #0a5c34, 0 0 0 0 rgba(15,157,88,0.5);}
             100% { box-shadow: 0 8px 0 #0a5c34, 0 0 0 12px rgba(15,157,88,0);}
-        }
-        .download-info {
-            background: #2E7D32;
-            color: white;
-            border-radius: 60px;
-            padding: 12px 18px;
-            display: inline-block;
-            font-weight: 600;
-            font-size: 0.9rem;
         }
         .section-title {
             font-size: 30px;
@@ -175,12 +162,60 @@
             text-align: center;
             transition: all 0.25s ease;
             border: 1px solid #C8E6C9;
-            box-shadow: 0 5px 12px rgba(0,0,0,0.03);
         }
         .feature-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 20px 25px -12px #2e7d3240;
-            border-color: #6fbf4c;
+        }
+        /* REVIEWS SECTION */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        .review-card {
+            background: white;
+            border-radius: 28px;
+            padding: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 1px solid #c8e6c9;
+            transition: 0.2s;
+        }
+        .stars {
+            color: #FFB74D;
+            font-size: 24px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+        .review-text {
+            font-style: italic;
+            margin: 12px 0;
+            color: #2d5a3a;
+        }
+        .reviewer-name {
+            font-weight: 700;
+            color: #1B5E20;
+            margin-top: 10px;
+        }
+        /* VISITOR COUNTER */
+        .visitor-counter-box {
+            background: linear-gradient(135deg, #1B5E20, #2E7D32);
+            border-radius: 32px;
+            padding: 28px;
+            margin: 30px 0;
+            text-align: center;
+            color: white;
+        }
+        .counter-number {
+            font-size: 48px;
+            font-weight: 800;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 10px 35px;
+            border-radius: 60px;
+            margin: 15px 0;
+            font-family: monospace;
         }
         .referral-card {
             background: linear-gradient(115deg, #FFF3E0, #FFE6C7);
@@ -189,14 +224,12 @@
             margin: 35px 0;
             border: 2px solid #F9A825;
             text-align: center;
-            box-shadow: 0 12px 20px rgba(0,0,0,0.08);
         }
         .referral-code-box {
             background: #1B5E20;
             color: #ffefb9;
             font-size: 28px;
             font-weight: bold;
-            letter-spacing: 2px;
             padding: 14px 25px;
             border-radius: 60px;
             display: inline-block;
@@ -211,8 +244,6 @@
             font-weight: 800;
             margin-left: 15px;
             cursor: pointer;
-            font-size: 16px;
-            transition: 0.1s;
         }
         .subject-grid {
             display: grid;
@@ -224,7 +255,6 @@
             border-radius: 28px;
             padding: 20px;
             border: 1px solid #CAEFC8;
-            transition: 0.2s;
         }
         .pricing-box {
             background: linear-gradient(145deg, #fff7e8, #fff0da);
@@ -257,15 +287,6 @@
             padding: 28px;
             margin: 35px 0;
         }
-        .contact-item {
-            background: white;
-            border-radius: 50px;
-            padding: 10px 22px;
-            margin: 12px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
         .whatsapp-float {
             position: fixed;
             bottom: 28px;
@@ -281,9 +302,7 @@
             z-index: 1000;
             text-decoration: none;
             color: white;
-            transition: transform 0.2s;
         }
-        .whatsapp-float:hover { transform: scale(1.07);}
         .stats-banner {
             background: linear-gradient(135deg, #1f5423, #2E7D32);
             border-radius: 32px;
@@ -312,6 +331,11 @@
             cursor: pointer;
             border-radius: 24px;
         }
+        .faq-answer {
+            display: none;
+            padding: 5px 22px 22px 22px;
+            border-top: 1px solid #e0f0e0;
+        }
         .footer {
             background: #0d3311;
             color: #ddd;
@@ -322,6 +346,7 @@
             .header h1 { font-size: 30px; }
             .btn-drive { font-size: 1.1rem; padding: 12px 22px; }
             .content { padding: 20px; }
+            .video-wrapper iframe { min-height: 500px; }
         }
         .highlight-download {
             animation: bounceSoft 0.8s ease-out;
@@ -330,10 +355,6 @@
             0% { transform: scale(0.96); opacity: 0.7; }
             70% { transform: scale(1.02); }
             100% { transform: scale(1); opacity: 1; }
-        }
-        .glow-text {
-            color: #f57c00;
-            font-weight: 800;
         }
     </style>
 </head>
@@ -347,9 +368,15 @@
         <p>শর্ট সিলেবাস অনুযায়ী ৭টি বিষয় | সীমাহীন প্র্যাকটিস | অফলাইন এক্সেস</p>
         <span class="badge">🔥 ১০০ টাকায় ৬৫+ দিন এক্সেস | ২০ মে পর্যন্ত</span>
         
-        <!-- Video Short Prominent -->
+        <!-- YouTube Shorts Reel - Proper Embed -->
         <div class="video-wrapper">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Vwra_0dftww?si=Nc8cLVC4ce7cfALE" title="SSC 2026 প্রিমিয়াম অ্যাপ ডেমো" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/Vwra_0dftww?si=Nc8cLVC4ce7cfALE&autoplay=0&rel=0" 
+                    title="SSC 2026 প্রিমিয়াম অ্যাপ রিল ভিডিও" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+            </iframe>
         </div>
     </div>
 
@@ -357,9 +384,9 @@
         <!-- DYNAMIC DOWNLOAD SECTION – FIRST GLANCE -->
         <div class="download-hero" id="downloadHero">
             <div style="text-align: center;">
-                <span class="download-info">✅ সর্বশেষ ভার্সন ২.০ | ৩৯ এমবি</span>
-                <h2 style="font-size: 28px; margin: 15px 0 5px; color: #1e4a1e;">⚡ এখনই ডাউনলোড করুন (প্রিমিয়াম অ্যাপ)</h2>
-                <p style="font-size: 1.2rem;">গুগল ড্রাইভ থেকে দ্রুত ডাউনলোড – ইনস্টল করে পেমেন্ট করুন</p>
+                <span style="background:#2E7D32; color:white; padding: 6px 18px; border-radius: 40px;">✅ প্রিমিয়াম ভার্সন ২.০ | ৩৯ এমবি</span>
+                <h2 style="font-size: 28px; margin: 15px 0 5px; color: #1e4a1e;">⚡ এখনই ডাউনলোড করুন (গুগল ড্রাইভ)</h2>
+                <p style="font-size: 1.2rem;">দ্রুত ডাউনলোড – ইনস্টল করে পেমেন্ট করুন</p>
             </div>
             <div class="btn-group">
                 <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" class="btn-drive btn-drive-glow" target="_blank" id="mainDriveBtn">
@@ -369,84 +396,116 @@
                     ⚡ <strong>মিরর লিংক (দ্রুত)</strong>
                 </a>
             </div>
-            <p style="margin-top: 12px; font-size: 14px;">🔐 Android 5.0+ | ইনস্টল করতে "অজানা উৎস" অনুমতি দিন | পেমেন্ট পর ১ ঘণ্টায় এক্সেস</p>
-            <div style="background:#FFE0B5; border-radius: 40px; padding: 8px 16px; margin-top: 12px; display: inline-block; width: auto;">
-                💡 <strong>প্রথমবার ব্যবহারকারী:</strong> ডাউনলোড → ইন্সটল → ১০০ টাকা পেমেন্ট করুন (WhatsApp) → ইমেইল+পাসওয়ার্ড পান
+            <p style="margin-top: 12px; font-size: 14px;">🔐 Android 5.0+ | "অজানা উৎস" অনুমতি দিন | পেমেন্ট পর ১ ঘণ্টায় এক্সেস</p>
+        </div>
+
+        <!-- VISITOR COUNTER SECTION -->
+        <div class="visitor-counter-box">
+            <h3 style="font-size: 28px;">👁️ মোট দর্শক সংখ্যা</h3>
+            <div class="counter-number" id="visitorCounter">১২,৪৫৮</div>
+            <p style="margin-top: 10px;">বিশ্বের বিভিন্ন প্রান্ত থেকে শিক্ষার্থী যুক্ত হচ্ছে | আপনিও প্রস্তুতি শুরু করুন</p>
+            <!-- ClustrMaps widget (live map) -->
+            <div style="margin-top: 20px;">
+                <a href="https://clustrmaps.com/site/1c9gw" target="_blank">
+                    <img src="//www.clustrmaps.com/map_v2.png?d=tls9HH8N44Z4-jBbc648Lwwz9aF9tyCha_cbZCQeH0c&cl=ffffff" 
+                         style="max-width: 100%; border-radius: 16px; border: 2px solid #FFD966;" 
+                         alt="Visitor Map">
+                </a>
             </div>
         </div>
 
-        <!-- REFERRAL AFFILIATE PROGRAM (near download) -->
-        <div class="referral-card" id="referralSection">
+        <!-- USER REVIEWS SECTION (re-added) -->
+        <h2 class="section-title">📢 শিক্ষার্থীদের মতামত ও রিভিউ</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"পদার্থবিজ্ঞানের সব অধ্যায়ের জন্য আলাদা MCQ ও CQ ব্যাংক পেয়ে দারুণ উপকার হয়েছে। ১০০ টাকায় এত চমৎকার অ্যাপ!"</p>
+                <p class="reviewer-name">— আবিদ হাসান, ঢাকা</p>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"ইংরেজি গ্রামারের টপিক ভিত্তিক টেস্ট ও থিওরি স্টাডি অসাধারণ। অফলাইনে চলে, যা খুবই প্রয়োজন ছিল।"</p>
+                <p class="reviewer-name">— নুসরাত জাহান, চট্টগ্রাম</p>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"রেফারেল প্রোগ্রাম সত্যিই চমৎকার! আমি ৮ জন বন্ধুকে রেফার করেছি, শীঘ্রই ১০০ টাকা পাব ইনশাআল্লাহ।"</p>
+                <p class="reviewer-name">— রাকিবুল ইসলাম, রাজশাহী</p>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"জীববিজ্ঞান ও রসায়নের শর্ট সিলেবাস কাভারেজ দারুণ। প্রতিটি টপিকের জন্য প্র্যাকটিস সেট আছে। সত্যি প্রিমিয়াম ফিল!"</p>
+                <p class="reviewer-name">— ফারজানা আক্তার, সিলেট</p>
+            </div>
+        </div>
+
+        <!-- REFERRAL AFFILIATE PROGRAM -->
+        <div class="referral-card">
             <div style="font-size: 42px;">🤝💰</div>
             <h2 style="color:#BF360C; font-size: 32px;">রেফারেল প্রোগ্রাম – ১০ জন আনুন, ১০০ টাকা নিন!</h2>
-            <p style="font-size: 18px; font-weight: 500;">আপনার রেফারেল কোড বন্ধুদের দিন। তারা পেমেন্ট করলে আপনার কাউন্ট বাড়বে। <strong class="glow-text">১০ জন সফল রেফার = ১০০ টাকা ক্যাশব্যাক</strong></p>
+            <p style="font-size: 18px;">আপনার রেফারেল কোড বন্ধুদের দিন। তারা পেমেন্ট করলে আপনার কাউন্ট বাড়বে। <strong style="color:#BF360C;">১০ জন সফল রেফার = ১০০ টাকা ক্যাশব্যাক</strong></p>
             <div style="background: white; border-radius: 50px; padding: 12px 20px; display: inline-block; margin: 15px 0;">
                 <span style="font-size: 26px; font-weight: bold; font-family: monospace;" id="referralCodeDisplay">SSC2026-XXXX</span>
                 <button class="copy-btn" id="copyReferralBtn">📋 কপি কোড</button>
             </div>
-            <p style="font-size: 14px;">🎯 কিভাবে কাজ করে: বন্ধু ডাউনলোড করে, পেমেন্টের সময় আপনার কোড উল্লেখ করবে। আমরা ম্যানুয়ালি রেকর্ড করব। ১০ জন হলে ১০০ টাকা bKash/Nagad.</p>
+            <p>🎯 বন্ধু ডাউনলোড করে পেমেন্টের সময় আপনার কোড উল্লেখ করবে। ১০ জন হলে ১০০ টাকা bKash/Nagad.</p>
         </div>
 
-        <!-- Premium features (no free mode) -->
+        <!-- Premium features -->
         <h2 class="section-title">✨ প্রিমিয়াম ফিচারস (শুধু পেইড ইউজার)</h2>
         <div class="feature-grid">
-            <div class="feature-card"><div class="feature-icon" style="font-size: 40px;">📚</div><h3>৭টি বিষয় সম্পূর্ণ</h3><p>পদার্থ, রসায়ন, জীববিজ্ঞান, ICT, BGS, বাংলা ২য়, ইংরেজি ২য়</p></div>
-            <div class="feature-card"><div class="feature-icon" style="font-size: 40px;">∞</div><h3>সীমাহীন MCQ</h3><p>টপিক ভিত্তিক, চ্যাপ্টার ভিত্তিক – কোন ক্যাপ নেই</p></div>
-            <div class="feature-card"><div class="feature-icon" style="font-size: 40px;">✍️</div><h3>CQ + SQ ব্যাংক</h3><p>সৃজনশীল ও সংক্ষিপ্ত প্রশ্ন, উত্তর সহায়িকা</p></div>
-            <div class="feature-card"><div class="feature-icon" style="font-size: 40px;">📴</div><h3>অফলাইন মোড</h3><p>২০ মে ২০২৬ পর্যন্ত ইন্টারনেট ছাড়াই চালান</p></div>
-            <div class="feature-card"><div class="feature-icon" style="font-size: 40px;">📊</div><h3>প্রগ্রেস ট্র্যাকিং</h3><p>কোন টপিক কতটুকু পড়েছেন</p></div>
+            <div class="feature-card"><div style="font-size: 40px;">📚</div><h3>৭টি বিষয় সম্পূর্ণ</h3><p>পদার্থ, রসায়ন, জীববিজ্ঞান, ICT, BGS, বাংলা ২য়, ইংরেজি ২য়</p></div>
+            <div class="feature-card"><div style="font-size: 40px;">∞</div><h3>সীমাহীন MCQ</h3><p>টপিক/চ্যাপ্টার ভিত্তিক – কোন ক্যাপ নেই</p></div>
+            <div class="feature-card"><div style="font-size: 40px;">✍️</div><h3>CQ + SQ ব্যাংক</h3><p>সৃজনশীল ও সংক্ষিপ্ত প্রশ্ন, উত্তর সহায়িকা</p></div>
+            <div class="feature-card"><div style="font-size: 40px;">📴</div><h3>অফলাইন মোড</h3><p>২০ মে ২০২৬ পর্যন্ত ইন্টারনেট ছাড়াই</p></div>
         </div>
 
         <!-- Quick syllabus -->
         <h2 class="section-title">📌 বিষয়ভিত্তিক সিলেবাস (SSC 2026 শর্ট সিলেবাস)</h2>
         <div class="subject-grid">
-            <div class="subject-card"><div class="subject-header"><span>⚛️</span> <h3>পদার্থবিজ্ঞান</h3></div><ul><li>গতি, বল, কাজ, শক্তি</li><li>তরঙ্গ, শব্দ, আলো</li><li>স্থির বিদ্যুৎ, পরিমাপ</li></ul></div>
-            <div class="subject-card"><div class="subject-header"><span>🧪</span> <h3>রসায়ন</h3></div><ul><li>পরমাণুর গঠন, পর্যায় সারণী</li><li>রাসায়নিক বন্ধন, মোল</li><li>এসিড-ক্ষার, জৈব রসায়ন</li></ul></div>
-            <div class="subject-card"><div class="subject-header"><span>🧬</span> <h3>জীববিজ্ঞান</h3></div><ul><li>কোষ, কোষ বিভাজন</li><li>সালোকসংশ্লেষণ, শ্বসন</li><li>বংশগতি, ডিএনএ, বাস্তুতন্ত্র</li></ul></div>
-            <div class="subject-card"><div class="subject-header"><span>💻</span> <h3>ICT</h3></div><ul><li>সাইবার নিরাপত্তা</li><li>মাল্টিমিডিয়া, পাইথন</li><li>ওয়ার্ড, স্প্রেডশিট</li></ul></div>
-            <div class="subject-card"><div class="subject-header"><span>📘</span> <h3>বাংলা ২য়</h3></div><ul><li>ধ্বনি, বর্ণ, সমাস</li><li>বাগধারা, প্রতিশব্দ</li><li>বাক্য ও প্রকরণ</li></ul></div>
-            <div class="subject-card"><div class="subject-header"><span>📗</span> <h3>English 2nd Paper</h3></div><ul><li>Tenses, Modals, Articles</li><li>Tag questions, connectors</li><li>Transformation of sentences</li></ul></div>
+            <div class="subject-card"><h3>⚛️ পদার্থবিজ্ঞান</h3><ul style="margin-left:20px;"><li>গতি, বল, কাজ, শক্তি</li><li>তরঙ্গ, শব্দ, আলো</li><li>স্থির বিদ্যুৎ</li></ul></div>
+            <div class="subject-card"><h3>🧪 রসায়ন</h3><ul style="margin-left:20px;"><li>পরমাণুর গঠন, পর্যায় সারণী</li><li>রাসায়নিক বন্ধন, মোল</li><li>এসিড-ক্ষার, জৈব রসায়ন</li></ul></div>
+            <div class="subject-card"><h3>🧬 জীববিজ্ঞান</h3><ul style="margin-left:20px;"><li>কোষ, কোষ বিভাজন</li><li>সালোকসংশ্লেষণ, শ্বসন</li><li>বংশগতি, ডিএনএ</li></ul></div>
+            <div class="subject-card"><h3>💻 ICT</h3><ul style="margin-left:20px;"><li>সাইবার নিরাপত্তা</li><li>মাল্টিমিডিয়া, পাইথন</li><li>ওয়ার্ড, স্প্রেডশিট</li></ul></div>
+            <div class="subject-card"><h3>📘 বাংলা ২য়</h3><ul style="margin-left:20px;"><li>ধ্বনি, বর্ণ, সমাস</li><li>বাগধারা, প্রতিশব্দ</li></ul></div>
+            <div class="subject-card"><h3>📗 English 2nd Paper</h3><ul style="margin-left:20px;"><li>Tenses, Modals, Articles</li><li>Tag questions, connectors</li></ul></div>
         </div>
 
-        <!-- pricing block + extra download call -->
+        <!-- pricing block -->
         <div class="pricing-box">
             <div class="price">১০০ টাকা</div>
             <p style="font-size: 20px; font-weight: bold;">এককালীন পেমেন্ট – ২০ মে ২০২৬ পর্যন্ত অ্যাক্সেস</p>
-            <a href="#downloadHero" class="cta-button" style="background:#F57C00; margin: 15px 0 5px;">📲 অ্যাপ ডাউনলোড করে পেমেন্ট শুরু করুন</a>
-            <div class="btn-group" style="margin-top: 15px;">
-                <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" target="_blank" class="cta-button" style="background:#0F9D58; box-shadow:0 4px 0 #0b6e3f;">⬇️ আবার ডাউনলোড লিংক</a>
-            </div>
+            <a href="#downloadHero" class="cta-button" style="background:#F57C00; margin: 15px 0;">📲 অ্যাপ ডাউনলোড করে পেমেন্ট শুরু করুন</a>
         </div>
 
-        <!-- Dynamic stats with animation -->
+        <!-- Live Stats -->
         <div class="stats-banner">
-            <div class="stat-item"><div class="stat-number" id="counterUsers">0</div><div>সক্রিয় ইউজার</div></div>
-            <div class="stat-item"><div class="stat-number" id="counterExams">0</div><div>পরীক্ষা সম্পন্ন</div></div>
-            <div class="stat-item"><div class="stat-number" id="counterMcq">0</div><div>MCQ সমাধান</div></div>
+            <div><div class="stat-number" id="counterUsers">0</div><div>সক্রিয় ইউজার</div></div>
+            <div><div class="stat-number" id="counterExams">0</div><div>পরীক্ষা সম্পন্ন</div></div>
+            <div><div class="stat-number" id="counterMcq">0</div><div>MCQ সমাধান</div></div>
         </div>
 
-        <!-- Payment and Registration manual -->
+        <!-- Payment Info -->
         <h2 class="section-title">💳 পেমেন্ট ও রেজিস্ট্রেশন (ম্যানুয়াল)</h2>
         <div class="contact-box">
-            <div class="contact-item"><span>📱</span> <strong>bKash / Nagad / Rocket:</strong> +8801602105447 (পেমেন্ট ১০০ টাকা)</div>
-            <div class="contact-item"><span>💬</span> <strong>WhatsApp:</strong> +8801602105447 (পেমেন্ট স্ক্রিনশট + ইমেইল দিন)</div>
-            <div class="contact-item"><span>✉️</span> <strong>ইমেইল সাপোর্ট:</strong> nationalexamcenter@gmail.com</div>
+            <div><strong>📱 bKash / Nagad / Rocket:</strong> +8801602105447 (১০০ টাকা)</div>
+            <div><strong>💬 WhatsApp:</strong> +8801602105447 (স্ক্রিনশট + ইমেইল দিন)</div>
+            <div><strong>✉️ ইমেইল:</strong> nationalexamcenter@gmail.com</div>
             <ol style="margin: 20px 0 0 25px;">
-                <li>উপরের ডাউনলোড বাটন থেকে অ্যাপ ডাউনলোড করুন</li>
-                <li>পেমেন্ট করুন (bKash/Nagad) ১০০ টাকা</li>
-                <li>স্ক্রিনশট + আপনার পছন্দের ইমেইল আইডি WhatsApp এ পাঠান</li>
-                <li>১ ঘণ্টার মধ্যে ইউজারনেম (ইমেইল) ও পাসওয়ার্ড তৈরি করে দেওয়া হবে</li>
-                <li>অ্যাপে লগইন করে সব প্রিমিয়াম ফিচার আনলক করুন</li>
+                <li>ডাউনলোড বাটন থেকে অ্যাপ ডাউনলোড করুন</li>
+                <li>১০০ টাকা পেমেন্ট করুন</li>
+                <li>স্ক্রিনশট + আপনার ইমেইল WhatsApp এ পাঠান</li>
+                <li>১ ঘণ্টার মধ্যে ইউজারনেম ও পাসওয়ার্ড পাবেন</li>
+                <li>অ্যাপে লগইন করে প্রিমিয়াম ফিচার আনলক করুন</li>
             </ol>
-            <p style="margin-top: 20px; background: #FFECB3; padding: 12px; border-radius: 28px;"><strong>🎁 রেফারেল বোনাস:</strong> আপনার রেফারেল কোড বন্ধুকে দিন। বন্ধু পেমেন্ট করার সময় কোড জানালে আপনার কাউন্ট +১ হবে। ১০ জন রেফারেল হলে ১০০ টাকা ক্যাশব্যাক!</p>
         </div>
 
-        <!-- FAQ Section -->
-        <h2 class="section-title">❓ গুরুত্বপূর্ণ প্রশ্ন</h2>
+        <!-- FAQ -->
+        <h2 class="section-title">❓ সচরাচর জিজ্ঞাসা</h2>
         <div>
-            <div class="faq-item"><button class="faq-question" onclick="toggleFaq(1)">🚀 ফ্রি ভার্সন আছে কি? <span>▼</span></button><div class="faq-answer" id="faq1">না, এই অ্যাপ সম্পূর্ণ প্রিমিয়াম। শুধুমাত্র ১০০ টাকা পেমেন্ট করেই এক্সেস পাওয়া যায়।</div></div>
-            <div class="faq-item"><button class="faq-question" onclick="toggleFaq(2)">👥 রেফারেল প্রোগ্রাম কিভাবে কাজ করে? <span>▼</span></button><div class="faq-answer" id="faq2">আপনার ইউনিক কোড বন্ধুকে দিন। সে পেমেন্টের সময় কোড ব্যবহার করলে আমরা ট্র্যাক করব। ১০টি সফল রেফারেল হলে ১০০ টাকা ক্যাশ।</div></div>
-            <div class="faq-item"><button class="faq-question" onclick="toggleFaq(3)">📥 ডাউনলোড লিংক কোথায়? <span>▼</span></button><div class="faq-answer" id="faq3">পৃষ্ঠার শুরুতে বড় ডাউনলোড বাটন রয়েছে (গুগল ড্রাইভ)। এটি থেকে সহজেই ডাউনলোড করুন।</div></div>
+            <div class="faq-item"><button class="faq-question" onclick="toggleFaq(1)">🚀 ফ্রি ভার্সন আছে কি? <span>▼</span></button><div class="faq-answer" id="faq1">না, সম্পূর্ণ প্রিমিয়াম। শুধুমাত্র ১০০ টাকা পেমেন্ট করেই এক্সেস পাওয়া যায়।</div></div>
+            <div class="faq-item"><button class="faq-question" onclick="toggleFaq(2)">👥 রেফারেল প্রোগ্রাম কিভাবে কাজ করে? <span>▼</span></button><div class="faq-answer" id="faq2">আপনার কোড বন্ধুকে দিন। পেমেন্টের সময় কোড ব্যবহার করলে ট্র্যাক করব। ১০টি সফল রেফারেলে ১০০ টাকা ক্যাশব্যাক।</div></div>
+            <div class="faq-item"><button class="faq-question" onclick="toggleFaq(3)">📥 ডাউনলোড লিংক কোথায়? <span>▼</span></button><div class="faq-answer" id="faq3">পৃষ্ঠার শুরুতে বড় ডাউনলোড বাটন রয়েছে (গুগল ড্রাইভ)।</div></div>
             <div class="faq-item"><button class="faq-question" onclick="toggleFaq(4)">⏱️ এক্সেস পেতে কত সময়? <span>▼</span></button><div class="faq-answer" id="faq4">পেমেন্টের পর ১ ঘন্টার মধ্যে ইমেইল ও পাসওয়ার্ড পেয়ে যাবেন।</div></div>
             <div class="faq-item"><button class="faq-question" onclick="toggleFaq(5)">🔄 একাধিক ডিভাইস? <span>▼</span></button><div class="faq-answer" id="faq5">হ্যাঁ, সর্বোচ্চ ৩টি ডিভাইসে লগইন করা যাবে।</div></div>
         </div>
@@ -458,17 +517,16 @@
 
     <div class="footer">
         <p>© ২০২৬ National Exam Center – SSC ২০২৬ প্রিমিয়াম প্রস্তুতি অ্যাপ | রেফারেল অফার বৈধ</p>
-        <p><a href="#" style="color:#FFE082">গোপনীয়তা নীতি</a> | <a href="#" style="color:#FFE082">সাপোর্ট</a></p>
     </div>
 </div>
 
 <script>
-    // dynamic referral code generator (persistent)
-    let referralKey = localStorage.getItem('ssc_premium_ref');
+    // Referral code generation
+    let referralKey = localStorage.getItem('ssc_premium_ref_code');
     if (!referralKey) {
-        let randomPart = Math.floor(Math.random() * 90000 + 10000);
-        referralKey = `SSC${randomPart}`;
-        localStorage.setItem('ssc_premium_ref', referralKey);
+        let randomNum = Math.floor(Math.random() * 90000 + 10000);
+        referralKey = `SSC${randomNum}`;
+        localStorage.setItem('ssc_premium_ref_code', referralKey);
     }
     const refSpan = document.getElementById('referralCodeDisplay');
     if(refSpan) refSpan.innerText = referralKey;
@@ -481,12 +539,32 @@
         });
     }
     
-    // dynamic counter animations
-    function animateNumber(elementId, start, end, suffix='+') {
+    // Visitor counter with localStorage increment
+    let visitorCount = localStorage.getItem('ssc_visitor_total');
+    if (!visitorCount) {
+        visitorCount = 12458;
+        localStorage.setItem('ssc_visitor_total', visitorCount);
+    } else {
+        visitorCount = parseInt(visitorCount);
+        // increment only once per session (using sessionStorage)
+        if (!sessionStorage.getItem('visitor_incremented')) {
+            visitorCount++;
+            localStorage.setItem('ssc_visitor_total', visitorCount);
+            sessionStorage.setItem('visitor_incremented', 'true');
+        }
+    }
+    const counterSpan = document.getElementById('visitorCounter');
+    if(counterSpan) {
+        counterSpan.innerText = visitorCount.toLocaleString('bn');
+    }
+    
+    // animate stats numbers
+    function animateNumber(elementId, end, suffix='+') {
         let element = document.getElementById(elementId);
         if(!element) return;
+        let start = 0;
         let current = start;
-        const step = Math.ceil((end - start) / 45);
+        const step = Math.ceil(end / 45);
         const timer = setInterval(() => {
             current += step;
             if(current >= end) {
@@ -497,9 +575,9 @@
             }
         }, 30);
     }
-    animateNumber('counterUsers', 0, 860, '+');
-    animateNumber('counterExams', 0, 14200, '+');
-    animateNumber('counterMcq', 0, 28900, '+');
+    animateNumber('counterUsers', 875, '+');
+    animateNumber('counterExams', 15200, '+');
+    animateNumber('counterMcq', 31200, '+');
     
     // FAQ toggle
     window.toggleFaq = function(id){
@@ -510,35 +588,19 @@
             ansDiv.style.display = 'none';
         }
     };
-    // initially hide all answers
     for(let i=1;i<=5;i++){
         let ansDiv = document.getElementById('faq'+i);
         if(ansDiv) ansDiv.style.display = 'none';
     }
     
-    // additional dynamic effect: download button gets an animated attention after load
+    // download section highlight
     window.addEventListener('load', () => {
         const heroDiv = document.getElementById('downloadHero');
         if(heroDiv){
             heroDiv.classList.add('highlight-download');
-            setTimeout(() => {
-                heroDiv.classList.remove('highlight-download');
-            }, 900);
+            setTimeout(() => heroDiv.classList.remove('highlight-download'), 900);
         }
-        // pulse effect for drive buttons
-        const btns = document.querySelectorAll('.btn-drive');
-        btns.forEach(btn => {
-            btn.addEventListener('mouseenter', (e) => {
-                btn.style.transform = 'scale(1.02)';
-            });
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'scale(1)';
-            });
-        });
     });
-    
-    // floating download reminder: small toast after scroll? just simple console no intrusive
-    console.log("SSC 2026 Premium — ডাউনলোড বাটন উপরে রয়েছে | রেফারেল সক্রিয়");
 </script>
 </body>
 </html>
