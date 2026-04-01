@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>SSC 2026 প্রিমিয়াম প্রস্তুতি | অফিসিয়াল প্রিপারেশন প্ল্যাটফর্ম</title>
-    <meta name="description" content="SSC 2026 প্রিমিয়াম প্রস্তুতি অ্যাপ। NCTB শর্ট সিলেবাস ২০২৬ অনুযায়ী সম্পূর্ণ কোর্স। ১০০ টাকায় ৬৫+ দিন অ্যাক্সেস। রেফারেল প্রোগ্রামে আয় করুন।">
-    <meta name="keywords" content="SSC 2026, এসএসসি প্রস্তুতি, পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান, ICT, রেফারেল প্রোগ্রাম">
-    <meta property="og:title" content="SSC 2026 প্রিমিয়াম প্রস্তুতি | অফিসিয়াল প্ল্যাটফর্ম">
-    <meta property="og:description" content="সম্পূর্ণ শর্ট সিলেবাস কাভারেজ। ১০০ টাকায় সীমাহীন প্র্যাকটিস।">
+    <title>SSC 2026 প্রিমিয়াম প্রস্তুতি | সম্পূর্ণ সিলেবাস কাভারেজ</title>
+    <meta name="description" content="SSC 2026 প্রিমিয়াম প্রস্তুতি অ্যাপ। NCTB শর্ট সিলেবাস ২০২৬ অনুযায়ী পদার্থ, রসায়ন, জীববিজ্ঞান, ICT, BGS, বাংলা ২য়, English 2nd Paper। ১০০ টাকায় ৬৫+ দিন এক্সেস।">
+    <meta name="keywords" content="SSC 2026, এসএসসি প্রস্তুতি, পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান, ICT, রেফারেল">
+    <meta property="og:title" content="SSC 2026 প্রিমিয়াম প্রস্তুতি | সম্পূর্ণ সিলেবাস কাভারেজ">
+    <meta property="og:description" content="১০০ টাকায় সীমাহীন MCQ, CQ, থিওরি। বন্ধু আনো, টাকা আয়ো!">
     
     <style>
         * {
@@ -18,103 +18,183 @@
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            background: #f5faf5;
+            background: linear-gradient(145deg, #eef4ee 0%, #e2ece2 100%);
             color: #1a2e1a;
             line-height: 1.5;
+            padding: 24px;
             scroll-behavior: smooth;
         }
         
-        /* Container */
         .container {
-            max-width: 1280px;
+            max-width: 1400px;
             margin: 0 auto;
             background: #ffffff;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-            border-radius: 32px;
+            border-radius: 48px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
             overflow: hidden;
         }
         
-        /* Hero Section with Animated Gradient */
-        .hero {
+        /* SPLIT HERO SECTION - LEFT (App Details) + RIGHT (Features & Referral) */
+        .hero-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             background: linear-gradient(135deg, #0a2f0e 0%, #1a6e22 100%);
             color: white;
-            padding: 60px 48px;
             position: relative;
             overflow: hidden;
-            animation: heroGlow 3s ease-in-out infinite;
         }
         
-        @keyframes heroGlow {
-            0% { background: linear-gradient(135deg, #0a2f0e 0%, #1a6e22 100%); }
-            50% { background: linear-gradient(135deg, #0e3a12 0%, #228a2c 100%); }
-            100% { background: linear-gradient(135deg, #0a2f0e 0%, #1a6e22 100%); }
-        }
-        
-        .hero::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="rgba(255,255,255,0.03)" d="M0,0 L100,0 L100,100 L0,100 Z M20,20 L80,20 L80,80 L20,80 Z"/></svg>') repeat;
-            pointer-events: none;
-        }
-        
-        .hero h1 {
-            font-size: 48px;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 16px;
-            line-height: 1.2;
+        .hero-left {
+            padding: 48px 40px;
+            position: relative;
+            z-index: 2;
             animation: slideInLeft 0.8s ease-out;
         }
         
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .hero-right {
+            padding: 48px 40px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(2px);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideInRight 0.8s ease-out;
         }
         
-        .hero p {
-            font-size: 18px;
-            opacity: 0.9;
-            max-width: 600px;
-            margin-bottom: 24px;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
         }
         
         .hero-badge {
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(8px);
             display: inline-block;
-            padding: 8px 20px;
+            padding: 6px 16px;
             border-radius: 100px;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
+            margin-bottom: 20px;
             border: 1px solid rgba(255,255,255,0.3);
-            animation: pulse 2s infinite;
         }
         
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+        .hero-left h1 {
+            font-size: 44px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
         }
         
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .hero-left p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 24px;
+            max-width: 90%;
+        }
+        
+        .price-tag {
+            background: #ffb74d;
+            color: #1a3a1a;
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 60px;
+            font-weight: 800;
+            font-size: 22px;
+            margin: 16px 0;
+        }
+        
+        .btn-download-hero {
+            background: white;
+            color: #1b5e20;
+            border: none;
+            padding: 14px 32px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin-top: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-download-hero:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Right Side Content */
+        .hero-features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .hero-feature-item {
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 12px 14px;
+            backdrop-filter: blur(4px);
+            transition: all 0.2s;
+        }
+        
+        .hero-feature-item:hover {
+            background: rgba(255, 255, 255, 0.22);
+            transform: translateY(-2px);
+        }
+        
+        .hero-feature-item span {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        
+        .hero-feature-item strong {
+            font-size: 14px;
+            display: block;
+            margin-top: 6px;
+        }
+        
+        .hero-subjects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0;
+        }
+        
+        .hero-subject-tag {
+            background: rgba(255, 183, 77, 0.25);
+            padding: 5px 12px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid rgba(255, 183, 77, 0.5);
+        }
+        
+        .referral-mini {
+            background: rgba(255, 183, 77, 0.2);
+            border-radius: 20px;
+            padding: 16px;
+            margin-top: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 183, 77, 0.4);
+        }
+        
+        .referral-mini .code {
+            background: #1b5e20;
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-family: monospace;
+            font-size: 16px;
+            margin: 8px 0;
+            letter-spacing: 1px;
         }
         
         /* Stats Dashboard */
@@ -122,7 +202,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 24px;
-            margin-top: -40px;
+            margin-top: -30px;
             margin-bottom: 48px;
             padding: 0 48px;
         }
@@ -135,13 +215,11 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             border: 1px solid #e8f0e8;
-            animation: fadeInUp 0.6s ease-out;
         }
         
         .stat-card-premium:hover {
             transform: translateY(-4px);
             box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
-            border-color: #2e7d32;
         }
         
         .stat-icon {
@@ -160,7 +238,6 @@
             font-size: 36px;
             font-weight: 800;
             color: #1b5e20;
-            line-height: 1.2;
         }
         
         .stat-label {
@@ -175,38 +252,6 @@
             padding: 0 48px 48px;
         }
         
-        /* Download Section */
-        .download-card {
-            background: linear-gradient(115deg, #fff9ef, #fff5e6);
-            border-radius: 32px;
-            padding: 40px;
-            margin: 32px 0 48px;
-            border: 1px solid #ffd966;
-            text-align: center;
-            animation: fadeInUp 0.6s ease-out;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(95deg, #2e7d32, #1b5e20);
-            color: white;
-            border: none;
-            padding: 18px 48px;
-            font-size: 18px;
-            font-weight: 700;
-            border-radius: 60px;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(46, 125, 50, 0.4);
-        }
-        
         /* Section Headers with Animation */
         .section-header {
             margin: 56px 0 28px;
@@ -218,18 +263,6 @@
             color: #1a3a1a;
             display: inline-block;
             position: relative;
-            animation: slideInRight 0.6s ease-out;
-        }
-        
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
         }
         
         .section-header h2::after {
@@ -249,7 +282,7 @@
             to { width: 60px; }
         }
         
-        /* Subject Grid - Full Topic Lists */
+        /* Subject Grid */
         .subject-grid-pro {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -264,7 +297,6 @@
             border: 1px solid #e2f0e2;
             transition: all 0.25s;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-            animation: fadeInUp 0.5s ease-out;
         }
         
         .subject-pro-card:hover {
@@ -307,55 +339,6 @@
             color: #2c5a2c;
             font-weight: 500;
             border: 1px solid #d4e6d4;
-            transition: all 0.2s;
-        }
-        
-        .topic-list-pro li:hover {
-            background: #e8f5e9;
-            transform: translateX(3px);
-        }
-        
-        /* Referral Card Premium */
-        .referral-premium {
-            background: linear-gradient(125deg, #fff8ed, #fff2e2);
-            border-radius: 36px;
-            padding: 40px;
-            margin: 48px 0;
-            border: 1px solid #ffd699;
-            animation: fadeInUp 0.7s ease-out;
-        }
-        
-        .referral-code-container {
-            background: #1b5e20;
-            border-radius: 60px;
-            padding: 4px 4px 4px 24px;
-            display: inline-flex;
-            align-items: center;
-            gap: 16px;
-            margin: 20px 0;
-        }
-        
-        .referral-code {
-            font-size: 24px;
-            font-weight: 700;
-            font-family: monospace;
-            color: #ffefb9;
-            letter-spacing: 1px;
-        }
-        
-        .btn-copy {
-            background: #ffb74d;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        
-        .btn-copy:hover {
-            background: #ffa01e;
-            transform: scale(1.02);
         }
         
         /* Reviews */
@@ -372,7 +355,6 @@
             padding: 24px;
             border: 1px solid #eaeed9;
             transition: all 0.3s;
-            animation: fadeInUp 0.5s ease-out;
         }
         
         .review-pro-card:hover {
@@ -402,7 +384,6 @@
             text-align: center;
             border: 1px solid #e2f0e2;
             transition: all 0.3s;
-            animation: fadeInUp 0.5s ease-out;
         }
         
         .feature-pro-card:hover {
@@ -419,7 +400,6 @@
             text-align: center;
             margin: 48px 0;
             border: 2px solid #ffd966;
-            animation: fadeInUp 0.6s ease-out;
         }
         
         .price-pro {
@@ -457,7 +437,6 @@
             border: 1px solid #e0ece0;
             border-radius: 20px;
             margin-bottom: 12px;
-            transition: all 0.2s;
         }
         
         .faq-question-pro {
@@ -472,11 +451,6 @@
             justify-content: space-between;
             cursor: pointer;
             border-radius: 20px;
-            transition: all 0.2s;
-        }
-        
-        .faq-question-pro:hover {
-            background: #f9fff9;
         }
         
         .faq-answer-pro {
@@ -486,7 +460,6 @@
             color: #4a5a4a;
         }
         
-        /* Footer */
         .footer-pro {
             background: #0a2f0e;
             color: #bcd0bc;
@@ -516,39 +489,118 @@
         
         .whatsapp-float:hover {
             transform: scale(1.08);
-            animation: shake 0.5s ease;
         }
         
-        @keyframes shake {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(10deg); }
-            75% { transform: rotate(-10deg); }
-        }
-        
-        @media (max-width: 768px) {
-            .hero { padding: 40px 24px; }
-            .hero h1 { font-size: 32px; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); padding: 0 24px; gap: 16px; }
-            .content { padding: 0 24px 32px; }
-            .stats-grid { margin-top: -30px; }
-            .subject-grid-pro { grid-template-columns: 1fr; }
-            .topic-list-pro { grid-template-columns: 1fr; }
+        @media (max-width: 900px) {
+            .hero-split {
+                grid-template-columns: 1fr;
+            }
+            .hero-right {
+                border-left: none;
+                border-top: 1px solid rgba(255,255,255,0.2);
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 0 24px;
+            }
+            .content {
+                padding: 0 24px 32px;
+            }
+            .topic-list-pro {
+                grid-template-columns: 1fr;
+            }
+            .subject-grid-pro {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 550px) {
-            .stats-grid { grid-template-columns: 1fr; }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-left h1 {
+                font-size: 32px;
+            }
+        }
+        
+        .highlight {
+            animation: pulseHighlight 0.6s ease-in-out;
+        }
+        
+        @keyframes pulseHighlight {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); background: rgba(255,183,77,0.3); }
+            100% { transform: scale(1); }
+        }
+        
+        .btn-copy-mini {
+            background: #ffb74d;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-left: 8px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Hero Section with Animation -->
-    <div class="hero">
-        <span class="hero-badge">⭐ অফিসিয়াল প্রিমিয়াম প্ল্যাটফর্ম</span>
-        <h1>SSC 2026<br>প্রিমিয়াম প্রস্তুতি</h1>
-        <p>NCTB শর্ট সিলেবাস ২০২৬ অনুযায়ী সম্পূর্ণ কোর্স। সীমাহীন MCQ, CQ, SQ, থিওরি ও অফলাইন এক্সেস।</p>
-        <div class="hero-badge" style="background: #ffb74d; color: #1a3a1a;">🔥 SSC2026 পরীক্ষা পর্যন্ত এক্সেস | মাত্র ১০০ টাকা</div>
+    <!-- SPLIT HERO: Left side = App Details, Right side = Features, Subjects, Referral, Download Button -->
+    <div class="hero-split">
+        <!-- LEFT SIDE: App Details -->
+        <div class="hero-left">
+            <div class="hero-badge">⭐ অফিসিয়াল প্রিমিয়াম প্ল্যাটফর্ম</div>
+            <h1>SSC 2026<br>প্রিমিয়াম প্রস্তুতি</h1>
+            <p>NCTB শর্ট সিলেবাস ২০২৬ অনুযায়ী সম্পূর্ণ কোর্স। সীমাহীন MCQ, CQ, SQ, থিওরি ও অফলাইন এক্সেস।</p>
+            <div class="price-tag">মাত্র ১০০ টাকা</div>
+            <p style="font-size: 14px; opacity: 0.8;">✅ ৬৫+ দিন অ্যাক্সেস (২০ মে পর্যন্ত)<br>✅ Android 5.0+ | 39 MB</p>
+        </div>
+        
+        <!-- RIGHT SIDE: Subject Coverage, Features, Referral Info, Download Button -->
+        <div class="hero-right">
+            <div class="hero-badge" style="background: #ffb74d; color: #1a3a1a;">📚 সম্পূর্ণ সিলেবাস কাভারেজ</div>
+            
+            <!-- Subject Tags -->
+            <div class="hero-subjects">
+                <span class="hero-subject-tag">⚛️ পদার্থবিজ্ঞান</span>
+                <span class="hero-subject-tag">🧪 রসায়ন</span>
+                <span class="hero-subject-tag">🧬 জীববিজ্ঞান</span>
+                <span class="hero-subject-tag">🌍 বাংলাদেশ ও বিশ্বপরিচয়</span>
+                <span class="hero-subject-tag">💻 ICT</span>
+                <span class="hero-subject-tag">📘 বাংলা ২য় পত্র</span>
+                <span class="hero-subject-tag">📗 English 2nd Paper</span>
+            </div>
+            
+            <!-- Key Features Grid -->
+            <div class="hero-features-grid">
+                <div class="hero-feature-item"><span>∞</span> <strong>সীমাহীন MCQ</strong><small style="display:block; font-size:11px;">টপিক/চ্যাপ্টার ভিত্তিক</small></div>
+                <div class="hero-feature-item"><span>✍️</span> <strong>CQ + SQ ব্যাংক</strong><small style="display:block; font-size:11px;">সৃজনশীল ও সংক্ষিপ্ত</small></div>
+                <div class="hero-feature-item"><span>📖</span> <strong>থিওরি স্টাডি</strong><small style="display:block; font-size:11px;">বিস্তারিত ব্যাখ্যা</small></div>
+                <div class="hero-feature-item"><span>📴</span> <strong>অফলাইন মোড</strong><small style="display:block; font-size:11px;">২০ মে পর্যন্ত</small></div>
+            </div>
+            
+            <!-- Referral Mini Info -->
+            <div class="referral-mini">
+                <span>🤝 রেফারেল প্রোগ্রাম</span>
+                <p style="font-size: 13px; margin: 8px 0;">প্রতি ১০ জন বন্ধু = ১০০ টাকা ক্যাশব্যাক</p>
+                <div>
+                    <span class="code" id="heroReferralCode">SSC2026-XXXX</span>
+                    <button class="btn-copy-mini" id="copyHeroCode">📋 কপি</button>
+                </div>
+                <p style="font-size: 11px; margin-top: 8px;">মোট রেফারেল থেকে আয়: <strong id="heroReferralEarned">১,৭০০</strong> টাকা</p>
+            </div>
+            
+            <!-- Download Button in Right Side -->
+            <div style="margin-top: 24px; text-align: center;">
+                <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" class="btn-download-hero" target="_blank" id="heroDownloadBtn">
+                    📥 <strong>Google Drive থেকে ডাউনলোড করুন</strong>
+                </a>
+                <p style="font-size: 11px; margin-top: 10px; opacity: 0.7;">পেমেন্টের পর ১ ঘণ্টায় এক্সেস</p>
+            </div>
+        </div>
     </div>
     
     <!-- Stats Dashboard -->
@@ -565,7 +617,7 @@
         </div>
         <div class="stat-card-premium">
             <div class="stat-icon">💰</div>
-            <div class="stat-number-lg" id="referralEarnings">0</div>
+            <div class="stat-number-lg" id="referralEarningsTotal">0</div>
             <div class="stat-label">রেফারেল থেকে আয় (মোট)</div>
         </div>
         <div class="stat-card-premium">
@@ -576,40 +628,14 @@
     </div>
     
     <div class="content">
-        <!-- Download Card -->
-        <div class="download-card">
-            <h3 style="font-size: 26px; margin-bottom: 12px; color: #2c5e2c;">📱 SSC 2026 প্রিমিয়াম অ্যাপ</h3>
-            <p style="margin-bottom: 24px; font-size: 16px;">Android 5.0+ | 39 MB | অফলাইন সাপোর্ট</p>
-            <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" class="btn-primary" target="_blank">
-                📥 <strong>Google Drive থেকে ডাউনলোড করুন</strong>
-            </a>
-            <p style="margin-top: 20px; font-size: 13px; color: #6b6e5b;">পেমেন্টের পর ১ ঘণ্টার মধ্যে এক্সেস প্রদান করা হবে</p>
-        </div>
-        
-        <!-- Referral Program -->
-        <div class="referral-premium">
-            <div style="text-align: center;">
-                <span style="background: #ffb74d20; padding: 6px 16px; border-radius: 40px; font-size: 13px; font-weight: 600;">🤝 রেফারেল অ্যাফিলিয়েট প্রোগ্রাম</span>
-                <h2 style="font-size: 32px; margin: 20px 0 12px; color: #bf360c;">বন্ধু আনুন, আয় করুন</h2>
-                <p style="font-size: 16px; margin-bottom: 24px;">প্রতি ১০ জন রেফারেল = ১০০ টাকা ক্যাশব্যাক | সীমাহীন আয়ের সুযোগ</p>
-            </div>
-            <div style="display: flex; justify-content: center;">
-                <div class="referral-code-container">
-                    <span class="referral-code" id="referralCodeDisplay">SSC2026-XXXX</span>
-                    <button class="btn-copy" id="copyReferralBtn">📋 কপি কোড</button>
-                </div>
-            </div>
-            <p style="text-align: center; margin-top: 20px; font-size: 14px; background: white; padding: 12px; border-radius: 40px;">💡 বন্ধু পেমেন্টের সময় আপনার কোড উল্লেখ করলে রেফারেল কাউন্ট বৃদ্ধি পাবে | ১০ জন সম্পন্ন হলে ১০০ টাকা ক্যাশব্যাক</p>
-        </div>
-        
-        <!-- Complete Subject Coverage with Full Topics -->
+        <!-- Complete Subject Coverage with Full Detailed Topics -->
         <div class="section-header">
-            <h2>📚 সম্পূর্ণ সিলেবাস কাভারেজ</h2>
-            <p style="margin-top: 16px; color: #5a6e5a;">NCTB শর্ট সিলেবাস ২০২৬ অনুযায়ী ৭টি বিষয়ের সম্পূর্ণ টপিক কাভারেজ</p>
+            <h2>📚 সম্পূর্ণ সিলেবাস কাভারেজ (NCTB শর্ট সিলেবাস ২০২৬)</h2>
+            <p style="margin-top: 16px; color: #5a6e5a;">৭টি বিষয়ের সম্পূর্ণ টপিক কাভারেজ | প্রতিটি অধ্যায়ের বিস্তারিত প্রস্তুতি</p>
         </div>
         
         <div class="subject-grid-pro">
-            <!-- Physics - Full Topics -->
+            <!-- Physics -->
             <div class="subject-pro-card">
                 <div class="subject-pro-header"><span class="subject-icon">⚛️</span><h3>পদার্থবিজ্ঞান</h3></div>
                 <ul class="topic-list-pro">
@@ -681,13 +707,13 @@
         <div class="pricing-pro">
             <div class="price-pro">১০০ টাকা</div>
             <p style="font-size: 18px; font-weight: 500;">এককালীন পেমেন্ট | ২০ মে ২০২৬ পর্যন্ত অ্যাক্সেস</p>
-            <a href="#" class="btn-primary" style="margin-top: 24px; display: inline-block;" onclick="document.querySelector('.download-card').scrollIntoView({behavior:'smooth'}); return false;">📲 অ্যাপ ডাউনলোড করুন</a>
+            <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" class="btn-primary" style="margin-top: 24px; display: inline-block; background: #2e7d32; color: white; padding: 14px 40px; border-radius: 60px; text-decoration: none; font-weight: 700;">📲 অ্যাপ ডাউনলোড করুন</a>
         </div>
         
-        <!-- Payment Info with Updated bKash Number -->
+        <!-- Payment Info -->
         <div class="section-header"><h2>💳 পেমেন্ট ও রেজিস্ট্রেশন</h2></div>
         <div class="contact-pro">
-            <div class="contact-row"><span>📱</span> <strong>bKash:</strong> 01739324222 (পেমেন্ট ১০০ টাকা)</div>
+            <div class="contact-row"><span>📱</span> <strong>bKash / Nagad / Rocket:</strong> 01739324222 (পেমেন্ট ১০০ টাকা)</div>
             <div class="contact-row"><span>💬</span> <strong>WhatsApp:</strong> +8801602105447 (স্ক্রিনশট + ইমেইল পাঠান)</div>
             <div class="contact-row"><span>✉️</span> <strong>ইমেইল:</strong> nationalexamcenter@gmail.com</div>
             <ol style="margin: 24px 0 0 24px;">
@@ -703,7 +729,7 @@
         <div>
             <div class="faq-pro-item"><button class="faq-question-pro" onclick="toggleFaq(1)">🚀 ফ্রি ভার্সন আছে কি? <span>▼</span></button><div class="faq-answer-pro" id="faq1">না, এটি সম্পূর্ণ প্রিমিয়াম অ্যাপ। শুধুমাত্র ১০০ টাকা পেমেন্ট করেই এক্সেস পাওয়া যায়।</div></div>
             <div class="faq-pro-item"><button class="faq-question-pro" onclick="toggleFaq(2)">👥 রেফারেল প্রোগ্রাম কিভাবে কাজ করে? <span>▼</span></button><div class="faq-answer-pro" id="faq2">আপনার ইউনিক কোড বন্ধুদের দিন। বন্ধু পেমেন্টের সময় কোড উল্লেখ করলে আপনার রেফারেল কাউন্ট +১ হবে। ১০ জন সম্পন্ন হলে ১০০ টাকা ক্যাশব্যাক প্রদান করা হয়।</div></div>
-            <div class="faq-pro-item"><button class="faq-question-pro" onclick="toggleFaq(3)">📥 ডাউনলোড লিংক কোথায়? <span>▼</span></button><div class="faq-answer-pro" id="faq3">পৃষ্ঠার শুরুতে ডাউনলোড কার্ডে Google Drive লিংক দেওয়া আছে।</div></div>
+            <div class="faq-pro-item"><button class="faq-question-pro" onclick="toggleFaq(3)">📥 ডাউনলোড লিংক কোথায়? <span>▼</span></button><div class="faq-answer-pro" id="faq3">পৃষ্ঠার হেডারে ডাউনলোড বাটন রয়েছে। এছাড়াও নিচে ডাউনলোড অপশন আছে।</div></div>
             <div class="faq-pro-item"><button class="faq-question-pro" onclick="toggleFaq(4)">⏱️ এক্সেস পেতে কত সময়? <span>▼</span></button><div class="faq-answer-pro" id="faq4">পেমেন্টের স্ক্রিনশট পাঠানোর ১ ঘণ্টার মধ্যে ইমেইল ও পাসওয়ার্ড দেওয়া হবে।</div></div>
         </div>
     </div>
@@ -717,34 +743,36 @@
 <a href="https://wa.me/8801602105447?text=আমি%20SSC%202026%20প্রিমিয়াম%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" class="whatsapp-float" target="_blank">💬</a>
 
 <script>
-    // Stats Management with Realistic Values
-    let visitorCount = localStorage.getItem('ssc_visitor_final');
-    if (!visitorCount) { visitorCount = 1247; localStorage.setItem('ssc_visitor_final', visitorCount); }
-    else { visitorCount = parseInt(visitorCount); if (!sessionStorage.getItem('visitor_inc_final')) { visitorCount++; localStorage.setItem('ssc_visitor_final', visitorCount); sessionStorage.setItem('visitor_inc_final', 'true'); } }
+    // Stats Management
+    let visitorCount = localStorage.getItem('ssc_visitor_split');
+    if (!visitorCount) { visitorCount = 1352; localStorage.setItem('ssc_visitor_split', visitorCount); }
+    else { visitorCount = parseInt(visitorCount); if (!sessionStorage.getItem('visitor_inc_split')) { visitorCount++; localStorage.setItem('ssc_visitor_split', visitorCount); sessionStorage.setItem('visitor_inc_split', 'true'); } }
     document.getElementById('visitorCount').innerText = visitorCount.toLocaleString('bn');
     
-    let registeredUsers = localStorage.getItem('ssc_registered_final');
-    if (!registeredUsers) { registeredUsers = 587; localStorage.setItem('ssc_registered_final', registeredUsers); }
-    else { registeredUsers = parseInt(registeredUsers); if (!sessionStorage.getItem('reg_inc_final') && Math.random() > 0.7) { registeredUsers++; localStorage.setItem('ssc_registered_final', registeredUsers); sessionStorage.setItem('reg_inc_final', 'true'); } }
+    let registeredUsers = localStorage.getItem('ssc_registered_split');
+    if (!registeredUsers) { registeredUsers = 623; localStorage.setItem('ssc_registered_split', registeredUsers); }
+    else { registeredUsers = parseInt(registeredUsers); if (!sessionStorage.getItem('reg_inc_split') && Math.random() > 0.7) { registeredUsers++; localStorage.setItem('ssc_registered_split', registeredUsers); sessionStorage.setItem('reg_inc_split', 'true'); } }
     document.getElementById('registeredUsers').innerText = registeredUsers.toLocaleString('bn');
     
-    // Referral Earnings: 1700 Taka total earned from referrals
-    let referralEarnings = 1700;
-    document.getElementById('referralEarnings').innerText = referralEarnings.toLocaleString('bn');
+    // Total Referral Earnings: 1700 Taka
+    document.getElementById('referralEarningsTotal').innerText = '১,৭০০';
+    document.getElementById('heroReferralEarned').innerText = '১,৭০০';
     
-    let totalExams = localStorage.getItem('ssc_total_exams_final');
-    if (!totalExams) { totalExams = 19320; localStorage.setItem('ssc_total_exams_final', totalExams); }
-    else { totalExams = parseInt(totalExams); if (!sessionStorage.getItem('exam_inc_final')) { totalExams += 45; localStorage.setItem('ssc_total_exams_final', totalExams); sessionStorage.setItem('exam_inc_final', 'true'); } }
+    let totalExams = localStorage.getItem('ssc_total_exams_split');
+    if (!totalExams) { totalExams = 20580; localStorage.setItem('ssc_total_exams_split', totalExams); }
+    else { totalExams = parseInt(totalExams); if (!sessionStorage.getItem('exam_inc_split')) { totalExams += 38; localStorage.setItem('ssc_total_exams_split', totalExams); sessionStorage.setItem('exam_inc_split', 'true'); } }
     document.getElementById('totalExams').innerText = totalExams.toLocaleString('bn');
     
     // Referral Code
-    let referralCode = localStorage.getItem('ssc_ref_code_final');
-    if (!referralCode) { referralCode = `SSC${Math.floor(Math.random() * 90000 + 10000)}`; localStorage.setItem('ssc_ref_code_final', referralCode); }
-    document.getElementById('referralCodeDisplay').innerText = referralCode;
+    let referralCode = localStorage.getItem('ssc_ref_code_split');
+    if (!referralCode) { referralCode = `SSC${Math.floor(Math.random() * 90000 + 10000)}`; localStorage.setItem('ssc_ref_code_split', referralCode); }
+    document.getElementById('heroReferralCode').innerText = referralCode;
     
-    document.getElementById('copyReferralBtn').addEventListener('click', () => {
+    document.getElementById('copyHeroCode').addEventListener('click', () => {
         navigator.clipboard.writeText(referralCode);
-        alert(`রেফারেল কোড "${referralCode}" কপি হয়েছে! বন্ধুদের শেয়ার করুন।`);
+        alert(`রেফারেল কোড "${referralCode}" কপি হয়েছে!`);
+        document.getElementById('copyHeroCode').style.background = '#ffa01e';
+        setTimeout(() => { document.getElementById('copyHeroCode').style.background = '#ffb74d'; }, 500);
     });
     
     // FAQ Toggle
@@ -753,6 +781,13 @@
         ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
     };
     for (let i = 1; i <= 4; i++) { let el = document.getElementById('faq' + i); if (el) el.style.display = 'none'; }
+    
+    // Highlight download button on load
+    setTimeout(() => {
+        const btn = document.getElementById('heroDownloadBtn');
+        if(btn) btn.classList.add('highlight');
+        setTimeout(() => { if(btn) btn.classList.remove('highlight'); }, 800);
+    }, 500);
 </script>
 </body>
 </html>
