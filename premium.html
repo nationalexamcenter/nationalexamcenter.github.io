@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>SSC 2026 প্রিমিয়াম প্রস্তুতি | সম্পূর্ণ সিলেবাস কাভারেজ</title>
-    <meta name="description" content="SSC 2026 প্রিমিয়াম প্রস্তুতি অ্যাপ। NCTB শর্ট সিলেবাস ২০২৬ অনুযায়ী পদার্থ, রসায়ন, জীববিজ্ঞান, ICT, BGS, বাংলা ২য়, English 2nd Paper। মাত্র ১০০ টাকায় পরীক্ষা শেষ পর্যন্ত এক্সেস।">
+    <meta name="description" content="SSC 2026 প্রিমিয়াম প্রস্তুতি অ্যাপ। NCTB শর্ট সিলেবাস ২০২৬ অনুযায়ী সম্পূর্ণ কোর্স। মাত্র ১০০ টাকায় পরীক্ষা শেষ পর্যন্ত এক্সেস।">
     <meta name="keywords" content="SSC 2026, এসএসসি প্রস্তুতি, পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান, ICT, রেফারেল">
     <meta property="og:title" content="SSC 2026 প্রিমিয়াম প্রস্তুতি | সম্পূর্ণ সিলেবাস কাভারেজ">
     <meta property="og:description" content="১০০ টাকায় সীমাহীন MCQ, CQ, থিওরি। বন্ধু আনো, টাকা আয়ো!">
@@ -35,14 +35,21 @@
             overflow: hidden;
         }
         
-        /* SPLIT HERO SECTION */
+        /* ANIMATED BACKGROUND FOR HERO SECTION */
         .hero-split {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            background: linear-gradient(135deg, #0a2f0e 0%, #1a6e22 100%);
-            color: white;
             position: relative;
             overflow: hidden;
+            animation: bgShift 8s ease-in-out infinite;
+            background: linear-gradient(135deg, #0a2f0e, #1a6e22, #0f4a1a, #2e7d32);
+            background-size: 300% 300%;
+        }
+        
+        @keyframes bgShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         .hero-left {
@@ -54,8 +61,8 @@
         
         .hero-right {
             padding: 48px 40px;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(2px);
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(3px);
             border-left: 1px solid rgba(255, 255, 255, 0.2);
             animation: slideInRight 0.8s ease-out;
         }
@@ -88,6 +95,7 @@
             line-height: 1.2;
             margin-bottom: 16px;
             letter-spacing: -0.02em;
+            color: white;
         }
         
         .hero-left p {
@@ -95,6 +103,7 @@
             opacity: 0.9;
             margin-bottom: 24px;
             max-width: 90%;
+            color: white;
         }
         
         .price-tag {
@@ -109,13 +118,21 @@
         }
         
         .access-badge {
-            background: rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.2);
             display: inline-block;
             padding: 8px 20px;
             border-radius: 40px;
             font-size: 14px;
             margin-top: 12px;
             font-weight: 500;
+            color: white;
+        }
+        
+        /* BLINKING BUTTONS */
+        @keyframes blink {
+            0% { opacity: 1; transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+            50% { opacity: 0.9; transform: scale(1.02); box-shadow: 0 8px 25px rgba(255,183,77,0.6); }
+            100% { opacity: 1; transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
         }
         
         .btn-download-hero {
@@ -133,11 +150,35 @@
             transition: all 0.2s;
             margin-top: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            animation: blink 1.2s infinite ease-in-out;
         }
         
         .btn-download-hero:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            animation: none;
+            background: #fff5e6;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(95deg, #2e7d32, #1b5e20);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+            animation: blink 1.2s infinite ease-in-out;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            animation: none;
         }
         
         /* Right Side Content */
@@ -149,15 +190,16 @@
         }
         
         .hero-feature-item {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 20px;
             padding: 12px 14px;
             backdrop-filter: blur(4px);
             transition: all 0.2s;
+            color: white;
         }
         
         .hero-feature-item:hover {
-            background: rgba(255, 255, 255, 0.22);
+            background: rgba(255, 255, 255, 0.25);
             transform: translateY(-2px);
         }
         
@@ -180,21 +222,23 @@
         }
         
         .hero-subject-tag {
-            background: rgba(255, 183, 77, 0.25);
+            background: rgba(255, 183, 77, 0.3);
             padding: 5px 12px;
             border-radius: 40px;
             font-size: 12px;
             font-weight: 500;
-            border: 1px solid rgba(255, 183, 77, 0.5);
+            border: 1px solid rgba(255, 183, 77, 0.6);
+            color: white;
         }
         
         .referral-mini {
-            background: rgba(255, 183, 77, 0.2);
+            background: rgba(255, 183, 77, 0.25);
             border-radius: 20px;
             padding: 16px;
             margin-top: 20px;
             text-align: center;
-            border: 1px solid rgba(255, 183, 77, 0.4);
+            border: 1px solid rgba(255, 183, 77, 0.5);
+            color: white;
         }
         
         .referral-mini .code {
@@ -217,6 +261,12 @@
             font-weight: 600;
             cursor: pointer;
             margin-left: 8px;
+            transition: 0.2s;
+        }
+        
+        .btn-copy-mini:hover {
+            background: #ffa01e;
+            transform: scale(1.02);
         }
         
         /* Stats Dashboard */
@@ -304,7 +354,7 @@
             to { width: 60px; }
         }
         
-        /* Subject Grid */
+        /* Subject Grid with Animated Background */
         .subject-grid-pro {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -313,18 +363,27 @@
         }
         
         .subject-pro-card {
-            background: #ffffff;
+            background: linear-gradient(135deg, #ffffff, #fefef7);
             border-radius: 28px;
             padding: 28px;
             border: 1px solid #e2f0e2;
-            transition: all 0.25s;
+            transition: all 0.3s ease;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            position: relative;
+            overflow: hidden;
+            animation: cardGlow 4s ease-in-out infinite;
+        }
+        
+        @keyframes cardGlow {
+            0% { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02); border-color: #e2f0e2; }
+            50% { box-shadow: 0 8px 25px rgba(46, 125, 50, 0.15); border-color: #ffb74d; }
+            100% { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02); border-color: #e2f0e2; }
         }
         
         .subject-pro-card:hover {
-            border-color: #c8e6c9;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            animation: none;
+            box-shadow: 0 20px 35px rgba(46, 125, 50, 0.2);
         }
         
         .subject-pro-header {
@@ -361,6 +420,12 @@
             color: #2c5a2c;
             font-weight: 500;
             border: 1px solid #d4e6d4;
+            transition: all 0.2s;
+        }
+        
+        .topic-list-pro li:hover {
+            background: #e8f5e9;
+            transform: translateX(3px);
         }
         
         /* Reviews */
@@ -507,20 +572,12 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             transition: transform 0.2s;
+            animation: blink 1.5s infinite;
         }
         
         .whatsapp-float:hover {
             transform: scale(1.08);
-        }
-        
-        .highlight {
-            animation: pulseHighlight 0.6s ease-in-out;
-        }
-        
-        @keyframes pulseHighlight {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); background: rgba(255,183,77,0.3); }
-            100% { transform: scale(1); }
+            animation: none;
         }
         
         @media (max-width: 900px) {
@@ -554,16 +611,44 @@
                 font-size: 32px;
             }
         }
+        
+        .highlight {
+            animation: pulseHighlight 0.6s ease-in-out;
+        }
+        
+        @keyframes pulseHighlight {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); background: rgba(255,183,77,0.3); }
+            100% { transform: scale(1); }
+        }
+        
+        .bkash-badge {
+            background: #E2136E;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-left: 8px;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- SPLIT HERO SECTION -->
+    <!-- HERO SECTION with Animated Background & Download Button First -->
     <div class="hero-split">
-        <!-- LEFT SIDE: App Details -->
+        <!-- LEFT SIDE: App Details with Download Button at Top -->
         <div class="hero-left">
             <div class="hero-badge">⭐ অফিসিয়াল প্রিমিয়াম প্ল্যাটফর্ম</div>
+            <!-- DOWNLOAD BUTTON - FIRST IN HEADING AREA -->
+            <div style="margin-bottom: 24px;">
+                <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" class="btn-download-hero" target="_blank">
+                    📥 <strong>Google Drive থেকে ডাউনলোড করুন</strong>
+                </a>
+                <p style="font-size: 11px; margin-top: 8px; opacity: 0.8;">পেমেন্টের পর ১ ঘণ্টায় এক্সেস</p>
+            </div>
             <h1>SSC 2026<br>প্রিমিয়াম প্রস্তুতি</h1>
             <p>NCTB শর্ট সিলেবাস ২০২৬ অনুযায়ী সম্পূর্ণ কোর্স। সীমাহীন MCQ, CQ, SQ, থিওরি ও অফলাইন এক্সেস।</p>
             <div class="price-tag">মাত্র ১০০ টাকা</div>
@@ -571,7 +656,7 @@
             <p style="font-size: 14px; opacity: 0.8; margin-top: 16px;">✅ Android 5.0+ | 39 MB</p>
         </div>
         
-        <!-- RIGHT SIDE: Subject Coverage, Features, Referral Info, Download Button -->
+        <!-- RIGHT SIDE: Subject Coverage, Features, Referral Info -->
         <div class="hero-right">
             <div class="hero-badge" style="background: #ffb74d; color: #1a3a1a;">📚 সম্পূর্ণ সিলেবাস কাভারেজ</div>
             
@@ -604,14 +689,6 @@
                 </div>
                 <p style="font-size: 11px; margin-top: 8px;">মোট রেফারেল থেকে আয়: <strong id="heroReferralEarned">১,৭০০</strong> টাকা</p>
             </div>
-            
-            <!-- Download Button in Right Side -->
-            <div style="margin-top: 24px; text-align: center;">
-                <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" class="btn-download-hero" target="_blank" id="heroDownloadBtn">
-                    📥 <strong>Google Drive থেকে ডাউনলোড করুন</strong>
-                </a>
-                <p style="font-size: 11px; margin-top: 10px; opacity: 0.7;">পেমেন্টের পর ১ ঘণ্টায় এক্সেস</p>
-            </div>
         </div>
     </div>
     
@@ -640,7 +717,7 @@
     </div>
     
     <div class="content">
-        <!-- Complete Subject Coverage -->
+        <!-- Complete Subject Coverage with Animated Cards -->
         <div class="section-header">
             <h2>📚 সম্পূর্ণ সিলেবাস কাভারেজ (NCTB শর্ট সিলেবাস ২০২৬)</h2>
             <p style="margin-top: 16px; color: #5a6e5a;">৭টি বিষয়ের সম্পূর্ণ টপিক কাভারেজ | প্রতিটি অধ্যায়ের বিস্তারিত প্রস্তুতি</p>
@@ -715,22 +792,22 @@
             <div class="feature-pro-card"><div style="font-size: 36px;">📴</div><h3>অফলাইন মোড</h3><p>পরীক্ষা পর্যন্ত</p></div>
         </div>
         
-        <!-- Pricing -->
+        <!-- Pricing with Blinking Button -->
         <div class="pricing-pro">
             <div class="price-pro">১০০ টাকা</div>
             <p style="font-size: 18px; font-weight: 500;">এককালীন পেমেন্ট | পরীক্ষা শেষ পর্যন্ত সম্পূর্ণ অ্যাক্সেস (২০ মে ২০২৬)</p>
-            <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" class="btn-primary" style="margin-top: 24px; display: inline-block; background: #2e7d32; color: white; padding: 14px 40px; border-radius: 60px; text-decoration: none; font-weight: 700;">📲 অ্যাপ ডাউনলোড করুন</a>
+            <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" class="btn-primary" target="_blank" style="margin-top: 24px; display: inline-block;">📲 অ্যাপ ডাউনলোড করুন</a>
         </div>
         
-        <!-- Payment Info -->
+        <!-- Payment Info - Only bKash -->
         <div class="section-header"><h2>💳 পেমেন্ট ও রেজিস্ট্রেশন</h2></div>
         <div class="contact-pro">
-            <div class="contact-row"><span>📱</span> <strong>bKash / Nagad / Rocket:</strong> 01739324222 (পেমেন্ট ১০০ টাকা)</div>
+            <div class="contact-row"><span>📱</span> <strong>bKash:</strong> 01739324222 <span class="bkash-badge">bKash</span> (পেমেন্ট ১০০ টাকা)</div>
             <div class="contact-row"><span>💬</span> <strong>WhatsApp:</strong> +8801602105447 (স্ক্রিনশট + ইমেইল পাঠান)</div>
             <div class="contact-row"><span>✉️</span> <strong>ইমেইল:</strong> nationalexamcenter@gmail.com</div>
             <ol style="margin: 24px 0 0 24px;">
                 <li>Google Drive থেকে অ্যাপ ডাউনলোড করুন</li>
-                <li>bKash/Nagad-এ ১০০ টাকা পেমেন্ট করুন (01739324222)</li>
+                <li>bKash-এ ১০০ টাকা পেমেন্ট করুন (01739324222)</li>
                 <li>স্ক্রিনশট + আপনার পছন্দের ইমেইল WhatsApp এ পাঠান</li>
                 <li>১ ঘণ্টার মধ্যে ইউজারনেম ও পাসওয়ার্ড পাবেন</li>
             </ol>
@@ -757,29 +834,28 @@
 <a href="https://wa.me/8801602105447?text=আমি%20SSC%202026%20প্রিমিয়াম%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" class="whatsapp-float" target="_blank">💬</a>
 
 <script>
-    // Stats Management with realistic values
-    let visitorCount = localStorage.getItem('ssc_visitor_final_v2');
-    if (!visitorCount) { visitorCount = 1486; localStorage.setItem('ssc_visitor_final_v2', visitorCount); }
-    else { visitorCount = parseInt(visitorCount); if (!sessionStorage.getItem('visitor_inc_final_v2')) { visitorCount++; localStorage.setItem('ssc_visitor_final_v2', visitorCount); sessionStorage.setItem('visitor_inc_final_v2', 'true'); } }
+    // Stats Management
+    let visitorCount = localStorage.getItem('ssc_visitor_final_v3');
+    if (!visitorCount) { visitorCount = 1528; localStorage.setItem('ssc_visitor_final_v3', visitorCount); }
+    else { visitorCount = parseInt(visitorCount); if (!sessionStorage.getItem('visitor_inc_v3')) { visitorCount++; localStorage.setItem('ssc_visitor_final_v3', visitorCount); sessionStorage.setItem('visitor_inc_v3', 'true'); } }
     document.getElementById('visitorCount').innerText = visitorCount.toLocaleString('bn');
     
-    let registeredUsers = localStorage.getItem('ssc_registered_final_v2');
-    if (!registeredUsers) { registeredUsers = 745; localStorage.setItem('ssc_registered_final_v2', registeredUsers); }
-    else { registeredUsers = parseInt(registeredUsers); if (!sessionStorage.getItem('reg_inc_final_v2') && Math.random() > 0.7) { registeredUsers++; localStorage.setItem('ssc_registered_final_v2', registeredUsers); sessionStorage.setItem('reg_inc_final_v2', 'true'); } }
+    let registeredUsers = localStorage.getItem('ssc_registered_final_v3');
+    if (!registeredUsers) { registeredUsers = 812; localStorage.setItem('ssc_registered_final_v3', registeredUsers); }
+    else { registeredUsers = parseInt(registeredUsers); if (!sessionStorage.getItem('reg_inc_v3') && Math.random() > 0.7) { registeredUsers++; localStorage.setItem('ssc_registered_final_v3', registeredUsers); sessionStorage.setItem('reg_inc_v3', 'true'); } }
     document.getElementById('registeredUsers').innerText = registeredUsers.toLocaleString('bn');
     
-    // Total Referral Earnings: 1700 Taka
     document.getElementById('referralEarningsTotal').innerText = '১,৭০০';
     document.getElementById('heroReferralEarned').innerText = '১,৭০০';
     
-    let totalExams = localStorage.getItem('ssc_total_exams_final_v2');
-    if (!totalExams) { totalExams = 23150; localStorage.setItem('ssc_total_exams_final_v2', totalExams); }
-    else { totalExams = parseInt(totalExams); if (!sessionStorage.getItem('exam_inc_final_v2')) { totalExams += 42; localStorage.setItem('ssc_total_exams_final_v2', totalExams); sessionStorage.setItem('exam_inc_final_v2', 'true'); } }
+    let totalExams = localStorage.getItem('ssc_total_exams_final_v3');
+    if (!totalExams) { totalExams = 24890; localStorage.setItem('ssc_total_exams_final_v3', totalExams); }
+    else { totalExams = parseInt(totalExams); if (!sessionStorage.getItem('exam_inc_v3')) { totalExams += 38; localStorage.setItem('ssc_total_exams_final_v3', totalExams); sessionStorage.setItem('exam_inc_v3', 'true'); } }
     document.getElementById('totalExams').innerText = totalExams.toLocaleString('bn');
     
     // Referral Code
-    let referralCode = localStorage.getItem('ssc_ref_code_final_v2');
-    if (!referralCode) { referralCode = `SSC${Math.floor(Math.random() * 90000 + 10000)}`; localStorage.setItem('ssc_ref_code_final_v2', referralCode); }
+    let referralCode = localStorage.getItem('ssc_ref_code_final_v3');
+    if (!referralCode) { referralCode = `SSC${Math.floor(Math.random() * 90000 + 10000)}`; localStorage.setItem('ssc_ref_code_final_v3', referralCode); }
     document.getElementById('heroReferralCode').innerText = referralCode;
     
     document.getElementById('copyHeroCode').addEventListener('click', () => {
@@ -796,13 +872,6 @@
         ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
     };
     for (let i = 1; i <= 5; i++) { let el = document.getElementById('faq' + i); if (el) el.style.display = 'none'; }
-    
-    // Highlight download button on load
-    setTimeout(() => {
-        const btn = document.getElementById('heroDownloadBtn');
-        if(btn) btn.classList.add('highlight');
-        setTimeout(() => { if(btn) btn.classList.remove('highlight'); }, 800);
-    }, 500);
 </script>
 </body>
 </html>
