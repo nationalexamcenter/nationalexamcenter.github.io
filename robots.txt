@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nationalexamcenter.github.io/sitemap.xml
