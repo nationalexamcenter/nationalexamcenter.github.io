@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>নবম-দশম রসায়ন প্রস্তুতি ২০২৬ | প্রিমিয়াম এক্সক্লুসিভ</title>
     <meta name="description" content="নবম ও দশম শ্রেণির রসায়ন (NCTB ২০২৬ আপডেট সিলেবাস) সম্পূর্ণ প্রস্তুতি। আধুনিক টপিক, মডেল টেস্ট, অফলাইন মোড। মাসিক ও বার্ষিক প্যাকেজ।">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google Fonts + Font Awesome -->
+    <!-- Tailwind CSS + Google Fonts + Font Awesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Three.js CDN for 3D object -->
+    <!-- Three.js -->
     <script type="importmap">
         {
             "imports": {
@@ -18,168 +18,38 @@
         }
     </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #0b0e12;
-            color: #eef5ff;
-            overflow-x: hidden;
-        }
-        /* custom scrollbar */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0b0e12; color: #eef5ff; overflow-x: hidden; }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #1a1f2a; }
         ::-webkit-scrollbar-thumb { background: #ffb347; border-radius: 10px; }
-
-        .glass-panel {
-            background: rgba(18, 25, 45, 0.65);
-            backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 180, 70, 0.3);
-            border-radius: 2rem;
-        }
-        .btn-gradient {
-            background: linear-gradient(105deg, #ff9a3c, #ff6a2c);
-            border: none;
-            color: white;
-            font-weight: 700;
-            transition: all 0.2s ease;
-            box-shadow: 0 8px 20px rgba(255, 100, 30, 0.3);
-        }
-        .btn-gradient:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(255, 100, 30, 0.5);
-            background: linear-gradient(105deg, #ffaa55, #ff7a3c);
-        }
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(120deg, #fff5e6, #ffcf9a);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-        }
-        .topic-badge {
-            background: rgba(255, 165, 75, 0.15);
-            border: 1px solid rgba(255, 165, 75, 0.4);
-            border-radius: 40px;
-            padding: 8px 16px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.2s;
-            backdrop-filter: blur(5px);
-        }
-        .topic-badge:hover {
-            background: rgba(255, 165, 75, 0.35);
-            transform: translateX(5px);
-            border-color: #ffb347;
-        }
-        .card-premium {
-            background: rgba(12, 20, 30, 0.8);
-            backdrop-filter: blur(12px);
-            border-radius: 2rem;
-            border: 1px solid rgba(255, 160, 70, 0.3);
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        }
-        .card-premium:hover {
-            transform: translateY(-8px);
-            border-color: #ffb347;
-            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.5);
-            background: rgba(20, 32, 48, 0.85);
-        }
-        .floating-wa {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 1000;
-            background: #25D366;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-            transition: 0.2s;
-            animation: pulse-wa 1.8s infinite;
-        }
-        @keyframes pulse-wa {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0.5);}
-            70% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(37,211,102,0);}
-            100% { transform: scale(1); }
-        }
-        .hero-3d-container {
-            position: relative;
-            height: 500px;
-            overflow: hidden;
-            border-radius: 2rem;
-        }
-        canvas#bg-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            border-radius: 2rem;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 3rem;
-        }
-        @media (max-width: 768px) {
-            .section-title { font-size: 1.8rem; }
-            .hero-content { padding: 1.8rem; }
-            .hero-3d-container { height: 420px; }
-        }
-        .plan-selector {
-            background: #0f1622;
-            border-radius: 2rem;
-            transition: 0.2s;
-            cursor: pointer;
-        }
-        .plan-selector.active {
-            background: linear-gradient(145deg, #2a1f12, #1f1a10);
-            border: 1px solid #ffb347;
-            box-shadow: 0 0 15px rgba(255,180,70,0.3);
-        }
-        .faq-btn {
-            background: transparent;
-            width: 100%;
-            text-align: left;
-            padding: 1rem 1.5rem;
-            font-weight: 600;
-            color: #ffddbb;
-            border: none;
-            border-bottom: 1px solid rgba(255,180,70,0.2);
-        }
-        .code-glow {
-            background: #1b2a2f;
-            padding: 0.5rem 1rem;
-            border-radius: 60px;
-            font-family: monospace;
-            font-weight: bold;
-            letter-spacing: 1px;
-            color: #ffb347;
-        }
-        input, button {
-            font-family: 'Inter', sans-serif;
-        }
-        .animated-gradient-bg {
-            background: radial-gradient(circle at 30% 10%, #0e1a24, #03070f);
-        }
+        .glass-panel { background: rgba(18, 25, 45, 0.65); backdrop-filter: blur(14px); border: 1px solid rgba(255, 180, 70, 0.3); border-radius: 2rem; }
+        .btn-gradient { background: linear-gradient(105deg, #ff9a3c, #ff6a2c); border: none; transition: all 0.2s ease; box-shadow: 0 8px 20px rgba(255, 100, 30, 0.3); }
+        .btn-gradient:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255, 100, 30, 0.5); background: linear-gradient(105deg, #ffaa55, #ff7a3c); }
+        .section-title { font-size: 2.5rem; font-weight: 800; background: linear-gradient(120deg, #fff5e6, #ffcf9a); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block; margin-bottom: 1.5rem; }
+        .topic-badge { background: rgba(255, 165, 75, 0.15); border: 1px solid rgba(255, 165, 75, 0.4); border-radius: 40px; padding: 8px 16px; font-size: 0.85rem; font-weight: 500; transition: all 0.2s; backdrop-filter: blur(5px); }
+        .topic-badge:hover { background: rgba(255, 165, 75, 0.35); transform: translateX(5px); border-color: #ffb347; }
+        .card-premium { background: rgba(12, 20, 30, 0.8); backdrop-filter: blur(12px); border-radius: 2rem; border: 1px solid rgba(255, 160, 70, 0.3); transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+        .card-premium:hover { transform: translateY(-8px); border-color: #ffb347; box-shadow: 0 25px 40px -12px rgba(0,0,0,0.5); background: rgba(20, 32, 48, 0.85); }
+        .floating-wa { position: fixed; bottom: 25px; right: 25px; z-index: 1000; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: 0.2s; animation: pulse-wa 1.8s infinite; }
+        @keyframes pulse-wa { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0.5);} 70% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(37,211,102,0);} 100% { transform: scale(1); } }
+        .hero-3d-container { position: relative; height: 500px; overflow: hidden; border-radius: 2rem; }
+        canvas#bg-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; border-radius: 2rem; }
+        .hero-content { position: relative; z-index: 2; padding: 3rem; }
+        @media (max-width: 768px) { .section-title { font-size: 1.8rem; } .hero-content { padding: 1.8rem; } .hero-3d-container { height: 420px; } }
+        .plan-selector { background: #0f1622; border-radius: 2rem; transition: 0.2s; cursor: pointer; }
+        .plan-selector.active { background: linear-gradient(145deg, #2a1f12, #1f1a10); border: 1px solid #ffb347; box-shadow: 0 0 15px rgba(255,180,70,0.3); }
+        .faq-btn { background: transparent; width: 100%; text-align: left; padding: 1rem 1.5rem; font-weight: 600; color: #ffddbb; border: none; border-bottom: 1px solid rgba(255,180,70,0.2); }
+        .code-glow { background: #1b2a2f; padding: 0.5rem 1rem; border-radius: 60px; font-family: monospace; font-weight: bold; letter-spacing: 1px; color: #ffb347; }
+        .animated-gradient-bg { background: radial-gradient(circle at 30% 10%, #0e1a24, #03070f); }
+        .container-custom { max-width: 1280px; margin-left: auto; margin-right: auto; padding-left: 1.5rem; padding-right: 1.5rem; }
+        @media (min-width: 768px) { .container-custom { padding-left: 2rem; padding-right: 2rem; } }
     </style>
 </head>
 <body class="animated-gradient-bg">
 
-<div class="container mx-auto px-4 md:px-8 max-w-7xl">
-    <!-- 3D Hero Section + Premium branding -->
+<div class="container-custom">
+    <!-- 3D Hero Section -->
     <div class="hero-3d-container mt-6 md:mt-10 relative">
         <canvas id="bg-canvas"></canvas>
         <div class="hero-content absolute inset-0 flex flex-col justify-between">
@@ -195,8 +65,8 @@
                 <h1 class="text-5xl md:text-7xl font-extrabold leading-tight"><span class="bg-gradient-to-r from-orange-300 to-amber-500 bg-clip-text text-transparent">নবম-দশম<br>রসায়ন প্রস্তুতি</span></h1>
                 <p class="text-lg md:text-xl text-gray-300 max-w-xl mt-4">সম্পূর্ণ আপডেট কন্টেন্ট: পর্যায় সারণি, মোল, জৈব রসায়ন, অ্যাসিড-ক্ষার ও আধুনিক টপিক। পকেটেই সম্পূর্ণ ল্যাব।</p>
                 <div class="flex flex-wrap gap-4 mt-8">
-                    <a href="#pricing" class="btn-gradient px-8 py-3 rounded-full font-bold text-lg"><i class="fas fa-crown mr-2"></i>প্ল্যান নির্বাচন</a>
-                    <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" target="_blank" class="bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full font-semibold transition hover:bg-white/20"><i class="fab fa-android"></i> অ্যাপ ডাউনলোড</a>
+                    <a href="#pricing" class="btn-gradient px-8 py-3 rounded-full font-bold text-lg inline-block"><i class="fas fa-crown mr-2"></i>প্ল্যান নির্বাচন</a>
+                    <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" target="_blank" class="bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full font-semibold transition hover:bg-white/20 inline-block"><i class="fab fa-android"></i> অ্যাপ ডাউনলোড</a>
                 </div>
             </div>
             <div class="mt-8 flex gap-3 flex-wrap">
@@ -207,21 +77,17 @@
         </div>
     </div>
 
-    <!-- Highlight: Full Chemistry as per updated topics -->
+    <!-- Chemistry Topics Section -->
     <div class="mt-20">
         <div class="flex items-center gap-3">
             <i class="fas fa-atom text-4xl text-amber-400"></i>
             <h2 class="section-title">সম্পূর্ণ রসায়ন সিলেবাস (NCTB ২০২৬)</h2>
         </div>
         <p class="text-gray-300 mb-6">নিচের ১২টি অধ্যায় ও ১০০+ সাবটপিক বিস্তারিত ব্যাখ্যা, ফর্মুলা শীট, সৃজনশীল ও এমসিকিউ সেট সহ।</p>
-        <!-- Show detailed Chemistry topics from given list -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            <!-- Dynamic injection of chemistry topics via JS (based on provided txt content) -->
-            <div id="chemistryTopicsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 col-span-full"></div>
-        </div>
+        <div id="chemistryTopicsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </div>
 
-    <!-- Coming soon cards for Physics & Biology (premium design) -->
+    <!-- Coming Soon: Physics & Biology -->
     <div class="mt-20">
         <div class="flex justify-between items-center flex-wrap border-b border-amber-500/30 pb-3 mb-8">
             <h2 class="section-title text-3xl">অন্যান্য বিভাগ</h2>
@@ -245,7 +111,7 @@
         </div>
     </div>
 
-    <!-- Pricing Flex Plans (modern) -->
+    <!-- Pricing Plans -->
     <div id="pricing" class="mt-24">
         <div class="text-center mb-12">
             <h2 class="section-title">ফ্লেক্সিবল এক্সেস প্ল্যান</h2>
@@ -278,7 +144,7 @@
             </div>
         </div>
         <div class="glass-panel p-5 mt-8 text-center flex flex-wrap justify-between items-center gap-3">
-            <div><i class="fab fa-bkash text-pink-400 text-xl"></i> <strong>bKash পেমেন্ট : </strong> ০১৬০২১০৫৪৪৭ (Personal)</div>
+            <div><i class="fab fa-bkash text-pink-400 text-xl"></i> <strong>bKash পেমেন্ট :</strong> ০১৬০২১০৫৪৪৭ (Personal)</div>
             <div><span class="code-glow"><i class="fas fa-gift"></i> আপনার কোড: <span id="displayRefCode">CHEMXXXX</span></span>
             <button id="copyRefBtn" class="ml-2 bg-amber-700 px-3 py-1 rounded-full text-xs">কপি</button></div>
         </div>
@@ -294,7 +160,7 @@
         </div>
     </div>
 
-    <!-- FAQ Section -->
+    <!-- FAQ -->
     <div class="mt-20 mb-16">
         <h2 class="section-title">প্রায়শই জিজ্ঞাসিত প্রশ্ন</h2>
         <div class="space-y-3 mt-6">
@@ -305,7 +171,7 @@
         </div>
     </div>
 
-    <div class="footer-pro text-center py-10 text-gray-400 border-t border-white/10 mt-8">
+    <div class="text-center py-10 text-gray-400 border-t border-white/10 mt-8">
         <p>© ২০২৬ National Exam Center | নবম-দশম রসায়ন প্রস্তুতি (NCTB ২০২৬) | এসএসসি ২০২৭+ আপডেটেড সাপোর্ট</p>
         <p class="text-xs mt-2"><i class="fas fa-shield-alt"></i> সিকিউর পেমেন্ট ও ২৪/৭ সাপোর্ট</p>
     </div>
@@ -315,10 +181,9 @@
 
 <script type="module">
     import * as THREE from 'three';
-    // Setup 3D scene: floating molecular-like structure
     const canvas = document.getElementById('bg-canvas');
     const scene = new THREE.Scene();
-    scene.background = null; // transparent for gradient bg
+    scene.background = null;
     const camera = new THREE.PerspectiveCamera(45, canvas.parentElement.clientWidth / canvas.parentElement.clientHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
     function setSize() {
@@ -332,7 +197,6 @@
     setSize();
     window.addEventListener('resize', setSize);
     
-    // Add particles and a central glowing atom
     const particleGeometry = new THREE.BufferGeometry();
     const particleCount = 1600;
     const positions = new Float32Array(particleCount * 3);
@@ -346,7 +210,6 @@
     const particles = new THREE.Points(particleGeometry, particleMaterial);
     scene.add(particles);
     
-    // central torus knot
     const knotGeo = new THREE.TorusKnotGeometry(1.2, 0.28, 180, 24, 3, 4);
     const knotMat = new THREE.MeshStandardMaterial({ color: 0xff914d, emissive: 0xaa4422, emissiveIntensity: 0.8, metalness: 0.7, roughness: 0.3 });
     const knot = new THREE.Mesh(knotGeo, knotMat);
@@ -380,7 +243,7 @@
 </script>
 
 <script>
-    // Chemistry topics injection from provided text file data
+    // Chemistry topics data (12 chapters)
     const topicsData = [
         { chapter: "প্রথম অধ্যায়: রসায়নের ধারণা", subs: ["রসায়ন পরিচিতি","রসায়নের পরিধি","বিজ্ঞানের অন্যান্য শাখার সাথে সম্পর্ক","রসায়ন পাঠের গুরুত্ব","গবেষণা প্রক্রিয়া","পরীক্ষাগারের সতর্কতা"] },
         { chapter: "দ্বিতীয় অধ্যায়: পদার্থের অবস্থা", subs: ["কঠিন, তরল, গ্যাস","কণার গতিতত্ত্ব","ব্যাপন ও নিঃসরণ","মোমের তিন অবস্থা","গলন ও স্ফুটন","পাতন ও ঊর্ধ্বপাতন"] },
@@ -407,7 +270,7 @@
         });
     }
     
-    // plan selection alerts
+    // Plan selection
     document.querySelectorAll('.select-plan-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -417,7 +280,7 @@
         });
     });
     
-    // referral code logic
+    // Referral code
     let ref = localStorage.getItem('chem_ref_code');
     if(!ref){
         ref = 'CHEM'+Math.floor(Math.random()*9000+1000);
@@ -434,7 +297,6 @@
         const el = document.getElementById('faq'+id);
         if(el) el.classList.toggle('hidden');
     };
-    // init all hidden
     for(let i=1;i<=4;i++){ let faqDiv = document.getElementById('faq'+i); if(faqDiv) faqDiv.classList.add('hidden'); }
 </script>
 </body>
