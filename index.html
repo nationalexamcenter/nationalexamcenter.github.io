@@ -4,30 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     
-    <title>National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬</title>
-    <meta name="description" content="Complete preparation for Class 9-10 Science based on NCTB 2026 syllabus. Best app for SSC 2027 exam with MCQ, timer-based exams, and progress tracking.">
-    <meta name="keywords" content="National Exam Center, class 9-10 science, নবম দশম বিজ্ঞান, এসএসসি প্রস্তুতি ২০২৭, chemistry 9-10, রসায়ন ৯ম-১০ম">
+    <!-- Primary SEO Meta Tags -->
+    <title>National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬ | এসএসসি সাজেশন</title>
+    <meta name="title" content="National Exam Center - Class 9-10 Science Preparation 2026">
+    <meta name="description" content="Complete preparation for Class 9-10 Science (Chemistry, Physics, Biology) based on NCTB 2026 syllabus. Best app for SSC 2027 exam preparation with MCQ, creative questions, and progress tracking.">
+    <meta name="keywords" content="National Exam Center, national exam center, ন্যাশনাল এগজাম সেন্টার, class 9-10 science, নবম দশম বিজ্ঞান, এসএসসি প্রস্তুতি ২০২৭, SSC preparation 2027, chemistry 9-10, রসায়ন ৯ম-১০ম, physics 9-10, biology 9-10, NCTB 2026 syllabus, bangla education app">
     <meta name="author" content="National Exam Center">
     <meta name="robots" content="index, follow">
+    <meta name="language" content="Bengali, English">
+    <meta name="revisit-after" content="3 days">
     
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nationalexamcenter.github.io/">
-    <meta property="og:title" content="National Exam Center - Class 9-10 Science Preparation">
-    <meta property="og:description" content="Complete preparation for SSC 2027 exam. 12+ chapters, 500+ MCQs with timer-based exams.">
+    <meta property="og:title" content="National Exam Center - Class 9-10 Science Preparation 2026">
+    <meta property="og:description" content="Complete preparation for SSC 2027 exam. 12+ chapters, 100+ topics, 500+ MCQs. Chemistry, Physics, Biology based on NCTB 2026 syllabus.">
+    <meta property="og:image" content="https://nationalexamcenter.github.io/og-image.jpg">
     
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="National Exam Center - Class 9-10 Science Preparation">
+    <meta property="twitter:description" content="Best app for SSC 2027 exam preparation. 500+ MCQs, progress tracking, and complete syllabus coverage.">
+    
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://nationalexamcenter.github.io/">
     
+    <!-- Alternate language versions -->
+    <link rel="alternate" hreflang="bn" href="https://nationalexamcenter.github.io/">
+    <link rel="alternate" hreflang="en" href="https://nationalexamcenter.github.io/en">
+    
+    <!-- Schema.org markup for Google -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "EducationalOrganization",
       "name": "National Exam Center",
+      "alternateName": "ন্যাশনাল এগজাম সেন্টার",
       "url": "https://nationalexamcenter.github.io/",
-      "description": "Complete preparation platform for Class 9-10 Science students.",
-      "sameAs": ["https://wa.me/8801602105447"]
+      "logo": "https://nationalexamcenter.github.io/logo.png",
+      "description": "Complete preparation platform for Class 9-10 Science students based on NCTB 2026 syllabus.",
+      "sameAs": ["https://wa.me/8801602105447"],
+      "offers": {
+        "@type": "Offer",
+        "description": "Monthly, Quarterly, Half-Yearly & Yearly access plans",
+        "price": "100",
+        "priceCurrency": "BDT"
+      },
+      "educationalLevel": "High School",
+      "teaches": "Chemistry, Physics, Biology"
     }
     </script>
     
+    <!-- Tailwind CSS + Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -76,6 +104,7 @@
             transform: translateY(-2px);
         }
         
+        /* Keyframe Animations */
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -89,121 +118,37 @@
             100% { background-position: 200% 0; }
         }
         
-        /* Fire Trail Animation - Moving dot with spark tail */
-        @keyframes fireTrail {
-            0% { stroke-dashoffset: 0; opacity: 1; }
-            100% { stroke-dashoffset: -400; opacity: 0.8; }
+        /* Smooth Pulsing Glow Animation */
+        @keyframes softPulse {
+            0% { 
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.2), 0 0 0 0 rgba(245, 158, 11, 0.1);
+                border-color: rgba(245, 158, 11, 0.3);
+            }
+            50% { 
+                box-shadow: 0 0 0 12px rgba(245, 158, 11, 0.15), 0 0 0 6px rgba(245, 158, 11, 0.08);
+                border-color: rgba(245, 158, 11, 0.7);
+            }
+            100% { 
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.2), 0 0 0 0 rgba(245, 158, 11, 0.1);
+                border-color: rgba(245, 158, 11, 0.3);
+            }
         }
         
-        @keyframes firePulse {
-            0%, 100% { filter: drop-shadow(0 0 2px #f59e0b) drop-shadow(0 0 5px #ff6a2c); }
-            50% { filter: drop-shadow(0 0 8px #f59e0b) drop-shadow(0 0 15px #ff6a2c) drop-shadow(0 0 20px #ea580c); }
+        @keyframes glowPulse {
+            0% { opacity: 0.3; transform: scale(0.98); }
+            50% { opacity: 1; transform: scale(1.02); }
+            100% { opacity: 0.3; transform: scale(0.98); }
         }
         
-        .fire-border {
-            position: absolute;
-            top: -12px;
-            left: -12px;
-            right: -12px;
-            bottom: -12px;
-            border-radius: 40px;
-            pointer-events: none;
+        .float-animation { animation: float 4s ease-in-out infinite; }
+        .pulse-animation { animation: pulse 2s ease-in-out infinite; }
+        .shine-effect {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background-size: 200% 100%;
+            animation: shine 3s infinite;
         }
         
-        .fire-border svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .fire-border rect {
-            width: 100%;
-            height: 100%;
-            rx: 36;
-            ry: 36;
-            fill: none;
-            stroke: url(#fireGradient);
-            stroke-width: 3;
-            stroke-dasharray: 8, 12;
-            animation: fireTrail 1.5s linear infinite;
-        }
-        
-        .fire-border .glow-dot {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: radial-gradient(circle, #ff9a3c, #ea580c);
-            border-radius: 50%;
-            filter: blur(2px);
-            animation: firePulse 0.8s ease-in-out infinite;
-        }
-        
-        .mockup-item {
-            position: relative;
-            width: 200px;
-            transition: all 0.3s ease;
-        }
-        
-        .mockup-item:hover {
-            transform: translateY(-8px);
-        }
-        
-        .mockup-image {
-            width: 100%;
-            height: auto;
-            border-radius: 28px;
-            overflow: hidden;
-            border: 2px solid rgba(245, 158, 11, 0.5);
-            transition: all 0.3s ease;
-            position: relative;
-            background: #0a0f1a;
-        }
-        
-        .mockup-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .mockup-caption {
-            text-align: center;
-            margin-top: 12px;
-            font-size: 11px;
-            color: #f59e0b;
-            font-weight: 500;
-        }
-        
-        /* Quiz Styles */
-        .mcq-option {
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-        .mcq-option:hover {
-            background: rgba(245, 158, 11, 0.2);
-            border-color: #f59e0b;
-        }
-        .mcq-option.selected {
-            background: rgba(245, 158, 11, 0.3);
-            border-color: #f59e0b;
-            box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
-        }
-        .mcq-option.correct-answer {
-            background: rgba(34, 197, 94, 0.3);
-            border-color: #22c55e;
-        }
-        .mcq-option.wrong-answer {
-            background: rgba(239, 68, 68, 0.3);
-            border-color: #ef4444;
-        }
-        
-        .timer-ring {
-            stroke-dasharray: 283;
-            stroke-dashoffset: 0;
-            transition: stroke-dashoffset 1s linear;
-        }
-        
+        /* Hero Container */
         .hero-wrapper {
             position: relative;
             min-height: 600px;
@@ -244,15 +189,84 @@
             justify-content: center;
         }
         
+        /* Mockup Container - Smooth Pulsing Light Effect */
+        .mockup-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .mockup-item {
+            position: relative;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+        
+        .mockup-item:hover {
+            transform: translateY(-8px);
+        }
+        
+        .mockup-item:hover .mockup-image {
+            border-color: #f59e0b;
+            box-shadow: 0 25px 40px -15px rgba(245, 158, 11, 0.3);
+        }
+        
+        /* Smooth Pulsing Glow Border - No dashed lines! */
+        .mockup-image {
+            width: 100%;
+            height: auto;
+            border-radius: 28px;
+            overflow: hidden;
+            border: 2px solid rgba(245, 158, 11, 0.4);
+            transition: all 0.3s ease;
+            animation: softPulse 2.5s ease-in-out infinite;
+            position: relative;
+        }
+        
+        /* Inner glow effect */
+        .mockup-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 26px;
+            background: radial-gradient(circle at center, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+            animation: glowPulse 2.5s ease-in-out infinite;
+        }
+        
+        .mockup-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .mockup-caption {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 11px;
+            color: #f59e0b;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
         @media (max-width: 1024px) {
             .hero-content { flex-direction: column; text-align: center; padding: 2rem; }
             .hero-left { text-align: center; }
             .hero-left .flex { justify-content: center; }
             .mockup-item { width: 130px; }
+            .mockup-caption { font-size: 9px; }
         }
         
         @media (max-width: 640px) {
             .hero-wrapper { min-height: 700px; }
+            .mockup-container { gap: 12px; }
             .mockup-item { width: 100px; }
         }
         
@@ -274,17 +288,25 @@
         }
         .floating-wa:hover { transform: scale(1.1); }
         
-        .share-btn { transition: all 0.2s ease; }
-        .share-btn:hover { transform: scale(1.05); }
+        .share-btn {
+            transition: all 0.2s ease;
+        }
+        .share-btn:hover {
+            transform: scale(1.05);
+        }
         
-        .timer-text {
-            font-feature-settings: "tnum";
-            font-variant-numeric: tabular-nums;
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-3px);
+            border-color: #f59e0b;
         }
     </style>
 </head>
 <body class="text-gray-200">
 
+<!-- Navigation -->
 <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-3">
@@ -306,7 +328,7 @@
     </div>
 </nav>
 
-<!-- Hero Section -->
+<!-- Hero Section with Full-Width Animation Behind -->
 <div class="hero-wrapper mt-6">
     <canvas id="bg-canvas"></canvas>
     <div class="hero-content">
@@ -318,7 +340,8 @@
                 নবম-দশম <span class="gradient-text">বিজ্ঞান প্রস্তুতি</span>
             </h1>
             <p class="text-gray-300 text-lg max-w-lg mb-6 bg-black/40 backdrop-blur-sm p-3 rounded-xl">
-                পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান - সর্বশেষ প্যাটার্ন ও সিলেবাস। এসএসসি ২০২৭, ২০২৮ ব্যাচদের জন্য প্রিমিয়াম সাপোর্ট।
+                পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান - সর্বশেষ প্যাটার্ন ও সিলেবাস। 
+                এসএসসি ২০২৭, ২০২৮ ব্যাচদের জন্য প্রিমিয়াম সাপোর্ট।
             </p>
             <div class="flex flex-wrap gap-4">
                 <a href="/chemistry.html" class="btn-gradient px-6 py-3 rounded-full font-bold text-md inline-block shine-effect">
@@ -328,6 +351,7 @@
                     <i class="fab fa-android mr-2"></i> অ্যাপ ডাউনলোড
                 </a>
             </div>
+            
             <div class="flex flex-wrap gap-6 mt-8">
                 <div class="text-center bg-black/40 backdrop-blur-sm px-4 py-2 rounded-xl"><div class="text-xl font-bold text-amber-400">১২+</div><div class="text-xs text-gray-300">অধ্যায়</div></div>
                 <div class="text-center bg-black/40 backdrop-blur-sm px-4 py-2 rounded-xl"><div class="text-xl font-bold text-amber-400">১০০+</div><div class="text-xs text-gray-300">টপিক</div></div>
@@ -336,73 +360,179 @@
         </div>
         
         <div class="hero-right">
-            <div class="flex justify-center items-center gap-5 flex-wrap">
-                <!-- Mockup 1 with Fire Trail Border -->
+            <div class="mockup-container">
+                <!-- Mockup 1 -->
                 <div class="mockup-item">
-                    <div class="fire-border">
-                        <svg>
-                            <defs>
-                                <linearGradient id="fireGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
-                                    <stop offset="30%" style="stop-color:#ff6a2c;stop-opacity:0.9" />
-                                    <stop offset="60%" style="stop-color:#ea580c;stop-opacity:0.6" />
-                                    <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="100%" height="100%" rx="36" ry="36" />
-                        </svg>
-                        <div class="glow-dot" style="top: -6px; left: 50%; transform: translateX(-50%);"></div>
-                    </div>
                     <div class="mockup-image">
-                        <img src="pic/mockup-1.png" alt="Home Screen" onerror="this.src='https://placehold.co/200x400/1a1f2e/ff9a3c?text=Home'">
+                        <img src="pic/mockup-1.png" alt="National Exam Center - Home Screen with Chapter List" onerror="this.src='https://placehold.co/200x400/1a1f2e/ff9a3c?text=Home+Screen'">
                     </div>
-                    <div class="mockup-caption"><i class="fas fa-home mr-1"></i> হোম স্ক্রিন</div>
+                    <div class="mockup-caption">
+                        <i class="fas fa-home mr-1"></i> হোম স্ক্রিন
+                    </div>
                 </div>
                 
                 <!-- Mockup 2 -->
                 <div class="mockup-item">
-                    <div class="fire-border">
-                        <svg><rect width="100%" height="100%" rx="36" ry="36" /></svg>
-                        <div class="glow-dot" style="top: -6px; left: 50%; transform: translateX(-50%);"></div>
-                    </div>
                     <div class="mockup-image">
-                        <img src="pic/mockup-2.png" alt="Study View" onerror="this.src='https://placehold.co/200x400/1a1f2e/ff9a3c?text=Study'">
+                        <img src="pic/mockup-2.png" alt="National Exam Center - Study View with Chapter Content" onerror="this.src='https://placehold.co/200x400/1a1f2e/ff9a3c?text=Study+View'">
                     </div>
-                    <div class="mockup-caption"><i class="fas fa-book-open mr-1"></i> স্টাডি ভিউ</div>
+                    <div class="mockup-caption">
+                        <i class="fas fa-book-open mr-1"></i> স্টাডি ভিউ
+                    </div>
                 </div>
                 
                 <!-- Mockup 3 -->
                 <div class="mockup-item">
-                    <div class="fire-border">
-                        <svg><rect width="100%" height="100%" rx="36" ry="36" /></svg>
-                        <div class="glow-dot" style="top: -6px; left: 50%; transform: translateX(-50%);"></div>
-                    </div>
                     <div class="mockup-image">
-                        <img src="pic/mockup-3.png" alt="Quiz Mode" onerror="this.src='https://placehold.co/200x400/1a1f2e/ff9a3c?text=Quiz'">
+                        <img src="pic/mockup-3.png" alt="National Exam Center - MCQ Quiz Mode" onerror="this.src='https://placehold.co/200x400/1a1f2e/ff9a3c?text=Quiz+Mode'">
                     </div>
-                    <div class="mockup-caption"><i class="fas fa-question-circle mr-1"></i> কুইজ মোড</div>
+                    <div class="mockup-caption">
+                        <i class="fas fa-question-circle mr-1"></i> কুইজ মোড
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Quiz Demo Section -->
-<section class="py-16 px-4" id="quizSection">
+<!-- Features with Q&A Section -->
+<section class="py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">✨ অ্যাপের বিশেষ বৈশিষ্ট্য</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+            
+            <div class="glass-card rounded-2xl p-6 feature-card">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-chalkboard-user text-xl text-amber-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">সম্পূর্ণ সিলেবাস কভারেজ</h3>
+                        <p class="text-gray-400 text-sm">NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী রসায়নের ১২টি অধ্যায় সম্পূর্ণভাবে যুক্ত। শীঘ্রই পদার্থবিজ্ঞান ও জীববিজ্ঞান যুক্ত হবে।</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glass-card rounded-2xl p-6 feature-card">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-question-circle text-xl text-amber-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">MCQ ও সৃজনশীল প্রশ্ন</h3>
+                        <p class="text-gray-400 text-sm">প্রতিটি অধ্যায়ের জন্য অধ্যায়ভিত্তিক বহুনির্বাচনি ও সৃজনশীল প্রশ্ন সহ উত্তর। বোর্ড পরীক্ষার প্যাটার্ন অনুযায়ী তৈরি।</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glass-card rounded-2xl p-6 feature-card">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-chart-line text-xl text-amber-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">প্রোগ্রেস ট্র্যাকিং</h3>
+                        <p class="text-gray-400 text-sm">আপনার পড়ার অগ্রগতি স্বয়ংক্রিয়ভাবে সংরক্ষিত হয়। কোন অধ্যায় কতটুকু পড়েছেন তা ট্র্যাক করতে পারবেন।</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glass-card rounded-2xl p-6 feature-card">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-share-alt text-xl text-amber-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">ফলাফল শেয়ার করুন</h3>
+                        <p class="text-gray-400 text-sm">MCQ পরীক্ষার ফলাফল সরাসরি Facebook, WhatsApp ও অন্যান্য সোশ্যাল মিডিয়ায় শেয়ার করতে পারবেন।</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Question & Answer Section -->
+<section class="py-12 px-4">
     <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-8">
-            <h2 class="text-2xl md:text-3xl font-bold gradient-text mb-2">📝 MCQ পরীক্ষা</h2>
-            <p class="text-gray-400">নিচের বাটনে ক্লিক করে পরীক্ষা শুরু করুন। ৫০%以上の স্কোর করলে উত্তর দেখতে পারবেন।</p>
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">❓ সাধারণ জিজ্ঞাসা</h2>
+        <div class="space-y-4" id="qaContainer"></div>
+        
+        <!-- Social Share Buttons -->
+        <div class="mt-10 text-center">
+            <p class="text-gray-400 mb-4">এই পেজটি শেয়ার করুন:</p>
+            <div class="flex justify-center gap-3 flex-wrap">
+                <button onclick="shareOnFacebook()" class="share-btn px-5 py-2 rounded-lg bg-[#1877F2]/20 text-[#1877F2] border border-[#1877F2]/30 hover:bg-[#1877F2]/30 transition flex items-center gap-2">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </button>
+                <button onclick="shareOnWhatsApp()" class="share-btn px-5 py-2 rounded-lg bg-[#25D366]/20 text-[#25D366] border border-[#25D366]/30 hover:bg-[#25D366]/30 transition flex items-center gap-2">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </button>
+                <button onclick="shareOnTwitter()" class="share-btn px-5 py-2 rounded-lg bg-[#1DA1F2]/20 text-[#1DA1F2] border border-[#1DA1F2]/30 hover:bg-[#1DA1F2]/30 transition flex items-center gap-2">
+                    <i class="fab fa-twitter"></i> Twitter
+                </button>
+                <button onclick="copyPageLink()" class="share-btn px-5 py-2 rounded-lg bg-gray-600/20 text-gray-300 border border-gray-600/30 hover:bg-gray-600/30 transition flex items-center gap-2">
+                    <i class="fas fa-link"></i> কপি লিংক
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Plans -->
+<section class="py-12 px-4" id="pricing">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">💰 ফ্লেক্সিবল এক্সেস প্ল্যান</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="text-2xl font-bold">মাসিক</div>
+                <div class="text-3xl font-bold text-amber-400 my-2">১০০৳</div>
+                <p class="text-sm text-gray-400">৩০ দিন অ্যাক্সেস</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="text-2xl font-bold">ত্রৈমাসিক</div>
+                <div class="text-3xl font-bold text-amber-400 my-2">২৭৫৳</div>
+                <p class="text-sm text-gray-400">৯০ দিন + বোনাস</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="text-2xl font-bold">ষাণ্মাসিক</div>
+                <div class="text-3xl font-bold text-amber-400 my-2">৫০০৳</div>
+                <p class="text-sm text-gray-400">৬ মাস + কুইজ</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center border-2 border-amber-500/40">
+                <div class="text-2xl font-bold">বার্ষিক</div>
+                <div class="text-3xl font-bold text-amber-300 my-2">৯০০৳</div>
+                <p class="text-sm text-gray-400">৩৬৫ দিন + এসএসসি ২০২৭ সাপোর্ট</p>
+                <span class="inline-block mt-2 text-xs bg-amber-500/20 px-2 py-1 rounded-full">বেস্ট ভ্যালু</span>
+            </div>
         </div>
         
-        <div class="glass-card rounded-2xl p-6" id="quizContainer">
-            <div class="text-center py-12">
-                <i class="fas fa-play-circle text-6xl text-amber-400 mb-4"></i>
-                <h3 class="text-xl font-semibold mb-2">পরীক্ষা শুরু করতে প্রস্তুত?</h3>
-                <p class="text-gray-400 mb-6">এই পরীক্ষায় ৫টি MCQ প্রশ্ন রয়েছে। সময় থাকবে ৬০ সেকেন্ড।</p>
-                <button id="startExamBtn" class="btn-gradient px-8 py-3 rounded-full font-bold">
-                    <i class="fas fa-play mr-2"></i> পরীক্ষা শুরু করুন
-                </button>
+        <div class="glass rounded-2xl p-5 mt-8 text-center">
+            <p><i class="fab fa-whatsapp text-green-500 mr-2"></i> <strong>পেমেন্ট ও সাপোর্টের জন্য WhatsApp:</strong> <a href="https://wa.me/8801602105447" class="text-amber-400 hover:underline">+8801602105447</a></p>
+            <p class="text-xs text-gray-500 mt-2">পেমেন্ট সংক্রান্ত সকল তথ্য জানতে WhatsApp এ যোগাযোগ করুন</p>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-12 px-4">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">💬 শিক্ষার্থীদের মতামত</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="glass-card rounded-2xl p-6">
+                <div class="flex text-amber-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-gray-300 text-sm">"National Exam Center এর রসায়ন অধ্যায়গুলো খুব সুন্দরভাবে সাজানো। MCQ ও সৃজনশীল প্রশ্নগুলো বোর্ড পরীক্ষার জন্য খুবই helpful।"</p>
+                <p class="text-amber-400 text-sm mt-3">— মেহরিন হোসেন, নবম শ্রেণি</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6">
+                <div class="flex text-amber-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-gray-300 text-sm">"প্রোগ্রেস ট্র্যাকিং ফিচারটা দারুণ! কোন অধ্যায় কতটুকু পড়েছি তা বুঝতে পারি। বার্ষিক প্ল্যান নিয়ে ভালো করছি।"</p>
+                <p class="text-amber-400 text-sm mt-3">— শাহরিয়ার রহমান, দশম শ্রেণি</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6">
+                <div class="flex text-amber-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-gray-300 text-sm">"এসএসসি ২০২৭-এর জন্য সেরা প্রস্তুতি অ্যাপ। সব টপিক খুব ক্লিয়ারভাবে ব্যাখ্যা করা আছে। সবার জন্য রিকমেন্ড করছি!"</p>
+                <p class="text-amber-400 text-sm mt-3">— আবিদ হাসান, নবম শ্রেণি</p>
             </div>
         </div>
     </div>
@@ -414,18 +544,24 @@
         <div class="flex flex-wrap justify-center gap-6 mb-4">
             <a href="/chemistry.html" class="text-gray-400 text-sm hover:text-amber-400 transition">রসায়ন</a>
             <a href="/privacy.html" class="text-gray-400 text-sm hover:text-amber-400 transition">গোপনীয়তা নীতি</a>
+            <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" target="_blank" class="text-gray-400 text-sm hover:text-amber-400 transition">অ্যাপ ডাউনলোড</a>
             <a href="https://wa.me/8801602105447" target="_blank" class="text-gray-400 text-sm hover:text-amber-400 transition"><i class="fab fa-whatsapp mr-1 text-green-500"></i>WhatsApp সাপোর্ট</a>
         </div>
         <p class="text-gray-500 text-xs">© ২০২৬ National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি | NCTB ২০২৬ সিলেবাস</p>
     </div>
 </footer>
 
+<!-- WhatsApp Float -->
 <a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" class="floating-wa" target="_blank">
     <i class="fab fa-whatsapp"></i>
 </a>
 
 <script type="importmap">
-    { "imports": { "three": "https://unpkg.com/three@0.128.0/build/three.module.js" } }
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+        }
+    }
 </script>
 
 <script type="module">
@@ -439,31 +575,43 @@
         
         function setSize() {
             const container = canvas.parentElement;
-            renderer.setSize(container.clientWidth, container.clientHeight);
-            camera.aspect = container.clientWidth / container.clientHeight;
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
             camera.updateProjectionMatrix();
         }
         setSize();
         window.addEventListener('resize', setSize);
         
         const particleGeometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(2000 * 3);
-        for (let i = 0; i < 2000; i++) {
+        const particleCount = 2000;
+        const positions = new Float32Array(particleCount * 3);
+        for (let i = 0; i < particleCount; i++) {
             positions[i*3] = (Math.random() - 0.5) * 40;
             positions[i*3+1] = (Math.random() - 0.5) * 30;
             positions[i*3+2] = (Math.random() - 0.5) * 30 - 15;
         }
         particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        const particles = new THREE.Points(particleGeometry, new THREE.PointsMaterial({ color: 0xffaa55, size: 0.08, transparent: true, opacity: 0.4 }));
+        const particleMaterial = new THREE.PointsMaterial({ color: 0xffaa55, size: 0.08, transparent: true, opacity: 0.4 });
+        const particles = new THREE.Points(particleGeometry, particleMaterial);
         scene.add(particles);
         
-        const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(1.5, 0.32, 200, 32, 3, 4), new THREE.MeshStandardMaterial({ color: 0xff914d, emissive: 0xaa4422, emissiveIntensity: 0.5, metalness: 0.7, roughness: 0.3 }));
+        const knotGeo = new THREE.TorusKnotGeometry(1.5, 0.32, 200, 32, 3, 4);
+        const knotMat = new THREE.MeshStandardMaterial({ color: 0xff914d, emissive: 0xaa4422, emissiveIntensity: 0.5, metalness: 0.7, roughness: 0.3 });
+        const knot = new THREE.Mesh(knotGeo, knotMat);
         scene.add(knot);
         
-        scene.add(new THREE.AmbientLight(0x222222));
-        const light1 = new THREE.PointLight(0xffaa66, 1); light1.position.set(5, 5, 8); scene.add(light1);
-        const light2 = new THREE.PointLight(0x3366ff, 0.5); light2.position.set(-4, 3, 5); scene.add(light2);
-        camera.position.set(0, 1, 10);
+        const ambientLight = new THREE.AmbientLight(0x222222);
+        scene.add(ambientLight);
+        const light1 = new THREE.PointLight(0xffaa66, 1);
+        light1.position.set(5, 5, 8);
+        scene.add(light1);
+        const light2 = new THREE.PointLight(0x3366ff, 0.5);
+        light2.position.set(-4, 3, 5);
+        scene.add(light2);
+        camera.position.z = 10;
+        camera.position.y = 1;
         
         let time = 0;
         function animate() {
@@ -483,210 +631,46 @@
 </script>
 
 <script>
-    // Quiz Data
-    const quizQuestions = [
-        { q: "রসায়ন কী?", o: ["পদার্থের গঠন ও ধর্ম নিয়ে বিজ্ঞান", "শুধু ধাতু নিয়ে গবেষণা", "জীবদেহ নিয়ে বিজ্ঞান", "গ্যাস নিয়ে পরীক্ষা"], a: 0 },
-        { q: "প্রথম ব্যবহৃত ধাতু কোনটি?", o: ["লোহা", "তামা", "সোনা", "অ্যালুমিনিয়াম"], a: 1 },
-        { q: "ব্রোঞ্জ কোন দুটি ধাতুর সংকর?", o: ["তামা ও টিন", "লোহা ও কার্বন", "সোনা ও রুপা", "অ্যালুমিনিয়াম ও ম্যাগনেসিয়াম"], a: 0 },
-        { q: "অ্যাটম ধারণা প্রথম কে প্রস্তাব করেন?", o: ["অ্যারিস্টটল", "ডেমোক্রিটাস", "ল্যাভয়সিয়ে", "জাবির ইবনে হাইয়ান"], a: 1 },
-        { q: "Chemistry শব্দের উৎপত্তি কোন শব্দ থেকে?", o: ["আল-কিমিয়া", "অ্যাটম", "মলিকিউল", "এলিমেন্ট"], a: 0 }
+    const qaData = [
+        { q: "এই অ্যাপটি কোন ক্লাসের জন্য?", a: "অ্যাপটি নবম ও দশম শ্রেণির বিজ্ঞান বিভাগের শিক্ষার্থীদের জন্য তৈরি। NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী কন্টেন্ট তৈরি করা হয়েছে।" },
+        { q: "অ্যাপটি কি অফলাইনে চলে?", a: "হ্যাঁ, একবার কন্টেন্ট লোড করার পর আপনি অফলাইনে পড়তে পারবেন। শুধু MCQ উত্তর দিতে এবং নতুন কন্টেন্ট লোড করতে ইন্টারনেট প্রয়োজন।" },
+        { q: "কিভাবে পেমেন্ট করে অ্যাক্সেস নেব?", a: "পেমেন্ট ও সাবস্ক্রিপশন সংক্রান্ত সকল তথ্যের জন্য আমাদের WhatsApp নম্বরে (+8801602105447) যোগাযোগ করুন।" },
+        { q: "কুইজ ও MCQ এর উত্তর কিভাবে দেখব?", a: "MCQ উত্তর দেওয়ার পর 'উত্তর যাচাই করুন' বাটনে ক্লিক করলে আপনার স্কোর দেখাবে এবং সঠিক উত্তরগুলো সবুজ রঙে হাইলাইট হবে।" },
+        { q: "আমার পড়ার অগ্রগতি কোথায় সংরক্ষিত হয়?", a: "আপনার অগ্রগতি আপনার ডিভাইসে সংরক্ষিত থাকে। আপনি যেকোনো সময় অ্যাপ খুলে আপনার পড়া চালিয়ে যেতে পারবেন।" },
+        { q: "কন্টেন্ট কি আপডেট হয়?", a: "হ্যাঁ, NCTB সিলেবাসের পরিবর্তন অনুযায়ী এবং নতুন চ্যাপ্টার যুক্ত করার সাথে সাথে কন্টেন্ট আপডেট করা হবে।" }
     ];
     
-    let examActive = false;
-    let timerInterval = null;
-    let timeLeft = 60;
-    let userAnswers = new Array(quizQuestions.length).fill(null);
-    let examSubmitted = false;
-    let score = 0;
-    
-    function startExam() {
-        if (timerInterval) clearInterval(timerInterval);
-        examActive = true;
-        examSubmitted = false;
-        timeLeft = 60;
-        userAnswers.fill(null);
-        score = 0;
-        
-        renderQuizInterface();
-        startTimer();
-    }
-    
-    function startTimer() {
-        timerInterval = setInterval(() => {
-            if (!examActive) return;
-            if (timeLeft <= 0) {
-                clearInterval(timerInterval);
-                submitExam(true); // auto-submit on timeout
-            } else {
-                timeLeft--;
-                updateTimerDisplay();
-            }
-        }, 1000);
-    }
-    
-    function updateTimerDisplay() {
-        const timerEl = document.getElementById('timerDisplay');
-        if (timerEl) {
-            const mins = Math.floor(timeLeft / 60);
-            const secs = timeLeft % 60;
-            timerEl.innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-            if (timeLeft <= 10) timerEl.classList.add('text-red-500');
-            else timerEl.classList.remove('text-red-500');
-        }
-    }
-    
-    function selectAnswer(questionIdx, optionIdx) {
-        if (!examActive || examSubmitted) return;
-        userAnswers[questionIdx] = optionIdx;
-        
-        // Update UI
-        const optionDivs = document.querySelectorAll(`.mcq-option[data-q="${questionIdx}"]`);
-        optionDivs.forEach(opt => {
-            opt.classList.remove('selected');
-            if (parseInt(opt.dataset.opt) === optionIdx) {
-                opt.classList.add('selected');
-            }
-        });
-    }
-    
-    function submitExam(isAutoSubmit = false) {
-        if (!examActive) return;
-        if (timerInterval) clearInterval(timerInterval);
-        examActive = false;
-        examSubmitted = true;
-        
-        // Calculate score
-        let correctCount = 0;
-        for (let i = 0; i < quizQuestions.length; i++) {
-            if (userAnswers[i] !== null && userAnswers[i] === quizQuestions[i].a) {
-                correctCount++;
-            }
-        }
-        score = correctCount;
-        const totalQuestions = quizQuestions.length;
-        const percentage = (score / totalQuestions) * 100;
-        const passed = percentage >= 50;
-        
-        // Show results
-        const resultHtml = `
-            <div class="text-center py-6">
-                <div class="text-4xl font-bold mb-2 ${passed ? 'text-green-500' : 'text-red-500'}">
-                    ${score} / ${totalQuestions}
-                </div>
-                <p class="text-gray-400 mb-4">আপনার স্কোর: ${Math.round(percentage)}%</p>
-                ${passed ? 
-                    '<p class="text-green-400 mb-4"><i class="fas fa-check-circle mr-1"></i> অভিনন্দন! আপনি পাস করেছেন। নিচে উত্তর দেখুন।</p>' : 
-                    '<p class="text-red-400 mb-4"><i class="fas fa-exclamation-circle mr-1"></i> দুঃখিত! আপনি পাস করতে পারেননি (৫০% প্রয়োজন)। আবার চেষ্টা করুন।</p>'
-                }
-                <button id="retryExamBtn" class="px-6 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition">
-                    <i class="fas fa-redo mr-1"></i> আবার পরীক্ষা দিন
-                </button>
+    const qaContainer = document.getElementById('qaContainer');
+    qaContainer.innerHTML = qaData.map((item, idx) => `
+        <div class="glass rounded-xl overflow-hidden">
+            <button class="qa-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition" data-idx="${idx}">
+                <span><i class="fas fa-question-circle text-amber-400 mr-2"></i> ${item.q}</span>
+                <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+            </button>
+            <div class="qa-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">
+                ${item.a}
             </div>
-        `;
-        
-        // Show answers only if passed
-        let answersHtml = '';
-        if (passed) {
-            answersHtml = `<div class="mt-6 pt-6 border-t border-white/10">
-                <h3 class="text-lg font-semibold text-amber-400 mb-3">সঠিক উত্তর:</h3>
-                <div class="space-y-3">
-                    ${quizQuestions.map((q, idx) => `
-                        <div class="glass rounded-xl p-3">
-                            <p class="font-medium mb-2">${idx+1}. ${q.q}</p>
-                            <p class="text-green-400 text-sm">সঠিক উত্তর: ${q.o[q.a]}</p>
-                            <p class="text-gray-400 text-sm mt-1">আপনার উত্তর: ${userAnswers[idx] !== null ? q.o[userAnswers[idx]] : 'উত্তর দেওয়া হয়নি'}</p>
-                        </div>
-                    `).join('')}
-                </div>
-                <button id="retryExamBtn2" class="mt-4 px-6 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition">
-                    <i class="fas fa-redo mr-1"></i> আবার পরীক্ষা দিন
-                </button>
-            </div>`;
-        }
-        
-        const container = document.getElementById('quizContainer');
-        container.innerHTML = resultHtml + answersHtml;
-        
-        document.getElementById('retryExamBtn')?.addEventListener('click', startExam);
-        document.getElementById('retryExamBtn2')?.addEventListener('click', startExam);
-    }
+        </div>
+    `).join('');
     
-    function renderQuizInterface() {
-        const container = document.getElementById('quizContainer');
-        
-        let questionsHtml = '';
-        for (let i = 0; i < quizQuestions.length; i++) {
-            const q = quizQuestions[i];
-            questionsHtml += `
-                <div class="glass rounded-xl p-4 mb-4">
-                    <p class="font-medium mb-3">${i+1}. ${q.q}</p>
-                    <div class="grid gap-2">
-                        ${q.o.map((opt, optIdx) => `
-                            <div class="mcq-option glass border border-white/10 rounded-lg p-2 px-3 text-sm transition cursor-pointer" data-q="${i}" data-opt="${optIdx}" onclick="window.selectAnswer(${i}, ${optIdx})">
-                                <span class="mr-2">${String.fromCharCode(65+optIdx)}.</span> ${opt}
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-        }
-        
-        container.innerHTML = `
-            <div>
-                <div class="flex justify-between items-center mb-6 flex-wrap gap-3">
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-hourglass-half text-amber-400"></i>
-                        <span class="text-xl font-mono timer-text" id="timerDisplay">01:00</span>
-                    </div>
-                    <div class="flex gap-3">
-                        <button id="submitExamBtn" class="px-6 py-2 rounded-lg bg-green-500/20 border border-green-500/50 text-green-400 hover:bg-green-500/30 transition">
-                            <i class="fas fa-check-double mr-1"></i> জমা দিন
-                        </button>
-                        <button id="cancelExamBtn" class="px-6 py-2 rounded-lg bg-red-500/20 border border-red-500/50 text-red-400 hover:bg-red-500/30 transition">
-                            <i class="fas fa-times mr-1"></i> বাতিল করুন
-                        </button>
-                    </div>
-                </div>
-                ${questionsHtml}
-                <div class="text-center text-gray-500 text-sm mt-4">
-                    <i class="fas fa-info-circle mr-1"></i> ৫০%以上の স্কোর করলে উত্তর দেখতে পারবেন
-                </div>
-            </div>
-        `;
-        
-        updateTimerDisplay();
-        
-        document.getElementById('submitExamBtn').addEventListener('click', () => submitExam(false));
-        document.getElementById('cancelExamBtn').addEventListener('click', () => {
-            if (timerInterval) clearInterval(timerInterval);
-            location.reload();
+    document.querySelectorAll('.qa-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const answer = btn.nextElementSibling;
+            const icon = btn.querySelector('.fa-chevron-down');
+            answer.classList.toggle('hidden');
+            icon.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
         });
-    }
+    });
     
-    window.selectAnswer = selectAnswer;
-    document.getElementById('startExamBtn')?.addEventListener('click', startExam);
+    function shareOnFacebook() { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank', 'width=600,height=400'); }
+    function shareOnWhatsApp() { window.open(`https://wa.me/?text=${encodeURIComponent('ন্যাশনাল এগজাম সেন্টার - নবম-দশম বিজ্ঞান প্রস্তুতি অ্যাপ। বিস্তারিত: ' + window.location.href)}`, '_blank'); }
+    function shareOnTwitter() { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent('ন্যাশনাল এগজাম সেন্টার - নবম-দশম বিজ্ঞান প্রস্তুতি অ্যাপ')}&url=${encodeURIComponent(window.location.href)}`, '_blank', 'width=600,height=400'); }
+    function copyPageLink() { navigator.clipboard.writeText(window.location.href); alert('🔗 লিংক কপি করা হয়েছে!'); }
     
-    // Animate fire dots on mockups
-    function animateFireDots() {
-        const dots = document.querySelectorAll('.glow-dot');
-        let angle = 0;
-        setInterval(() => {
-            angle = (angle + 8) % 360;
-            dots.forEach(dot => {
-                const rad = angle * Math.PI / 180;
-                const parent = dot.closest('.mockup-item');
-                if (parent) {
-                    const rect = parent.getBoundingClientRect();
-                    const containerRect = parent.parentElement.getBoundingClientRect();
-                    // Position dot around the frame
-                    const x = Math.sin(rad) * 110;
-                    const y = Math.cos(rad) * 220;
-                    dot.style.transform = `translate(${x}px, ${y}px)`;
-                }
-            });
-        }, 50);
-    }
-    setTimeout(animateFireDots, 500);
+    window.shareOnFacebook = shareOnFacebook;
+    window.shareOnWhatsApp = shareOnWhatsApp;
+    window.shareOnTwitter = shareOnTwitter;
+    window.copyPageLink = copyPageLink;
 </script>
 </body>
 </html>
