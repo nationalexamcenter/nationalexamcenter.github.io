@@ -8,42 +8,34 @@
     <title>ন্যাশনাল এগজাম সেন্টার | নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬ | এসএসসি সাজেশন</title>
     <meta name="title" content="ন্যাশনাল এগজাম সেন্টার - নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬">
     <meta name="description" content="নবম ও দশম শ্রেণির বিজ্ঞান বিভাগের সম্পূর্ণ প্রস্তুতি। NCTB ২০২৬ আপডেট সিলেবাস ভিত্তিক রসায়ন, পদার্থবিজ্ঞান ও জীববিজ্ঞান। এসএসসি ২০২৭ পরীক্ষার জন্য সেরা প্রস্তুতি অ্যাপ।">
-    <meta name="keywords" content="নবম দশম বিজ্ঞান, এসএসসি প্রস্তুতি ২০২৭, রসায়ন ৯ম-১০ম, পদার্থবিজ্ঞান ৯ম-১০ম, জীববিজ্ঞান ৯ম-১০ম, NCTB 2026 syllabus, class 9-10 science, SSC preparation, chemistry notes, physics notes, biology notes, bangla education app">
+    <meta name="keywords" content="নবম দশম বিজ্ঞান, এসএসসি প্রস্তুতি ২০২৭, রসায়ন ৯ম-১০ম, পদার্থবিজ্ঞান ৯ম-১০ম, জীববিজ্ঞান ৯ম-১০ম, NCTB 2026 syllabus, class 9-10 science, SSC preparation, chemistry notes">
     <meta name="author" content="National Exam Center">
     <meta name="robots" content="index, follow">
-    <meta name="language" content="Bengali">
-    <meta name="revisit-after" content="7 days">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nationalexamcenter.github.io/">
     <meta property="og:title" content="ন্যাশনাল এগজাম সেন্টার - নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬">
-    <meta property="og:description" content="NCTB ২০২৬ সিলেবাস ভিত্তিক রসায়ন, পদার্থবিজ্ঞান ও জীববিজ্ঞানের সম্পূর্ণ প্রস্তুতি। এসএসসি ২০২৭ পরীক্ষার জন্য সেরা অ্যাপ।">
+    <meta property="og:description" content="NCTB ২০২৬ সিলেবাস ভিত্তিক রসায়ন, পদার্থবিজ্ঞান ও জীববিজ্ঞানের সম্পূর্ণ প্রস্তুতি।">
     <meta property="og:image" content="https://nationalexamcenter.github.io/og-image.jpg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://nationalexamcenter.github.io/">
     <meta property="twitter:title" content="ন্যাশনাল এগজাম সেন্টার - নবম-দশম বিজ্ঞান প্রস্তুতি">
     <meta property="twitter:description" content="এসএসসি ২০২৭ পরীক্ষার জন্য সেরা প্রস্তুতি অ্যাপ। ১২+ অধ্যায়, ১০০+ টপিক, ৫০০+ MCQ।">
-    <meta property="twitter:image" content="https://nationalexamcenter.github.io/og-image.jpg">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://nationalexamcenter.github.io/">
     
-    <!-- Schema.org markup for Google -->
+    <!-- Schema.org markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "EducationalOrganization",
       "name": "National Exam Center",
       "url": "https://nationalexamcenter.github.io/",
-      "logo": "https://nationalexamcenter.github.io/logo.png",
       "description": "নবম ও দশম শ্রেণির বিজ্ঞান বিভাগের শিক্ষার্থীদের জন্য সম্পূর্ণ প্রস্তুতি প্ল্যাটফর্ম।",
-      "sameAs": [
-        "https://www.facebook.com/sheikh.saheb.nec",
-        "https://wa.me/8801602105447"
-      ],
+      "sameAs": ["https://wa.me/8801602105447"],
       "offers": {
         "@type": "Offer",
         "description": "মাসিক, ত্রৈমাসিক, ষাণ্মাসিক ও বার্ষিক এক্সেস প্ল্যান",
@@ -115,11 +107,15 @@
             0% { background-position: -100% 0; }
             100% { background-position: 200% 0; }
         }
-        @keyframes rotateLine {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes sparkle {
+            0% { stroke-dashoffset: 0; opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { stroke-dashoffset: 500; opacity: 0.3; }
         }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes borderRun {
+            0% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: -400; }
+        }
         
         .float-animation { animation: float 4s ease-in-out infinite; }
         .pulse-animation { animation: pulse 2s ease-in-out infinite; }
@@ -151,68 +147,86 @@
             padding: 2rem;
         }
         
-        /* Phone Mockup Styles - Right Side */
+        /* Mockup Container - 3 Images Side by Side with Sparkling Border */
         .mockup-container {
-            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            perspective: 1000px;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px;
         }
         
-        .rotating-border {
-            position: absolute;
-            width: 320px;
-            height: 620px;
-            border-radius: 40px;
-            background: linear-gradient(90deg, #f59e0b, #ff6a2c, #f59e0b, #ff6a2c);
-            animation: rotateLine 3s linear infinite;
-            filter: blur(8px);
-            opacity: 0.7;
-        }
-        
-        .rotating-border-inner {
-            position: absolute;
-            width: 310px;
-            height: 610px;
-            border-radius: 35px;
-            background: linear-gradient(90deg, #ff6a2c, #f59e0b, #ff6a2c, #f59e0b);
-            animation: rotateLine 3s linear infinite reverse;
-            filter: blur(4px);
-            opacity: 0.5;
-        }
-        
-        .mockup-stack {
+        .mockup-item {
             position: relative;
-            width: 300px;
-            height: 600px;
-            cursor: pointer;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+        
+        .mockup-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        /* Sparkling SVG Border */
+        .sparkle-border {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border-radius: 35px;
+            pointer-events: none;
+        }
+        
+        .sparkle-border svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .sparkle-border rect {
+            width: 100%;
+            height: 100%;
+            rx: 32;
+            ry: 32;
+            fill: none;
+            stroke: url(#gradient);
+            stroke-width: 2.5;
+            stroke-dasharray: 15, 10;
+            animation: borderRun 2s linear infinite;
         }
         
         .mockup-image {
-            position: absolute;
             width: 100%;
-            height: 100%;
-            border-radius: 30px;
+            height: auto;
+            border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.5);
             border: 2px solid rgba(245, 158, 11, 0.3);
+            transition: all 0.3s ease;
         }
         
         .mockup-image img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
         }
         
-        .mockup-1 { transform: rotate(-8deg) translateX(-15px) translateY(10px); z-index: 1; }
-        .mockup-2 { transform: rotate(0deg) translateX(0) translateY(0); z-index: 2; }
-        .mockup-3 { transform: rotate(8deg) translateX(15px) translateY(10px); z-index: 1; }
+        .mockup-caption {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 12px;
+            color: #f59e0b;
+            font-weight: 500;
+        }
         
-        .mockup-stack:hover .mockup-1 { transform: rotate(-5deg) translateX(-10px) translateY(5px); }
-        .mockup-stack:hover .mockup-2 { transform: scale(1.02); }
-        .mockup-stack:hover .mockup-3 { transform: rotate(5deg) translateX(10px) translateY(5px); }
+        @media (max-width: 768px) {
+            .mockup-item { width: 100px; }
+            .mockup-caption { font-size: 8px; }
+            .hero-3d-container { height: 380px; }
+        }
         
         .floating-wa {
             position: fixed;
@@ -234,13 +248,6 @@
         
         @media (max-width: 1024px) {
             .hero-split { flex-direction: column; }
-            .hero-left, .hero-right { width: 100%; }
-            .mockup-stack { margin: 20px auto; }
-            .rotating-border, .rotating-border-inner { display: none; }
-        }
-        @media (max-width: 768px) {
-            .hero-3d-container { height: 350px; }
-            .hero-content-left { padding: 1rem; }
         }
     </style>
 </head>
@@ -304,23 +311,58 @@
             </div>
         </div>
         
-        <!-- RIGHT SIDE: App Mockups with Rotating Border -->
+        <!-- RIGHT SIDE: 3 App Mockups Side by Side with Sparkling Border -->
         <div class="lg:w-1/2 flex justify-center items-center">
             <div class="mockup-container">
-                <!-- Rotating animated borders -->
-                <div class="rotating-border"></div>
-                <div class="rotating-border-inner"></div>
+                <!-- Mockup 1 -->
+                <div class="mockup-item">
+                    <div class="sparkle-border">
+                        <svg>
+                            <defs>
+                                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                    <stop offset="50%" style="stop-color:#ff6a2c;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <rect width="100%" height="100%" rx="32" ry="32" />
+                        </svg>
+                    </div>
+                    <div class="mockup-image">
+                        <img src="pic/mockup-1.png" alt="App Home Screen - Chapter List" onerror="this.src='https://placehold.co/200x400/1a1f2e/ff9a3c?text=Home+Screen'">
+                    </div>
+                    <div class="mockup-caption">
+                        <i class="fas fa-home mr-1"></i> হোম স্ক্রিন
+                    </div>
+                </div>
                 
-                <!-- Stack of 3 mockup images -->
-                <div class="mockup-stack">
-                    <div class="mockup-image mockup-1">
-                        <img src="pic/mockup-1.png" alt="App Home Screen - Chapter List" onerror="this.src='https://placehold.co/300x600/1a1f2e/ff9a3c?text=Home+Screen'">
+                <!-- Mockup 2 -->
+                <div class="mockup-item">
+                    <div class="sparkle-border">
+                        <svg>
+                            <rect width="100%" height="100%" rx="32" ry="32" />
+                        </svg>
                     </div>
-                    <div class="mockup-image mockup-2">
-                        <img src="pic/mockup-2.png" alt="App Study View - Chapter Content" onerror="this.src='https://placehold.co/300x600/1a1f2e/ff9a3c?text=Study+View'">
+                    <div class="mockup-image">
+                        <img src="pic/mockup-2.png" alt="App Study View - Chapter Content" onerror="this.src='https://placehold.co/200x400/1a1f2e/ff9a3c?text=Study+View'">
                     </div>
-                    <div class="mockup-image mockup-3">
-                        <img src="pic/mockup-3.png" alt="App MCQ Quiz - Exam Mode" onerror="this.src='https://placehold.co/300x600/1a1f2e/ff9a3c?text=Quiz+Mode'">
+                    <div class="mockup-caption">
+                        <i class="fas fa-book-open mr-1"></i> স্টাডি ভিউ
+                    </div>
+                </div>
+                
+                <!-- Mockup 3 -->
+                <div class="mockup-item">
+                    <div class="sparkle-border">
+                        <svg>
+                            <rect width="100%" height="100%" rx="32" ry="32" />
+                        </svg>
+                    </div>
+                    <div class="mockup-image">
+                        <img src="pic/mockup-3.png" alt="App MCQ Quiz - Exam Mode" onerror="this.src='https://placehold.co/200x400/1a1f2e/ff9a3c?text=Quiz+Mode'">
+                    </div>
+                    <div class="mockup-caption">
+                        <i class="fas fa-question-circle mr-1"></i> কুইজ মোড
                     </div>
                 </div>
             </div>
@@ -420,8 +462,8 @@
         </div>
         
         <div class="glass rounded-2xl p-5 mt-8 text-center">
-            <p><i class="fab fa-bkash text-pink-400 mr-2"></i> <strong>bKash পেমেন্ট:</strong> ০১৬০২১০৫৪৪৭ (Personal)</p>
-            <p class="text-xs text-gray-500 mt-2">পেমেন্টের পর স্ক্রিনশট হোয়াটসঅ্যাপে পাঠান</p>
+            <p><i class="fab fa-whatsapp text-green-500 mr-2"></i> <strong>পেমেন্ট ও সাপোর্টের জন্য WhatsApp:</strong> <a href="https://wa.me/8801602105447" class="text-amber-400 hover:underline">+8801602105447</a></p>
+            <p class="text-xs text-gray-500 mt-2">পেমেন্ট সংক্রান্ত সকল তথ্য জানতে WhatsApp এ যোগাযোগ করুন</p>
         </div>
     </div>
 </section>
@@ -450,36 +492,88 @@
     </div>
 </section>
 
-<!-- FAQ Section -->
+<!-- FAQ Section - Expanded with 8 Questions -->
 <section class="py-12 px-4">
     <div class="max-w-4xl mx-auto">
-        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">❓ জিজ্ঞাসিত প্রশ্ন</h2>
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">❓ প্রায়শই জিজ্ঞাসিত প্রশ্ন</h2>
         <div class="space-y-3">
             <div class="glass rounded-xl overflow-hidden">
                 <button class="faq-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition">
-                    এই ওয়েবসাইটে কী কী বিষয় আছে?
+                    <span><i class="fas fa-mobile-alt text-amber-400 mr-2"></i> এই অ্যাপটি কোন ক্লাসের জন্য?</span>
                     <i class="fas fa-chevron-down text-gray-500"></i>
                 </button>
                 <div class="faq-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">
-                    বর্তমানে রসায়নের ১২টি অধ্যায় সম্পূর্ণভাবে যুক্ত করা হয়েছে। শীঘ্রই পদার্থবিজ্ঞান ও জীববিজ্ঞান যুক্ত হবে।
+                    অ্যাপটি নবম ও দশম শ্রেণির বিজ্ঞান বিভাগের শিক্ষার্থীদের জন্য তৈরি। NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী কন্টেন্ট তৈরি করা হয়েছে।
                 </div>
             </div>
+            
             <div class="glass rounded-xl overflow-hidden">
                 <button class="faq-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition">
-                    কিভাবে পেমেন্ট করে অ্যাক্সেস নেব?
+                    <span><i class="fas fa-book-open text-amber-400 mr-2"></i> বর্তমানে কোন বিষয়ের কন্টেন্ট আছে?</span>
                     <i class="fas fa-chevron-down text-gray-500"></i>
                 </button>
                 <div class="faq-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">
-                    bKash এ টাকা পাঠানোর পর স্ক্রিনশট ও আপনার পছন্দের প্ল্যান হোয়াটসঅ্যাপে (+8801602105447) দিলে ১ ঘণ্টার মধ্যে ইউজারনেম ও পাসওয়ার্ড পেয়ে যাবেন।
+                    বর্তমানে রসায়নের সম্পূর্ণ ১২টি অধ্যায় যুক্ত করা হয়েছে। খুব শীঘ্রই পদার্থবিজ্ঞান ও জীববিজ্ঞান যুক্ত হচ্ছে।
                 </div>
             </div>
+            
             <div class="glass rounded-xl overflow-hidden">
                 <button class="faq-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition">
-                    রসায়ন অধ্যায় কিভাবে পড়ব?
+                    <span><i class="fas fa-dollar-sign text-amber-400 mr-2"></i> পেমেন্ট কিভাবে করব?</span>
                     <i class="fas fa-chevron-down text-gray-500"></i>
                 </button>
                 <div class="faq-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">
-                    উপরের "রসায়ন অধ্যায় পড়ুন" বাটনে ক্লিক করলেই আপনি সম্পূর্ণ ১২টি অধ্যায়ের কন্টেন্ট পড়তে পারবেন। সেখানে MCQ উত্তর দিতে পারবেন এবং অগ্রগতি ট্র্যাক করতে পারবেন।
+                    পেমেন্ট ও সাবস্ক্রিপশন সংক্রান্ত সকল তথ্যের জন্য আমাদের WhatsApp নম্বরে (+8801602105447) যোগাযোগ করুন। আপনাকে সঠিক প্রক্রিয়া জানিয়ে দেওয়া হবে।
+                </div>
+            </div>
+            
+            <div class="glass rounded-xl overflow-hidden">
+                <button class="faq-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition">
+                    <span><i class="fas fa-tachometer-alt text-amber-400 mr-2"></i> অ্যাপটি কি অফলাইনে চলে?</span>
+                    <i class="fas fa-chevron-down text-gray-500"></i>
+                </button>
+                <div class="faq-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">
+                    হ্যাঁ, একবার কন্টেন্ট লোড করার পর আপনি অফলাইনে পড়তে পারবেন। শুধু MCQ উত্তর দিতে এবং নতুন কন্টেন্ট লোড করতে ইন্টারনেট প্রয়োজন।
+                </div>
+            </div>
+            
+            <div class="glass rounded-xl overflow-hidden">
+                <button class="faq-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition">
+                    <span><i class="fas fa-chart-line text-amber-400 mr-2"></i> আমার পড়ার অগ্রগতি কোথায় সংরক্ষিত হয়?</span>
+                    <i class="fas fa-chevron-down text-gray-500"></i>
+                </button>
+                <div class="faq-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">
+                    আপনার অগ্রগতি আপনার ডিভাইসে সংরক্ষিত থাকে। আপনি যেকোনো সময় অ্যাপ খুলে আপনার পড়া চালিয়ে যেতে পারবেন।
+                </div>
+            </div>
+            
+            <div class="glass rounded-xl overflow-hidden">
+                <button class="faq-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition">
+                    <span><i class="fas fa-tasks text-amber-400 mr-2"></i> কুইজ ও MCQ এর উত্তর কিভাবে দেখব?</span>
+                    <i class="fas fa-chevron-down text-gray-500"></i>
+                </button>
+                <div class="faq-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">
+                    MCQ উত্তর দেওয়ার পর "উত্তর যাচাই করুন" বাটনে ক্লিক করলে আপনার স্কোর দেখাবে এবং সঠিক উত্তরগুলো সবুজ রঙে হাইলাইট হবে।
+                </div>
+            </div>
+            
+            <div class="glass rounded-xl overflow-hidden">
+                <button class="faq-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition">
+                    <span><i class="fas fa-sync-alt text-amber-400 mr-2"></i> কন্টেন্ট কি আপডেট হয়?</span>
+                    <i class="fas fa-chevron-down text-gray-500"></i>
+                </button>
+                <div class="faq-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">
+                    হ্যাঁ, NCTB সিলেবাসের পরিবর্তন অনুযায়ী এবং নতুন চ্যাপ্টার যুক্ত করার সাথে সাথে কন্টেন্ট আপডেট করা হবে।
+                </div>
+            </div>
+            
+            <div class="glass rounded-xl overflow-hidden">
+                <button class="faq-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition">
+                    <span><i class="fas fa-headset text-amber-400 mr-2"></i> সমস্যা হলে কার সাথে যোগাযোগ করব?</span>
+                    <i class="fas fa-chevron-down text-gray-500"></i>
+                </button>
+                <div class="faq-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">
+                    যেকোনো সমস্যা বা প্রশ্নের জন্য আমাদের WhatsApp নম্বরে (+8801602105447) যোগাযোগ করুন। আমরা ২৪/৭ সাপোর্ট দিয়ে থাকি।
                 </div>
             </div>
         </div>
@@ -493,13 +587,14 @@
             <a href="/chemistry.html" class="text-gray-400 text-sm hover:text-amber-400 transition">রসায়ন</a>
             <a href="/privacy.html" class="text-gray-400 text-sm hover:text-amber-400 transition">গোপনীয়তা নীতি</a>
             <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" target="_blank" class="text-gray-400 text-sm hover:text-amber-400 transition">অ্যাপ ডাউনলোড</a>
+            <a href="https://wa.me/8801602105447" target="_blank" class="text-gray-400 text-sm hover:text-amber-400 transition"><i class="fab fa-whatsapp mr-1 text-green-500"></i>WhatsApp সাপোর্ট</a>
         </div>
         <p class="text-gray-500 text-xs">© ২০২৬ National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি | NCTB ২০২৬ সিলেবাস</p>
     </div>
 </footer>
 
 <!-- WhatsApp Float -->
-<a href="https://wa.me/8801602105447?text=আমি%20নবম-দশম%20বিজ্ঞান%20প্রস্তুতি%20সম্পর্কে%20জানতে%20চাই" class="floating-wa" target="_blank">
+<a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" class="floating-wa" target="_blank">
     <i class="fab fa-whatsapp"></i>
 </a>
 
