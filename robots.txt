@@ -1,3 +1,27 @@
+# Google Search Console Verification
 User-agent: *
 Allow: /
+Disallow: /private/
+Disallow: /temp/
+Disallow: /backup/
+
+# Sitemap location
 Sitemap: https://nationalexamcenter.github.io/sitemap.xml
+
+# Googlebot specific rules
+User-agent: Googlebot
+Allow: /
+Allow: /chemistry.html
+Allow: /privacy.html
+Allow: /data/
+Allow: /pic/
+Crawl-delay: 1
+
+# Bingbot rules
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# All other bots
+User-agent: *
+Crawl-delay: 2
