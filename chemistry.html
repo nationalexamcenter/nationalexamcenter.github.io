@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>রসায়ন সম্পূর্ণ সিলেবাস | NCTB ২০২৬</title>
+    <meta name="description" content="নবম ও দশম শ্রেণির রসায়নের সম্পূর্ণ সিলেবাস - ১২টি অধ্যায়।">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,7 +23,6 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(245, 158, 11, 0.2);
             transition: all 0.3s ease;
-            cursor: pointer;
         }
         .glass-card:hover {
             border-color: rgba(245, 158, 11, 0.5);
@@ -38,6 +38,7 @@
             background: linear-gradient(90deg, #f59e0b, #ea580c);
             transition: width 0.5s ease;
         }
+        .chapter-card { cursor: pointer; transition: all 0.3s ease; }
         .mcq-option { transition: all 0.2s ease; cursor: pointer; }
         .mcq-option:hover { background: rgba(245, 158, 11, 0.2); border-color: #f59e0b; }
         .mcq-option.selected { background: rgba(245, 158, 11, 0.3); border-color: #f59e0b; }
@@ -51,7 +52,7 @@
         .floating-wa:hover { transform: scale(1.1); }
         .loader { border: 3px solid rgba(245, 158, 11, 0.3); border-top: 3px solid #f59e0b; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .hidden-section { display: none; }
+        .sidebar-link.active { background: rgba(245, 158, 11, 0.2); border-left-color: #f59e0b; color: #fbbf24; }
     </style>
 </head>
 <body class="text-gray-200">
@@ -69,9 +70,9 @@
                     <i class="fas fa-chart-line text-amber-500"></i>
                     <span id="overallProgress" class="font-mono">0%</span>
                 </div>
-                <a href="/" class="px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition">
+                <button id="homeBtn" class="px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition">
                     <i class="fas fa-home mr-1"></i> হোম
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -85,16 +86,16 @@
             <p class="text-gray-400 max-w-2xl mx-auto">NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী ১২টি অধ্যায়ের সম্পূর্ণ স্টাডি মেটেরিয়াল</p>
         </div>
         
-        <div class="glass-card rounded-2xl p-6 mb-8" style="cursor: default;">
+        <div class="glass-card rounded-2xl p-6 mb-8">
             <h3 class="text-lg font-semibold mb-3"><i class="fas fa-chart-line text-amber-400 mr-2"></i>আপনার অগ্রগতি</h3>
             <div class="h-3 bg-gray-800 rounded-full overflow-hidden">
                 <div id="mainProgressBar" class="h-full progress-bar rounded-full" style="width: 0%"></div>
             </div>
-            <p class="text-sm text-gray-400 mt-2"><span id="completedChaptersCount">0</span>/12 অধ্যায় সম্পূর্ণ</p>
+            <p class="text-sm text-gray-400 mt-2"><span id="completedChaptersCount">0</span>/<span id="totalChaptersCount">12</span> অধ্যায় সম্পূর্ণ</p>
         </div>
         
         <div id="chaptersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="loader"></div>
+            <!-- Chapters will be rendered here -->
         </div>
     </div>
     
@@ -106,7 +107,7 @@
             </button>
         </div>
         
-        <div class="glass-card rounded-2xl p-6 mb-8" style="cursor: default;">
+        <div class="glass-card rounded-2xl p-6 mb-8">
             <div class="flex justify-between items-start flex-wrap gap-3">
                 <div>
                     <span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">অধ্যায় <span id="chapterNumber"></span></span>
@@ -120,7 +121,7 @@
         
         <div class="flex flex-wrap gap-2 mb-6 border-b border-white/10 pb-3" id="topicsTabs"></div>
         
-        <div id="topicContent" class="glass-card rounded-2xl p-6" style="cursor: default;">
+        <div id="topicContent" class="glass-card rounded-2xl p-6">
             <div class="loader"></div>
         </div>
     </div>
@@ -132,31 +133,49 @@
 
 <script>
 // ============================================
-// CHEMISTRY APP - DYNAMIC JSON LOADER
+// CHEMISTRY APP - SIMPLIFIED VERSION
 // ============================================
 
+// Chapter metadata (12 chapters)
 const CHAPTERS_META = [
-    { id: 1, title: "রসায়নের ধারণা", title_en: "The Concepts of Chemistry" },
-    { id: 2, title: "পদার্থের অবস্থা", title_en: "States of Matter" },
-    { id: 3, title: "পদার্থের গঠন", title_en: "Structure of Matter" },
-    { id: 4, title: "পর্যায় সারণি", title_en: "Periodic Table" },
-    { id: 5, title: "রাসায়নিক বন্ধন", title_en: "Chemical Bond" },
-    { id: 6, title: "মোলের ধারণা ও রাসায়নিক গণনা", title_en: "Mole Concept" },
-    { id: 7, title: "রাসায়নিক বিক্রিয়া", title_en: "Chemical Reactions" },
-    { id: 8, title: "রসায়ন ও শক্তি", title_en: "Chemistry and Energy" },
-    { id: 9, title: "এসিড-ক্ষারক সমতা", title_en: "Acid-Base Equilibrium" },
-    { id: 10, title: "খনিজ সম্পদ: ধাতু-অধাতু", title_en: "Mineral Resources" },
-    { id: 11, title: "খনিজ সম্পদ: জীবাশ্ম", title_en: "Fossil Fuels" },
-    { id: 12, title: "আমাদের জীবনে রসায়ন", title_en: "Chemistry in Our Life" }
+    { id: 1, title: "রসায়নের ধারণা", title_en: "The Concepts of Chemistry", hasData: true },
+    { id: 2, title: "পদার্থের অবস্থা", title_en: "States of Matter", hasData: false },
+    { id: 3, title: "পদার্থের গঠন", title_en: "Structure of Matter", hasData: false },
+    { id: 4, title: "পর্যায় সারণি", title_en: "Periodic Table", hasData: false },
+    { id: 5, title: "রাসায়নিক বন্ধন", title_en: "Chemical Bond", hasData: false },
+    { id: 6, title: "মোলের ধারণা ও রাসায়নিক গণনা", title_en: "Mole Concept", hasData: false },
+    { id: 7, title: "রাসায়নিক বিক্রিয়া", title_en: "Chemical Reactions", hasData: false },
+    { id: 8, title: "রসায়ন ও শক্তি", title_en: "Chemistry and Energy", hasData: false },
+    { id: 9, title: "এসিড-ক্ষারক সমতা", title_en: "Acid-Base Equilibrium", hasData: false },
+    { id: 10, title: "খনিজ সম্পদ: ধাতু-অধাতু", title_en: "Mineral Resources", hasData: false },
+    { id: 11, title: "খনিজ সম্পদ: জীবাশ্ম", title_en: "Fossil Fuels", hasData: false },
+    { id: 12, title: "আমাদের জীবনে রসায়ন", title_en: "Chemistry in Our Life", hasData: false }
 ];
 
+// State
 let completedChapters = JSON.parse(localStorage.getItem('chemistry_completed_chapters') || '[]');
 let currentChapterId = null;
 let currentTopicIndex = 0;
 let chapterDataCache = {};
 
-// Load chapter JSON from file
-async function loadChapterData(chapterId) {
+// Helper Functions
+function showToast(message, type = 'info') {
+    const toast = document.createElement('div');
+    toast.className = `fixed bottom-20 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg text-sm z-50 animate-bounce ${
+        type === 'success' ? 'bg-green-600' : type === 'warning' ? 'bg-orange-600' : 'bg-blue-600'
+    } text-white`;
+    toast.innerText = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2000);
+}
+
+function getBengaliLetter(key) {
+    const letters = { 'ka': 'ক', 'kha': 'খ', 'ga': 'গ', 'gha': 'ঘ' };
+    return letters[key] || key.toUpperCase();
+}
+
+// Load single chapter JSON
+async function loadChapter(chapterId) {
     if (chapterDataCache[chapterId]) {
         return chapterDataCache[chapterId];
     }
@@ -170,14 +189,22 @@ async function loadChapterData(chapterId) {
         chapterDataCache[chapterId] = data;
         return data;
     } catch (error) {
-        console.warn(`Could not load chapter ${chapterId}:`, error);
-        // Return fallback structure
+        // Return fallback content for missing chapters
         return {
+            class: "9-10",
+            subject: "Chemistry",
+            chapter_id: chapterId,
             chapter_title: CHAPTERS_META.find(c => c.id === chapterId)?.title || `অধ্যায় ${chapterId}`,
             topics: [{
                 id: `${chapterId}.1`,
                 title: `${CHAPTERS_META.find(c => c.id === chapterId)?.title || `অধ্যায় ${chapterId}`} - পরিচয়`,
-                study: { summary: [`• ${CHAPTERS_META.find(c => c.id === chapterId)?.title || `অধ্যায় ${chapterId}`} অধ্যায়ের বিস্তারিত কন্টেন্ট শীঘ্রই যুক্ত হবে।`] },
+                study: {
+                    summary: [
+                        `• ${CHAPTERS_META.find(c => c.id === chapterId)?.title || `অধ্যায় ${chapterId}`} অধ্যায়ের বিস্তারিত কন্টেন্ট শীঘ্রই যুক্ত হবে।`,
+                        `• NCTB ২০২৬ সিলেবাস অনুযায়ী আপডেট করা হচ্ছে।`,
+                        `• দয়া করে পরে আবার ভিজিট করুন।`
+                    ]
+                },
                 exam: { questions: [] }
             }]
         };
@@ -186,52 +213,78 @@ async function loadChapterData(chapterId) {
 
 // Progress functions
 function updateOverallProgress() {
-    const percent = Math.round((completedChapters.length / 12) * 100);
+    const total = CHAPTERS_META.length;
+    const completed = completedChapters.length;
+    const percent = Math.round((completed / total) * 100);
     document.getElementById('overallProgress').innerText = percent + '%';
     document.getElementById('mainProgressBar').style.width = percent + '%';
-    document.getElementById('completedChaptersCount').innerText = completedChapters.length;
+    document.getElementById('completedChaptersCount').innerText = completed;
+    document.getElementById('totalChaptersCount').innerText = total;
     localStorage.setItem('chemistry_completed_chapters', JSON.stringify(completedChapters));
 }
 
-function showToast(msg, type) {
-    const toast = document.createElement('div');
-    toast.className = `fixed bottom-20 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg text-sm z-50 animate-bounce ${type === 'success' ? 'bg-green-600' : 'bg-blue-600'} text-white`;
-    toast.innerText = msg;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 2000);
+function isChapterCompleted(chapterId) {
+    return completedChapters.includes(chapterId);
 }
 
-function getBengaliLetter(key) {
-    const letters = { 'ka': 'ক', 'kha': 'খ', 'ga': 'গ', 'gha': 'ঘ' };
-    return letters[key] || key.toUpperCase();
+function markChapterComplete(chapterId) {
+    if (!completedChapters.includes(chapterId)) {
+        completedChapters.push(chapterId);
+        updateOverallProgress();
+        renderChaptersGrid();
+        if (currentChapterId === chapterId) {
+            const markBtn = document.getElementById('markChapterCompleteBtn');
+            markBtn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> সম্পূর্ণ!';
+            markBtn.classList.remove('bg-green-500/20', 'border-green-500/50', 'text-green-400');
+            markBtn.classList.add('bg-gray-700', 'text-gray-400');
+        }
+        showToast('🎉 অধ্যায় সম্পূর্ণ চিহ্নিত করা হয়েছে!', 'success');
+    }
 }
 
-// Render chapters grid
-async function renderChaptersGrid() {
+// Render chapters grid (synchronous - no waiting for JSON)
+function renderChaptersGrid() {
     const container = document.getElementById('chaptersGrid');
     
     let html = '';
     for (const ch of CHAPTERS_META) {
+        const completed = isChapterCompleted(ch.id);
+        const statusBadge = ch.hasData ? '' : '<span class="text-xs bg-gray-600/30 px-2 py-0.5 rounded-full ml-2">কামিং সুন</span>';
+        
         html += `
-            <div class="glass-card rounded-2xl p-6" data-chapter-id="${ch.id}">
+            <div class="glass-card rounded-2xl p-6 chapter-card" data-chapter-id="${ch.id}">
                 <div class="flex justify-between items-start mb-3">
                     <span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">অধ্যায় ${ch.id}</span>
-                    ${completedChapters.includes(ch.id) ? '<i class="fas fa-check-circle text-green-500 text-xl"></i>' : ''}
+                    ${completed ? '<i class="fas fa-check-circle text-green-500 text-xl"></i>' : ''}
                 </div>
-                <h3 class="text-xl font-bold mb-1">${ch.title}</h3>
+                <h3 class="text-xl font-bold mb-1">${ch.title} ${statusBadge}</h3>
                 <p class="text-gray-400 text-sm mb-4">${ch.title_en}</p>
-                <button class="view-chapter-btn w-full px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition" data-chapter-id="${ch.id}">
-                    <i class="fas fa-book-open mr-1"></i> পড়ুন
-                </button>
+                <div class="flex justify-between items-center">
+                    <span class="text-xs text-gray-500">বিস্তারিত কন্টেন্ট</span>
+                    <button class="view-chapter-btn px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition" data-chapter-id="${ch.id}">
+                        <i class="fas fa-book-open mr-1"></i> পড়ুন
+                    </button>
+                </div>
             </div>
         `;
     }
     container.innerHTML = html;
     
+    // Add event listeners
     document.querySelectorAll('.view-chapter-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            openChapter(parseInt(btn.dataset.chapterId));
+            const chapterId = parseInt(btn.dataset.chapterId);
+            openChapter(chapterId);
+        });
+    });
+    
+    document.querySelectorAll('.chapter-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            if (!e.target.closest('.view-chapter-btn')) {
+                const chapterId = parseInt(card.dataset.chapterId);
+                openChapter(chapterId);
+            }
         });
     });
 }
@@ -239,15 +292,17 @@ async function renderChaptersGrid() {
 // Open chapter
 async function openChapter(chapterId) {
     currentChapterId = chapterId;
-    const chapterData = await loadChapterData(chapterId);
+    const chapterData = await loadChapter(chapterId);
     
     document.getElementById('chaptersView').classList.add('hidden');
     document.getElementById('chapterView').classList.remove('hidden');
-    document.getElementById('chapterNumber').innerText = chapterId;
-    document.getElementById('chapterTitle').innerHTML = chapterData.chapter_title || CHAPTERS_META.find(c => c.id === chapterId)?.title;
     
+    document.getElementById('chapterNumber').innerText = chapterId;
+    document.getElementById('chapterTitle').innerHTML = `${chapterData.chapter_title}`;
+    
+    // Update mark button
     const markBtn = document.getElementById('markChapterCompleteBtn');
-    if (completedChapters.includes(chapterId)) {
+    if (isChapterCompleted(chapterId)) {
         markBtn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> সম্পূর্ণ!';
         markBtn.classList.remove('bg-green-500/20', 'border-green-500/50', 'text-green-400');
         markBtn.classList.add('bg-gray-700', 'text-gray-400');
@@ -259,45 +314,45 @@ async function openChapter(chapterId) {
     
     // Render topics tabs
     const tabsContainer = document.getElementById('topicsTabs');
-    if (chapterData.topics && chapterData.topics.length > 0) {
-        tabsContainer.innerHTML = chapterData.topics.map((topic, idx) => `
-            <button class="topic-tab px-4 py-2 rounded-lg text-sm transition ${idx === 0 ? 'bg-amber-500/20 text-amber-400' : 'text-gray-400 hover:text-amber-400'}" data-topic-index="${idx}">
-                ${topic.id} ${topic.title.substring(0, 30)}${topic.title.length > 30 ? '...' : ''}
-            </button>
-        `).join('');
-    } else {
-        tabsContainer.innerHTML = '<span class="text-gray-400">কোন টপিক পাওয়া যায়নি</span>';
-    }
+    tabsContainer.innerHTML = chapterData.topics.map((topic, idx) => `
+        <button class="topic-tab px-4 py-2 rounded-lg text-sm transition ${idx === 0 ? 'bg-amber-500/20 text-amber-400' : 'text-gray-400 hover:text-amber-400'}" data-topic-index="${idx}">
+            ${topic.id} ${topic.title.substring(0, 30)}${topic.title.length > 30 ? '...' : ''}
+        </button>
+    `).join('');
     
+    // Load first topic
     currentTopicIndex = 0;
     await loadTopicContent(chapterId, 0, chapterData);
     
+    // Add tab event listeners
     document.querySelectorAll('.topic-tab').forEach(tab => {
-        tab.addEventListener('click', async () => {
+        tab.addEventListener('click', async (e) => {
             const idx = parseInt(tab.dataset.topicIndex);
             currentTopicIndex = idx;
             await loadTopicContent(chapterId, idx, chapterData);
-            document.querySelectorAll('.topic-tab').forEach(t => t.classList.remove('bg-amber-500/20', 'text-amber-400'));
+            document.querySelectorAll('.topic-tab').forEach(t => {
+                t.classList.remove('bg-amber-500/20', 'text-amber-400');
+                t.classList.add('text-gray-400');
+            });
+            tab.classList.remove('text-gray-400');
             tab.classList.add('bg-amber-500/20', 'text-amber-400');
         });
     });
 }
 
-// Load topic content with all rich data
+// Load topic content
 async function loadTopicContent(chapterId, topicIndex, chapterData) {
-    const container = document.getElementById('topicContent');
     const topic = chapterData.topics[topicIndex];
-    const study = topic.study || {};
-    const exam = topic.exam || {};
+    const container = document.getElementById('topicContent');
     
-    // Extract all rich content
-    const summary = study.summary || [];
+    const study = topic.study || {};
+    const summary = study.summary || [`${topic.title} - বিস্তারিত কন্টেন্ট শীঘ্রই যুক্ত হবে।`];
     const shortQuestions = study.short_questions || [];
     const creativeQuestions = study.creative_questions || [];
     const mathExamples = study.mathematical_examples || [];
     const chemicalReactions = study.chemical_reactions || [];
     const tables = study.tables || [];
-    const examQuestions = exam.questions || [];
+    const examQuestions = (topic.exam && topic.exam.questions) || [];
     
     let html = `
         <div>
@@ -306,21 +361,16 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                 <span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">টপিক ${topic.id}</span>
             </div>
             <h2 class="text-2xl font-bold mb-6">${topic.title}</h2>
-    `;
-    
-    // Summary Section
-    if (summary.length > 0) {
-        html += `
+            
             <div class="mb-6">
                 <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-align-left mr-2"></i>সারাংশ</h3>
                 <div class="space-y-2 bg-black/20 rounded-xl p-4">
                     ${summary.map(s => `<p class="text-gray-300 leading-relaxed">${s}</p>`).join('')}
                 </div>
             </div>
-        `;
-    }
+    `;
     
-    // Short Questions (Expandable)
+    // Short Questions
     if (shortQuestions.length > 0) {
         html += `
             <div class="mb-6">
@@ -342,7 +392,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         `;
     }
     
-    // Creative Questions (Expandable with sub-questions)
+    // Creative Questions
     if (creativeQuestions.length > 0) {
         html += `
             <div class="mb-6">
@@ -417,7 +467,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
             <div class="mb-6">
                 <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>
                 ${tables.map(table => `
-                    <div class="overflow-x-auto mb-4">
+                    <div class="overflow-x-auto">
                         <table class="w-full text-sm border border-white/10 rounded-xl">
                             <thead>
                                 <tr class="border-b border-white/10 bg-white/5">
@@ -483,7 +533,9 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
             mcqContainer.querySelectorAll('.mcq-option').forEach(opt => {
                 opt.onclick = function() {
                     const parent = this.closest('.glass');
-                    parent.querySelectorAll('.mcq-option').forEach(o => o.classList.remove('selected', 'correct', 'wrong'));
+                    parent.querySelectorAll('.mcq-option').forEach(o => {
+                        o.classList.remove('selected', 'correct', 'wrong');
+                    });
                     this.classList.add('selected');
                 };
             });
@@ -491,19 +543,19 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
             if (checkBtn) {
                 checkBtn.onclick = () => {
                     let score = 0, total = 0;
-                    document.querySelectorAll('[data-mcq-idx]').forEach(q => {
-                        const opts = q.querySelectorAll('.mcq-option');
-                        let selected = null, correct = null;
-                        opts.forEach((o, i) => {
-                            if (o.classList.contains('selected')) selected = i;
-                            if (o.dataset.correct === 'true') correct = i;
+                    document.querySelectorAll('[data-mcq-idx]').forEach(questionDiv => {
+                        const options = questionDiv.querySelectorAll('.mcq-option');
+                        let selected = null, correctIdx = null;
+                        options.forEach((opt, idx) => {
+                            if (opt.classList.contains('selected')) selected = idx;
+                            if (opt.getAttribute('data-correct') === 'true') correctIdx = idx;
                         });
                         if (selected !== null) total++;
-                        if (selected === correct) score++;
-                        opts.forEach((o, i) => {
-                            o.classList.remove('selected');
-                            if (i === correct) o.classList.add('correct');
-                            if (selected === i && selected !== correct) o.classList.add('wrong');
+                        if (selected === correctIdx) score++;
+                        options.forEach((opt, idx) => {
+                            opt.classList.remove('selected');
+                            if (idx === correctIdx) opt.classList.add('correct');
+                            if (selected === idx && selected !== correctIdx) opt.classList.add('wrong');
                         });
                     });
                     showToast(`📊 স্কোর: ${score}/${total}`, score === total ? 'success' : 'info');
@@ -513,36 +565,31 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
     }, 100);
 }
 
-function markChapterComplete(chapterId) {
-    if (!completedChapters.includes(chapterId)) {
-        completedChapters.push(chapterId);
-        updateOverallProgress();
-        renderChaptersGrid();
-        if (currentChapterId === chapterId) {
-            const btn = document.getElementById('markChapterCompleteBtn');
-            btn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> সম্পূর্ণ!';
-            btn.classList.remove('bg-green-500/20', 'border-green-500/50', 'text-green-400');
-            btn.classList.add('bg-gray-700', 'text-gray-400');
-        }
-        showToast('🎉 অধ্যায় সম্পূর্ণ চিহ্নিত করা হয়েছে!', 'success');
-    }
-}
-
-async function init() {
-    await renderChaptersGrid();
+// Initialize
+function init() {
+    renderChaptersGrid();
     updateOverallProgress();
+    
+    document.getElementById('homeBtn').addEventListener('click', () => {
+        document.getElementById('chaptersView').classList.remove('hidden');
+        document.getElementById('chapterView').classList.add('hidden');
+        currentChapterId = null;
+    });
     
     document.getElementById('backToChaptersBtn').addEventListener('click', () => {
         document.getElementById('chaptersView').classList.remove('hidden');
         document.getElementById('chapterView').classList.add('hidden');
-        renderChaptersGrid();
+        currentChapterId = null;
     });
     
     document.getElementById('markChapterCompleteBtn').addEventListener('click', () => {
-        if (currentChapterId) markChapterComplete(currentChapterId);
+        if (currentChapterId) {
+            markChapterComplete(currentChapterId);
+        }
     });
 }
 
+// Start the app
 init();
 </script>
 </body>
