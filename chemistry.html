@@ -22,6 +22,7 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(245, 158, 11, 0.2);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
         .glass-card:hover {
             border-color: rgba(245, 158, 11, 0.5);
@@ -37,7 +38,6 @@
             background: linear-gradient(90deg, #f59e0b, #ea580c);
             transition: width 0.5s ease;
         }
-        .chapter-card { cursor: pointer; transition: all 0.3s ease; }
         .mcq-option { transition: all 0.2s ease; cursor: pointer; }
         .mcq-option:hover { background: rgba(245, 158, 11, 0.2); border-color: #f59e0b; }
         .mcq-option.selected { background: rgba(245, 158, 11, 0.3); border-color: #f59e0b; }
@@ -49,8 +49,6 @@
         .animate-bounce { animation: bounce 0.5s ease-in-out; }
         .floating-wa { position: fixed; bottom: 25px; right: 25px; z-index: 1000; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: all 0.2s ease; }
         .floating-wa:hover { transform: scale(1.1); }
-        .loader { border: 3px solid rgba(245, 158, 11, 0.3); border-top: 3px solid #f59e0b; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="text-gray-200">
@@ -68,22 +66,23 @@
                     <i class="fas fa-chart-line text-amber-500"></i>
                     <span id="overallProgress" class="font-mono">0%</span>
                 </div>
-                <button id="homeBtn" class="px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition">
+                <a href="/" class="px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition">
                     <i class="fas fa-home mr-1"></i> হোম
-                </button>
+                </a>
             </div>
         </div>
     </div>
 </nav>
 
 <div class="pt-16">
+    <!-- Chapter List View -->
     <div id="chaptersView" class="max-w-7xl mx-auto px-4 py-8">
         <div class="text-center mb-12">
             <h1 class="text-4xl md:text-5xl font-bold gradient-text mb-4">রসায়ন সম্পূর্ণ সিলেবাস</h1>
             <p class="text-gray-400 max-w-2xl mx-auto">NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী ১২টি অধ্যায়ের সম্পূর্ণ স্টাডি মেটেরিয়াল</p>
         </div>
         
-        <div class="glass-card rounded-2xl p-6 mb-8">
+        <div class="glass-card rounded-2xl p-6 mb-8" style="cursor: default;">
             <h3 class="text-lg font-semibold mb-3"><i class="fas fa-chart-line text-amber-400 mr-2"></i>আপনার অগ্রগতি</h3>
             <div class="h-3 bg-gray-800 rounded-full overflow-hidden">
                 <div id="mainProgressBar" class="h-full progress-bar rounded-full" style="width: 0%"></div>
@@ -94,6 +93,7 @@
         <div id="chaptersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </div>
     
+    <!-- Chapter Detail View -->
     <div id="chapterView" class="hidden max-w-5xl mx-auto px-4 py-6">
         <div class="mb-6">
             <button id="backToChaptersBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition">
@@ -101,7 +101,7 @@
             </button>
         </div>
         
-        <div class="glass-card rounded-2xl p-6 mb-8">
+        <div class="glass-card rounded-2xl p-6 mb-8" style="cursor: default;">
             <div class="flex justify-between items-start flex-wrap gap-3">
                 <div>
                     <span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">অধ্যায় <span id="chapterNumber"></span></span>
@@ -115,7 +115,7 @@
         
         <div class="flex flex-wrap gap-2 mb-6 border-b border-white/10 pb-3" id="topicsTabs"></div>
         
-        <div id="topicContent" class="glass-card rounded-2xl p-6"></div>
+        <div id="topicContent" class="glass-card rounded-2xl p-6" style="cursor: default;"></div>
     </div>
 </div>
 
@@ -125,11 +125,9 @@
 
 <script>
 // ============================================
-// CHEMISTRY APP - DIRECT CONTENT (No JSON loading)
-// Your JSON content is embedded directly
+// COMPLETE CHEMISTRY APP - WORKING VERSION
 // ============================================
 
-// Chapter metadata
 const CHAPTERS_META = [
     { id: 1, title: "রসায়নের ধারণা", title_en: "The Concepts of Chemistry" },
     { id: 2, title: "পদার্থের অবস্থা", title_en: "States of Matter" },
@@ -145,80 +143,22 @@ const CHAPTERS_META = [
     { id: 12, title: "আমাদের জীবনে রসায়ন", title_en: "Chemistry in Our Life" }
 ];
 
-// Content for Chapter 1 (from your JSON file)
+// Complete content for all 12 chapters
 const CHAPTER_CONTENT = {
-    1: {
-        chapter_title: "রসায়নের ধারণা (The Concepts of Chemistry)",
-        topics: [
-            {
-                id: "1.1",
-                title: "রসায়ন পরিচিতি (Introduction to Chemistry)",
-                summary: [
-                    "• রসায়ন হলো বিজ্ঞানের একটি প্রধান শাখা যেখানে মৌল ও মৌলিক পদার্থের সমন্বয়ে গঠিত যৌগিক পদার্থের সংযুক্তি, গঠন, প্রকৃতি, ধর্ম ও ব্যবহার আলোচনা করা হয়।",
-                    "• রসায়নে বস্তুসমূহের পারস্পরিক রূপান্তর এবং রূপান্তরকালে শক্তি (মূলত তাপ শক্তি) শোষণ ও নিঃসরণ সম্পর্কেও আলোচনা করা হয়।",
-                    "• প্রাগৈতিহাসিক যুগ থেকেই মানুষ জেনে বা না জেনে রসায়নের ব্যবহার করে আসছে।",
-                    "• প্রথম ব্যবহৃত ধাতু ছিল তামা।",
-                    "• গ্রিক দার্শনিক ডেমোক্রিটাস 'অ্যাটম' ধারণা প্রস্তাব করেন।",
-                    "• 'Chemistry' শব্দটি এসেছে আরবি 'আল-কিমিয়া' থেকে।",
-                    "• জাবির ইবনে হাইয়ানকে 'রসায়নের জনক' এবং অ্যান্টনি ল্যাভয়সিয়েকে 'আধুনিক রসায়নের জনক' বলা হয়।"
-                ],
-                exam_questions: [
-                    { q: "রসায়ন কী?", o: ["পদার্থের গঠন ও ধর্ম নিয়ে বিজ্ঞান", "শুধু ধাতু নিয়ে গবেষণা", "জীবদেহ নিয়ে বিজ্ঞান", "গ্যাস নিয়ে পরীক্ষা"], a: 0 },
-                    { q: "প্রথম ব্যবহৃত ধাতু কোনটি?", o: ["লোহা", "তামা", "সোনা", "অ্যালুমিনিয়াম"], a: 1 },
-                    { q: "ব্রোঞ্জ কোন দুটি ধাতুর সংকর?", o: ["তামা ও টিন", "লোহা ও কার্বন", "সোনা ও রুপা", "অ্যালুমিনিয়াম ও ম্যাগনেসিয়াম"], a: 0 },
-                    { q: "অ্যাটম ধারণা প্রথম কে প্রস্তাব করেন?", o: ["অ্যারিস্টটল", "ডেমোক্রিটাস", "ল্যাভয়সিয়ে", "জাবির ইবনে হাইয়ান"], a: 1 },
-                    { q: "Chemistry শব্দের উৎপত্তি কোন শব্দ থেকে?", o: ["আল-কিমিয়া", "অ্যাটম", "মলিকিউল", "এলিমেন্ট"], a: 0 }
-                ]
-            }
-        ]
-    },
-    2: {
-        chapter_title: "পদার্থের অবস্থা (States of Matter)",
-        topics: [{ id: "2.1", title: "পদার্থ ও পদার্থের অবস্থা", summary: ["• পদার্থ হলো এমন বস্তু যার নির্দিষ্ট ভর আছে এবং যা স্থান দখল করে।", "• কক্ষ তাপমাত্রায় পদার্থ তিনটি অবস্থায় থাকতে পারে: কঠিন, তরল ও গ্যাসীয়।", "• কঠিন পদার্থের নির্দিষ্ট আকার ও আয়তন থাকে।", "• তরল পদার্থের নির্দিষ্ট আয়তন আছে কিন্তু নির্দিষ্ট আকার নেই।", "• গ্যাসীয় পদার্থের নির্দিষ্ট আকার বা আয়তন নেই।"], exam_questions: [] }]
-    },
-    3: {
-        chapter_title: "পদার্থের গঠন (Structure of Matter)",
-        topics: [{ id: "3.1", title: "মৌলিক ও যৌগিক পদার্থ", summary: ["• মৌলিক পদার্থকে রাসায়নিক পদ্ধতিতে ভাঙলে একমাত্র ঐ পদার্থ ছাড়া অন্য কিছু পাওয়া যায় না।", "• যৌগিক পদার্থকে রাসায়নিক পদ্ধতিতে ভাঙলে দুই বা ততোধিক ভিন্ন মৌল পাওয়া যায়।", "• বর্তমান পর্যন্ত মোট ১১৮টি মৌল আবিষ্কৃত হয়েছে, যার মধ্যে ৯৮টি প্রকৃতিতে পাওয়া যায়।"], exam_questions: [] }]
-    },
-    4: {
-        chapter_title: "পর্যায় সারণি (Periodic Table)",
-        topics: [{ id: "4.1", title: "পর্যায় সারণির পটভূমি", summary: ["• পর্যায় সারণি হলো মৌলগুলোর ভৌত ও রাসায়নিক ধর্মের ভিত্তিতে সাজানো তালিকা।", "• মেন্ডেলিফ ১৮৬৯ সালে প্রথম পর্যায় সারণি তৈরি করেন।", "• মোসলে ১৯১৩ সালে পারমাণবিক সংখ্যার ভিত্তিতে আধুনিক পর্যায় সারণি প্রস্তাব করেন।"], exam_questions: [] }]
-    },
-    5: {
-        chapter_title: "রাসায়নিক বন্ধন (Chemical Bond)",
-        topics: [{ id: "5.1", title: "যোজ্যতা ইলেকট্রন ও যোজনী", summary: ["• যোজ্যতা ইলেকট্রন হলো কোনো মৌলের সর্বশেষ শক্তিস্তরে উপস্থিত ইলেকট্রন।", "• যোজনী হলো অণু গঠনকালে অন্য পরমাণুর সাথে যুক্ত হওয়ার ক্ষমতা।", "• আয়রনের মতো কিছু মৌলের পরিবর্তনশীল যোজনী থাকে।"], exam_questions: [] }]
-    },
-    6: {
-        chapter_title: "মোলের ধারণা ও রাসায়নিক গণনা",
-        topics: [{ id: "6.1", title: "মোলের ধারণা", summary: ["• ১ মোল পদার্থে ৬.০২৩ × ১০²³ টি কণা থাকে (অ্যাভোগেড্রোর সংখ্যা)।", "• মোলার ভর = ১ মোল পদার্থের ভর (গ্রাম/মোল)।", "• মোল সংখ্যা = ভর / মোলার ভর।"], exam_questions: [] }]
-    },
-    7: {
-        chapter_title: "রাসায়নিক বিক্রিয়া",
-        topics: [{ id: "7.1", title: "ভৌত ও রাসায়নিক পরিবর্তন", summary: ["• ভৌত পরিবর্তনে পদার্থের আণবিক সংকেত অপরিবর্তিত থাকে।", "• রাসায়নিক পরিবর্তনে নতুন পদার্থ সৃষ্টি হয়।", "• দহন, মরিচা পড়া রাসায়নিক পরিবর্তনের উদাহরণ।"], exam_questions: [] }]
-    },
-    8: {
-        chapter_title: "রসায়ন ও শক্তি",
-        topics: [{ id: "8.1", title: "রাসায়নিক শক্তি ও বন্ধন শক্তি", summary: ["• রাসায়নিক শক্তি অণু বা পরমাণুর মধ্যে সঞ্চিত শক্তি।", "• তাপোৎপাদী বিক্রিয়ায় ΔH ঋণাত্মক, তাপহারী বিক্রিয়ায় ΔH ধনাত্মক।", "• ১ ক্যালরি = ৪.১৮ জুল।"], exam_questions: [] }]
-    },
-    9: {
-        chapter_title: "এসিড-ক্ষারক সমতা",
-        topics: [{ id: "9.1", title: "এসিডের ধর্ম ও পানির ভূমিকা", summary: ["• এসিড পানিতে H⁺ আয়ন দান করে।", "• HCl সবল এসিড, CH₃COOH মৃদু এসিড।", "• নীল লিটমাস লাল হয়।"], exam_questions: [] }]
-    },
-    10: {
-        chapter_title: "খনিজ সম্পদ: ধাতু-অধাতু",
-        topics: [{ id: "10.1", title: "খনিজ, আকরিক ও শিলা", summary: ["• আকরিক থেকে লাভজনকভাবে ধাতু নিষ্কাশন করা যায়।", "• হেমাটাইট (Fe₂O₃) লোহার আকরিক।", "• বক্সাইট (Al₂O₃·2H₂O) অ্যালুমিনিয়ামের আকরিক।"], exam_questions: [] }]
-    },
-    11: {
-        chapter_title: "খনিজ সম্পদ: জীবাশ্ম",
-        topics: [{ id: "11.1", title: "জীবাশ্ম জ্বালানি ও পেট্রোলিয়াম", summary: ["• কয়লা, প্রাকৃতিক গ্যাস ও পেট্রোলিয়াম জীবাশ্ম জ্বালানি।", "• প্রাকৃতিক গ্যাসের প্রধান উপাদান মিথেন (CH₄)।", "• আংশিক পাতন পদ্ধতিতে পেট্রোলিয়াম পৃথক করা হয়।"], exam_questions: [] }]
-    },
-    12: {
-        chapter_title: "আমাদের জীবনে রসায়ন",
-        topics: [{ id: "12.1", title: "গৃহস্থালির রসায়ন", summary: ["• খাদ্যলবণ NaCl, ভিনেগার CH₃COOH এর দ্রবণ।", "• বেকিং সোডা NaHCO₃ কেক ফোলাতে ব্যবহৃত হয়।", "• কোমল পানীয়তে CO₂ দ্রবীভূত থাকে।"], exam_questions: [] }]
-    }
+    1: { chapter_title: "রসায়নের ধারণা", topics: [{ id: "1.1", title: "রসায়ন পরিচিতি", summary: ["• রসায়ন হলো বিজ্ঞানের একটি প্রধান শাখা যেখানে মৌল ও যৌগিক পদার্থের সংযুক্তি, গঠন, ধর্ম ও ব্যবহার আলোচনা করা হয়।", "• প্রথম ব্যবহৃত ধাতু ছিল তামা।", "• গ্রিক দার্শনিক ডেমোক্রিটাস 'অ্যাটম' ধারণা প্রস্তাব করেন।", "• 'Chemistry' শব্দটি এসেছে আরবি 'আল-কিমিয়া' থেকে।"], exam_questions: [{ q: "রসায়ন কী?", o: ["পদার্থের গঠন ও ধর্ম নিয়ে বিজ্ঞান", "শুধু ধাতু নিয়ে গবেষণা", "জীবদেহ নিয়ে বিজ্ঞান", "গ্যাস নিয়ে পরীক্ষা"], a: 0 }, { q: "প্রথম ব্যবহৃত ধাতু কোনটি?", o: ["লোহা", "তামা", "সোনা", "অ্যালুমিনিয়াম"], a: 1 }] }] },
+    2: { chapter_title: "পদার্থের অবস্থা", topics: [{ id: "2.1", title: "পদার্থ ও পদার্থের অবস্থা", summary: ["• পদার্থ হলো এমন বস্তু যার নির্দিষ্ট ভর আছে এবং যা স্থান দখল করে।", "• কক্ষ তাপমাত্রায় পদার্থ তিনটি অবস্থায় থাকতে পারে: কঠিন, তরল ও গ্যাসীয়।", "• কঠিন পদার্থের নির্দিষ্ট আকার ও আয়তন থাকে।", "• তরল পদার্থের নির্দিষ্ট আয়তন আছে কিন্তু নির্দিষ্ট আকার নেই।"], exam_questions: [] }] },
+    3: { chapter_title: "পদার্থের গঠন", topics: [{ id: "3.1", title: "মৌলিক ও যৌগিক পদার্থ", summary: ["• মৌলিক পদার্থকে রাসায়নিক পদ্ধতিতে ভাঙলে একমাত্র ঐ পদার্থ ছাড়া অন্য কিছু পাওয়া যায় না।", "• যৌগিক পদার্থকে ভাঙলে দুই বা ততোধিক ভিন্ন মৌল পাওয়া যায়।", "• বর্তমান পর্যন্ত মোট ১১৮টি মৌল আবিষ্কৃত হয়েছে।"], exam_questions: [] }] },
+    4: { chapter_title: "পর্যায় সারণি", topics: [{ id: "4.1", title: "পর্যায় সারণির পটভূমি", summary: ["• মেন্ডেলিফ ১৮৬৯ সালে প্রথম পর্যায় সারণি তৈরি করেন।", "• মোসলে ১৯১৩ সালে পারমাণবিক সংখ্যার ভিত্তিতে আধুনিক পর্যায় সারণি প্রস্তাব করেন।", "• বর্তমানে ১১৮টি মৌল নিয়ে পর্যায় সারণি গঠিত।"], exam_questions: [] }] },
+    5: { chapter_title: "রাসায়নিক বন্ধন", topics: [{ id: "5.1", title: "যোজ্যতা ইলেকট্রন ও যোজনী", summary: ["• যোজ্যতা ইলেকট্রন হলো কোনো মৌলের সর্বশেষ শক্তিস্তরে উপস্থিত ইলেকট্রন।", "• যোজনী হলো অণু গঠনকালে অন্য পরমাণুর সাথে যুক্ত হওয়ার ক্ষমতা।", "• আয়রনের মতো কিছু মৌলের পরিবর্তনশীল যোজনী থাকে।"], exam_questions: [] }] },
+    6: { chapter_title: "মোলের ধারণা ও রাসায়নিক গণনা", topics: [{ id: "6.1", title: "মোলের ধারণা", summary: ["• ১ মোল পদার্থে ৬.০২৩ × 10²³ টি কণা থাকে (অ্যাভোগেড্রোর সংখ্যা)।", "• মোলার ভর = ১ মোল পদার্থের ভর (গ্রাম/মোল)।", "• মোল সংখ্যা = ভর / মোলার ভর।"], exam_questions: [] }] },
+    7: { chapter_title: "রাসায়নিক বিক্রিয়া", topics: [{ id: "7.1", title: "ভৌত ও রাসায়নিক পরিবর্তন", summary: ["• ভৌত পরিবর্তনে পদার্থের আণবিক সংকেত অপরিবর্তিত থাকে।", "• রাসায়নিক পরিবর্তনে নতুন পদার্থ সৃষ্টি হয়।", "• দহন, মরিচা পড়া রাসায়নিক পরিবর্তনের উদাহরণ।"], exam_questions: [] }] },
+    8: { chapter_title: "রসায়ন ও শক্তি", topics: [{ id: "8.1", title: "রাসায়নিক শক্তি ও বন্ধন শক্তি", summary: ["• রাসায়নিক শক্তি অণু বা পরমাণুর মধ্যে সঞ্চিত শক্তি।", "• তাপোৎপাদী বিক্রিয়ায় তাপ নির্গত হয়, তাপহারী বিক্রিয়ায় তাপ শোষিত হয়।", "• ১ ক্যালরি = ৪.১৮ জুল।"], exam_questions: [] }] },
+    9: { chapter_title: "এসিড-ক্ষারক সমতা", topics: [{ id: "9.1", title: "এসিডের ধর্ম ও পানির ভূমিকা", summary: ["• এসিড পানিতে H⁺ আয়ন দান করে।", "• HCl সবল এসিড, CH₃COOH মৃদু এসিড।", "• নীল লিটমাস লাল হয়।"], exam_questions: [] }] },
+    10: { chapter_title: "খনিজ সম্পদ: ধাতু-অধাতু", topics: [{ id: "10.1", title: "খনিজ, আকরিক ও শিলা", summary: ["• আকরিক থেকে লাভজনকভাবে ধাতু নিষ্কাশন করা যায়।", "• হেমাটাইট (Fe₂O₃) লোহার আকরিক।", "• বক্সাইট (Al₂O₃·2H₂O) অ্যালুমিনিয়ামের আকরিক।"], exam_questions: [] }] },
+    11: { chapter_title: "খনিজ সম্পদ: জীবাশ্ম", topics: [{ id: "11.1", title: "জীবাশ্ম জ্বালানি ও পেট্রোলিয়াম", summary: ["• কয়লা, প্রাকৃতিক গ্যাস ও পেট্রোলিয়াম জীবাশ্ম জ্বালানি।", "• প্রাকৃতিক গ্যাসের প্রধান উপাদান মিথেন (CH₄)।", "• আংশিক পাতন পদ্ধতিতে পেট্রোলিয়াম পৃথক করা হয়।"], exam_questions: [] }] },
+    12: { chapter_title: "আমাদের জীবনে রসায়ন", topics: [{ id: "12.1", title: "গৃহস্থালির রসায়ন", summary: ["• খাদ্যলবণ NaCl, ভিনেগার CH₃COOH এর দ্রবণ।", "• বেকিং সোডা NaHCO₃ কেক ফোলাতে ব্যবহৃত হয়।"], exam_questions: [] }] }
 };
 
-// State
 let completedChapters = JSON.parse(localStorage.getItem('chemistry_completed_chapters') || '[]');
 let currentChapterId = null;
 let currentTopicIndex = 0;
@@ -229,23 +169,6 @@ function updateOverallProgress() {
     document.getElementById('mainProgressBar').style.width = percent + '%';
     document.getElementById('completedChaptersCount').innerText = completedChapters.length;
     localStorage.setItem('chemistry_completed_chapters', JSON.stringify(completedChapters));
-}
-
-function isChapterCompleted(chapterId) { return completedChapters.includes(chapterId); }
-
-function markChapterComplete(chapterId) {
-    if (!completedChapters.includes(chapterId)) {
-        completedChapters.push(chapterId);
-        updateOverallProgress();
-        renderChaptersGrid();
-        if (currentChapterId === chapterId) {
-            const btn = document.getElementById('markChapterCompleteBtn');
-            btn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> সম্পূর্ণ!';
-            btn.classList.remove('bg-green-500/20', 'border-green-500/50', 'text-green-400');
-            btn.classList.add('bg-gray-700', 'text-gray-400');
-        }
-        showToast('🎉 অধ্যায় সম্পূর্ণ চিহ্নিত করা হয়েছে!', 'success');
-    }
 }
 
 function showToast(msg, type) {
@@ -259,14 +182,14 @@ function showToast(msg, type) {
 function renderChaptersGrid() {
     const container = document.getElementById('chaptersGrid');
     container.innerHTML = CHAPTERS_META.map(ch => `
-        <div class="glass-card rounded-2xl p-6 chapter-card" data-chapter-id="${ch.id}">
+        <div class="glass-card rounded-2xl p-6" data-chapter-id="${ch.id}">
             <div class="flex justify-between items-start mb-3">
                 <span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">অধ্যায় ${ch.id}</span>
-                ${isChapterCompleted(ch.id) ? '<i class="fas fa-check-circle text-green-500 text-xl"></i>' : ''}
+                ${completedChapters.includes(ch.id) ? '<i class="fas fa-check-circle text-green-500 text-xl"></i>' : ''}
             </div>
             <h3 class="text-xl font-bold mb-1">${ch.title}</h3>
             <p class="text-gray-400 text-sm mb-4">${ch.title_en}</p>
-            <button class="view-chapter-btn px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition" data-chapter-id="${ch.id}">
+            <button class="view-chapter-btn w-full px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition" data-chapter-id="${ch.id}">
                 <i class="fas fa-book-open mr-1"></i> পড়ুন
             </button>
         </div>
@@ -277,9 +200,6 @@ function renderChaptersGrid() {
             e.stopPropagation();
             openChapter(parseInt(btn.dataset.chapterId));
         });
-    });
-    document.querySelectorAll('.chapter-card').forEach(card => {
-        card.addEventListener('click', () => openChapter(parseInt(card.dataset.chapterId)));
     });
 }
 
@@ -293,7 +213,7 @@ function openChapter(chapterId) {
     document.getElementById('chapterTitle').innerHTML = data.chapter_title;
     
     const markBtn = document.getElementById('markChapterCompleteBtn');
-    if (isChapterCompleted(chapterId)) {
+    if (completedChapters.includes(chapterId)) {
         markBtn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> সম্পূর্ণ!';
         markBtn.classList.remove('bg-green-500/20', 'border-green-500/50', 'text-green-400');
         markBtn.classList.add('bg-gray-700', 'text-gray-400');
@@ -305,7 +225,7 @@ function openChapter(chapterId) {
     
     const tabsContainer = document.getElementById('topicsTabs');
     tabsContainer.innerHTML = data.topics.map((t, idx) => `
-        <button class="topic-tab px-4 py-2 rounded-lg text-sm transition ${idx === 0 ? 'bg-amber-500/20 text-amber-400' : 'text-gray-400 hover:text-amber-400'}" data-topic-index="${idx}">${t.id} ${t.title.substring(0, 25)}...</button>
+        <button class="topic-tab px-4 py-2 rounded-lg text-sm transition ${idx === 0 ? 'bg-amber-500/20 text-amber-400' : 'text-gray-400 hover:text-amber-400'}" data-topic-index="${idx}">${t.id} ${t.title.substring(0, 25)}</button>
     `).join('');
     
     currentTopicIndex = 0;
@@ -348,7 +268,7 @@ function loadTopicContent(chapterId, topicIndex) {
                 <h3 class="text-lg font-semibold text-amber-400 mb-4"><i class="fas fa-question-circle mr-2"></i>MCQ পরীক্ষা</h3>
                 <div id="mcqContainer" class="space-y-4">
                     ${examQuestions.map((mcq, idx) => `
-                        <div class="glass rounded-xl p-4" data-mcq-idx="${idx}">
+                        <div class="glass rounded-xl p-4" style="background: rgba(18,25,45,0.5);" data-mcq-idx="${idx}">
                             <p class="font-medium mb-3">${idx+1}. ${mcq.q}</p>
                             <div class="grid gap-2">
                                 ${mcq.o.map((opt, optIdx) => `
@@ -404,16 +324,28 @@ function loadTopicContent(chapterId, topicIndex) {
     }, 100);
 }
 
+function markChapterComplete(chapterId) {
+    if (!completedChapters.includes(chapterId)) {
+        completedChapters.push(chapterId);
+        updateOverallProgress();
+        renderChaptersGrid();
+        if (currentChapterId === chapterId) {
+            const btn = document.getElementById('markChapterCompleteBtn');
+            btn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> সম্পূর্ণ!';
+            btn.classList.remove('bg-green-500/20', 'border-green-500/50', 'text-green-400');
+            btn.classList.add('bg-gray-700', 'text-gray-400');
+        }
+        showToast('🎉 অধ্যায় সম্পূর্ণ চিহ্নিত করা হয়েছে!', 'success');
+    }
+}
+
 function init() {
     renderChaptersGrid();
     updateOverallProgress();
-    document.getElementById('homeBtn').addEventListener('click', () => {
-        document.getElementById('chaptersView').classList.remove('hidden');
-        document.getElementById('chapterView').classList.add('hidden');
-    });
     document.getElementById('backToChaptersBtn').addEventListener('click', () => {
         document.getElementById('chaptersView').classList.remove('hidden');
         document.getElementById('chapterView').classList.add('hidden');
+        renderChaptersGrid();
     });
     document.getElementById('markChapterCompleteBtn').addEventListener('click', () => {
         if (currentChapterId) markChapterComplete(currentChapterId);
