@@ -186,7 +186,7 @@
 <script>
 // ============================================
 // COMPLETE CHEMISTRY APP - FULLY WORKING
-// MCQ Scoring FIXED - Guaranteed to work
+// MCQ Selection Fixed + Scoring Fixed + Timer
 // ============================================
 
 const CHAPTERS_META = [
@@ -217,8 +217,7 @@ let chapterDataCache = {};
 function showToast(message, type = 'info') {
     const toast = document.createElement('div');
     toast.className = `fixed bottom-20 left-1/2 transform -translate-x-1/2 px-5 py-3 rounded-xl text-sm z-50 shadow-xl font-medium ${
-        type === 'success' ? 'bg-gradient-to-r from-green-600 to-green-700' : 
-        type === 'error' ? 'bg-gradient-to-r from-red-600 to-red-700' : 'bg-gradient-to-r from-blue-600 to-indigo-600'
+        type === 'success' ? 'bg-green-600' : type === 'error' ? 'bg-red-600' : 'bg-blue-600'
     } text-white`;
     toast.innerText = message;
     document.body.appendChild(toast);
@@ -395,135 +394,34 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
     
     // Short Questions
     if (shortQuestions.length > 0) {
-        html += `
-            <div class="mb-6">
-                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-question-circle mr-2"></i>সংক্ষিপ্ত প্রশ্নোত্তর</h3>
-                <div class="space-y-3">
-                    ${shortQuestions.map((sq, idx) => `
-                        <div class="border border-white/10 rounded-xl overflow-hidden">
-                            <button class="sq-toggle w-full text-left p-3 font-medium hover:bg-white/5 transition flex justify-between items-center">
-                                <span>${idx+1}. ${sq.q}</span>
-                                <i class="fas fa-chevron-down text-gray-500"></i>
-                            </button>
-                            <div class="sq-answer hidden p-3 pt-0 text-gray-400 border-t border-white/10">
-                                ${sq.a}
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-        `;
+        html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-question-circle mr-2"></i>সংক্ষিপ্ত প্রশ্নোত্তর</h3><div class="space-y-3">${shortQuestions.map((sq, idx) => `<div class="border border-white/10 rounded-xl overflow-hidden"><button class="sq-toggle w-full text-left p-3 font-medium hover:bg-white/5 transition flex justify-between items-center"><span>${idx+1}. ${sq.q}</span><i class="fas fa-chevron-down text-gray-500"></i></button><div class="sq-answer hidden p-3 pt-0 text-gray-400 border-t border-white/10">${sq.a}</div></div>`).join('')}</div></div>`;
     }
     
     // Creative Questions
     if (creativeQuestions.length > 0) {
-        html += `
-            <div class="mb-6">
-                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-pencil-alt mr-2"></i>সৃজনশীল প্রশ্ন</h3>
-                <div class="space-y-4">
-                    ${creativeQuestions.map((cq, idx) => {
-                        const paragraphText = cq.paragraph || '';
-                        const subQuestions = cq.sub_questions || {};
-                        return `
-                            <div class="border border-white/10 rounded-xl overflow-hidden">
-                                <button class="cq-toggle w-full text-left hover:bg-white/5 transition flex justify-between items-center p-3 font-medium">
-                                    <span>${idx+1}. ${paragraphText.substring(0, 100)}${paragraphText.length > 100 ? '...' : ''}</span>
-                                    <i class="fas fa-chevron-down text-gray-500"></i>
-                                </button>
-                                <div class="cq-answer hidden border-t border-white/10 p-3">
-                                    <div class="creative-paragraph mb-3">
-                                        <strong>উদ্দীপক:</strong> ${paragraphText}
-                                    </div>
-                                    ${Object.entries(subQuestions).map(([key, val]) => `
-                                        <div class="sub-question-box mb-3">
-                                            <p class="font-medium text-amber-400">${getBengaliLetter(key)} (${val.marks || '?'} নম্বর)</p>
-                                            <p class="mt-1"><strong>প্রশ্ন:</strong> ${val.question || ''}</p>
-                                            <p class="mt-1 text-green-400"><strong>উত্তর:</strong> ${val.answer || ''}</p>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-            </div>
-        `;
+        html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-pencil-alt mr-2"></i>সৃজনশীল প্রশ্ন</h3><div class="space-y-4">${creativeQuestions.map((cq, idx) => `<div class="border border-white/10 rounded-xl overflow-hidden"><button class="cq-toggle w-full text-left hover:bg-white/5 transition flex justify-between items-center p-3 font-medium"><span>${idx+1}. ${(cq.paragraph || '').substring(0, 100)}...</span><i class="fas fa-chevron-down text-gray-500"></i></button><div class="cq-answer hidden border-t border-white/10 p-3"><div class="creative-paragraph mb-3"><strong>উদ্দীপক:</strong> ${cq.paragraph || ''}</div>${Object.entries(cq.sub_questions || {}).map(([key, val]) => `<div class="sub-question-box mb-3"><p class="font-medium text-amber-400">${getBengaliLetter(key)} (${val.marks || '?'} নম্বর)</p><p class="mt-1"><strong>প্রশ্ন:</strong> ${val.question || ''}</p><p class="mt-1 text-green-400"><strong>উত্তর:</strong> ${val.answer || ''}</p></div>`).join('')}</div></div>`).join('')}</div></div>`;
     }
     
     // Mathematical Examples
     if (mathExamples.length > 0) {
-        html += `
-            <div class="mb-6">
-                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-calculator mr-2"></i>গাণিতিক উদাহরণ</h3>
-                <div class="space-y-3">
-                    ${mathExamples.map((ex, idx) => `
-                        <div class="border border-white/10 rounded-xl overflow-hidden">
-                            <button class="math-toggle w-full text-left p-3 font-medium hover:bg-white/5 transition flex justify-between items-center">
-                                <span>${ex.title || 'গাণিতিক সমস্যা'}</span>
-                                <i class="fas fa-chevron-down text-gray-500"></i>
-                            </button>
-                            <div class="math-answer hidden p-3 pt-0 text-gray-400 border-t border-white/10">
-                                <p><strong>সমস্যা:</strong> ${ex.problem || ''}</p>
-                                <p class="mt-2"><strong>সমাধান:</strong></p>
-                                <p class="whitespace-pre-line">${ex.solution || ''}</p>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-        `;
+        html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-calculator mr-2"></i>গাণিতিক উদাহরণ</h3><div class="space-y-3">${mathExamples.map((ex, idx) => `<div class="border border-white/10 rounded-xl overflow-hidden"><button class="math-toggle w-full text-left p-3 font-medium hover:bg-white/5 transition flex justify-between items-center"><span>${ex.title || 'গাণিতিক সমস্যা'}</span><i class="fas fa-chevron-down text-gray-500"></i></button><div class="math-answer hidden p-3 pt-0 text-gray-400 border-t border-white/10"><p><strong>সমস্যা:</strong> ${ex.problem || ''}</p><p class="mt-2"><strong>সমাধান:</strong></p><p class="whitespace-pre-line">${ex.solution || ''}</p></div></div>`).join('')}</div></div>`;
     }
     
     // Chemical Reactions
     if (chemicalReactions.length > 0) {
-        html += `
-            <div class="mb-6">
-                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-flask mr-2"></i>রাসায়নিক বিক্রিয়া</h3>
-                <div class="space-y-3">
-                    ${chemicalReactions.map((cr) => `
-                        <div class="glass rounded-xl p-3">
-                            <p class="font-mono text-amber-400">${cr.equation || ''}</p>
-                            <p class="text-sm text-gray-400 mt-1">${cr.description || ''}</p>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-        `;
+        html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-flask mr-2"></i>রাসায়নিক বিক্রিয়া</h3><div class="space-y-3">${chemicalReactions.map(cr => `<div class="glass rounded-xl p-3"><p class="font-mono text-amber-400">${cr.equation || ''}</p><p class="text-sm text-gray-400 mt-1">${cr.description || ''}</p></div>`).join('')}</div></div>`;
     }
     
     // Tables
     if (tables.length > 0) {
-        html += `
-            <div class="mb-6">
-                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>
-                ${tables.map(table => `
-                    <div class="overflow-x-auto mb-4">
-                        <table class="w-full text-sm border border-white/10 rounded-xl">
-                            <thead>
-                                <tr class="border-b border-white/10 bg-white/5">
-                                    ${(table.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}
-                                </td>
-                            </thead>
-                            <tbody>
-                                ${(table.rows || []).map(row => `
-                                    <tr class="border-b border-white/5">
-                                        ${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    </div>
-                `).join('')}
-            </div>
-        `;
+        html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>${tables.map(table => `<div class="overflow-x-auto mb-4"><table class="w-full text-sm border border-white/10 rounded-xl"><thead><tr class="border-b border-white/10 bg-white/5">${(table.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}</tr></thead><tbody>${(table.rows || []).map(row => `<tr class="border-b border-white/5">${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('')}</div>`;
     }
     
-    // =============== MCQ SECTION - COMPLETELY REWRITTEN FOR CORRECT SCORING ===============
+    // =============== MCQ SECTION - COMPLETELY REWRITTEN ===============
     if (examQuestions.length > 0) {
-        // Store all exam state in a closure
         let mcqState = {
-            questions: [],      // Shuffled questions with correct answer tracking
-            userAnswers: [],    // User's selected answers (index of selected option)
+            questions: [],
+            userAnswers: [],
             examStarted: false,
             timerInterval: null,
             timeRemaining: 0
@@ -560,7 +458,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                 <div id="mcqExamPanel" style="display: none;">
                     <div id="mcqQuestionsContainer" class="space-y-5 mb-6 max-h-[600px] overflow-y-auto pr-2"></div>
                     <div class="flex gap-4 mt-6">
-                        <button id="submitMcqBtn" class="px-6 py-3 rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold shadow-lg hover:scale-105 transition">
+                        <button id="submitMcqBtn" class="px-6 py-3 rounded-xl bg-green-600 text-white font-bold shadow-lg hover:bg-green-700 transition">
                             <i class="fas fa-check-circle mr-2"></i> উত্তর জমা দিন ও ফলাফল দেখুন
                         </button>
                         <button id="resetMcqBtn" class="px-6 py-3 rounded-xl bg-gray-700 text-gray-300 font-bold hover:bg-gray-600 transition">
@@ -574,7 +472,6 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         `;
         container.innerHTML = html;
         
-        // Helper functions for the MCQ system
         function stopTimer() {
             if (mcqState.timerInterval) {
                 clearInterval(mcqState.timerInterval);
@@ -615,7 +512,6 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         }
         
         function shuffleQuestions() {
-            // For each question, shuffle the options and track the correct answer's new position
             mcqState.questions = examQuestions.map(originalQ => {
                 const originalOptions = [...originalQ.o];
                 const correctAnswerText = originalOptions[originalQ.a];
@@ -635,10 +531,10 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
             container.innerHTML = mcqState.questions.map((q, qIdx) => `
                 <div class="glass rounded-xl p-4 border border-white/10" data-qidx="${qIdx}">
                     <p class="font-semibold mb-3 text-base"><span class="text-amber-400">${qIdx+1}.</span> ${q.text}</p>
-                    <div class="grid gap-2 ml-2">
+                    <div class="grid gap-2 ml-2" id="options-${qIdx}">
                         ${q.options.map((opt, optIdx) => `
-                            <div class="mcq-option flex items-center gap-3 p-2 px-4 rounded-lg transition ${!mcqState.examStarted ? 'exam-not-started' : ''}" data-qidx="${qIdx}" data-optidx="${optIdx}">
-                                <span class="w-6 h-6 rounded-full border border-amber-500/50 flex items-center justify-center text-xs font-bold option-letter ${mcqState.userAnswers[qIdx] === optIdx ? 'bg-amber-500 text-black' : ''}">${String.fromCharCode(65+optIdx)}</span>
+                            <div class="mcq-option flex items-center gap-3 p-2 px-4 rounded-lg transition" data-qidx="${qIdx}" data-optidx="${optIdx}">
+                                <span class="w-6 h-6 rounded-full border border-amber-500/50 flex items-center justify-center text-xs font-bold option-letter">${String.fromCharCode(65+optIdx)}</span>
                                 <span>${opt}</span>
                             </div>
                         `).join('')}
@@ -646,31 +542,32 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                 </div>
             `).join('');
             
-            // Attach click handlers
+            // Add click event listeners to all options
             document.querySelectorAll('.mcq-option').forEach(opt => {
-                opt.addEventListener('click', (e) => {
+                opt.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
                     if (!mcqState.examStarted) {
                         showToast('⚠️ দয়া করে প্রথমে "পরীক্ষা শুরু করুন" বাটনে ক্লিক করুন!', 'error');
                         return;
                     }
                     
-                    const qIdx = parseInt(opt.dataset.qidx);
-                    const selectedIdx = parseInt(opt.dataset.optidx);
+                    const qIdx = parseInt(this.dataset.qidx);
+                    const selectedIdx = parseInt(this.dataset.optidx);
                     
                     // Update user answers
                     if (mcqState.userAnswers[qIdx] === selectedIdx) {
-                        // Deselect if same option clicked again
                         mcqState.userAnswers[qIdx] = null;
                     } else {
                         mcqState.userAnswers[qIdx] = selectedIdx;
                     }
                     
-                    // Update UI for this question
-                    const questionDiv = opt.closest('[data-qidx]');
-                    const allOptions = questionDiv.querySelectorAll('.mcq-option');
-                    allOptions.forEach((option, idx) => {
+                    // Update UI for this question only
+                    const allOptionsInQuestion = document.querySelectorAll(`.mcq-option[data-qidx="${qIdx}"]`);
+                    allOptionsInQuestion.forEach(option => {
+                        const optIdx = parseInt(option.dataset.optidx);
                         const circleSpan = option.querySelector('.option-letter');
-                        if (idx === mcqState.userAnswers[qIdx]) {
+                        if (optIdx === mcqState.userAnswers[qIdx]) {
                             option.classList.add('selected');
                             if (circleSpan) circleSpan.classList.add('bg-amber-500', 'text-black');
                         } else {
@@ -687,7 +584,6 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
             const totalQuestions = mcqState.questions.length;
             let correctCount = 0;
             
-            // Calculate correct answers
             for (let i = 0; i < totalQuestions; i++) {
                 const userAnswer = mcqState.userAnswers[i];
                 const correctAnswer = mcqState.questions[i].correctIndex;
@@ -762,7 +658,6 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
             showToast('পরীক্ষা রিসেট করা হয়েছে। "পরীক্ষা শুরু করুন" ক্লিক করুন।', 'info');
         }
         
-        // Set up event listeners
         const startBtn = document.getElementById('startExamBtn');
         const examPanel = document.getElementById('mcqExamPanel');
         const submitBtn = document.getElementById('submitMcqBtn');
@@ -802,7 +697,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         container.innerHTML = html;
     }
     
-    // Attach toggle handlers for collapsible sections
+    // Attach toggle handlers
     setTimeout(() => {
         document.querySelectorAll('.sq-toggle, .cq-toggle, .math-toggle').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -819,7 +714,6 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
 
 // Make functions global
 window.openChapter = openChapter;
-window.markChapterComplete = markChapterComplete;
 
 function init() {
     renderChaptersGrid();
