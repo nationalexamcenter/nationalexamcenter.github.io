@@ -8,7 +8,7 @@
     <meta name="google-site-verification" content="1fssfuJoDM0IMK2fGR32rA7WIJWf7PyWymdk_ECAVmM" />
     
     <title>রসায়ন সম্পূর্ণ সিলেবাস ২০২৬ | NCTB | নবম-দশম বিজ্ঞান | MCQ পরীক্ষা সিস্টেম</title>
-    <meta name="description" content="NCTB ২০২৬ সিলেবাস অনুযায়ী নবম-দশম শ্রেণির রসায়নের ১২টি অধ্যায়। উন্নত MCQ পরীক্ষা সিস্টেম - একক উত্তর নির্বাচন, পরীক্ষা শুরু করার আগে উত্তর দেওয়া যাবে না, সঠিক স্কোরিং।">
+    <meta name="description" content="NCTB ২০২৬ সিলেবাস অনুযায়ী নবম-দশম শ্রেণির রসায়নের ১২টি অধ্যায়। সম্পূর্ণ স্টাডি মেটেরিয়াল: সারাংশ, সংক্ষিপ্ত প্রশ্ন, সৃজনশীল প্রশ্ন, গাণিতিক উদাহরণ, রাসায়নিক বিক্রিয়া, সারণি এবং MCQ পরীক্ষা।">
     <meta name="keywords" content="রসায়ন ৯ম ১০ম শ্রেণি, chemistry class 9-10, NCTB 2026 syllabus, রসায়ন MCQ, এসএসসি রসায়ন সাজেশন, SSC chemistry preparation 2027">
     <meta name="author" content="National Exam Center">
     <meta name="robots" content="index, follow">
@@ -48,14 +48,13 @@
             transition: width 0.5s ease;
         }
         
-        /* MCQ Styles - Fixed for single selection */
         .mcq-option {
             transition: all 0.2s ease;
             cursor: pointer;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(245, 158, 11, 0.2);
         }
-        .mcq-option:hover:not(.disabled-opt):not(.exam-not-started) { 
+        .mcq-option:hover:not(.exam-not-started) { 
             background: rgba(245, 158, 11, 0.15); 
             border-color: #f59e0b;
             transform: translateX(4px);
@@ -78,25 +77,36 @@
             border: 1px solid rgba(245, 158, 11, 0.4);
         }
         
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
-        .float-animation { animation: float 4s ease-in-out infinite; }
-        
-        .floating-wa { position: fixed; bottom: 25px; right: 25px; z-index: 1000; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: all 0.2s ease; }
-        .floating-wa:hover { transform: scale(1.1); }
-        
-        .start-exam-btn {
-            animation: pulse 2s infinite;
+        .creative-paragraph {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 3px solid #f59e0b;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
         }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+        .sub-question-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 8px;
         }
         
         .instruction-box {
             background: rgba(59, 130, 246, 0.1);
             border-left: 4px solid #3b82f6;
         }
+        
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); } 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); } }
+        
+        .float-animation { animation: float 4s ease-in-out infinite; }
+        .start-exam-btn { animation: pulse 2s infinite; }
+        
+        .floating-wa { position: fixed; bottom: 25px; right: 25px; z-index: 1000; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: all 0.2s ease; }
+        .floating-wa:hover { transform: scale(1.1); }
+        
+        .loader { border: 3px solid rgba(245, 158, 11, 0.3); border-top: 3px solid #f59e0b; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="text-gray-200">
@@ -124,7 +134,6 @@
 </nav>
 
 <div class="pt-16">
-    <!-- Chapter List View -->
     <div id="chaptersView" class="max-w-7xl mx-auto px-4 py-8">
         <div class="text-center mb-12">
             <h1 class="text-4xl md:text-5xl font-bold gradient-text mb-4">রসায়ন সম্পূর্ণ সিলেবাস ২০২৬</h1>
@@ -142,7 +151,6 @@
         <div id="chaptersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </div>
     
-    <!-- Chapter Detail View -->
     <div id="chapterView" class="hidden max-w-5xl mx-auto px-4 py-6">
         <div class="mb-6">
             <button id="backToChaptersBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition">
@@ -177,7 +185,7 @@
 <script>
 // ============================================
 // COMPLETE FIXED CHEMISTRY APP
-// Single Selection MCQ + Start Exam Required
+// Preserves ALL content types + Fixed MCQ
 // ============================================
 
 const CHAPTERS_META = [
@@ -211,6 +219,42 @@ function showToast(message, type = 'info') {
     setTimeout(() => toast.remove(), 3000);
 }
 
+function getBengaliLetter(key) {
+    const letters = { 'ka': 'ক', 'kha': 'খ', 'ga': 'গ', 'gha': 'ঘ' };
+    return letters[key] || key.toUpperCase();
+}
+
+// Fisher-Yates shuffle algorithm
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// Shuffle MCQ options and track correct answer mapping
+function shuffleMcqOptions(mcq) {
+    const originalOptions = [...mcq.o];
+    const originalCorrectIndex = mcq.a;
+    const correctAnswerText = originalOptions[originalCorrectIndex];
+    
+    // Create array of option objects with original indices
+    let optionsWithIndex = originalOptions.map((opt, idx) => ({ text: opt, originalIdx: idx }));
+    // Shuffle
+    optionsWithIndex = shuffleArray(optionsWithIndex);
+    
+    // Find new index of correct answer
+    const newOptions = optionsWithIndex.map(item => item.text);
+    const newCorrectIndex = newOptions.findIndex(opt => opt === correctAnswerText);
+    
+    return {
+        ...mcq,
+        o: newOptions,
+        a: newCorrectIndex
+    };
+}
+
 async function loadChapter(chapterId) {
     if (chapterDataCache[chapterId]) return chapterDataCache[chapterId];
     
@@ -221,7 +265,6 @@ async function loadChapter(chapterId) {
         chapterDataCache[chapterId] = data;
         return data;
     } catch (error) {
-        // Sample MCQ for testing - demonstrates single selection
         const sampleMCQ = [
             { q: `${CHAPTERS_META.find(c => c.id === chapterId)?.title} অধ্যায়ের মূল বিষয় কী?`, o: ["পারমাণবিক গঠন", "রাসায়নিক বন্ধন", "মৌলের পর্যায়বৃত্ত ধর্ম", "তাপগতি"], a: 1 },
             { q: "রসায়নের জনক কে?", o: ["আইজ্যাক নিউটন", "অ্যান্টনি ল্যাভয়সিয়ে", "আল-বেরুনি", "জাবির ইবনে হাইয়ান"], a: 3 },
@@ -232,7 +275,14 @@ async function loadChapter(chapterId) {
             topics: [{
                 id: `${chapterId}.1`,
                 title: `${CHAPTERS_META.find(c => c.id === chapterId)?.title || `অধ্যায় ${chapterId}`} - সম্পূর্ণ প্রস্তুতি`,
-                study: { summary: [`• ${CHAPTERS_META.find(c => c.id === chapterId)?.title} অধ্যায়ের বিস্তারিত ব্যাখ্যা ও গুরুত্বপূর্ণ ধারণা।`, '• এনসিটিবি ২০২৬ সিলেবাস অনুযায়ী তৈরি।', '• বহুনির্বাচনী ও সৃজনশীল প্রশ্ন সহ।'] },
+                study: { 
+                    summary: [`• ${CHAPTERS_META.find(c => c.id === chapterId)?.title} অধ্যায়ের বিস্তারিত ব্যাখ্যা ও গুরুত্বপূর্ণ ধারণা।`, '• এনসিটিবি ২০২৬ সিলেবাস অনুযায়ী তৈরি।', '• বহুনির্বাচনী ও সৃজনশীল প্রশ্ন সহ。'],
+                    short_questions: [],
+                    creative_questions: [],
+                    mathematical_examples: [],
+                    chemical_reactions: [],
+                    tables: []
+                },
                 exam: { questions: sampleMCQ }
             }]
         };
@@ -337,7 +387,12 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
     
     const study = topic.study || {};
     const summary = study.summary || [`${topic.title} - বিস্তারিত কন্টেন্ট শীঘ্রই যুক্ত হবে।`];
-    const examQuestions = (topic.exam && topic.exam.questions) || [];
+    const shortQuestions = study.short_questions || [];
+    const creativeQuestions = study.creative_questions || [];
+    const mathExamples = study.mathematical_examples || [];
+    const chemicalReactions = study.chemical_reactions || [];
+    const tables = study.tables || [];
+    let examQuestions = (topic.exam && topic.exam.questions) ? [...topic.exam.questions] : [];
     
     let html = `
         <div>
@@ -355,11 +410,140 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
             </div>
     `;
     
+    // Short Questions
+    if (shortQuestions.length > 0) {
+        html += `
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-question-circle mr-2"></i>সংক্ষিপ্ত প্রশ্নোত্তর</h3>
+                <div class="space-y-3">
+                    ${shortQuestions.map((sq, idx) => `
+                        <div class="border border-white/10 rounded-xl overflow-hidden">
+                            <button class="sq-toggle w-full text-left p-3 font-medium hover:bg-white/5 transition flex justify-between items-center" data-idx="${idx}">
+                                <span>${idx+1}. ${sq.q}</span>
+                                <i class="fas fa-chevron-down text-gray-500"></i>
+                            </button>
+                            <div class="sq-answer hidden p-3 pt-0 text-gray-400 border-t border-white/10">
+                                ${sq.a}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+    
+    // Creative Questions
+    if (creativeQuestions.length > 0) {
+        html += `
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-pencil-alt mr-2"></i>সৃজনশীল প্রশ্ন</h3>
+                <div class="space-y-4">
+                    ${creativeQuestions.map((cq, idx) => {
+                        const paragraphText = cq.paragraph || '';
+                        const subQuestions = cq.sub_questions || {};
+                        return `
+                            <div class="border border-white/10 rounded-xl overflow-hidden">
+                                <button class="cq-toggle w-full text-left hover:bg-white/5 transition flex justify-between items-center p-3 font-medium" data-idx="${idx}">
+                                    <span>${idx+1}. ${paragraphText.substring(0, 100)}${paragraphText.length > 100 ? '...' : ''}</span>
+                                    <i class="fas fa-chevron-down text-gray-500"></i>
+                                </button>
+                                <div class="cq-answer hidden border-t border-white/10 p-3">
+                                    <div class="creative-paragraph mb-3">
+                                        <strong>উদ্দীপক:</strong> ${paragraphText}
+                                    </div>
+                                    ${Object.entries(subQuestions).map(([key, val]) => `
+                                        <div class="sub-question-box mb-3">
+                                            <p class="font-medium text-amber-400">${getBengaliLetter(key)} (${val.marks || '?'} নম্বর)</p>
+                                            <p class="mt-1"><strong>প্রশ্ন:</strong> ${val.question || ''}</p>
+                                            <p class="mt-1 text-green-400"><strong>উত্তর:</strong> ${val.answer || ''}</p>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
+    
+    // Mathematical Examples
+    if (mathExamples.length > 0) {
+        html += `
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-calculator mr-2"></i>গাণিতিক উদাহরণ</h3>
+                <div class="space-y-3">
+                    ${mathExamples.map((ex, idx) => `
+                        <div class="border border-white/10 rounded-xl overflow-hidden">
+                            <button class="math-toggle w-full text-left p-3 font-medium hover:bg-white/5 transition flex justify-between items-center" data-idx="${idx}">
+                                <span>${ex.title || 'গাণিতিক সমস্যা'}</span>
+                                <i class="fas fa-chevron-down text-gray-500"></i>
+                            </button>
+                            <div class="math-answer hidden p-3 pt-0 text-gray-400 border-t border-white/10">
+                                <p><strong>সমস্যা:</strong> ${ex.problem || ''}</p>
+                                <p class="mt-2"><strong>সমাধান:</strong></p>
+                                <p class="whitespace-pre-line">${ex.solution || ''}</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+    
+    // Chemical Reactions
+    if (chemicalReactions.length > 0) {
+        html += `
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-flask mr-2"></i>রাসায়নিক বিক্রিয়া</h3>
+                <div class="space-y-3">
+                    ${chemicalReactions.map((cr, idx) => `
+                        <div class="glass rounded-xl p-3">
+                            <p class="font-mono text-amber-400">${cr.equation || ''}</p>
+                            <p class="text-sm text-gray-400 mt-1">${cr.description || ''}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+    
+    // Tables
+    if (tables.length > 0) {
+        html += `
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>
+                ${tables.map(table => `
+                    <div class="overflow-x-auto mb-4">
+                        <table class="w-full text-sm border border-white/10 rounded-xl">
+                            <thead>
+                                <tr class="border-b border-white/10 bg-white/5">
+                                    ${(table.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${(table.rows || []).map(row => `
+                                    <tr class="border-b border-white/5">
+                                        ${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+    
     // =============== FIXED MCQ SECTION ===============
     if (examQuestions.length > 0) {
+        // Store shuffled questions separately for each exam session
+        let currentShuffledQuestions = [];
+        let userAnswers = [];
+        let examStarted = false;
+        
         html += `
             <div class="mt-8 pt-6 border-t border-white/10">
-                <!-- Clear Instructions Box -->
                 <div class="instruction-box rounded-xl p-4 mb-6">
                     <p class="text-sm text-blue-300"><i class="fas fa-info-circle mr-2"></i><strong>MCQ পরীক্ষার নিয়মাবলী:</strong></p>
                     <ul class="text-xs text-blue-200/80 mt-2 space-y-1 ml-4">
@@ -368,6 +552,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                         <li>✓ প্রতিটি প্রশ্নের জন্য <strong>মাত্র একটি উত্তর</strong> নির্বাচন করতে পারবেন</li>
                         <li>✓ উত্তর না দিলে সেটি <strong>ভুল হিসেবে গণ্য</strong> হবে</li>
                         <li>✓ পরীক্ষা শেষে "উত্তর জমা দিন" বাটনে ক্লিক করে ফলাফল দেখুন</li>
+                        <li>✓ প্রতিবার পরীক্ষা শুরু করলে <strong>উত্তরগুলোর ক্রম পরিবর্তন</strong> হয়</li>
                     </ul>
                 </div>
                 
@@ -398,13 +583,15 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         `;
         container.innerHTML = html;
         
-        // MCQ System Logic - FIXED for single selection
-        let userAnswers = new Array(examQuestions.length).fill(null);
-        let examStarted = false;
+        function shuffleQuestions() {
+            // Shuffle options for each question
+            currentShuffledQuestions = examQuestions.map(q => shuffleMcqOptions({...q}));
+            userAnswers = new Array(currentShuffledQuestions.length).fill(null);
+        }
         
         function renderQuestions() {
             const container = document.getElementById('mcqQuestionsContainer');
-            container.innerHTML = examQuestions.map((mcq, idx) => `
+            container.innerHTML = currentShuffledQuestions.map((mcq, idx) => `
                 <div class="glass rounded-xl p-4 border border-white/10" data-qidx="${idx}">
                     <p class="font-semibold mb-3 text-base"><span class="text-amber-400">${idx+1}.</span> ${mcq.q}</p>
                     <div class="grid gap-2 ml-2" data-question="${idx}">
@@ -418,13 +605,12 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                 </div>
             `).join('');
             
-            // Attach click handlers for SINGLE SELECTION per question
+            // Attach click handlers for SINGLE SELECTION
             document.querySelectorAll('[data-qidx]').forEach(questionDiv => {
                 const qIdx = parseInt(questionDiv.dataset.qidx);
                 const options = questionDiv.querySelectorAll('.mcq-option');
                 
                 options.forEach(opt => {
-                    // Remove any existing listeners by replacing with clone
                     const newOpt = opt.cloneNode(true);
                     opt.parentNode.replaceChild(newOpt, opt);
                     
@@ -438,10 +624,8 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                         
                         const selectedVal = parseInt(newOpt.dataset.optVal);
                         
-                        // If already selected, deselect it
                         if (userAnswers[qIdx] === selectedVal) {
                             userAnswers[qIdx] = null;
-                            // Update UI - remove selection from this question's options
                             const allOptionsInQuestion = document.querySelectorAll(`.mcq-option[data-question="${qIdx}"]`);
                             allOptionsInQuestion.forEach(optInQ => {
                                 const circleSpan = optInQ.querySelector('.option-letter');
@@ -451,9 +635,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                                 }
                             });
                         } else {
-                            // Set new answer (single selection)
                             userAnswers[qIdx] = selectedVal;
-                            // Update UI for this question only
                             const allOptionsInQuestion = document.querySelectorAll(`.mcq-option[data-question="${qIdx}"]`);
                             allOptionsInQuestion.forEach(optInQ => {
                                 const val = parseInt(optInQ.dataset.optVal);
@@ -477,11 +659,11 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         }
         
         function calculateAndShowResult() {
-            const totalQuestions = examQuestions.length;
+            const totalQuestions = currentShuffledQuestions.length;
             let correctCount = 0;
             
             userAnswers.forEach((ans, idx) => {
-                if (ans !== null && ans === examQuestions[idx].a) {
+                if (ans !== null && ans === currentShuffledQuestions[idx].a) {
                     correctCount++;
                 }
             });
@@ -499,12 +681,14 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                     </div>
                     <p class="mt-3 text-gray-300">সঠিক উত্তর: ${correctCount} / মোট: ${totalQuestions}</p>
                     <p class="text-sm text-gray-400 mt-1">অনুত্তরিত প্রশ্নগুলো (${totalQuestions - userAnswers.filter(a => a !== null).length}টি) ভুল হিসেবে গণ্য হয়েছে।</p>
-                    <button id="reviewAnswersBtn" class="mt-4 px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition">
-                        <i class="fas fa-eye mr-1"></i> সঠিক উত্তর দেখুন
-                    </button>
-                    <button id="tryAgainBtn" class="mt-4 ml-3 px-4 py-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition">
-                        <i class="fas fa-redo-alt mr-1"></i> আবার চেষ্টা করুন
-                    </button>
+                    <div class="flex justify-center gap-3 mt-4">
+                        <button id="reviewAnswersBtn" class="px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition">
+                            <i class="fas fa-eye mr-1"></i> সঠিক উত্তর দেখুন
+                        </button>
+                        <button id="tryAgainBtn" class="px-4 py-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition">
+                            <i class="fas fa-redo-alt mr-1"></i> আবার চেষ্টা করুন
+                        </button>
+                    </div>
                 </div>
             `;
             const resultPanel = document.getElementById('mcqResultPanel');
@@ -513,7 +697,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
             
             document.getElementById('reviewAnswersBtn')?.addEventListener('click', () => {
                 document.querySelectorAll('[data-qidx]').forEach((div, idx) => {
-                    const correctIdx = examQuestions[idx].a;
+                    const correctIdx = currentShuffledQuestions[idx].a;
                     const userChoice = userAnswers[idx];
                     const options = div.querySelectorAll('.mcq-option');
                     options.forEach((opt, optIdx) => {
@@ -534,8 +718,8 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         }
         
         function resetExam() {
-            userAnswers.fill(null);
             examStarted = false;
+            userAnswers = new Array(currentShuffledQuestions.length).fill(null);
             const examPanel = document.getElementById('mcqExamPanel');
             const startBtn = document.getElementById('startExamBtn');
             const resultPanel = document.getElementById('mcqResultPanel');
@@ -550,7 +734,6 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
             showToast('পরীক্ষা রিসেট করা হয়েছে। আবার শুরু করতে "পরীক্ষা শুরু করুন" ক্লিক করুন।', 'info');
         }
         
-        // Event bindings
         const startBtn = document.getElementById('startExamBtn');
         const examPanel = document.getElementById('mcqExamPanel');
         const submitBtn = document.getElementById('submitMcqBtn');
@@ -558,6 +741,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         
         if (startBtn) {
             startBtn.onclick = () => {
+                shuffleQuestions(); // Shuffle options every time exam starts
                 examStarted = true;
                 if (examPanel) examPanel.style.display = 'block';
                 startBtn.disabled = true;
@@ -587,27 +771,35 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         html += `<div class="text-center text-gray-400 py-8"><i class="fas fa-flask text-2xl mb-2"></i><p>এই টপিকের জন্য MCQ পরীক্ষা শীঘ্রই যুক্ত হবে।</p></div>`;
         container.innerHTML = html;
     }
+    
+    // Attach toggle handlers
+    setTimeout(() => {
+        document.querySelectorAll('.sq-toggle, .cq-toggle, .math-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const answer = btn.nextElementSibling;
+                const icon = btn.querySelector('.fa-chevron-down');
+                if (answer) {
+                    answer.classList.toggle('hidden');
+                    if (icon) icon.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+                }
+            });
+        });
+    }, 50);
 }
 
 function init() {
     renderChaptersGrid();
     updateOverallProgress();
     
-    const backBtn = document.getElementById('backToChaptersBtn');
-    if (backBtn) {
-        backBtn.addEventListener('click', () => {
-            document.getElementById('chaptersView').classList.remove('hidden');
-            document.getElementById('chapterView').classList.add('hidden');
-            currentChapterId = null;
-        });
-    }
+    document.getElementById('backToChaptersBtn').addEventListener('click', () => {
+        document.getElementById('chaptersView').classList.remove('hidden');
+        document.getElementById('chapterView').classList.add('hidden');
+        currentChapterId = null;
+    });
     
-    const markBtn = document.getElementById('markChapterCompleteBtn');
-    if (markBtn) {
-        markBtn.addEventListener('click', () => {
-            if (currentChapterId) markChapterComplete(currentChapterId);
-        });
-    }
+    document.getElementById('markChapterCompleteBtn').addEventListener('click', () => {
+        if (currentChapterId) markChapterComplete(currentChapterId);
+    });
 }
 
 init();
