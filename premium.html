@@ -3,237 +3,439 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬ | NCTB সিলেবাস | মাসিক/বার্ষিক প্যাকেজ</title>
-    <meta name="description" content="নবম ও দশম শ্রেণির বিজ্ঞান বিভাগের সম্পূর্ণ প্রস্তুতি (পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান)। NCTB ২০২৬ আপডেট সিলেবাস। মাসিক, ত্রৈমাসিক, ষাণ্মাসিক ও বার্ষিক এক্সেস। এসএসসি ২০২৭+ ব্যাচদের জন্য প্রিমিয়াম সাপোর্ট।">
-    <meta name="keywords" content="Class 9-10 science, নবম দশম বিজ্ঞান, NCTB 2026 syllabus, এসএসসি প্রস্তুতি ২০২৭, পদার্থবিজ্ঞান ৯ম-১০ম, রসায়ন ৯ম-১০ম, জীববিজ্ঞান ৯ম-১০ম">
-    <meta name="author" content="National Exam Center">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬ | সঠিক সিলেবাস | ফ্লেক্সিবল প্ল্যান">
-    <meta property="og:description" content="শ্রেণি ৯-১০-এর জন্য আপডেটেড NCTB ২০২৬ সিলেবাস। পদার্থ, রসায়ন, জীববিজ্ঞান । মাসিক থেকে বার্ষিক প্যাকেজ।">
-    <meta property="og:url" content="https://nationalexamcenter.github.io/premium">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://nationalexamcenter.github.io/premium">
+    <title>নবম-দশম রসায়ন প্রস্তুতি ২০২৬ | প্রিমিয়াম এক্সক্লুসিভ</title>
+    <meta name="description" content="নবম ও দশম শ্রেণির রসায়ন (NCTB ২০২৬ আপডেট সিলেবাস) সম্পূর্ণ প্রস্তুতি। আধুনিক টপিক, মডেল টেস্ট, অফলাইন মোড। মাসিক ও বার্ষিক প্যাকেজ।">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts + Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Three.js CDN for 3D object -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+            }
+        }
+    </script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            background: linear-gradient(145deg, #eef4ee 0%, #e2ece2 100%);
-            color: #1a2e1a;
-            line-height: 1.5;
-            padding: 24px;
-            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+            background: #0b0e12;
+            color: #eef5ff;
+            overflow-x: hidden;
         }
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 48px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+        /* custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1a1f2a; }
+        ::-webkit-scrollbar-thumb { background: #ffb347; border-radius: 10px; }
+
+        .glass-panel {
+            background: rgba(18, 25, 45, 0.65);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 180, 70, 0.3);
+            border-radius: 2rem;
+        }
+        .btn-gradient {
+            background: linear-gradient(105deg, #ff9a3c, #ff6a2c);
+            border: none;
+            color: white;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(255, 100, 30, 0.3);
+        }
+        .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 100, 30, 0.5);
+            background: linear-gradient(105deg, #ffaa55, #ff7a3c);
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(120deg, #fff5e6, #ffcf9a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        .topic-badge {
+            background: rgba(255, 165, 75, 0.15);
+            border: 1px solid rgba(255, 165, 75, 0.4);
+            border-radius: 40px;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            backdrop-filter: blur(5px);
+        }
+        .topic-badge:hover {
+            background: rgba(255, 165, 75, 0.35);
+            transform: translateX(5px);
+            border-color: #ffb347;
+        }
+        .card-premium {
+            background: rgba(12, 20, 30, 0.8);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 160, 70, 0.3);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .card-premium:hover {
+            transform: translateY(-8px);
+            border-color: #ffb347;
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.5);
+            background: rgba(20, 32, 48, 0.85);
+        }
+        .floating-wa {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            transition: 0.2s;
+            animation: pulse-wa 1.8s infinite;
+        }
+        @keyframes pulse-wa {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0.5);}
+            70% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(37,211,102,0);}
+            100% { transform: scale(1); }
+        }
+        .hero-3d-container {
+            position: relative;
+            height: 500px;
             overflow: hidden;
+            border-radius: 2rem;
         }
-        .hero-split {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            background: linear-gradient(135deg, #0a2f0e, #1a6e22, #0f4a1a, #2e7d32);
-            background-size: 300% 300%;
-            animation: bgShift 8s ease infinite;
+        canvas#bg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            border-radius: 2rem;
         }
-        @keyframes bgShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .hero-left, .hero-right { padding: 48px 40px; }
-        .hero-left { animation: slideInLeft 0.8s ease-out; color: white; }
-        .hero-right { background: rgba(0, 0, 0, 0.25); backdrop-filter: blur(3px); border-left: 1px solid rgba(255,255,255,0.2); animation: slideInRight 0.8s ease-out; }
-        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes slideInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
-        .hero-badge { background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); display: inline-block; padding: 6px 16px; border-radius: 100px; font-weight: 600; font-size: 13px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.3); }
-        .hero-left h1 { font-size: 44px; font-weight: 800; line-height: 1.2; margin-bottom: 16px; color: white; }
-        .hero-left p { font-size: 16px; opacity: 0.9; margin-bottom: 24px; color: white; }
-        .price-tag { background: #ffb74d; color: #1a3a1a; display: inline-block; padding: 10px 24px; border-radius: 60px; font-weight: 800; font-size: 22px; margin: 16px 0; }
-        .access-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 8px 20px; border-radius: 40px; font-size: 14px; font-weight: 500; color: white; }
-        .btn-download-hero { background: white; color: #1b5e20; border: none; padding: 14px 32px; font-size: 18px; font-weight: 700; border-radius: 60px; display: inline-flex; align-items: center; gap: 12px; text-decoration: none; transition: 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.2); animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); box-shadow: 0 8px 25px rgba(255,183,77,0.6); } 100% { transform: scale(1); } }
-        .btn-download-hero:hover { transform: translateY(-2px); animation: none; background: #fff5e6; }
-        .btn-primary { background: linear-gradient(95deg, #2e7d32, #1b5e20); color: white; border: none; padding: 14px 40px; font-size: 18px; font-weight: 700; border-radius: 60px; display: inline-flex; align-items: center; gap: 12px; text-decoration: none; box-shadow: 0 4px 12px rgba(46,125,50,0.3); cursor: pointer; transition: 0.2s; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(46,125,50,0.4); }
-        .hero-features-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-bottom: 24px; }
-        .hero-feature-item { background: rgba(255,255,255,0.15); border-radius: 20px; padding: 12px 14px; backdrop-filter: blur(4px); color: white; transition: 0.2s; }
-        .hero-feature-item:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
-        .hero-feature-item span { font-size: 24px; margin-right: 10px; }
-        .hero-subjects { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
-        .hero-subject-tag { background: rgba(255,183,77,0.3); padding: 5px 12px; border-radius: 40px; font-size: 12px; font-weight: 500; border: 1px solid rgba(255,183,77,0.6); color: white; }
-        .plan-grid { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; margin: 16px 0; }
-        .plan-card { background: white; border-radius: 24px; padding: 16px; text-align: center; flex: 1; min-width: 120px; transition: 0.2s; border: 1px solid #c8e0c8; cursor: pointer; }
-        .plan-card:hover { transform: translateY(-4px); box-shadow: 0 12px 20px rgba(0,0,0,0.1); background: #fffdf7; }
-        .plan-price { font-size: 24px; font-weight: 800; color: #d84315; }
-        .plan-badge { background: #2e7d32; color: white; border-radius: 40px; padding: 4px 12px; font-size: 12px; display: inline-block; margin-top: 8px; }
-        .content { padding: 0 48px 48px; }
-        .section-header { margin: 56px 0 28px; }
-        .section-header h2 { font-size: 32px; font-weight: 700; color: #1a3a1a; display: inline-block; position: relative; }
-        .section-header h2::after { content: ''; position: absolute; bottom: -12px; left: 0; width: 60px; height: 4px; background: #ffb74d; border-radius: 4px; }
-        .subject-grid-pro { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px,1fr)); gap: 28px; }
-        .subject-pro-card { background: #ffffff; border-radius: 28px; padding: 28px; border: 1px solid #e2f0e2; transition: 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
-        .subject-pro-card:hover { transform: translateY(-5px); box-shadow: 0 20px 35px rgba(46,125,50,0.15); border-color: #ffb74d; }
-        .subject-pro-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; border-bottom: 2px solid #ffd966; padding-bottom: 16px; }
-        .subject-icon { font-size: 36px; }
-        .subject-pro-header h3 { font-size: 22px; font-weight: 700; color: #1b5e20; }
-        .topic-list-pro { list-style: none; display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
-        .topic-list-pro li { background: #f4faf4; padding: 8px 14px; border-radius: 40px; font-size: 13px; color: #2c5a2c; font-weight: 500; border: 1px solid #d4e6d4; transition: 0.2s; }
-        .topic-list-pro li:hover { background: #e8f5e9; transform: translateX(3px); }
-        .reviews-pro { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 28px; margin: 32px 0; }
-        .review-pro-card { background: #fefdf8; border-radius: 24px; padding: 24px; border: 1px solid #eaeed9; }
-        .stars { color: #ffb74d; font-size: 20px; letter-spacing: 2px; margin-bottom: 12px; }
-        .pricing-table { background: linear-gradient(145deg, #fff9f0, #fff4e8); border-radius: 40px; padding: 32px; margin: 48px 0; border: 2px solid #ffd966; }
-        .pricing-flex { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; margin-top: 24px; }
-        .access-plan-card { background: white; border-radius: 28px; padding: 28px 20px; text-align: center; flex: 1; min-width: 180px; transition: 0.2s; box-shadow: 0 8px 20px rgba(0,0,0,0.05); cursor: pointer; }
-        .access-plan-card:hover { transform: scale(1.02); background: #fffef7; }
-        .plan-name { font-size: 28px; font-weight: 800; color: #1b5e20; }
-        .plan-cost { font-size: 32px; font-weight: 800; color: #d84315; margin: 12px 0; }
-        .btn-select-plan { background: #2e7d32; color: white; border: none; padding: 10px 24px; border-radius: 60px; font-weight: 600; margin-top: 16px; cursor: pointer; transition: 0.2s; width: 100%; }
-        .btn-select-plan:hover { background: #1b5e20; transform: scale(0.98); }
-        .contact-pro { background: #f0f7f0; border-radius: 32px; padding: 32px; margin: 40px 0; }
-        .contact-row { display: flex; align-items: center; gap: 16px; background: white; padding: 12px 24px; border-radius: 60px; margin-bottom: 12px; flex-wrap: wrap; }
-        .faq-pro-item { border: 1px solid #e0ece0; border-radius: 20px; margin-bottom: 12px; }
-        .faq-question-pro { width: 100%; background: white; border: none; padding: 20px 24px; font-weight: 600; font-size: 16px; text-align: left; display: flex; justify-content: space-between; cursor: pointer; border-radius: 20px; }
-        .faq-answer-pro { display: none; padding: 8px 24px 24px; border-top: 1px solid #e0ece0; color: #4a5a4a; }
-        .footer-pro { background: #0a2f0e; color: #bcd0bc; text-align: center; padding: 40px; font-size: 14px; }
-        .whatsapp-float { position: fixed; bottom: 28px; right: 28px; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; text-decoration: none; color: white; box-shadow: 0 6px 20px rgba(0,0,0,0.2); z-index: 1000; animation: pulse 1.5s infinite; }
-        @media (max-width: 900px) { .hero-split { grid-template-columns: 1fr; } .hero-right { border-left: none; border-top: 1px solid rgba(255,255,255,0.2); } .content { padding: 0 24px 32px; } .topic-list-pro { grid-template-columns: 1fr; } }
-        @media (max-width: 550px) { .hero-left h1 { font-size: 32px; } .plan-grid { flex-direction: column; } .pricing-flex { flex-direction: column; } }
-        .bkash-badge { background: #E2136E; color: white; padding: 4px 12px; border-radius: 30px; font-size: 12px; font-weight: 600; display: inline-block; margin-left: 8px; }
-        .referral-code-area { background: rgba(255,183,77,0.2); border-radius: 40px; padding: 12px 16px; margin-top: 20px; text-align: center; }
-        .code-box { background: #1b5e20; color: white; font-family: monospace; padding: 6px 12px; border-radius: 40px; font-weight: bold; letter-spacing: 1px; display: inline-block; margin: 0 8px; }
-        .btn-copy { background: #ffb74d; border: none; padding: 4px 12px; border-radius: 30px; font-weight: 600; cursor: pointer; }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 3rem;
+        }
+        @media (max-width: 768px) {
+            .section-title { font-size: 1.8rem; }
+            .hero-content { padding: 1.8rem; }
+            .hero-3d-container { height: 420px; }
+        }
+        .plan-selector {
+            background: #0f1622;
+            border-radius: 2rem;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .plan-selector.active {
+            background: linear-gradient(145deg, #2a1f12, #1f1a10);
+            border: 1px solid #ffb347;
+            box-shadow: 0 0 15px rgba(255,180,70,0.3);
+        }
+        .faq-btn {
+            background: transparent;
+            width: 100%;
+            text-align: left;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            color: #ffddbb;
+            border: none;
+            border-bottom: 1px solid rgba(255,180,70,0.2);
+        }
+        .code-glow {
+            background: #1b2a2f;
+            padding: 0.5rem 1rem;
+            border-radius: 60px;
+            font-family: monospace;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #ffb347;
+        }
+        input, button {
+            font-family: 'Inter', sans-serif;
+        }
+        .animated-gradient-bg {
+            background: radial-gradient(circle at 30% 10%, #0e1a24, #03070f);
+        }
     </style>
 </head>
-<body>
+<body class="animated-gradient-bg">
 
-<div class="container">
-    <div class="hero-split">
-        <div class="hero-left">
-            <div class="hero-badge">📘 নবম-দশম শ্রেণির জন্য সম্পূর্ণ প্রস্তুতি</div>
-            <div style="margin-bottom: 24px;">
-                <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" class="btn-download-hero" target="_blank">📥 <strong>অ্যাপ ডাউনলোড করুন (Google Drive)</strong></a>
-                <p style="font-size: 11px; margin-top: 8px; opacity: 0.8;">পেমেন্টের পর লগইন তথ্য পাবেন</p>
+<div class="container mx-auto px-4 md:px-8 max-w-7xl">
+    <!-- 3D Hero Section + Premium branding -->
+    <div class="hero-3d-container mt-6 md:mt-10 relative">
+        <canvas id="bg-canvas"></canvas>
+        <div class="hero-content absolute inset-0 flex flex-col justify-between">
+            <div class="flex justify-between items-start flex-wrap gap-4">
+                <div class="glass-panel px-5 py-2 rounded-full text-sm font-semibold">
+                    <i class="fas fa-flask"></i> রসায়ন প্রিমিয়াম | NCTB ২০২৬ সিলেবাস
+                </div>
+                <div class="glass-panel px-5 py-2 rounded-full text-sm">
+                    <i class="fas fa-rocket"></i> এসএসসি ২০২৭+ ব্যাচ
+                </div>
             </div>
-            <h1>নবম-দশম বিজ্ঞান প্রস্তুতি<br>NCTB ২০২৬ আপডেট সিলেবাস</h1>
-            <p>পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান - সর্বশেষ প্যাটার্ন ও ক্রমবর্ধমান সিলেবাস। এসএসসি ২০২৭, ২০২৮ ব্যাচদের জন্য উপযোগী।</p>
-            <div class="price-tag">মাসিক ১০০ টাকা থেকে শুরু</div>
-            <div class="access-badge">✅ ফ্লেক্সিবল প্ল্যান: মাসিক / ত্রৈমাসিক / ষাণ্মাসিক / বার্ষিক</div>
-            <p style="font-size: 14px; opacity: 0.8; margin-top: 16px;">✅ Android 5.0+ | অফলাইন মোড | লাইভ আপডেট</p>
-        </div>
-        <div class="hero-right">
-            <div class="hero-badge" style="background: #ffb74d; color: #1a3a1a;">🔭 বিজ্ঞান বিভাগীয় আপডেট টপিক</div>
-            <div class="hero-subjects">
-                <span class="hero-subject-tag">⚛️ পদার্থবিজ্ঞান (আধুনিক)</span>
-                <span class="hero-subject-tag">🧪 রসায়ন (পিরিয়ডিক ট্রেন্ড)</span>
-                <span class="hero-subject-tag">🧬 জীববিজ্ঞান (বায়োটেক)</span>
-                <span class="hero-subject-tag">📘 বাংলা-ইংরেজি (গ্রামার)</span>
+            <div class="mt-8 md:mt-12">
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight"><span class="bg-gradient-to-r from-orange-300 to-amber-500 bg-clip-text text-transparent">নবম-দশম<br>রসায়ন প্রস্তুতি</span></h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-xl mt-4">সম্পূর্ণ আপডেট কন্টেন্ট: পর্যায় সারণি, মোল, জৈব রসায়ন, অ্যাসিড-ক্ষার ও আধুনিক টপিক। পকেটেই সম্পূর্ণ ল্যাব।</p>
+                <div class="flex flex-wrap gap-4 mt-8">
+                    <a href="#pricing" class="btn-gradient px-8 py-3 rounded-full font-bold text-lg"><i class="fas fa-crown mr-2"></i>প্ল্যান নির্বাচন</a>
+                    <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" target="_blank" class="bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full font-semibold transition hover:bg-white/20"><i class="fab fa-android"></i> অ্যাপ ডাউনলোড</a>
+                </div>
             </div>
-            <div class="hero-features-grid">
-                <div class="hero-feature-item"><span>∞</span> <strong>অগনিত MCQ</strong><small style="display:block">বোর্ড পরীক্ষার ধরণে</small></div>
-                <div class="hero-feature-item"><span>✍️</span> <strong>CQ + SQ ব্যাংক</strong><small style="display:block">সৃজনশীল ও সংক্ষিপ্ত</small></div>
-                <div class="hero-feature-item"><span>📖</span> <strong>থিওরি + সূত্র</strong><small style="display:block">চিত্রায়িত ব্যাখ্যা</small></div>
-                <div class="hero-feature-item"><span>📴</span> <strong>অফলাইন স্টাডি</strong><small style="display:block">যেকোনো সময়</small></div>
-            </div>
-            <div class="plan-grid">
-                <div class="plan-card" data-plan="মাসিক (50৳)"><div class="plan-price">১০০৳/বিষয়</div><div>মাসিক</div><div class="plan-badge">১ মাস</div></div>
-                <div class="plan-card" data-plan="ত্রৈমাসিক (130৳)"><div class="plan-price">২৭৫৳/বিষয়</div><div>ত্রৈমাসিক</div><div class="plan-badge">৩ মাস</div></div>
-                <div class="plan-card" data-plan="ষাণ্মাসিক (250৳)"><div class="plan-price">৫০০৳/বিষয়</div><div>ষাণ্মাসিক</div><div class="plan-badge">৬ মাস</div></div>
-                <div class="plan-card" data-plan="বার্ষিক (450৳)"><div class="plan-price">৯০০৳/বিষয়</div><div>বার্ষিক</div><div class="plan-badge">১২ মাস + ফ্রি রেফারেল</div></div>
-            </div>
-            <div class="referral-code-area">
-                <span>🤝 আপনার রেফারেল কোড: </span><span class="code-box" id="heroReferralCode">SCI9XXXX</span>
-                <button class="btn-copy" id="copyHeroCode">📋 কপি</button>
-                <p style="font-size:12px; margin-top:8px;">প্রতি সাবস্ক্রিপশনে ১০% ক্যাশব্যাক!</p>
+            <div class="mt-8 flex gap-3 flex-wrap">
+                <div class="glass-panel px-4 py-1.5 rounded-full text-xs"><i class="fas fa-chalkboard-user"></i> 100+ টপিক</div>
+                <div class="glass-panel px-4 py-1.5 rounded-full text-xs"><i class="fas fa-chart-line"></i> মডেল টেস্ট</div>
+                <div class="glass-panel px-4 py-1.5 rounded-full text-xs"><i class="fas fa-database"></i> অফলাইন স্টাডি</div>
             </div>
         </div>
     </div>
 
-    <div class="content">
-        <div class="section-header"><h2>📖 NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী সম্পূর্ণ কাভারেজ (নবম-দশম)</h2></div>
-        <div class="subject-grid-pro">
-            <div class="subject-pro-card"><div class="subject-pro-header"><span class="subject-icon">⚛️</span><h3>পদার্থবিজ্ঞান (৯ম-১০ম)</h3></div><ul class="topic-list-pro"><li>ভৌত রাশি ও একক (আধুনিক পদ্ধতি)</li><li>গতি, বল ও নিউটনের সূত্র</li><li>মহাকর্ষ ও অভিকর্ষজ ত্বরণ</li><li>কাজ, শক্তি ও ক্ষমতা (সংরক্ষণশীল বল)</li><li>তরঙ্গ, শব্দ ও ডপলার ক্রিয়া</li><li>আলোর প্রতিফলন, প্রতিসরণ, লেন্স</li><li>স্থির তড়িৎ ও তড়িৎক্ষেত্র</li><li>কারেন্ট, ভোল্টেজ, ওহমের সূত্র</li><li>চুম্বকত্ব ও তড়িৎচুম্বকীয় আবেশ</li><li>পরমাণু ও নিউক্লিয়ার ফিজিক্স (বিকিরণ)</li></ul></div>
-            <div class="subject-pro-card"><div class="subject-pro-header"><span class="subject-icon">🧪</span><h3>রসায়ন (আপডেট সিলেবাস)</h3></div><ul class="topic-list-pro"><li>পদার্থের গঠন ও অবস্থার পরিবর্তন</li><li>পরমাণুর মডেল, কোয়ান্টাম সংখ্যা</li><li>পর্যায় সারণী ও ইলেকট্রন বিন্যাস</li><li>রাসায়নিক বন্ধন (আয়নীয়, সমযোজী, ধাতব)</li><li>মোল, স্টোইকিওমেট্রি ও গ্যাসের আচরণ</li><li>এসিড, ক্ষার, লবণ ও বাফার দ্রবণ</li><li>জারণ-বিজারণ, ইলেক্ট্রোকেমিস্ট্রি</li><li>জৈব রসায়ন: হাইড্রোকার্বন ও কার্বনিল</li><li>পলিমার, সার, দৈনন্দিন রসায়ন</li><li>পরিবেশ রসায়ন (পিএইচ, দূষণ)</li></ul></div>
-            <div class="subject-pro-card"><div class="subject-pro-header"><span class="subject-icon">🧬</span><h3>জীববিজ্ঞান (নতুন কারিকুলাম)</h3></div><ul class="topic-list-pro"><li>জীবের প্রকারভেদ ও শ্রেণিবিন্যাস</li><li>কোষের গঠন, অর্গানেল ও টিস্যু</li><li>কোষ বিভাজন (মাইটোসিস ও মিয়োসিস)</li><li>পুষ্টি, সালোকসংশ্লেষণ ও শ্বসন</li><li>উদ্ভিদ ও প্রাণীর প্রজনন (অঙ্গসংস্থান)</li><li>বংশগতি, ডিএনএ প্রতিলিপি ও জিন</li><li>জীববৈচিত্র্য ও সংরক্ষণ</li><li>ইকোসিস্টেম, শক্তি প্রবাহ ও বায়োম</li><li>রোগ প্রতিরোধ, ভ্যাকসিন ও স্বাস্থ্য</li><li>বায়োটেকনোলজি (জিন প্রকৌশল)</li></ul></div>
+    <!-- Highlight: Full Chemistry as per updated topics -->
+    <div class="mt-20">
+        <div class="flex items-center gap-3">
+            <i class="fas fa-atom text-4xl text-amber-400"></i>
+            <h2 class="section-title">সম্পূর্ণ রসায়ন সিলেবাস (NCTB ২০২৬)</h2>
         </div>
-
-        <div class="section-header"><h2>🎯 ফ্লেক্সিবল এক্সেস প্ল্যান (শ্রেণি ৯-১০ ও এসএসসি ২০২৭+)</h2></div>
-        <div class="pricing-table">
-            <p style="text-align:center; font-size:18px;">আপনার প্রয়োজন অনুযায়ী সাবস্ক্রিপশন নির্বাচন করুন। যেকোনো সময় আপগ্রেড বা রিনিউ করতে পারবেন।</p>
-            <div class="pricing-flex">
-                <div class="access-plan-card" data-plan="মাসিক (100৳/বিষয়)"><div class="plan-name">মাসিক</div><div class="plan-cost">১০০ টাকা</div><p>৩০ দিন সম্পূর্ণ অ্যাক্সেস</p><button class="btn-select-plan">সিলেক্ট করুন</button></div>
-                <div class="access-plan-card" data-plan="ত্রৈমাসিক (275৳/বিষয়)"><div class="plan-name">ত্রৈমাসিক</div><div class="plan-cost">২৭৫ টাকা</div><p>৯০ দিন + ফ্রি রেফারেল বোনাস</p><button class="btn-select-plan">সিলেক্ট করুন</button></div>
-                <div class="access-plan-card" data-plan="ষাণ্মাসিক (500৳/বিষয়)"><div class="plan-name">ষাণ্মাসিক</div><div class="plan-cost">৫০০ টাকা</div><p>১৮০ দিন + স্পেশাল কুইজ</p><button class="btn-select-plan">সিলেক্ট করুন</button></div>
-                <div class="access-plan-card" data-plan="বার্ষিক (900৳/বিষয়)"><div class="plan-name">বার্ষিক/ফুল এক্সেস</div><div class="plan-cost">৯০০ টাকা</div><p>৩৬৫ দিন / এসএসসি ২০২৭ পর্যন্ত</p><button class="btn-select-plan">সিলেক্ট করুন</button></div>
-            </div>
-        </div>
-
-        <div class="section-header"><h2>💬 শিক্ষার্থীদের মতামত</h2></div>
-        <div class="reviews-pro">
-            <div class="review-pro-card"><div class="stars">★★★★★</div><p>"নতুন সিলেবাসের পদার্থ ও রসায়ন অধ্যায়গুলো খুব সুন্দরভাবে ব্যাখ্যা করা আছে। মাসিক প্যাকেজটা আমার জন্য পারফেক্ট।"</p><strong>— মেহরিন হোসেন, নবম শ্রেণি</strong></div>
-            <div class="review-pro-card"><div class="stars">★★★★★</div><p>"জীববিজ্ঞানের ডায়াগ্রাম ও বায়োটেক টপিক চমৎকার। ষাণ্মাসিক প্ল্যান নিয়ে ভালো করছি।"</p><strong>— শাহরিয়ার রহমান, দশম শ্রেণি</strong></div>
-            <div class="review-pro-card"><div class="stars">★★★★★</div><p>"বার্ষিক সাবস্ক্রিপশন নিয়েছি। এসএসসি ২০২৭-এর জন্য আগে থেকেই প্রস্তুতি নিচ্ছি। রেফারেল সুবিধাও দারুণ।"</p><strong>— আবিদ হাসান, নবম শ্রেণি</strong></div>
-        </div>
-
-        <div class="section-header"><h2>💰 পেমেন্ট ও রেজিস্ট্রেশন প্রক্রিয়া</h2></div>
-        <div class="contact-pro">
-            <div class="contact-row"><span>📱</span> <strong>bKash (Personal):</strong> Whatsapp/Facebook এ যোগাযোগ করুন। <span class="bkash-badge">bKash</span></div>
-            <div class="contact-row"><span>💬</span> <strong>WhatsApp:</strong> +8801602105447 (পেমেন্ট স্ক্রিনশট + পছন্দের প্ল্যান ও ইমেইল পাঠান)</div>
-            <div class="contact-row"><span>✉️</span> <strong>ইমেইল সাপোর্ট:</strong> nationalexamcenter@gmail.com</div>
-            <ol style="margin:24px 0 0 24px;"><li>Google Drive থেকে অ্যাপ ডাউনলোড করুন</li><li>আপনার পছন্দমতো প্ল্যান (মাসিক/ত্রৈমাসিক/ষাণ্মাসিক/বার্ষিক) অনুযায়ী bKash-এ সঠিক টাকা সেন্ড মানি করুন</li><li>স্ক্রিনশট + আপনার ইমেইল ও পছন্দের প্ল্যানের নাম WhatsApp করুন</li><li>১ ঘণ্টার মধ্যে ইউজারনেম ও পাসওয়ার্ড পেয়ে যাবেন</li></ol>
-        </div>
-
-        <div class="section-header"><h2>❓ FAQs (নবম-দশম ও এসএসসি ব্যাচ ২০২৭+)</h2></div>
-        <div>
-            <div class="faq-pro-item"><button class="faq-question-pro" onclick="toggleFaq(1)">🔰 এই অ্যাপ কি শুধু এসএসসি ২০২৬-এর জন্য? <span>▼</span></button><div class="faq-answer-pro" id="faq1">না, এটি বর্তমানে নবম ও দশম শ্রেণির (NCTB ২০২৬ আপডেটেড সিলেবাস) জন্য তৈরি। পরবর্তী এসএসসি ২০২৭, ২০২৮ ব্যাচদের জন্যও একই কন্টেন্ট আপডেট হবে।</div></div>
-            <div class="faq-pro-item"><button class="faq-question-pro" onclick="toggleFaq(2)">📅 মাসিক প্ল্যান রিনিউ করতে হবে? <span>▼</span></button><div class="faq-answer-pro" id="faq2">হ্যাঁ, মাসিক প্ল্যান স্বয়ংক্রিয় নয়; সময় শেষ হলে পুনরায় পেমেন্ট করে রিনিউ করতে হবে। বার্ষিক প্ল্যান নিলে চিন্তা নেই।</div></div>
-            <div class="faq-pro-item"><button class="faq-question-pro" onclick="toggleFaq(3)">🎯 অ্যাপে কি প্র্যাকটিস সেট আছে? <span>▼</span></button><div class="faq-answer-pro" id="faq3">অবশ্যই। অধ্যায়ভিত্তিক MCQ, CQ, সৃজনশীল মডেল টেস্ট ও সম্পূর্ণ সাজেশন রয়েছে। সবকিছু অফলাইনে চালানো যায়।</div></div>
-            <div class="faq-pro-item"><button class="faq-question-pro" onclick="toggleFaq(4)">💡 বার্ষিক প্ল্যান নিলে কী কী সুবিধা? <span>▼</span></button><div class="faq-answer-pro" id="faq4">১২ মাস পূর্ণ অ্যাক্সেস, ফ্রি রেফারেল বোনাস, স্পেশাল ডাউট ক্লিয়ার সেশন এবং SSC2027 ব্যাচের জন্য আগাম আপডেট সহায়তা।</div></div>
-            <div class="faq-pro-item"><button class="faq-question-pro" onclick="toggleFaq(5)">👥 রেফারেল প্রোগ্রাম কিভাবে কাজ করে? <span>▼</span></button><div class="faq-answer-pro" id="faq5">আপনার ইউনিক কোড বন্ধুকে দিন। সে পেমেন্টের সময় আপনার কোড দিলে তার সাবস্ক্রিপশন মূল্যের ২০% ক্যাশব্যাক আপনি পাবেন, যা পরবর্তী রিনিউয়ালে ব্যবহার করতে পারবেন।</div></div>
+        <p class="text-gray-300 mb-6">নিচের ১২টি অধ্যায় ও ১০০+ সাবটপিক বিস্তারিত ব্যাখ্যা, ফর্মুলা শীট, সৃজনশীল ও এমসিকিউ সেট সহ।</p>
+        <!-- Show detailed Chemistry topics from given list -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <!-- Dynamic injection of chemistry topics via JS (based on provided txt content) -->
+            <div id="chemistryTopicsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 col-span-full"></div>
         </div>
     </div>
-    <div class="footer-pro">
-        <p>© ২০২৬ National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি (NCTB ২০২৬ সিলেবাস) | এসএসসি ২০২৭+ ব্যাচদের জন্য প্রিমিয়াম সাপোর্ট</p>
+
+    <!-- Coming soon cards for Physics & Biology (premium design) -->
+    <div class="mt-20">
+        <div class="flex justify-between items-center flex-wrap border-b border-amber-500/30 pb-3 mb-8">
+            <h2 class="section-title text-3xl">অন্যান্য বিভাগ</h2>
+            <span class="bg-amber-600/20 px-4 py-1 rounded-full text-sm"><i class="fas fa-hourglass-half"></i> শীঘ্রই আসছে</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="card-premium p-8 text-center relative overflow-hidden group">
+                <div class="absolute top-0 right-0 bg-black/40 px-4 py-1 rounded-bl-2xl text-amber-300 text-sm"><i class="fas fa-microchip"></i> Coming</div>
+                <i class="fas fa-atom text-5xl text-amber-400/70 mb-4"></i>
+                <h3 class="text-2xl font-bold">পদার্থবিজ্ঞান</h3>
+                <p class="text-gray-400">গতি, বল, তরঙ্গ, আলো, তড়িৎচুম্বকত্ব সহ সম্পূর্ণ আপডেট সিলেবাস</p>
+                <div class="mt-5 inline-block px-6 py-2 rounded-full border border-amber-500/40 text-amber-300 text-sm">প্রস্তুতির কাজ চলছে ⚡</div>
+            </div>
+            <div class="card-premium p-8 text-center relative overflow-hidden group">
+                <div class="absolute top-0 right-0 bg-black/40 px-4 py-1 rounded-bl-2xl text-amber-300 text-sm"><i class="fas fa-seedling"></i> Coming</div>
+                <i class="fas fa-dna text-5xl text-amber-400/70 mb-4"></i>
+                <h3 class="text-2xl font-bold">জীববিজ্ঞান</h3>
+                <p class="text-gray-400">কোষ, শারীরতত্ত্ব, বংশগতি, বায়োটেক, ইকোসিস্টেম ও স্বাস্থ্য</p>
+                <div class="mt-5 inline-block px-6 py-2 rounded-full border border-amber-500/40 text-amber-300 text-sm">শীঘ্রই এক্সক্লুসিভ আপডেট 🔬</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Flex Plans (modern) -->
+    <div id="pricing" class="mt-24">
+        <div class="text-center mb-12">
+            <h2 class="section-title">ফ্লেক্সিবল এক্সেস প্ল্যান</h2>
+            <p class="text-gray-300">আপনার চাহিদা অনুযায়ী মাসিক বা বার্ষিক সাবস্ক্রিপশন বেছে নিন</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="card-premium p-6 text-center cursor-pointer transition-all plan-card" data-plan="মাসিক (১০০৳)">
+                <div class="text-3xl font-black">মাসিক</div>
+                <div class="text-4xl font-extrabold text-amber-400 my-3">১০০৳</div>
+                <p class="text-sm">৩০ দিন পূর্ণ অ্যাক্সেস</p>
+                <button class="mt-5 w-full py-2 rounded-full border border-amber-500 hover:bg-amber-500/20 transition select-plan-btn">সিলেক্ট করুন</button>
+            </div>
+            <div class="card-premium p-6 text-center cursor-pointer transition-all plan-card" data-plan="ত্রৈমাসিক (২৭৫৳)">
+                <div class="text-3xl font-black">ত্রৈমাসিক</div>
+                <div class="text-4xl font-extrabold text-amber-400 my-3">২৭৫৳</div>
+                <p class="text-sm">৯০ দিন + রেফারেল বোনাস</p>
+                <button class="mt-5 w-full py-2 rounded-full border border-amber-500 hover:bg-amber-500/20 transition select-plan-btn">সিলেক্ট করুন</button>
+            </div>
+            <div class="card-premium p-6 text-center cursor-pointer transition-all plan-card" data-plan="ষাণ্মাসিক (৫০০৳)">
+                <div class="text-3xl font-black">ষাণ্মাসিক</div>
+                <div class="text-4xl font-extrabold text-amber-400 my-3">৫০০৳</div>
+                <p class="text-sm">৬ মাস + স্পেশাল কুইজ</p>
+                <button class="mt-5 w-full py-2 rounded-full border border-amber-500 hover:bg-amber-500/20 transition select-plan-btn">সিলেক্ট করুন</button>
+            </div>
+            <div class="card-premium p-6 text-center bg-gradient-to-b from-amber-900/20 to-transparent border-2 border-amber-500/60 plan-card" data-plan="বার্ষিক (৯০০৳)">
+                <div class="text-3xl font-black">বার্ষিক <span class="text-xs bg-amber-600 px-2 rounded-full">বেস্ট ভ্যালু</span></div>
+                <div class="text-4xl font-extrabold text-amber-300 my-3">৯০০৳</div>
+                <p class="text-sm">৩৬৫ দিন + এসএসসি ২০২৭ পর্যন্ত সাপোর্ট</p>
+                <button class="mt-5 w-full py-2 rounded-full bg-amber-600/80 hover:bg-amber-500 transition font-bold select-plan-btn">সিলেক্ট করুন</button>
+            </div>
+        </div>
+        <div class="glass-panel p-5 mt-8 text-center flex flex-wrap justify-between items-center gap-3">
+            <div><i class="fab fa-bkash text-pink-400 text-xl"></i> <strong>bKash পেমেন্ট : </strong> ০১৬০২১০৫৪৪৭ (Personal)</div>
+            <div><span class="code-glow"><i class="fas fa-gift"></i> আপনার কোড: <span id="displayRefCode">CHEMXXXX</span></span>
+            <button id="copyRefBtn" class="ml-2 bg-amber-700 px-3 py-1 rounded-full text-xs">কপি</button></div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="mt-20">
+        <h2 class="section-title text-center">শিক্ষার্থীদের প্রতিক্রিয়া</h2>
+        <div class="grid md:grid-cols-3 gap-6 mt-10">
+            <div class="card-premium p-6"><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><p class="mt-3">"রসায়নের প্রতিটি অধ্যায় এত সুন্দর করে দেওয়া আছে। মোল ও স্টোইকিওমেট্রি অংশ অসাধারণ!"</p><p class="text-amber-300 mt-2">— আবির হাসান, দশম শ্রেণি</p></div>
+            <div class="card-premium p-6"><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><p class="mt-3">"পর্যায় সারণি ও রাসায়নিক বন্ধন টপিক ক্লিয়ার করতে অ্যাপটাই যথেষ্ট। বার্ষিক প্ল্যান নিয়েছি।"</p><p class="text-amber-300 mt-2">— জান্নাতুল ফেরদৌস, নবম</p></div>
+            <div class="card-premium p-6"><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><p class="mt-3">"অফলাইন মোড ও মডেল টেস্ট এসএসসি প্রস্তুতিতে সাহায্য করছে। দারুণ প্ল্যাটফর্ম!"</p><p class="text-amber-300 mt-2">— রাইসুল ইসলাম</p></div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="mt-20 mb-16">
+        <h2 class="section-title">প্রায়শই জিজ্ঞাসিত প্রশ্ন</h2>
+        <div class="space-y-3 mt-6">
+            <div class="card-premium overflow-hidden"><button class="faq-btn w-full flex justify-between items-center" onclick="toggleFaq(1)">এই অ্যাপ কি শুধু রসায়নের জন্য? <i class="fas fa-chevron-down"></i></button><div id="faq1" class="px-6 pb-4 text-gray-300 hidden">এই প্রিমিয়াম ভার্সনে সম্পূর্ণ রসায়ন কভার করা হয়েছে। পদার্থবিজ্ঞান ও জীববিজ্ঞান খুব শীঘ্রই আপডেট হবে (কামিং সুন)</div></div>
+            <div class="card-premium overflow-hidden"><button class="faq-btn w-full flex justify-between items-center" onclick="toggleFaq(2)">কিভাবে পেমেন্ট করে অ্যাক্সেস নেব? <i class="fas fa-chevron-down"></i></button><div id="faq2" class="px-6 pb-4 text-gray-300 hidden">bKash এ টাকা পাঠানোর পর স্ক্রিনশট ও আপনার পছন্দের প্ল্যান হোয়াটসঅ্যাপে (+8801602105447) দিলে ১ ঘণ্টার মধ্যে ইউজারনেম পাসওয়ার্ড পেয়ে যাবেন।</div></div>
+            <div class="card-premium overflow-hidden"><button class="faq-btn w-full flex justify-between items-center" onclick="toggleFaq(3)">পদার্থবিজ্ঞান ও জীববিজ্ঞান কখন আসবে? <i class="fas fa-chevron-down"></i></button><div id="faq3" class="px-6 pb-4 text-gray-300 hidden">আমাদের দল আপডেট নিয়ে কাজ করছে। আগামী ২-৩ মাসের মধ্যে সম্পূর্ণ পদার্থবিজ্ঞান ও জীববিজ্ঞান অ্যাড হবে, এবং বর্তমান গ্রাহকরা ফ্রি আপডেট পাবেন।</div></div>
+            <div class="card-premium overflow-hidden"><button class="faq-btn w-full flex justify-between items-center" onclick="toggleFaq(4)">রেফারেল সিস্টেম বুঝিয়ে বলুন? <i class="fas fa-chevron-down"></i></button><div id="faq4" class="px-6 pb-4 text-gray-300 hidden">আপনার ইউনিক রেফারেল কোড বন্ধুকে দিন। সে সাবস্ক্রাইব করলে তার পেমেন্টের ২০% ক্যাশব্যাক পাবেন, পরবর্তী রিনিউয়ালে ব্যবহার করতে পারবেন।</div></div>
+        </div>
+    </div>
+
+    <div class="footer-pro text-center py-10 text-gray-400 border-t border-white/10 mt-8">
+        <p>© ২০২৬ National Exam Center | নবম-দশম রসায়ন প্রস্তুতি (NCTB ২০২৬) | এসএসসি ২০২৭+ আপডেটেড সাপোর্ট</p>
+        <p class="text-xs mt-2"><i class="fas fa-shield-alt"></i> সিকিউর পেমেন্ট ও ২৪/৭ সাপোর্ট</p>
     </div>
 </div>
-<a href="https://wa.me/8801602105447?text=আমি%20নবম-দশম%20বিজ্ঞান%20প্রিমিয়াম%20অ্যাপ%20এবং%20প্ল্যান%20সম্পর্কে%20জানতে%20চাই" class="whatsapp-float" target="_blank">💬</a>
+
+<a href="https://wa.me/8801602105447?text=আমি%20নবম-দশম%20রসায়ন%20প্রিমিয়াম%20প্ল্যান%20নিতে%20চাই" class="floating-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<script type="module">
+    import * as THREE from 'three';
+    // Setup 3D scene: floating molecular-like structure
+    const canvas = document.getElementById('bg-canvas');
+    const scene = new THREE.Scene();
+    scene.background = null; // transparent for gradient bg
+    const camera = new THREE.PerspectiveCamera(45, canvas.parentElement.clientWidth / canvas.parentElement.clientHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    function setSize() {
+        const container = canvas.parentElement;
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    }
+    setSize();
+    window.addEventListener('resize', setSize);
+    
+    // Add particles and a central glowing atom
+    const particleGeometry = new THREE.BufferGeometry();
+    const particleCount = 1600;
+    const positions = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount; i++) {
+        positions[i*3] = (Math.random() - 0.5) * 30;
+        positions[i*3+1] = (Math.random() - 0.5) * 20;
+        positions[i*3+2] = (Math.random() - 0.5) * 25 - 15;
+    }
+    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const particleMaterial = new THREE.PointsMaterial({ color: 0xffaa55, size: 0.08, transparent: true, opacity: 0.6 });
+    const particles = new THREE.Points(particleGeometry, particleMaterial);
+    scene.add(particles);
+    
+    // central torus knot
+    const knotGeo = new THREE.TorusKnotGeometry(1.2, 0.28, 180, 24, 3, 4);
+    const knotMat = new THREE.MeshStandardMaterial({ color: 0xff914d, emissive: 0xaa4422, emissiveIntensity: 0.8, metalness: 0.7, roughness: 0.3 });
+    const knot = new THREE.Mesh(knotGeo, knotMat);
+    scene.add(knot);
+    
+    const ambientLight = new THREE.AmbientLight(0x222222);
+    scene.add(ambientLight);
+    const light1 = new THREE.PointLight(0xffaa66, 1.5);
+    light1.position.set(5, 5, 8);
+    scene.add(light1);
+    const light2 = new THREE.PointLight(0x3366ff, 0.8);
+    light2.position.set(-4, 3, 5);
+    scene.add(light2);
+    camera.position.z = 8;
+    camera.position.y = 1;
+    
+    let time = 0;
+    function animate() {
+        requestAnimationFrame(animate);
+        time += 0.008;
+        knot.rotation.x = Math.sin(time * 0.5) * 0.5;
+        knot.rotation.y = time * 0.7;
+        knot.rotation.z = time * 0.3;
+        particles.rotation.y = time * 0.1;
+        particles.rotation.x = Math.sin(time * 0.2) * 0.2;
+        camera.position.x = Math.sin(time * 0.2) * 0.5;
+        camera.lookAt(0, 0, 0);
+        renderer.render(scene, camera);
+    }
+    animate();
+</script>
 
 <script>
-    function toggleFaq(id) { 
-        let ans = document.getElementById('faq'+id); 
-        if(ans) ans.style.display = ans.style.display === 'block' ? 'none' : 'block'; 
+    // Chemistry topics injection from provided text file data
+    const topicsData = [
+        { chapter: "প্রথম অধ্যায়: রসায়নের ধারণা", subs: ["রসায়ন পরিচিতি","রসায়নের পরিধি","বিজ্ঞানের অন্যান্য শাখার সাথে সম্পর্ক","রসায়ন পাঠের গুরুত্ব","গবেষণা প্রক্রিয়া","পরীক্ষাগারের সতর্কতা"] },
+        { chapter: "দ্বিতীয় অধ্যায়: পদার্থের অবস্থা", subs: ["কঠিন, তরল, গ্যাস","কণার গতিতত্ত্ব","ব্যাপন ও নিঃসরণ","মোমের তিন অবস্থা","গলন ও স্ফুটন","পাতন ও ঊর্ধ্বপাতন"] },
+        { chapter: "তৃতীয় অধ্যায়: পদার্থের গঠন", subs: ["মৌলিক ও যৌগিক পদার্থ","পরমাণু ও অণু","প্রতীক ও সংকেত","রাদারফোর্ড ও বোর মডেল","ইলেকট্রন বিন্যাস","আইসোটোপ ও তেজস্ক্রিয়তা"] },
+        { chapter: "চতুর্থ অধ্যায়: পর্যায় সারণি", subs: ["পর্যায় সারণির ইতিহাস","ইলেকট্রন বিন্যাস থেকে অবস্থান","পর্যায়বৃত্ত ধর্ম (আয়নিকরণ শক্তি, ইলেকট্রন আসক্তি, তড়িৎ ঋণাত্মকতা)","গ্রুপের বিশেষ নাম","সুবিধা"] },
+        { chapter: "পঞ্চম অধ্যায়: রাসায়নিক বন্ধন", subs: ["যোজ্যতা ইলেকট্রন","যৌগমূলক","অষ্টক নিয়ম","আয়নিক ও সমযোজী বন্ধন","ধাতব বন্ধন","যৌগের বৈশিষ্ট্য"] },
+        { chapter: "ষষ্ঠ অধ্যায়: মোল ও রাসায়নিক গণনা", subs: ["মোলের ধারণা","মোলার আয়তন","শতকরা সংযুতি","স্থূল ও আণবিক সংকেত","রাসায়নিক সমীকরণ সমতাকরণ","স্টোইকিওমিতি","লিমিটিং বিক্রিয়ক"] },
+        { chapter: "সপ্তম অধ্যায়: রাসায়নিক বিক্রিয়া", subs: ["ভৌত ও রাসায়নিক পরিবর্তন","একমুখী ও উভমুখী","তাপোৎপাদী ও তাপহারী","জারণ-বিজারণ","বিক্রিয়ার হার ও লা-শাতেলিয়ার"] },
+        { chapter: "অষ্টম অধ্যায়: রসায়ন ও শক্তি", subs: ["বন্ধন শক্তি","তড়িৎ-রাসায়নিক কোষ","তড়িৎ বিশ্লেষণ","গ্যালভানিক কোষ","নিউক্লিয়ার বিক্রিয়া"] },
+        { chapter: "নবম অধ্যায়: এসিড-ক্ষারক সমতা", subs: ["এসিডের ধর্ম","ক্ষারক ও ক্ষার","pH ধারণা","প্রশমন ও লবণ","এসিড বৃষ্টি ও পানি দূষণ"] },
+        { chapter: "দশম অধ্যায়: খনিজ সম্পদ: ধাতু-অধাতু", subs: ["খনিজ, আকরিক","ধাতু নিষ্কাশন","সংকর ধাতু","ক্ষয় ও প্রতিকার","সালফিউরিক এসিড"] },
+        { chapter: "একাদশ অধ্যায়: খনিজ সম্পদ: জীবাশ্ম ও জৈব", subs: ["জীবাশ্ম জ্বালানি","হাইড্রোকার্বন","অ্যালকেন, অ্যালকিন, অ্যালকাইন","অ্যালকোহল ও ফ্যাটি এসিড","পলিমার ও প্লাস্টিক"] },
+        { chapter: "দ্বাদশ অধ্যায়: আমাদের জীবনে রসায়ন", subs: ["গৃহস্থালির রাসায়নিক","সাবান ও ডিটারজেন্ট","কৃষি সার ও খাদ্য সংরক্ষণ","শিল্প বর্জ্য ও দূষণ"] }
+    ];
+    
+    const container = document.getElementById('chemistryTopicsContainer');
+    if(container){
+        container.innerHTML = '';
+        topicsData.forEach(topic => {
+            const card = document.createElement('div');
+            card.className = 'card-premium p-5';
+            card.innerHTML = `<div class="flex items-center gap-2 border-b border-amber-500/30 pb-2 mb-3"><i class="fas fa-dice-d6 text-amber-400"></i><h3 class="font-bold text-xl">${topic.chapter}</h3></div><div class="flex flex-wrap gap-2">${topic.subs.map(sub => `<span class="topic-badge text-xs"><i class="fas fa-caret-right mr-1"></i>${sub}</span>`).join('')}</div>`;
+            container.appendChild(card);
+        });
     }
-    for(let i=1;i<=5;i++){ let el=document.getElementById('faq'+i); if(el) el.style.display='none'; }
     
-    // Referral code generation
-    let refCode = localStorage.getItem('grade9_ref_code');
-    if(!refCode){ refCode = 'SCI9'+Math.floor(Math.random()*9000+1000); localStorage.setItem('grade9_ref_code',refCode); }
-    document.getElementById('heroReferralCode').innerText = refCode;
-    document.getElementById('copyHeroCode').addEventListener('click',()=>{ navigator.clipboard.writeText(refCode); alert('রেফারেল কোড কপি!'); });
-    
-    // Plan selection buttons
-    document.querySelectorAll('.plan-card, .access-plan-card').forEach(card => {
-        let btn = card.querySelector('.btn-select-plan');
-        if(btn) {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                let planText = card.getAttribute('data-plan') || btn.closest('.access-plan-card')?.getAttribute('data-plan') || 'প্ল্যান';
-                alert('প্ল্যান সিলেক্ট করা হয়েছে: '+planText+'\nপেমেন্ট করতে bKash এ টাকা পাঠান এবং স্ক্রিনশট হোয়াটসঅ্যাপে দিন।');
-            });
-        } else {
-            card.addEventListener('click', () => {
-                let planText = card.getAttribute('data-plan') || 'প্ল্যান';
-                alert('প্ল্যান সিলেক্ট করা হয়েছে: '+planText+'\nপেমেন্ট করতে bKash এ টাকা পাঠান এবং স্ক্রিনশট হোয়াটসঅ্যাপে দিন।');
-            });
-        }
+    // plan selection alerts
+    document.querySelectorAll('.select-plan-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const planCard = btn.closest('.plan-card');
+            const planName = planCard?.getAttribute('data-plan') || 'প্ল্যান';
+            alert(`✅ "${planName}" সিলেক্ট করা হয়েছে।\nপেমেন্টের জন্য bKash: 01602105447 এ টাকা পাঠান এবং স্ক্রিনশট হোয়াটসঅ্যাপ করুন।`);
+        });
     });
     
-    // Visitor counter (simple)
-    if(!sessionStorage.getItem('plan_visit')){ 
-        let v = localStorage.getItem('grade9_visits'); 
-        v = v ? parseInt(v)+1 : 4581; 
-        localStorage.setItem('grade9_visits',v); 
-        sessionStorage.setItem('plan_visit','1'); 
+    // referral code logic
+    let ref = localStorage.getItem('chem_ref_code');
+    if(!ref){
+        ref = 'CHEM'+Math.floor(Math.random()*9000+1000);
+        localStorage.setItem('chem_ref_code', ref);
     }
+    document.getElementById('displayRefCode').innerText = ref;
+    document.getElementById('copyRefBtn')?.addEventListener('click',()=>{
+        navigator.clipboard.writeText(ref);
+        alert('রেফারেল কোড কপি!');
+    });
+    
+    // FAQ toggle
+    window.toggleFaq = function(id){
+        const el = document.getElementById('faq'+id);
+        if(el) el.classList.toggle('hidden');
+    };
+    // init all hidden
+    for(let i=1;i<=4;i++){ let faqDiv = document.getElementById('faq'+i); if(faqDiv) faqDiv.classList.add('hidden'); }
 </script>
 </body>
 </html>
