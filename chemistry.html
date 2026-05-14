@@ -53,7 +53,6 @@
         .loader { border: 3px solid rgba(245, 158, 11, 0.3); border-top: 3px solid #f59e0b; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
-        /* Creative question styles */
         .creative-paragraph {
             background: rgba(245, 158, 11, 0.1);
             border-left: 3px solid #f59e0b;
@@ -84,6 +83,7 @@
                     <i class="fas fa-chart-line text-amber-500"></i>
                     <span id="overallProgress" class="font-mono">0%</span>
                 </div>
+                <!-- Home Button Added -->
                 <a href="/" class="px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition">
                     <i class="fas fa-home mr-1"></i> হোম
                 </a>
@@ -349,17 +349,15 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         `;
     }
     
-    // Creative Questions - FIXED VERSION
+    // Creative Questions
     if (creativeQuestions.length > 0) {
         html += `
             <div class="mb-6">
                 <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-pencil-alt mr-2"></i>সৃজনশীল প্রশ্ন</h3>
                 <div class="space-y-4">
                     ${creativeQuestions.map((cq, idx) => {
-                        // Safely extract paragraph
                         const paragraphText = cq.paragraph || '';
                         const subQuestions = cq.sub_questions || {};
-                        
                         return `
                             <div class="border border-white/10 rounded-xl overflow-hidden">
                                 <button class="cq-toggle w-full text-left hover:bg-white/5 transition flex justify-between items-center p-3 font-medium" data-idx="${idx}">
@@ -447,7 +445,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                                      </tr>
                                 `).join('')}
                             </tbody>
-                         </table>
+                        </table>
                     </div>
                 `).join('')}
             </div>
