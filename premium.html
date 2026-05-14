@@ -3,301 +3,656 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>নবম-দশম রসায়ন প্রস্তুতি ২০২৬ | প্রিমিয়াম এক্সক্লুসিভ</title>
-    <meta name="description" content="নবম ও দশম শ্রেণির রসায়ন (NCTB ২০২৬ আপডেট সিলেবাস) সম্পূর্ণ প্রস্তুতি। আধুনিক টপিক, মডেল টেস্ট, অফলাইন মোড। মাসিক ও বার্ষিক প্যাকেজ।">
-    <!-- Tailwind CSS + Google Fonts + Font Awesome -->
+    <title>রসায়ন ১ম অধ্যায় | নবম-দশম | NCTB ২০২৬</title>
+    <meta name="description" content="নবম ও দশম শ্রেণির রসায়ন - প্রথম অধ্যায়: রসায়নের ধারণা। সম্পূর্ণ স্টাডি মেটেরিয়াল, MCQ, সৃজনশীল প্রশ্ন ও রাসায়নিক বিক্রিয়া।">
+    
+    <!-- Tailwind CSS + Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Three.js -->
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
-            }
-        }
-    </script>
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #0b0e12; color: #eef5ff; overflow-x: hidden; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #1a1f2a; }
-        ::-webkit-scrollbar-thumb { background: #ffb347; border-radius: 10px; }
-        .glass-panel { background: rgba(18, 25, 45, 0.65); backdrop-filter: blur(14px); border: 1px solid rgba(255, 180, 70, 0.3); border-radius: 2rem; }
-        .btn-gradient { background: linear-gradient(105deg, #ff9a3c, #ff6a2c); border: none; transition: all 0.2s ease; box-shadow: 0 8px 20px rgba(255, 100, 30, 0.3); }
-        .btn-gradient:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255, 100, 30, 0.5); background: linear-gradient(105deg, #ffaa55, #ff7a3c); }
-        .section-title { font-size: 2.5rem; font-weight: 800; background: linear-gradient(120deg, #fff5e6, #ffcf9a); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block; margin-bottom: 1.5rem; }
-        .topic-badge { background: rgba(255, 165, 75, 0.15); border: 1px solid rgba(255, 165, 75, 0.4); border-radius: 40px; padding: 8px 16px; font-size: 0.85rem; font-weight: 500; transition: all 0.2s; backdrop-filter: blur(5px); }
-        .topic-badge:hover { background: rgba(255, 165, 75, 0.35); transform: translateX(5px); border-color: #ffb347; }
-        .card-premium { background: rgba(12, 20, 30, 0.8); backdrop-filter: blur(12px); border-radius: 2rem; border: 1px solid rgba(255, 160, 70, 0.3); transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
-        .card-premium:hover { transform: translateY(-8px); border-color: #ffb347; box-shadow: 0 25px 40px -12px rgba(0,0,0,0.5); background: rgba(20, 32, 48, 0.85); }
-        .floating-wa { position: fixed; bottom: 25px; right: 25px; z-index: 1000; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: 0.2s; animation: pulse-wa 1.8s infinite; }
-        @keyframes pulse-wa { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0.5);} 70% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(37,211,102,0);} 100% { transform: scale(1); } }
-        .hero-3d-container { position: relative; height: 500px; overflow: hidden; border-radius: 2rem; }
-        canvas#bg-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; border-radius: 2rem; }
-        .hero-content { position: relative; z-index: 2; padding: 3rem; }
-        @media (max-width: 768px) { .section-title { font-size: 1.8rem; } .hero-content { padding: 1.8rem; } .hero-3d-container { height: 420px; } }
-        .plan-selector { background: #0f1622; border-radius: 2rem; transition: 0.2s; cursor: pointer; }
-        .plan-selector.active { background: linear-gradient(145deg, #2a1f12, #1f1a10); border: 1px solid #ffb347; box-shadow: 0 0 15px rgba(255,180,70,0.3); }
-        .faq-btn { background: transparent; width: 100%; text-align: left; padding: 1rem 1.5rem; font-weight: 600; color: #ffddbb; border: none; border-bottom: 1px solid rgba(255,180,70,0.2); }
-        .code-glow { background: #1b2a2f; padding: 0.5rem 1rem; border-radius: 60px; font-family: monospace; font-weight: bold; letter-spacing: 1px; color: #ffb347; }
-        .animated-gradient-bg { background: radial-gradient(circle at 30% 10%, #0e1a24, #03070f); }
-        .container-custom { max-width: 1280px; margin-left: auto; margin-right: auto; padding-left: 1.5rem; padding-right: 1.5rem; }
-        @media (min-width: 768px) { .container-custom { padding-left: 2rem; padding-right: 2rem; } }
+        * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        body { background: linear-gradient(135deg, #0a0f1a 0%, #0c1320 100%); }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1a1f2e; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
+        
+        /* Glass morphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card {
+            background: rgba(18, 25, 45, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Topic card hover */
+        .topic-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .topic-card:hover {
+            transform: translateX(8px);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.05));
+        }
+        
+        /* MCQ option styles */
+        .mcq-option {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .mcq-option:hover {
+            background: rgba(245, 158, 11, 0.2);
+            border-color: #f59e0b;
+        }
+        .mcq-option.selected {
+            background: rgba(245, 158, 11, 0.3);
+            border-color: #f59e0b;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+        }
+        .mcq-option.correct {
+            background: rgba(34, 197, 94, 0.3);
+            border-color: #22c55e;
+        }
+        .mcq-option.wrong {
+            background: rgba(239, 68, 68, 0.3);
+            border-color: #ef4444;
+        }
+        
+        /* Progress bar */
+        .progress-bar {
+            background: linear-gradient(90deg, #f59e0b, #ea580c);
+            transition: width 0.5s ease;
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        /* Reading mode highlight */
+        .reading-mode {
+            background: rgba(245, 158, 11, 0.08);
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+        
+        /* Sidebar active state */
+        .sidebar-link.active {
+            background: rgba(245, 158, 11, 0.2);
+            border-left-color: #f59e0b;
+            color: #fbbf24;
+        }
+        
+        /* Hide scrollbar for topic list */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="animated-gradient-bg">
+<body class="text-gray-200">
 
-<div class="container-custom">
-    <!-- 3D Hero Section -->
-    <div class="hero-3d-container mt-6 md:mt-10 relative">
-        <canvas id="bg-canvas"></canvas>
-        <div class="hero-content absolute inset-0 flex flex-col justify-between">
-            <div class="flex justify-between items-start flex-wrap gap-4">
-                <div class="glass-panel px-5 py-2 rounded-full text-sm font-semibold">
-                    <i class="fas fa-flask"></i> রসায়ন প্রিমিয়াম | NCTB ২০২৬ সিলেবাস
+<!-- Navigation Bar -->
+<nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-3">
+            <div class="flex items-center gap-3">
+                <i class="fas fa-flask text-2xl text-amber-500 float-animation"></i>
+                <span class="font-bold text-xl gradient-text">রসায়ন প্রস্তুতি</span>
+                <span class="text-xs bg-amber-500/20 px-2 py-1 rounded-full">নবম-দশম</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-2 text-sm">
+                    <i class="fas fa-chart-line text-amber-500"></i>
+                    <span id="progressPercent" class="font-mono">0%</span>
                 </div>
-                <div class="glass-panel px-5 py-2 rounded-full text-sm">
-                    <i class="fas fa-rocket"></i> এসএসসি ২০২৭+ ব্যাচ
+                <button id="readingModeBtn" class="px-3 py-1.5 rounded-lg glass border border-white/10 text-sm hover:border-amber-500 transition">
+                    <i class="fas fa-moon mr-1"></i> ডার্ক
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="flex pt-16">
+    <!-- Sidebar - Chapter Topics -->
+    <aside class="fixed left-0 top-16 bottom-0 w-72 glass border-r border-white/10 overflow-y-auto hidden lg:block z-40">
+        <div class="p-4 border-b border-white/10">
+            <h3 class="font-semibold text-amber-400"><i class="fas fa-book-open mr-2"></i>অধ্যায় ১</h3>
+            <p class="text-sm text-gray-400 mt-1">রসায়নের ধারণা</p>
+        </div>
+        <div class="p-3 space-y-1" id="topicSidebar">
+            <!-- Topics will be injected here -->
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 lg:ml-72">
+        <div class="max-w-4xl mx-auto px-4 py-6 md:px-6">
+            
+            <!-- Chapter Header -->
+            <div class="mb-8 text-center">
+                <div class="inline-block px-4 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm mb-3">
+                    <i class="fas fa-graduation-cap mr-1"></i> অধ্যায় ১ | রসায়নের ধারণা
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold gradient-text mb-3">
+                    রসায়নের ধারণা <br>
+                    <span class="text-xl text-gray-400">(The Concepts of Chemistry)</span>
+                </h1>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    রসায়নের ধারণা, পরিধি, বিজ্ঞানের অন্যান্য শাখার সাথে সম্পর্ক, গুরুত্ব, গবেষণা প্রক্রিয়া ও পরীক্ষাগারের সতর্কতা
+                </p>
+            </div>
+
+            <!-- Progress Section -->
+            <div class="glass-card rounded-2xl p-5 mb-8">
+                <div class="flex justify-between items-center mb-3">
+                    <span class="text-sm text-gray-400"><i class="fas fa-spinner fa-pulse mr-1"></i> অধ্যায় পড়ার অগ্রগতি</span>
+                    <span id="chapterProgressText" class="text-sm font-medium text-amber-400">0%</span>
+                </div>
+                <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                    <div id="chapterProgressBar" class="h-full progress-bar rounded-full" style="width: 0%"></div>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <button id="markCompleteBtn" class="px-4 py-2 rounded-lg bg-amber-500/20 border border-amber-500/50 text-amber-400 text-sm hover:bg-amber-500/30 transition">
+                        <i class="fas fa-check-circle mr-1"></i> অধ্যায় সম্পূর্ণ চিহ্নিত করুন
+                    </button>
+                    <button id="resetProgressBtn" class="px-4 py-2 rounded-lg bg-gray-800 text-gray-400 text-sm hover:bg-gray-700 transition">
+                        <i class="fas fa-undo-alt mr-1"></i> অগ্রগতি রিসেট
+                    </button>
                 </div>
             </div>
-            <div class="mt-8 md:mt-12">
-                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight"><span class="bg-gradient-to-r from-orange-300 to-amber-500 bg-clip-text text-transparent">নবম-দশম<br>রসায়ন প্রস্তুতি</span></h1>
-                <p class="text-lg md:text-xl text-gray-300 max-w-xl mt-4">সম্পূর্ণ আপডেট কন্টেন্ট: পর্যায় সারণি, মোল, জৈব রসায়ন, অ্যাসিড-ক্ষার ও আধুনিক টপিক। পকেটেই সম্পূর্ণ ল্যাব।</p>
-                <div class="flex flex-wrap gap-4 mt-8">
-                    <a href="#pricing" class="btn-gradient px-8 py-3 rounded-full font-bold text-lg inline-block"><i class="fas fa-crown mr-2"></i>প্ল্যান নির্বাচন</a>
-                    <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" target="_blank" class="bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full font-semibold transition hover:bg-white/20 inline-block"><i class="fab fa-android"></i> অ্যাপ ডাউনলোড</a>
+
+            <!-- Content Container -->
+            <div id="contentContainer" class="space-y-8">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+
+            <!-- Next/Previous Navigation -->
+            <div class="flex justify-between pt-8 pb-12 border-t border-white/10 mt-8">
+                <div></div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-500">পরবর্তী টপিক</p>
+                    <button id="nextTopicBtn" class="text-amber-400 hover:text-amber-300 transition">
+                        ১.২ রসায়নের পরিধি <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
                 </div>
             </div>
-            <div class="mt-8 flex gap-3 flex-wrap">
-                <div class="glass-panel px-4 py-1.5 rounded-full text-xs"><i class="fas fa-chalkboard-user"></i> 100+ টপিক</div>
-                <div class="glass-panel px-4 py-1.5 rounded-full text-xs"><i class="fas fa-chart-line"></i> মডেল টেস্ট</div>
-                <div class="glass-panel px-4 py-1.5 rounded-full text-xs"><i class="fas fa-database"></i> অফলাইন স্টাডি</div>
-            </div>
         </div>
-    </div>
+    </main>
+</div>
 
-    <!-- Chemistry Topics Section -->
-    <div class="mt-20">
-        <div class="flex items-center gap-3">
-            <i class="fas fa-atom text-4xl text-amber-400"></i>
-            <h2 class="section-title">সম্পূর্ণ রসায়ন সিলেবাস (NCTB ২০২৬)</h2>
-        </div>
-        <p class="text-gray-300 mb-6">নিচের ১২টি অধ্যায় ও ১০০+ সাবটপিক বিস্তারিত ব্যাখ্যা, ফর্মুলা শীট, সৃজনশীল ও এমসিকিউ সেট সহ।</p>
-        <div id="chemistryTopicsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-    </div>
-
-    <!-- Coming Soon: Physics & Biology -->
-    <div class="mt-20">
-        <div class="flex justify-between items-center flex-wrap border-b border-amber-500/30 pb-3 mb-8">
-            <h2 class="section-title text-3xl">অন্যান্য বিভাগ</h2>
-            <span class="bg-amber-600/20 px-4 py-1 rounded-full text-sm"><i class="fas fa-hourglass-half"></i> শীঘ্রই আসছে</span>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="card-premium p-8 text-center relative overflow-hidden group">
-                <div class="absolute top-0 right-0 bg-black/40 px-4 py-1 rounded-bl-2xl text-amber-300 text-sm"><i class="fas fa-microchip"></i> Coming</div>
-                <i class="fas fa-atom text-5xl text-amber-400/70 mb-4"></i>
-                <h3 class="text-2xl font-bold">পদার্থবিজ্ঞান</h3>
-                <p class="text-gray-400">গতি, বল, তরঙ্গ, আলো, তড়িৎচুম্বকত্ব সহ সম্পূর্ণ আপডেট সিলেবাস</p>
-                <div class="mt-5 inline-block px-6 py-2 rounded-full border border-amber-500/40 text-amber-300 text-sm">প্রস্তুতির কাজ চলছে ⚡</div>
-            </div>
-            <div class="card-premium p-8 text-center relative overflow-hidden group">
-                <div class="absolute top-0 right-0 bg-black/40 px-4 py-1 rounded-bl-2xl text-amber-300 text-sm"><i class="fas fa-seedling"></i> Coming</div>
-                <i class="fas fa-dna text-5xl text-amber-400/70 mb-4"></i>
-                <h3 class="text-2xl font-bold">জীববিজ্ঞান</h3>
-                <p class="text-gray-400">কোষ, শারীরতত্ত্ব, বংশগতি, বায়োটেক, ইকোসিস্টেম ও স্বাস্থ্য</p>
-                <div class="mt-5 inline-block px-6 py-2 rounded-full border border-amber-500/40 text-amber-300 text-sm">শীঘ্রই এক্সক্লুসিভ আপডেট 🔬</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pricing Plans -->
-    <div id="pricing" class="mt-24">
-        <div class="text-center mb-12">
-            <h2 class="section-title">ফ্লেক্সিবল এক্সেস প্ল্যান</h2>
-            <p class="text-gray-300">আপনার চাহিদা অনুযায়ী মাসিক বা বার্ষিক সাবস্ক্রিপশন বেছে নিন</p>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="card-premium p-6 text-center cursor-pointer transition-all plan-card" data-plan="মাসিক (১০০৳)">
-                <div class="text-3xl font-black">মাসিক</div>
-                <div class="text-4xl font-extrabold text-amber-400 my-3">১০০৳</div>
-                <p class="text-sm">৩০ দিন পূর্ণ অ্যাক্সেস</p>
-                <button class="mt-5 w-full py-2 rounded-full border border-amber-500 hover:bg-amber-500/20 transition select-plan-btn">সিলেক্ট করুন</button>
-            </div>
-            <div class="card-premium p-6 text-center cursor-pointer transition-all plan-card" data-plan="ত্রৈমাসিক (২৭৫৳)">
-                <div class="text-3xl font-black">ত্রৈমাসিক</div>
-                <div class="text-4xl font-extrabold text-amber-400 my-3">২৭৫৳</div>
-                <p class="text-sm">৯০ দিন + রেফারেল বোনাস</p>
-                <button class="mt-5 w-full py-2 rounded-full border border-amber-500 hover:bg-amber-500/20 transition select-plan-btn">সিলেক্ট করুন</button>
-            </div>
-            <div class="card-premium p-6 text-center cursor-pointer transition-all plan-card" data-plan="ষাণ্মাসিক (৫০০৳)">
-                <div class="text-3xl font-black">ষাণ্মাসিক</div>
-                <div class="text-4xl font-extrabold text-amber-400 my-3">৫০০৳</div>
-                <p class="text-sm">৬ মাস + স্পেশাল কুইজ</p>
-                <button class="mt-5 w-full py-2 rounded-full border border-amber-500 hover:bg-amber-500/20 transition select-plan-btn">সিলেক্ট করুন</button>
-            </div>
-            <div class="card-premium p-6 text-center bg-gradient-to-b from-amber-900/20 to-transparent border-2 border-amber-500/60 plan-card" data-plan="বার্ষিক (৯০০৳)">
-                <div class="text-3xl font-black">বার্ষিক <span class="text-xs bg-amber-600 px-2 rounded-full">বেস্ট ভ্যালু</span></div>
-                <div class="text-4xl font-extrabold text-amber-300 my-3">৯০০৳</div>
-                <p class="text-sm">৩৬৫ দিন + এসএসসি ২০২৭ পর্যন্ত সাপোর্ট</p>
-                <button class="mt-5 w-full py-2 rounded-full bg-amber-600/80 hover:bg-amber-500 transition font-bold select-plan-btn">সিলেক্ট করুন</button>
-            </div>
-        </div>
-        <div class="glass-panel p-5 mt-8 text-center flex flex-wrap justify-between items-center gap-3">
-            <div><i class="fab fa-bkash text-pink-400 text-xl"></i> <strong>bKash পেমেন্ট :</strong> ০১৬০২১০৫৪৪৭ (Personal)</div>
-            <div><span class="code-glow"><i class="fas fa-gift"></i> আপনার কোড: <span id="displayRefCode">CHEMXXXX</span></span>
-            <button id="copyRefBtn" class="ml-2 bg-amber-700 px-3 py-1 rounded-full text-xs">কপি</button></div>
-        </div>
-    </div>
-
-    <!-- Testimonials -->
-    <div class="mt-20">
-        <h2 class="section-title text-center">শিক্ষার্থীদের প্রতিক্রিয়া</h2>
-        <div class="grid md:grid-cols-3 gap-6 mt-10">
-            <div class="card-premium p-6"><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><p class="mt-3">"রসায়নের প্রতিটি অধ্যায় এত সুন্দর করে দেওয়া আছে। মোল ও স্টোইকিওমেট্রি অংশ অসাধারণ!"</p><p class="text-amber-300 mt-2">— আবির হাসান, দশম শ্রেণি</p></div>
-            <div class="card-premium p-6"><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><p class="mt-3">"পর্যায় সারণি ও রাসায়নিক বন্ধন টপিক ক্লিয়ার করতে অ্যাপটাই যথেষ্ট। বার্ষিক প্ল্যান নিয়েছি।"</p><p class="text-amber-300 mt-2">— জান্নাতুল ফেরদৌস, নবম</p></div>
-            <div class="card-premium p-6"><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><p class="mt-3">"অফলাইন মোড ও মডেল টেস্ট এসএসসি প্রস্তুতিতে সাহায্য করছে। দারুণ প্ল্যাটফর্ম!"</p><p class="text-amber-300 mt-2">— রাইসুল ইসলাম</p></div>
-        </div>
-    </div>
-
-    <!-- FAQ -->
-    <div class="mt-20 mb-16">
-        <h2 class="section-title">প্রায়শই জিজ্ঞাসিত প্রশ্ন</h2>
-        <div class="space-y-3 mt-6">
-            <div class="card-premium overflow-hidden"><button class="faq-btn w-full flex justify-between items-center" onclick="toggleFaq(1)">এই অ্যাপ কি শুধু রসায়নের জন্য? <i class="fas fa-chevron-down"></i></button><div id="faq1" class="px-6 pb-4 text-gray-300 hidden">এই প্রিমিয়াম ভার্সনে সম্পূর্ণ রসায়ন কভার করা হয়েছে। পদার্থবিজ্ঞান ও জীববিজ্ঞান খুব শীঘ্রই আপডেট হবে (কামিং সুন)</div></div>
-            <div class="card-premium overflow-hidden"><button class="faq-btn w-full flex justify-between items-center" onclick="toggleFaq(2)">কিভাবে পেমেন্ট করে অ্যাক্সেস নেব? <i class="fas fa-chevron-down"></i></button><div id="faq2" class="px-6 pb-4 text-gray-300 hidden">bKash এ টাকা পাঠানোর পর স্ক্রিনশট ও আপনার পছন্দের প্ল্যান হোয়াটসঅ্যাপে (+8801602105447) দিলে ১ ঘণ্টার মধ্যে ইউজারনেম পাসওয়ার্ড পেয়ে যাবেন।</div></div>
-            <div class="card-premium overflow-hidden"><button class="faq-btn w-full flex justify-between items-center" onclick="toggleFaq(3)">পদার্থবিজ্ঞান ও জীববিজ্ঞান কখন আসবে? <i class="fas fa-chevron-down"></i></button><div id="faq3" class="px-6 pb-4 text-gray-300 hidden">আমাদের দল আপডেট নিয়ে কাজ করছে। আগামী ২-৩ মাসের মধ্যে সম্পূর্ণ পদার্থবিজ্ঞান ও জীববিজ্ঞান অ্যাড হবে, এবং বর্তমান গ্রাহকরা ফ্রি আপডেট পাবেন।</div></div>
-            <div class="card-premium overflow-hidden"><button class="faq-btn w-full flex justify-between items-center" onclick="toggleFaq(4)">রেফারেল সিস্টেম বুঝিয়ে বলুন? <i class="fas fa-chevron-down"></i></button><div id="faq4" class="px-6 pb-4 text-gray-300 hidden">আপনার ইউনিক রেফারেল কোড বন্ধুকে দিন। সে সাবস্ক্রাইব করলে তার পেমেন্টের ২০% ক্যাশব্যাক পাবেন, পরবর্তী রিনিউয়ালে ব্যবহার করতে পারবেন।</div></div>
-        </div>
-    </div>
-
-    <div class="text-center py-10 text-gray-400 border-t border-white/10 mt-8">
-        <p>© ২০২৬ National Exam Center | নবম-দশম রসায়ন প্রস্তুতি (NCTB ২০২৬) | এসএসসি ২০২৭+ আপডেটেড সাপোর্ট</p>
-        <p class="text-xs mt-2"><i class="fas fa-shield-alt"></i> সিকিউর পেমেন্ট ও ২৪/৭ সাপোর্ট</p>
+<!-- Mobile Bottom Navigation -->
+<div class="fixed bottom-0 left-0 right-0 glass border-t border-white/10 lg:hidden z-50">
+    <div class="flex justify-around py-3">
+        <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="text-amber-400"><i class="fas fa-home text-xl"></i></button>
+        <button id="mobileSidebarToggle" class="text-gray-400"><i class="fas fa-list-ul text-xl"></i></button>
+        <button id="mobileMarkCompleteBtn" class="text-gray-400"><i class="fas fa-check-circle text-xl"></i></button>
     </div>
 </div>
 
-<a href="https://wa.me/8801602105447?text=আমি%20নবম-দশম%20রসায়ন%20প্রিমিয়াম%20প্ল্যান%20নিতে%20চাই" class="floating-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
-
-<script type="module">
-    import * as THREE from 'three';
-    const canvas = document.getElementById('bg-canvas');
-    const scene = new THREE.Scene();
-    scene.background = null;
-    const camera = new THREE.PerspectiveCamera(45, canvas.parentElement.clientWidth / canvas.parentElement.clientHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-    function setSize() {
-        const container = canvas.parentElement;
-        const width = container.clientWidth;
-        const height = container.clientHeight;
-        renderer.setSize(width, height);
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix();
-    }
-    setSize();
-    window.addEventListener('resize', setSize);
-    
-    const particleGeometry = new THREE.BufferGeometry();
-    const particleCount = 1600;
-    const positions = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
-        positions[i*3] = (Math.random() - 0.5) * 30;
-        positions[i*3+1] = (Math.random() - 0.5) * 20;
-        positions[i*3+2] = (Math.random() - 0.5) * 25 - 15;
-    }
-    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const particleMaterial = new THREE.PointsMaterial({ color: 0xffaa55, size: 0.08, transparent: true, opacity: 0.6 });
-    const particles = new THREE.Points(particleGeometry, particleMaterial);
-    scene.add(particles);
-    
-    const knotGeo = new THREE.TorusKnotGeometry(1.2, 0.28, 180, 24, 3, 4);
-    const knotMat = new THREE.MeshStandardMaterial({ color: 0xff914d, emissive: 0xaa4422, emissiveIntensity: 0.8, metalness: 0.7, roughness: 0.3 });
-    const knot = new THREE.Mesh(knotGeo, knotMat);
-    scene.add(knot);
-    
-    const ambientLight = new THREE.AmbientLight(0x222222);
-    scene.add(ambientLight);
-    const light1 = new THREE.PointLight(0xffaa66, 1.5);
-    light1.position.set(5, 5, 8);
-    scene.add(light1);
-    const light2 = new THREE.PointLight(0x3366ff, 0.8);
-    light2.position.set(-4, 3, 5);
-    scene.add(light2);
-    camera.position.z = 8;
-    camera.position.y = 1;
-    
-    let time = 0;
-    function animate() {
-        requestAnimationFrame(animate);
-        time += 0.008;
-        knot.rotation.x = Math.sin(time * 0.5) * 0.5;
-        knot.rotation.y = time * 0.7;
-        knot.rotation.z = time * 0.3;
-        particles.rotation.y = time * 0.1;
-        particles.rotation.x = Math.sin(time * 0.2) * 0.2;
-        camera.position.x = Math.sin(time * 0.2) * 0.5;
-        camera.lookAt(0, 0, 0);
-        renderer.render(scene, camera);
-    }
-    animate();
-</script>
-
 <script>
-    // Chemistry topics data (12 chapters)
-    const topicsData = [
-        { chapter: "প্রথম অধ্যায়: রসায়নের ধারণা", subs: ["রসায়ন পরিচিতি","রসায়নের পরিধি","বিজ্ঞানের অন্যান্য শাখার সাথে সম্পর্ক","রসায়ন পাঠের গুরুত্ব","গবেষণা প্রক্রিয়া","পরীক্ষাগারের সতর্কতা"] },
-        { chapter: "দ্বিতীয় অধ্যায়: পদার্থের অবস্থা", subs: ["কঠিন, তরল, গ্যাস","কণার গতিতত্ত্ব","ব্যাপন ও নিঃসরণ","মোমের তিন অবস্থা","গলন ও স্ফুটন","পাতন ও ঊর্ধ্বপাতন"] },
-        { chapter: "তৃতীয় অধ্যায়: পদার্থের গঠন", subs: ["মৌলিক ও যৌগিক পদার্থ","পরমাণু ও অণু","প্রতীক ও সংকেত","রাদারফোর্ড ও বোর মডেল","ইলেকট্রন বিন্যাস","আইসোটোপ ও তেজস্ক্রিয়তা"] },
-        { chapter: "চতুর্থ অধ্যায়: পর্যায় সারণি", subs: ["পর্যায় সারণির ইতিহাস","ইলেকট্রন বিন্যাস থেকে অবস্থান","পর্যায়বৃত্ত ধর্ম (আয়নিকরণ শক্তি, ইলেকট্রন আসক্তি, তড়িৎ ঋণাত্মকতা)","গ্রুপের বিশেষ নাম","সুবিধা"] },
-        { chapter: "পঞ্চম অধ্যায়: রাসায়নিক বন্ধন", subs: ["যোজ্যতা ইলেকট্রন","যৌগমূলক","অষ্টক নিয়ম","আয়নিক ও সমযোজী বন্ধন","ধাতব বন্ধন","যৌগের বৈশিষ্ট্য"] },
-        { chapter: "ষষ্ঠ অধ্যায়: মোল ও রাসায়নিক গণনা", subs: ["মোলের ধারণা","মোলার আয়তন","শতকরা সংযুতি","স্থূল ও আণবিক সংকেত","রাসায়নিক সমীকরণ সমতাকরণ","স্টোইকিওমিতি","লিমিটিং বিক্রিয়ক"] },
-        { chapter: "সপ্তম অধ্যায়: রাসায়নিক বিক্রিয়া", subs: ["ভৌত ও রাসায়নিক পরিবর্তন","একমুখী ও উভমুখী","তাপোৎপাদী ও তাপহারী","জারণ-বিজারণ","বিক্রিয়ার হার ও লা-শাতেলিয়ার"] },
-        { chapter: "অষ্টম অধ্যায়: রসায়ন ও শক্তি", subs: ["বন্ধন শক্তি","তড়িৎ-রাসায়নিক কোষ","তড়িৎ বিশ্লেষণ","গ্যালভানিক কোষ","নিউক্লিয়ার বিক্রিয়া"] },
-        { chapter: "নবম অধ্যায়: এসিড-ক্ষারক সমতা", subs: ["এসিডের ধর্ম","ক্ষারক ও ক্ষার","pH ধারণা","প্রশমন ও লবণ","এসিড বৃষ্টি ও পানি দূষণ"] },
-        { chapter: "দশম অধ্যায়: খনিজ সম্পদ: ধাতু-অধাতু", subs: ["খনিজ, আকরিক","ধাতু নিষ্কাশন","সংকর ধাতু","ক্ষয় ও প্রতিকার","সালফিউরিক এসিড"] },
-        { chapter: "একাদশ অধ্যায়: খনিজ সম্পদ: জীবাশ্ম ও জৈব", subs: ["জীবাশ্ম জ্বালানি","হাইড্রোকার্বন","অ্যালকেন, অ্যালকিন, অ্যালকাইন","অ্যালকোহল ও ফ্যাটি এসিড","পলিমার ও প্লাস্টিক"] },
-        { chapter: "দ্বাদশ অধ্যায়: আমাদের জীবনে রসায়ন", subs: ["গৃহস্থালির রাসায়নিক","সাবান ও ডিটারজেন্ট","কৃষি সার ও খাদ্য সংরক্ষণ","শিল্প বর্জ্য ও দূষণ"] }
-    ];
+// Full Chapter Data (Based on your JSON structure)
+const chapterData = {
+    class: "9-10",
+    subject: "Chemistry",
+    chapter_id: 1,
+    chapter_title: "রসায়নের ধারণা (The Concepts of Chemistry)",
+    topics: [
+        {
+            id: "1.1",
+            title: "রসায়ন পরিচিতি (Introduction to Chemistry)",
+            content: {
+                summary: [
+                    "• রসায়ন হলো বিজ্ঞানের একটি প্রধান শাখা যেখানে মৌল ও যৌগিক পদার্থের সংযুক্তি, গঠন, প্রকৃতি, ধর্ম ও ব্যবহার আলোচনা করা হয়।",
+                    "• রসায়নে বস্তুসমূহের পারস্পরিক রূপান্তর এবং রূপান্তরকালে শক্তি (মূলত তাপ শক্তি) শোষণ ও নিঃসরণ সম্পর্কেও আলোচনা করা হয়।",
+                    "• প্রাগৈতিহাসিক যুগ থেকেই মানুষ জেনে বা না জেনে রসায়নের ব্যবহার করে আসছে; যেমন– কাপড় বোনা, ঘর তৈরি, রান্না করা ইত্যাদি।",
+                    "• প্রথম ব্যবহৃত ধাতু ছিল তামা; পরবর্তীতে সোনা, রুপা, টিন, লোহা ইত্যাদি ধাতু মানুষ ব্যবহার শুরু করে।",
+                    "• খ্রিষ্টপূর্ব ৩৫০০ অব্দের দিকে কপার ও টিন ধাতু গলিয়ে মিশিয়ে ব্রোঞ্জ সংকর ধাতু তৈরি করা হয়।",
+                    "• গ্রিক দার্শনিক ডেমোক্রিটাস 'অ্যাটম' ধারণা প্রস্তাব করেন, যার অর্থ 'অবিভাজ্য'।",
+                    "• 'Chemistry' শব্দটি এসেছে আরবি 'আল-কিমিয়া' থেকে।",
+                    "• জাবির ইবনে হাইয়ানকে 'রসায়নের জনক' এবং অ্যান্টনি ল্যাভয়সিয়েকে 'আধুনিক রসায়নের জনক' বলা হয়।"
+                ],
+                keyPoints: [
+                    "✅ রসায়ন পদার্থের গঠন, ধর্ম ও রূপান্তর নিয়ে আলোচনা করে",
+                    "✅ ব্রোঞ্জ是人类第一个合金 (তামা + টিন)",
+                    "✅ অ্যাটম ধারণা প্রথম দেন ডেমোক্রিটাস",
+                    "✅ আলকেমি ছিল রসায়নের প্রাচীন রূপ"
+                ],
+                imagePrompt: "Chemistry introduction concept with atoms, molecules, and laboratory equipment"
+            },
+            exam: {
+                mcq: [
+                    { q: "রসায়ন কী?", o: ["পদার্থের গঠন ও ধর্ম নিয়ে বিজ্ঞান", "শুধু ধাতু নিয়ে গবেষণা", "জীবদেহ নিয়ে বিজ্ঞান", "গ্যাস নিয়ে পরীক্ষা"], a: 0 },
+                    { q: "প্রথম ব্যবহৃত ধাতু কোনটি?", o: ["লোহা", "তামা", "সোনা", "অ্যালুমিনিয়াম"], a: 1 },
+                    { q: "ব্রোঞ্জ কোন দুটি ধাতুর সংকর?", o: ["তামা ও টিন", "লোহা ও কার্বন", "সোনা ও রুপা", "অ্যালুমিনিয়াম ও ম্যাগনেসিয়াম"], a: 0 },
+                    { q: "অ্যাটম ধারণা প্রথম কে প্রস্তাব করেন?", o: ["অ্যারিস্টটল", "ডেমোক্রিটাস", "ল্যাভয়সিয়ে", "জাবির ইবনে হাইয়ান"], a: 1 },
+                    { q: "Chemistry শব্দের উৎপত্তি কোন শব্দ থেকে?", o: ["আল-কিমিয়া", "অ্যাটম", "মলিকিউল", "এলিমেন্ট"], a: 0 }
+                ]
+            }
+        },
+        {
+            id: "1.2",
+            title: "রসায়নের পরিধি বা ক্ষেত্রসমূহ (Scope of Chemistry)",
+            content: {
+                summary: [
+                    "• যেখানে পদার্থ আছে সেখানেই রসায়ন রয়েছে - বায়ুমণ্ডল থেকে শুরু করে মাটি, জল, আমাদের দেহ সবকিছুতেই রাসায়নিক পরিবর্তন ঘটে।",
+                    "• পৃথিবীর সৃষ্টির সময় থেকে কোটি কোটি বছর ধরে রাসায়নিক পরিবর্তনের মাধ্যমে বায়ুমণ্ডল, পানি ও জীবনের উৎপত্তি ঘটেছে।",
+                    "• আমাদের দৈনন্দিন ব্যবহার্য জিনিসপত্র: জামাকাপড়, টুথপেস্ট, সাবান, শ্যাম্পু, প্রসাধনী - সবই রসায়নের অবদান।",
+                    "• কৃষিতে সার ও কীটনাশক, যানবাহনে জ্বালানি, শিল্পকারখানায় রাসায়নিক প্রক্রিয়া - সর্বত্র রসায়নের প্রয়োগ।"
+                ],
+                examples: [
+                    "🔬 বায়ু: নাইট্রোজেন ও অক্সিজেনের মিশ্রণ, শ্বাস-প্রশ্বাসে জারণ বিক্রিয়া",
+                    "🧪 খাবারের পানি: শরীরের 70% পানি, খনিজ লবণের উৎস",
+                    "🌾 সার: নাইট্রোজেন, ফসফরাস, পটাশিয়াম - উদ্ভিদের পুষ্টি উপাদান",
+                    "📄 কাগজ: বাঁশ, আখের ছোবড়ার সেলুলোজ থেকে তৈরি"
+                ]
+            }
+        },
+        {
+            id: "1.3",
+            title: "রসায়নের সাথে বিজ্ঞানের অন্যান্য শাখার সম্পর্ক",
+            content: {
+                summary: [
+                    "• জীববিজ্ঞানের সাথে: সালোকসংশ্লেষণ একটি রাসায়নিক বিক্রিয়া - CO₂ + H₂O + আলো → গ্লুকোজ + O₂",
+                    "• পদার্থবিজ্ঞানের সাথে: ব্যাটারি (রাসায়নিক শক্তি → বৈদ্যুতিক শক্তি), দহন (তাপ শক্তি উৎপাদন)",
+                    "• গণিতের সাথে: দ্রবণের ঘনমাত্রা নির্ণয়, স্টোইকিওমেট্রি গণনা, বিক্রিয়ার হার নির্ণয়",
+                    "• ভূ-তত্ত্বের সাথে: শিলা ও খনিজের গঠন বিশ্লেষণ, ভূ-রাসায়নিক চক্র"
+                ],
+                equations: [
+                    "সালোকসংশ্লেষণ: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂",
+                    "মরিচা গঠন: 4Fe + 3O₂ + 6H₂O → 4Fe(OH)₃"
+                ]
+            }
+        },
+        {
+            id: "1.4",
+            title: "রসায়ন পাঠের গুরুত্ব (Importance of Studying Chemistry)",
+            content: {
+                summary: [
+                    "• দৈনন্দিন জীবনের প্রতিটি ক্ষেত্রে রসায়নের ব্যবহার: টুথপেস্ট, সাবান, শ্যাম্পু, লোশন, বিস্কুট - সবই রসায়নের অবদান।",
+                    "• কৃষিতে সার ও কীটনাশক উৎপাদন, খাদ্য সংরক্ষণে প্রিজারভেটিভ - রসায়ন ছাড়া অসম্ভব।",
+                    "• ওষুধ শিল্প: কলেরা, টাইফয়েড, যক্ষ্মা থেকে করোনা পর্যন্ত - সব রোগের প্রতিষেধক রসায়নের আবিষ্কার।",
+                    "• পরিবেশ রক্ষা: দূষণ নিয়ন্ত্রণ, বর্জ্য শোধন, পুনর্ব্যবহারযোগ্য উপকরণ তৈরিতে রসায়নের ভূমিকা।",
+                    "• নতুন উপকরণ: প্লাস্টিক, সেমিকন্ডাক্টর, ন্যানোম্যাটেরিয়াল - সবই রসায়নের ফল।"
+                ]
+            }
+        },
+        {
+            id: "1.5",
+            title: "রসায়নে অনুসন্ধান বা গবেষণা প্রক্রিয়া",
+            content: {
+                summary: [
+                    "গবেষণার ধাপসমূহ:",
+                    "১. বিষয়বস্তু নির্ধারণ - কী জানতে চান তা স্থির করা",
+                    "২. পূর্ববর্তী গবেষণা পর্যালোচনা - বই ও গবেষণাপত্র পড়া",
+                    "৩. অনুমান (Hypothesis) গঠন - ফলাফল সম্পর্কে ধারণা নেওয়া",
+                    "৪. প্রয়োজনীয় উপকরণ ও পদ্ধতি নির্ধারণ - যন্ত্রপাতি ও রাসায়নিক সংগ্রহ",
+                    "৫. পরীক্ষণ (Experimentation) - পদ্ধতিগতভাবে পরীক্ষা করা",
+                    "৬. তথ্য সংগ্রহ ও বিশ্লেষণ - ফলাফল লিপিবদ্ধ ও বিশ্লেষণ",
+                    "৭. সিদ্ধান্ত গ্রহণ - প্রাপ্ত ফলাফলের ভিত্তিতে উপসংহার"
+                ],
+                example: {
+                    title: "উদাহরণ: অ্যামোনিয়াম ক্লোরাইড পানিতে দ্রবীভূতকরণ পরীক্ষা",
+                    procedure: "250 mL পানিতে 5g, 10g, 15g অ্যামোনিয়াম ক্লোরাইড দ্রবীভূত করে তাপমাত্রা পরিমাপ",
+                    result: "তাপমাত্রা 25°C → 20°C → 15°C → 10°C কমে যায়",
+                    conclusion: "অ্যামোনিয়াম ক্লোরাইড পানিতে দ্রবীভূত হলে তাপ শোষিত হয়"
+                }
+            }
+        },
+        {
+            id: "1.6",
+            title: "রসায়ন পরীক্ষাগারে সতর্কতা (Laboratory Safety)",
+            content: {
+                summary: [
+                    "প্রয়োজনীয় নিরাপত্তা সরঞ্জাম:",
+                    "• অ্যাপ্রোন (Apron) - শরীর সুরক্ষার জন্য",
+                    "• সেফটি গগলস (Safety Goggles) - চোখ সুরক্ষার জন্য",
+                    "• হ্যান্ড গ্লাভস (Hand Gloves) - হাত সুরক্ষার জন্য",
+                    "• মাস্ক (Mask) - শ্বাসতন্ত্র সুরক্ষার জন্য"
+                ],
+                hazardSymbols: [
+                    "💥 বিস্ফোরক - TNT, নাইট্রোগ্লিসারিন",
+                    "🔥 দাহ্য - অ্যালকোহল, ইথার",
+                    "☠️ বিষাক্ত - বেনজিন, মিথানল",
+                    "⚠️ উত্তেজক - লঘু এসিড, ক্ষার",
+                    "📡 তেজস্ক্রিয় - ইউরেনিয়াম, রেডিয়াম",
+                    "🌍 পরিবেশ ক্ষতিকর - লেড, মার্কারি",
+                    "💧 ক্ষত সৃষ্টিকারী - ঘন এসিড, ক্ষার"
+                ]
+            }
+        }
+    ]
+};
+
+// State Management
+let currentTopicIndex = 0;
+let readingMode = false;
+let completedTopics = JSON.parse(localStorage.getItem('chemistry_completed_topics') || '[]');
+
+// Update progress
+function updateProgress() {
+    const total = chapterData.topics.length;
+    const completed = completedTopics.length;
+    const percent = Math.round((completed / total) * 100);
+    document.getElementById('progressPercent').innerText = percent + '%';
+    document.getElementById('chapterProgressText').innerText = percent + '%';
+    document.getElementById('chapterProgressBar').style.width = percent + '%';
     
-    const container = document.getElementById('chemistryTopicsContainer');
-    if(container){
-        container.innerHTML = '';
-        topicsData.forEach(topic => {
-            const card = document.createElement('div');
-            card.className = 'card-premium p-5';
-            card.innerHTML = `<div class="flex items-center gap-2 border-b border-amber-500/30 pb-2 mb-3"><i class="fas fa-dice-d6 text-amber-400"></i><h3 class="font-bold text-xl">${topic.chapter}</h3></div><div class="flex flex-wrap gap-2">${topic.subs.map(sub => `<span class="topic-badge text-xs"><i class="fas fa-caret-right mr-1"></i>${sub}</span>`).join('')}</div>`;
-            container.appendChild(card);
-        });
+    // Save to localStorage
+    localStorage.setItem('chemistry_chapter1_progress', percent);
+}
+
+// Mark topic as complete
+function markCurrentTopicComplete() {
+    const topicId = chapterData.topics[currentTopicIndex].id;
+    if (!completedTopics.includes(topicId)) {
+        completedTopics.push(topicId);
+        localStorage.setItem('chemistry_completed_topics', JSON.stringify(completedTopics));
+        updateProgress();
+        loadContent(currentTopicIndex);
+        showToast('✅ টপিক সম্পূর্ণ চিহ্নিত করা হয়েছে!', 'success');
+    } else {
+        showToast('ℹ️ এই টপিক ইতিমধ্যে সম্পূর্ণ চিহ্নিত', 'info');
     }
+}
+
+// Mark entire chapter complete
+function markChapterComplete() {
+    const allTopicIds = chapterData.topics.map(t => t.id);
+    const newCompleted = [...new Set([...completedTopics, ...allTopicIds])];
+    completedTopics.length = 0;
+    completedTopics.push(...newCompleted);
+    localStorage.setItem('chemistry_completed_topics', JSON.stringify(completedTopics));
+    updateProgress();
+    loadContent(currentTopicIndex);
+    showToast('🎉 পুরো অধ্যায় সম্পূর্ণ চিহ্নিত হয়েছে!', 'success');
+}
+
+// Reset progress
+function resetProgress() {
+    completedTopics = [];
+    localStorage.setItem('chemistry_completed_topics', JSON.stringify(completedTopics));
+    localStorage.removeItem('chemistry_chapter1_progress');
+    updateProgress();
+    loadContent(currentTopicIndex);
+    showToast('🔄 অগ্রগতি রিসেট করা হয়েছে', 'warning');
+}
+
+// Toast notification
+function showToast(message, type = 'info') {
+    const toast = document.createElement('div');
+    toast.className = `fixed bottom-20 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg text-sm z-50 animate-bounce ${
+        type === 'success' ? 'bg-green-600' : type === 'warning' ? 'bg-orange-600' : 'bg-blue-600'
+    } text-white`;
+    toast.innerText = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2000);
+}
+
+// Load content for current topic
+function loadContent(index) {
+    const topic = chapterData.topics[index];
+    const isCompleted = completedTopics.includes(topic.id);
     
-    // Plan selection
-    document.querySelectorAll('.select-plan-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const planCard = btn.closest('.plan-card');
-            const planName = planCard?.getAttribute('data-plan') || 'প্ল্যান';
-            alert(`✅ "${planName}" সিলেক্ট করা হয়েছে।\nপেমেন্টের জন্য bKash: 01602105447 এ টাকা পাঠান এবং স্ক্রিনশট হোয়াটসঅ্যাপ করুন।`);
-        });
+    const container = document.getElementById('contentContainer');
+    container.innerHTML = `
+        <div class="glass-card rounded-2xl p-6">
+            <div class="flex justify-between items-start flex-wrap gap-3 mb-4">
+                <div>
+                    <span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">টপিক ${topic.id}</span>
+                    <h2 class="text-2xl font-bold mt-2">${topic.title}</h2>
+                </div>
+                ${isCompleted ? '<i class="fas fa-check-circle text-green-500 text-2xl"></i>' : ''}
+            </div>
+            
+            <!-- Summary Section -->
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-align-left mr-2"></i>সারাংশ</h3>
+                <div class="space-y-2 ${readingMode ? 'reading-mode' : ''}">
+                    ${topic.content.summary.map(s => `<p class="text-gray-300 leading-relaxed">${s}</p>`).join('')}
+                </div>
+            </div>
+            
+            ${topic.content.keyPoints ? `
+            <div class="mb-6 bg-amber-500/5 rounded-xl p-4 border border-amber-500/20">
+                <h3 class="text-sm font-semibold text-amber-400 mb-2"><i class="fas fa-lightbulb mr-1"></i>মূল বিষয়সমূহ</h3>
+                <div class="flex flex-wrap gap-2">
+                    ${topic.content.keyPoints.map(kp => `<span class="text-xs bg-gray-800 px-2 py-1 rounded-full">${kp}</span>`).join('')}
+                </div>
+            </div>
+            ` : ''}
+            
+            ${topic.content.examples ? `
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-list mr-2"></i>উদাহরণ</h3>
+                <div class="grid gap-2">
+                    ${topic.content.examples.map(ex => `<div class="glass p-3 rounded-xl">${ex}</div>`).join('')}
+                </div>
+            </div>
+            ` : ''}
+            
+            ${topic.content.equations ? `
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-square-root-alt mr-2"></i>গুরুত্বপূর্ণ সমীকরণ</h3>
+                <div class="bg-black/30 rounded-xl p-4 font-mono">
+                    ${topic.content.equations.map(eq => `<div class="mb-2">${eq}</div>`).join('')}
+                </div>
+            </div>
+            ` : ''}
+            
+            ${topic.content.example ? `
+            <div class="mb-6 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl p-4 border border-blue-500/20">
+                <h3 class="font-semibold text-blue-400 mb-2"><i class="fas fa-flask mr-1"></i>${topic.content.example.title}</h3>
+                <p class="text-sm text-gray-300"><strong>পদ্ধতি:</strong> ${topic.content.example.procedure}</p>
+                <p class="text-sm text-gray-300 mt-1"><strong>ফলাফল:</strong> ${topic.content.example.result}</p>
+                <p class="text-sm text-amber-400 mt-2"><strong>সিদ্ধান্ত:</strong> ${topic.content.example.conclusion}</p>
+            </div>
+            ` : ''}
+            
+            ${topic.content.hazardSymbols ? `
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-exclamation-triangle mr-2"></i>বিপদ সংকেত</h3>
+                <div class="flex flex-wrap gap-2">
+                    ${topic.content.hazardSymbols.map(h => `<span class="text-sm glass px-3 py-1 rounded-full">${h}</span>`).join('')}
+                </div>
+            </div>
+            ` : ''}
+            
+            <!-- MCQ Section -->
+            ${topic.exam?.mcq ? `
+            <div class="mt-8 pt-6 border-t border-white/10">
+                <h3 class="text-lg font-semibold text-amber-400 mb-4"><i class="fas fa-question-circle mr-2"></i>MCQ পরীক্ষা</h3>
+                <div id="mcqContainer_${topic.id}" class="space-y-4">
+                    ${topic.exam.mcq.map((mcq, idx) => `
+                        <div class="glass rounded-xl p-4" data-mcq-idx="${idx}">
+                            <p class="font-medium mb-3">${idx+1}. ${mcq.q}</p>
+                            <div class="grid gap-2">
+                                ${mcq.o.map((opt, optIdx) => `
+                                    <div class="mcq-option glass border border-white/10 rounded-lg p-2 px-3 text-sm transition" data-opt-idx="${optIdx}" data-correct="${optIdx === mcq.a}">
+                                        <span class="mr-2">${String.fromCharCode(65+optIdx)}.</span> ${opt}
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="mcq-feedback mt-2 text-xs hidden"></div>
+                        </div>
+                    `).join('')}
+                </div>
+                <button class="check-mcq-btn mt-4 px-4 py-2 rounded-lg bg-amber-500/20 border border-amber-500/50 text-amber-400 text-sm hover:bg-amber-500/30 transition">
+                    <i class="fas fa-check-double mr-1"></i> উত্তর যাচাই করুন
+                </button>
+            </div>
+            ` : ''}
+        </div>
+    `;
+    
+    // Attach MCQ event listeners
+    setTimeout(() => attachMCQEvents(topic.id), 100);
+    
+    // Update sidebar active state
+    updateSidebarActive(index);
+}
+
+function attachMCQEvents(topicId) {
+    const container = document.getElementById(`mcqContainer_${topicId}`);
+    if (!container) return;
+    
+    // Option selection
+    container.querySelectorAll('.mcq-option').forEach(opt => {
+        opt.removeEventListener('click', opt._listener);
+        opt._listener = () => {
+            // Remove selected class from siblings
+            const parent = opt.closest('.glass');
+            parent.querySelectorAll('.mcq-option').forEach(o => {
+                o.classList.remove('selected', 'correct', 'wrong');
+            });
+            opt.classList.add('selected');
+        };
+        opt.addEventListener('click', opt._listener);
     });
     
-    // Referral code
-    let ref = localStorage.getItem('chem_ref_code');
-    if(!ref){
-        ref = 'CHEM'+Math.floor(Math.random()*9000+1000);
-        localStorage.setItem('chem_ref_code', ref);
+    // Check answers button
+    const checkBtn = container.closest('.glass-card')?.querySelector('.check-mcq-btn');
+    if (checkBtn && !checkBtn._listener) {
+        checkBtn._listener = () => {
+            let score = 0;
+            let total = 0;
+            container.querySelectorAll('.glass').forEach(questionDiv => {
+                const options = questionDiv.querySelectorAll('.mcq-option');
+                let selected = null;
+                let correctIdx = null;
+                options.forEach((opt, idx) => {
+                    if (opt.classList.contains('selected')) selected = idx;
+                    if (opt.getAttribute('data-correct') === 'true') correctIdx = idx;
+                });
+                if (selected !== null) total++;
+                if (selected === correctIdx) score++;
+                
+                // Show correct/wrong visual feedback
+                options.forEach((opt, idx) => {
+                    opt.classList.remove('selected');
+                    if (idx === correctIdx) opt.classList.add('correct');
+                    if (selected === idx && selected !== correctIdx) opt.classList.add('wrong');
+                });
+            });
+            showToast(`📊 স্কোর: ${score}/${total}`, score === total ? 'success' : 'info');
+        };
+        checkBtn.addEventListener('click', checkBtn._listener);
     }
-    document.getElementById('displayRefCode').innerText = ref;
-    document.getElementById('copyRefBtn')?.addEventListener('click',()=>{
-        navigator.clipboard.writeText(ref);
-        alert('রেফারেল কোড কপি!');
+}
+
+function updateSidebarActive(index) {
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    sidebarLinks.forEach((link, i) => {
+        if (i === index) link.classList.add('active');
+        else link.classList.remove('active');
     });
+}
+
+function loadSidebar() {
+    const sidebar = document.getElementById('topicSidebar');
+    sidebar.innerHTML = chapterData.topics.map((topic, idx) => `
+        <a href="#" class="sidebar-link flex items-center justify-between p-3 rounded-xl transition border-l-2 border-transparent hover:bg-white/5 ${completedTopics.includes(topic.id) ? 'text-green-400' : ''}" data-index="${idx}">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-${completedTopics.includes(topic.id) ? 'check-circle text-green-500' : 'circle'} text-xs"></i>
+                <span class="text-sm">${topic.id} ${topic.title.substring(0, 35)}${topic.title.length > 35 ? '...' : ''}</span>
+            </div>
+            ${completedTopics.includes(topic.id) ? '<i class="fas fa-check-circle text-green-500 text-xs"></i>' : ''}
+        </a>
+    `).join('');
     
-    // FAQ toggle
-    window.toggleFaq = function(id){
-        const el = document.getElementById('faq'+id);
-        if(el) el.classList.toggle('hidden');
-    };
-    for(let i=1;i<=4;i++){ let faqDiv = document.getElementById('faq'+i); if(faqDiv) faqDiv.classList.add('hidden'); }
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            currentTopicIndex = parseInt(link.dataset.index);
+            loadContent(currentTopicIndex);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+}
+
+// Toggle reading mode
+function toggleReadingMode() {
+    readingMode = !readingMode;
+    const btn = document.getElementById('readingModeBtn');
+    if (readingMode) {
+        btn.innerHTML = '<i class="fas fa-sun mr-1"></i> লাইট';
+        document.body.classList.add('reading-mode-active');
+        showToast('📖 পড়ার মোড সক্রিয়', 'info');
+    } else {
+        btn.innerHTML = '<i class="fas fa-moon mr-1"></i> ডার্ক';
+        document.body.classList.remove('reading-mode-active');
+    }
+    loadContent(currentTopicIndex);
+}
+
+// Initialize
+function init() {
+    loadSidebar();
+    loadContent(0);
+    updateProgress();
+    
+    document.getElementById('markCompleteBtn').addEventListener('click', markCurrentTopicComplete);
+    document.getElementById('resetProgressBtn').addEventListener('click', resetProgress);
+    document.getElementById('readingModeBtn').addEventListener('click', toggleReadingMode);
+    document.getElementById('mobileMarkCompleteBtn')?.addEventListener('click', markCurrentTopicComplete);
+    
+    // Next topic button
+    document.getElementById('nextTopicBtn').addEventListener('click', () => {
+        if (currentTopicIndex < chapterData.topics.length - 1) {
+            currentTopicIndex++;
+            loadContent(currentTopicIndex);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            showToast('🎉 আপনি অধ্যায় শেষ করেছেন!', 'success');
+            markChapterComplete();
+        }
+    });
+}
+
+init();
 </script>
+
+<!-- Additional CSS for reading mode -->
+<style>
+    .reading-mode-active .glass-card {
+        background: rgba(30, 25, 20, 0.9);
+    }
+    .reading-mode-active p, .reading-mode-active h2, .reading-mode-active h3 {
+        color: #f5e6d3 !important;
+    }
+    .reading-mode-active .glass {
+        background: rgba(0, 0, 0, 0.3);
+    }
+    @keyframes bounce {
+        0%, 100% { transform: translate(-50%, 0); }
+        50% { transform: translate(-50%, -10px); }
+    }
+    .animate-bounce {
+        animation: bounce 0.5s ease-in-out;
+    }
+</style>
+
 </body>
 </html>
