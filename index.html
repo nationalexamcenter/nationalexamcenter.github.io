@@ -1,317 +1,351 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - National Exam Center</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ন্যাশনাল এগজাম সেন্টার | নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬</title>
+    <meta name="description" content="নবম ও দশম শ্রেণির বিজ্ঞান বিভাগের সম্পূর্ণ প্রস্তুতি (পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান)। NCTB ২০২৬ আপডেট সিলেবাস। মাসিক, ত্রৈমাসিক, ষাণ্মাসিক ও বার্ষিক এক্সেস।">
+    <meta name="keywords" content="Class 9-10 science, নবম দশম বিজ্ঞান, NCTB 2026 syllabus, এসএসসি প্রস্তুতি ২০২৭, রসায়ন ৯ম-১০ম">
+    
+    <!-- Tailwind CSS + Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        body { background: linear-gradient(135deg, #0a0f1a 0%, #0c1320 100%); }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
+        .glass-card {
+            background: rgba(18, 25, 45, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            transition: all 0.3s ease;
         }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            overflow: hidden;
+        .glass-card:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+            transform: translateY(-2px);
         }
-        .header {
-            background: #2E8B57;
-            color: white;
-            padding: 30px;
-            text-align: center;
+        .gradient-text {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
+        .btn-gradient {
+            background: linear-gradient(105deg, #ff9a3c, #ff6a2c);
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(255, 100, 30, 0.3);
         }
-        .header p {
-            opacity: 0.9;
-            font-size: 14px;
+        .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 100, 30, 0.5);
         }
-        .content {
-            padding: 30px;
+        .btn-outline {
+            border: 1px solid rgba(245, 158, 11, 0.5);
+            transition: all 0.2s ease;
         }
-        h2 {
-            color: #2E8B57;
-            font-size: 20px;
-            margin: 25px 0 15px 0;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #eef2f6;
+        .btn-outline:hover {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: #f59e0b;
+            transform: translateY(-2px);
         }
-        h3 {
-            color: #444;
-            font-size: 18px;
-            margin: 20px 0 10px 0;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
-        ul, ol {
-            margin: 15px 0;
-            padding-left: 25px;
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
         }
-        li {
-            margin: 8px 0;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
         }
-        .badge {
-            background: #e8f5e9;
-            color: #2E8B57;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            display: inline-block;
-            margin: 5px 0;
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
         }
-        .warning-box {
-            background: #fff3cd;
-            border-left: 4px solid #856404;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 25px 0;
+        .floating-wa {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            transition: all 0.2s ease;
         }
-        .warning-box h3 {
-            color: #856404;
-            margin-top: 0;
-        }
-        .danger-box {
-            background: #f8d7da;
-            border-left: 4px solid #721c24;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 25px 0;
-        }
-        .danger-box h3 {
-            color: #721c24;
-            margin-top: 0;
-        }
-        .contact-box {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 12px;
-            margin: 25px 0;
-            border-left: 4px solid #2E8B57;
-        }
-        .contact-box p {
-            margin: 8px 0;
-        }
-        .footer {
-            background: #f8f9fa;
-            padding: 20px;
-            text-align: center;
-            font-size: 13px;
-            color: #666;
-            border-top: 1px solid #eef2f6;
-        }
-        .last-updated {
-            background: #fff3cd;
-            color: #856404;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-        @media (max-width: 600px) {
-            .container { border-radius: 12px; }
-            .header { padding: 20px; }
-            .header h1 { font-size: 24px; }
-            .content { padding: 20px; }
+        .floating-wa:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>📱 Privacy Policy</h1>
-            <p>National Exam Center - SSC 2026 Preparation App</p>
-        </div>
-        
-        <div class="content">
-            <div class="last-updated">
-                <strong>📅 Last Updated:</strong> March 10, 2026
+<body class="text-gray-200">
+
+<!-- Navigation Bar -->
+<nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-3">
+            <div class="flex items-center gap-3">
+                <i class="fas fa-flask text-2xl text-amber-500 float-animation"></i>
+                <span class="font-bold text-xl gradient-text">ন্যাশনাল এগজাম সেন্টার</span>
             </div>
-
-            <p>Welcome to National Exam Center ("we," "our," or "us"). We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our mobile application.</p>
-
-            <h2>📋 1. Information We Collect</h2>
-            
-            <h3>1.1 Information You Provide Directly</h3>
-            <ul>
-                <li><strong>Account Information:</strong> Email address and password (when you register)</li>
-                <li><strong>Usage Data:</strong> Study time, quiz scores, and progress tracking</li>
-                <li><strong>Communications:</strong> Information you provide when contacting support</li>
-            </ul>
-
-            <h3>1.2 Information Collected Automatically</h3>
-            <ul>
-                <li><strong>Device Information:</strong> Device model, operating system version, unique device identifiers</li>
-                <li><strong>Advertising ID:</strong> For serving personalized ads (guests only)</li>
-                <li><strong>Network Information:</strong> IP address, network type</li>
-                <li><strong>App Usage:</strong> Features used, time spent, crash reports</li>
-            </ul>
-
-            <h2>🎯 2. How We Use Your Information</h2>
-            <ul>
-                <li><strong>Service Delivery:</strong> To provide and maintain our educational services</li>
-                <li><strong>Progress Tracking:</strong> To save your study progress and quiz results</li>
-                <li><strong>Authentication:</strong> To verify your identity and secure your account</li>
-                <li><strong>Advertising:</strong> To show relevant ads (guest users only)</li>
-                <li><strong>Improvement:</strong> To analyze usage patterns and improve our app</li>
-                <li><strong>Support:</strong> To respond to your inquiries and provide assistance</li>
-            </ul>
-
-            <h2>🚫 3. Fraud, Cheating, and Abuse Prevention</h2>
-            
-            <div class="danger-box">
-                <h3>⚠️ Important: Consequences of Fraudulent Activity</h3>
-                <p>National Exam Center is committed to maintaining a fair and honest learning environment. Any attempt to cheat, manipulate the system, or engage in fraudulent activity will result in immediate action.</p>
+            <div class="flex items-center gap-4">
+                <a href="/chemistry.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition">
+                    <i class="fas fa-book-open mr-1"></i> রসায়ন পড়ুন
+                </a>
+                <a href="/privacy.html" class="hidden md:block text-gray-400 text-sm hover:text-amber-400 transition">গোপনীয়তা</a>
+                <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" target="_blank" class="px-3 py-1.5 rounded-lg glass border border-white/10 text-sm hover:border-amber-500 transition">
+                    <i class="fab fa-android mr-1"></i> অ্যাপ
+                </a>
             </div>
-
-            <h3>3.1 What Constitutes Cheating/Fraud</h3>
-            <ul>
-                <li><strong>Coin Manipulation:</strong> Attempting to artificially increase coin balances through unauthorized means</li>
-                <li><strong>Time Manipulation:</strong> Altering device time to bypass cooldown periods or daily limits</li>
-                <li><strong>Multiple Accounts:</strong> Creating multiple guest accounts to exceed free topic limits</li>
-                <li><strong>Automated Tools:</strong> Using bots, scripts, or automated tools to interact with the app</li>
-                <li><strong>Exploiting Bugs:</strong> Intentionally exploiting system vulnerabilities for unfair advantage</li>
-                <li><strong>Ad Fraud:</strong> Attempting to fake ad views or clicks</li>
-                <li><strong>Progress Manipulation:</strong> Falsifying study time or quiz scores</li>
-                <li><strong>Unauthorized Access:</strong> Attempting to access another user's account</li>
-            </ul>
-
-            <h3>3.2 Detection Methods</h3>
-            <p>We employ various automated and manual methods to detect fraudulent activity, including:</p>
-            <ul>
-                <li>Automated cheat detection algorithms</li>
-                <li>Time anomaly detection</li>
-                <li>Pattern analysis for suspicious activity</li>
-                <li>Device fingerprinting to prevent multiple guest accounts</li>
-                <li>Regular audits of coin transactions and usage patterns</li>
-            </ul>
-
-            <h3>3.3 Consequences of Violations</h3>
-            
-            <div class="warning-box">
-                <h3>First-Time Minor Offenses</h3>
-                <ul>
-                    <li><strong>Temporary Ban:</strong> 7-day account suspension</li>
-                    <li><strong>Coin Reset:</strong> All coins reset to zero</li>
-                    <li><strong>Warning:</strong> Formal warning sent to registered email</li>
-                </ul>
-            </div>
-
-            <div class="warning-box">
-                <h3>Repeat or Major Offenses</h3>
-                <ul>
-                    <li><strong>Extended Temporary Ban:</strong> 30-day account suspension</li>
-                    <li><strong>Progress Reset:</strong> All study progress and quiz scores reset</li>
-                    <li><strong>Feature Restriction:</strong> Limited access to certain features</li>
-                </ul>
-            </div>
-
-            <div class="danger-box">
-                <h3>Severe or Malicious Violations</h3>
-                <ul>
-                    <li><strong>Permanent Ban:</strong> Account permanently deactivated</li>
-                    <li><strong>Device Blacklist:</strong> Device ID blacklisted from creating new accounts</li>
-                    <li><strong>No Refund:</strong> Any paid services forfeited without refund</li>
-                    <li><strong>Legal Action:</strong> For severe cases involving fraud or unauthorized access</li>
-                </ul>
-                <p style="margin-top: 10px;"><strong>Examples of severe violations:</strong> Attempting to hack the system, distributing cheats, ad fraud, or malicious attacks on our services.</p>
-            </div>
-
-            <h3>3.4 Appeal Process</h3>
-            <p>If you believe your account was banned in error, you may appeal by contacting us with:</p>
-            <ul>
-                <li>Your account email</li>
-                <li>Date of ban</li>
-                <li>Explanation of why you believe it was a mistake</li>
-                <li>Any supporting evidence</li>
-            </ul>
-            <p>Appeals are reviewed within 3-5 business days. Decisions are final.</p>
-
-            <h2>📢 4. Advertising (AdMob)</h2>
-            <p>We use Google AdMob to serve ads. AdMob may collect and use data about you to provide personalized ads. Learn more at <a href="https://policies.google.com/technologies/ads" target="_blank">Google's Advertising Policy</a>.</p>
-            
-            <div class="badge">Guest Users Only</div>
-            <p>Ads are shown only to guest users. Registered (premium) users have an ad-free experience.</p>
-
-            <h3>What AdMob Collects:</h3>
-            <ul>
-                <li>Advertising ID (for ad personalization)</li>
-                <li>IP address</li>
-                <li>Device information</li>
-                <li>Coarse location (if permitted)</li>
-                <li>Ad interactions (clicks, impressions)</li>
-            </ul>
-            
-            <p><strong>Important:</strong> Any attempt to manipulate, fake, or fraudulently interact with ads is strictly prohibited and will result in immediate permanent ban as outlined in Section 3.</p>
-
-            <h2>🔗 5. Third-Party Services</h2>
-            <ul>
-                <li><strong>Firebase Authentication:</strong> For user sign-in and account management (Google)</li>
-                <li><strong>Firebase Firestore:</strong> For cloud data storage and sync (Google)</li>
-                <li><strong>Google AdMob:</strong> For advertising (guest users only)</li>
-            </ul>
-            <p>Each service has its own privacy policy. We encourage you to review them.</p>
-
-            <h2>🌍 6. Data Storage and Security</h2>
-            <ul>
-                <li><strong>Local Storage:</strong> Guest progress is stored only on your device</li>
-                <li><strong>Cloud Storage:</strong> Registered user data is stored securely on Firebase servers</li>
-                <li><strong>Encryption:</strong> All data transmission uses HTTPS encryption</li>
-                <li><strong>Retention:</strong> We retain your data only as long as necessary to provide services</li>
-            </ul>
-
-            <h2>🔐 7. Your Rights and Choices</h2>
-            <h3>For All Users:</h3>
-            <ul>
-                <li><strong>Opt-out of Ads:</strong> You can disable personalized ads in your device settings (Android: Settings > Google > Ads > Opt out of interest-based ads)</li>
-                <li><strong>Delete Guest Data:</strong> Uninstalling the app removes all guest data</li>
-            </ul>
-
-            <h3>For Registered Users:</h3>
-            <ul>
-                <li><strong>Access:</strong> Request a copy of your data</li>
-                <li><strong>Correction:</strong> Update your information</li>
-                <li><strong>Deletion:</strong> Request account deletion</li>
-                <li><strong>Export:</strong> Download your data in portable format</li>
-            </ul>
-            <p>To exercise these rights, contact us at the email below.</p>
-
-            <h2>👶 8. Children's Privacy</h2>
-            <p>Our app is designed for students preparing for SSC exams. We do not knowingly collect personal information from children under 13 without parental consent. If you believe we have collected information from a child under 13, please contact us immediately.</p>
-
-            <h2>🌐 9. International Data Transfers</h2>
-            <p>Your information may be transferred to and processed in countries where our servers operate (Google Cloud locations). By using our app, you consent to this transfer.</p>
-
-            <h2>📞 10. Contact Us</h2>
-            <div class="contact-box">
-                <p><strong>📧 Email:</strong> nationalexamcenter@gmail.com</p>
-                <p><strong>📱 WhatsApp:</strong> +8801602105447</p>
-                <p><strong>💬 Messenger:</strong> sheikh.saheb.nec</p>
-                <p><strong>📬 Developer:</strong> National Exam Center</p>
-                <p><strong>⚖️ For Ban Appeals:</strong> Use email with subject "BAN APPEAL - nationalexamcenter@gmail.com"</p>
-            </div>
-
-            <h2>🔄 11. Changes to This Policy</h2>
-            <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the "Last Updated" date. For material changes, we may provide additional notice through the app.</p>
-
-            <p style="margin-top: 30px; font-style: italic; color: #666;">By using National Exam Center, you agree to the collection and use of information in accordance with this policy. You also acknowledge that cheating, fraud, or abuse of our system may result in temporary or permanent account banning as described in Section 3.</p>
-        </div>
-        
-        <div class="footer">
-            <p>© 2026 National Exam Center. All rights reserved.</p>
-            <p>This privacy policy is hosted on GitHub Pages and complies with Samsung Store requirements.</p>
         </div>
     </div>
-</body>
+</nav>
 
+<!-- Hero Section -->
+<section class="pt-28 pb-16 px-4">
+    <div class="max-w-6xl mx-auto text-center">
+        <div class="inline-block px-4 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm mb-4 pulse-animation">
+            <i class="fas fa-graduation-cap mr-1"></i> NCTB ২০২৬ আপডেট সিলেবাস
+        </div>
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">
+            নবম-দশম <span class="gradient-text">বিজ্ঞান প্রস্তুতি</span>
+        </h1>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
+            পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান - সর্বশেষ প্যাটার্ন ও সিলেবাস। 
+            এসএসসি ২০২৭, ২০২৮ ব্যাচদের জন্য প্রিমিয়াম সাপোর্ট।
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center">
+            <a href="/chemistry.html" class="btn-gradient px-8 py-3 rounded-full font-bold text-lg inline-block">
+                <i class="fas fa-book-open mr-2"></i> রসায়ন অধ্যায় পড়ুন
+            </a>
+            <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" target="_blank" class="btn-outline px-6 py-3 rounded-full font-semibold inline-block">
+                <i class="fab fa-android mr-2"></i> অ্যাপ ডাউনলোড
+            </a>
+        </div>
+        
+        <!-- Stats -->
+        <div class="flex flex-wrap justify-center gap-8 mt-12">
+            <div class="text-center">
+                <div class="text-2xl font-bold text-amber-400">৬+</div>
+                <div class="text-xs text-gray-500">অধ্যায়</div>
+            </div>
+            <div class="text-center">
+                <div class="text-2xl font-bold text-amber-400">১০০+</div>
+                <div class="text-xs text-gray-500">টপিক</div>
+            </div>
+            <div class="text-center">
+                <div class="text-2xl font-bold text-amber-400">৫০০+</div>
+                <div class="text-xs text-gray-500">MCQ</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Grid -->
+<section class="py-12 px-4">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">✨ কেন আমাদের প্ল্যাটফর্ম?</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-chalkboard-user text-xl text-amber-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">সম্পূর্ণ সিলেবাস</h3>
+                <p class="text-gray-400 text-sm">NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী সকল অধ্যায় কভার করা হয়েছে</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-question-circle text-xl text-amber-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">MCQ ও সৃজনশীল</h3>
+                <p class="text-gray-400 text-sm">অধ্যায়ভিত্তিক বহুনির্বাচনি ও সৃজনশীল প্রশ্ন সহ</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-chart-line text-xl text-amber-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">প্রোগ্রেস ট্র্যাকিং</h3>
+                <p class="text-gray-400 text-sm">আপনার পড়ার অগ্রগতি সংরক্ষণ ও ট্র্যাক করুন</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Subjects Preview -->
+<section class="py-12 px-4">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">📚 আমাদের কোর্স সমূহ</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="glass rounded-2xl p-6 text-center border-l-4 border-amber-500">
+                <i class="fas fa-flask text-3xl text-amber-400 mb-3"></i>
+                <h3 class="text-xl font-semibold mb-2">রসায়ন</h3>
+                <p class="text-gray-400 text-sm">পরমাণুর গঠন, পর্যায় সারণি, রাসায়নিক বন্ধন, এসিড-ক্ষার ও জৈব রসায়ন</p>
+                <a href="/chemistry.html" class="inline-block mt-3 text-amber-400 text-sm hover:text-amber-300 transition">
+                    বিস্তারিত <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+            <div class="glass rounded-2xl p-6 text-center border-l-4 border-gray-600">
+                <i class="fas fa-atom text-3xl text-gray-400 mb-3"></i>
+                <h3 class="text-xl font-semibold mb-2">পদার্থবিজ্ঞান</h3>
+                <p class="text-gray-400 text-sm">গতি, বল, শক্তি, তরঙ্গ, আলো, তড়িৎ ও চুম্বকত্ব</p>
+                <span class="inline-block mt-3 text-gray-500 text-sm">
+                    <i class="fas fa-hourglass-half mr-1"></i> শীঘ্রই আসছে
+                </span>
+            </div>
+            <div class="glass rounded-2xl p-6 text-center border-l-4 border-gray-600">
+                <i class="fas fa-dna text-3xl text-gray-400 mb-3"></i>
+                <h3 class="text-xl font-semibold mb-2">জীববিজ্ঞান</h3>
+                <p class="text-gray-400 text-sm">কোষ, টিস্যু, শারীরতত্ত্ব, বংশগতি, ইকোসিস্টেম ও বায়োটেকনোলজি</p>
+                <span class="inline-block mt-3 text-gray-500 text-sm">
+                    <i class="fas fa-hourglass-half mr-1"></i> শীঘ্রই আসছে
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Plans -->
+<section class="py-12 px-4" id="pricing">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">💰 ফ্লেক্সিবল এক্সেস প্ল্যান</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="text-2xl font-bold">মাসিক</div>
+                <div class="text-3xl font-bold text-amber-400 my-2">১০০৳</div>
+                <p class="text-sm text-gray-400">৩০ দিন অ্যাক্সেস</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="text-2xl font-bold">ত্রৈমাসিক</div>
+                <div class="text-3xl font-bold text-amber-400 my-2">২৭৫৳</div>
+                <p class="text-sm text-gray-400">৯০ দিন + বোনাস</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="text-2xl font-bold">ষাণ্মাসিক</div>
+                <div class="text-3xl font-bold text-amber-400 my-2">৫০০৳</div>
+                <p class="text-sm text-gray-400">৬ মাস + কুইজ</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center border-2 border-amber-500/40">
+                <div class="text-2xl font-bold">বার্ষিক</div>
+                <div class="text-3xl font-bold text-amber-300 my-2">৯০০৳</div>
+                <p class="text-sm text-gray-400">৩৬৫ দিন + এসএসসি ২০২৭ সাপোর্ট</p>
+                <span class="inline-block mt-2 text-xs bg-amber-500/20 px-2 py-1 rounded-full">বেস্ট ভ্যালু</span>
+            </div>
+        </div>
+        
+        <!-- Payment Info -->
+        <div class="glass rounded-2xl p-5 mt-8 text-center">
+            <p><i class="fab fa-bkash text-pink-400 mr-2"></i> <strong>bKash পেমেন্ট:</strong> ০১৬০২১০৫৪৪৭ (Personal)</p>
+            <p class="text-xs text-gray-500 mt-2">পেমেন্টের পর স্ক্রিনশট হোয়াটসঅ্যাপে পাঠান</p>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-12 px-4">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">💬 শিক্ষার্থীদের মতামত</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="glass-card rounded-2xl p-6">
+                <div class="flex text-amber-400 mb-3">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-gray-300 text-sm">"রসায়নের প্রথম অধ্যায়ের MCQ ও সৃজনশীল প্রশ্নগুলো খুবই helpful। অগ্রগতি ট্র্যাকার দারুণ!"</p>
+                <p class="text-amber-400 text-sm mt-3">— মেহরিন, নবম শ্রেণি</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6">
+                <div class="flex text-amber-400 mb-3">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-gray-300 text-sm">"সব টপিক খুব সুন্দরভাবে সাজানো। পড়ার মোড ও ডার্ক মোড অসাধারণ!"</p>
+                <p class="text-amber-400 text-sm mt-3">— শাহরিয়ার, দশম শ্রেণি</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6">
+                <div class="flex text-amber-400 mb-3">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-gray-300 text-sm">"বার্ষিক প্ল্যান নিয়েছি। এসএসসি ২০২৭-এর জন্য আগে থেকেই প্রস্তুতি নিচ্ছি!"</p>
+                <p class="text-amber-400 text-sm mt-3">— আবিদ, নবম শ্রেণি</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">❓ জিজ্ঞাসিত প্রশ্ন</h2>
+        <div class="space-y-3">
+            <div class="glass rounded-xl overflow-hidden">
+                <button class="faq-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition">
+                    এই ওয়েবসাইটে কী কী বিষয় আছে?
+                    <i class="fas fa-chevron-down text-gray-500"></i>
+                </button>
+                <div class="faq-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">
+                    বর্তমানে রসায়নের প্রথম অধ্যায় (রসায়নের ধারণা) সম্পূর্ণভাবে যুক্ত করা হয়েছে। শীঘ্রই পদার্থবিজ্ঞান ও জীববিজ্ঞান যুক্ত হবে।
+                </div>
+            </div>
+            <div class="glass rounded-xl overflow-hidden">
+                <button class="faq-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition">
+                    কিভাবে পেমেন্ট করে অ্যাক্সেস নেব?
+                    <i class="fas fa-chevron-down text-gray-500"></i>
+                </button>
+                <div class="faq-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">
+                    bKash এ টাকা পাঠানোর পর স্ক্রিনশট ও আপনার পছন্দের প্ল্যান হোয়াটসঅ্যাপে (+8801602105447) দিলে ১ ঘণ্টার মধ্যে ইউজারনেম ও পাসওয়ার্ড পেয়ে যাবেন।
+                </div>
+            </div>
+            <div class="glass rounded-xl overflow-hidden">
+                <button class="faq-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition">
+                    রসায়ন অধ্যায় কিভাবে পড়ব?
+                    <i class="fas fa-chevron-down text-gray-500"></i>
+                </button>
+                <div class="faq-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">
+                    উপরের "রসায়ন অধ্যায় পড়ুন" বাটনে ক্লিক করলেই আপনি সম্পূর্ণ প্রথম অধ্যায়ের কন্টেন্ট পড়তে পারবেন। সেখানে MCQ উত্তর দিতে পারবেন এবং অগ্রগতি ট্র্যাক করতে পারবেন।
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-8 px-4 border-t border-white/10 mt-8">
+    <div class="max-w-6xl mx-auto text-center">
+        <div class="flex flex-wrap justify-center gap-6 mb-4">
+            <a href="/chemistry.html" class="text-gray-400 text-sm hover:text-amber-400 transition">রসায়ন</a>
+            <a href="/privacy.html" class="text-gray-400 text-sm hover:text-amber-400 transition">গোপনীয়তা নীতি</a>
+            <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" target="_blank" class="text-gray-400 text-sm hover:text-amber-400 transition">অ্যাপ ডাউনলোড</a>
+        </div>
+        <p class="text-gray-500 text-xs">© ২০২৬ National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি | NCTB ২০২৬ সিলেবাস</p>
+    </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/8801602105447?text=আমি%20নবম-দশম%20বিজ্ঞান%20প্রস্তুতি%20সম্পর্কে%20জানতে%20চাই" class="floating-wa" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+    // FAQ Toggle Functionality
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('.fa-chevron-down');
+            answer.classList.toggle('hidden');
+            icon.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        });
+    });
+</script>
+
+</body>
 </html>
