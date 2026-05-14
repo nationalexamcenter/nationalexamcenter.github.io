@@ -49,6 +49,9 @@
         .animate-bounce { animation: bounce 0.5s ease-in-out; }
         .floating-wa { position: fixed; bottom: 25px; right: 25px; z-index: 1000; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: all 0.2s ease; }
         .floating-wa:hover { transform: scale(1.1); }
+        .loader { border: 3px solid rgba(245, 158, 11, 0.3); border-top: 3px solid #f59e0b; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .hidden-section { display: none; }
     </style>
 </head>
 <body class="text-gray-200">
@@ -90,7 +93,9 @@
             <p class="text-sm text-gray-400 mt-2"><span id="completedChaptersCount">0</span>/12 অধ্যায় সম্পূর্ণ</p>
         </div>
         
-        <div id="chaptersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        <div id="chaptersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="loader"></div>
+        </div>
     </div>
     
     <!-- Chapter Detail View -->
@@ -115,7 +120,9 @@
         
         <div class="flex flex-wrap gap-2 mb-6 border-b border-white/10 pb-3" id="topicsTabs"></div>
         
-        <div id="topicContent" class="glass-card rounded-2xl p-6" style="cursor: default;"></div>
+        <div id="topicContent" class="glass-card rounded-2xl p-6" style="cursor: default;">
+            <div class="loader"></div>
+        </div>
     </div>
 </div>
 
@@ -125,7 +132,7 @@
 
 <script>
 // ============================================
-// COMPLETE CHEMISTRY APP - WORKING VERSION
+// CHEMISTRY APP - DYNAMIC JSON LOADER
 // ============================================
 
 const CHAPTERS_META = [
@@ -143,26 +150,41 @@ const CHAPTERS_META = [
     { id: 12, title: "আমাদের জীবনে রসায়ন", title_en: "Chemistry in Our Life" }
 ];
 
-// Complete content for all 12 chapters
-const CHAPTER_CONTENT = {
-    1: { chapter_title: "রসায়নের ধারণা", topics: [{ id: "1.1", title: "রসায়ন পরিচিতি", summary: ["• রসায়ন হলো বিজ্ঞানের একটি প্রধান শাখা যেখানে মৌল ও যৌগিক পদার্থের সংযুক্তি, গঠন, ধর্ম ও ব্যবহার আলোচনা করা হয়।", "• প্রথম ব্যবহৃত ধাতু ছিল তামা।", "• গ্রিক দার্শনিক ডেমোক্রিটাস 'অ্যাটম' ধারণা প্রস্তাব করেন।", "• 'Chemistry' শব্দটি এসেছে আরবি 'আল-কিমিয়া' থেকে।"], exam_questions: [{ q: "রসায়ন কী?", o: ["পদার্থের গঠন ও ধর্ম নিয়ে বিজ্ঞান", "শুধু ধাতু নিয়ে গবেষণা", "জীবদেহ নিয়ে বিজ্ঞান", "গ্যাস নিয়ে পরীক্ষা"], a: 0 }, { q: "প্রথম ব্যবহৃত ধাতু কোনটি?", o: ["লোহা", "তামা", "সোনা", "অ্যালুমিনিয়াম"], a: 1 }] }] },
-    2: { chapter_title: "পদার্থের অবস্থা", topics: [{ id: "2.1", title: "পদার্থ ও পদার্থের অবস্থা", summary: ["• পদার্থ হলো এমন বস্তু যার নির্দিষ্ট ভর আছে এবং যা স্থান দখল করে।", "• কক্ষ তাপমাত্রায় পদার্থ তিনটি অবস্থায় থাকতে পারে: কঠিন, তরল ও গ্যাসীয়।", "• কঠিন পদার্থের নির্দিষ্ট আকার ও আয়তন থাকে।", "• তরল পদার্থের নির্দিষ্ট আয়তন আছে কিন্তু নির্দিষ্ট আকার নেই।"], exam_questions: [] }] },
-    3: { chapter_title: "পদার্থের গঠন", topics: [{ id: "3.1", title: "মৌলিক ও যৌগিক পদার্থ", summary: ["• মৌলিক পদার্থকে রাসায়নিক পদ্ধতিতে ভাঙলে একমাত্র ঐ পদার্থ ছাড়া অন্য কিছু পাওয়া যায় না।", "• যৌগিক পদার্থকে ভাঙলে দুই বা ততোধিক ভিন্ন মৌল পাওয়া যায়।", "• বর্তমান পর্যন্ত মোট ১১৮টি মৌল আবিষ্কৃত হয়েছে।"], exam_questions: [] }] },
-    4: { chapter_title: "পর্যায় সারণি", topics: [{ id: "4.1", title: "পর্যায় সারণির পটভূমি", summary: ["• মেন্ডেলিফ ১৮৬৯ সালে প্রথম পর্যায় সারণি তৈরি করেন।", "• মোসলে ১৯১৩ সালে পারমাণবিক সংখ্যার ভিত্তিতে আধুনিক পর্যায় সারণি প্রস্তাব করেন।", "• বর্তমানে ১১৮টি মৌল নিয়ে পর্যায় সারণি গঠিত।"], exam_questions: [] }] },
-    5: { chapter_title: "রাসায়নিক বন্ধন", topics: [{ id: "5.1", title: "যোজ্যতা ইলেকট্রন ও যোজনী", summary: ["• যোজ্যতা ইলেকট্রন হলো কোনো মৌলের সর্বশেষ শক্তিস্তরে উপস্থিত ইলেকট্রন।", "• যোজনী হলো অণু গঠনকালে অন্য পরমাণুর সাথে যুক্ত হওয়ার ক্ষমতা।", "• আয়রনের মতো কিছু মৌলের পরিবর্তনশীল যোজনী থাকে।"], exam_questions: [] }] },
-    6: { chapter_title: "মোলের ধারণা ও রাসায়নিক গণনা", topics: [{ id: "6.1", title: "মোলের ধারণা", summary: ["• ১ মোল পদার্থে ৬.০২৩ × 10²³ টি কণা থাকে (অ্যাভোগেড্রোর সংখ্যা)।", "• মোলার ভর = ১ মোল পদার্থের ভর (গ্রাম/মোল)।", "• মোল সংখ্যা = ভর / মোলার ভর।"], exam_questions: [] }] },
-    7: { chapter_title: "রাসায়নিক বিক্রিয়া", topics: [{ id: "7.1", title: "ভৌত ও রাসায়নিক পরিবর্তন", summary: ["• ভৌত পরিবর্তনে পদার্থের আণবিক সংকেত অপরিবর্তিত থাকে।", "• রাসায়নিক পরিবর্তনে নতুন পদার্থ সৃষ্টি হয়।", "• দহন, মরিচা পড়া রাসায়নিক পরিবর্তনের উদাহরণ।"], exam_questions: [] }] },
-    8: { chapter_title: "রসায়ন ও শক্তি", topics: [{ id: "8.1", title: "রাসায়নিক শক্তি ও বন্ধন শক্তি", summary: ["• রাসায়নিক শক্তি অণু বা পরমাণুর মধ্যে সঞ্চিত শক্তি।", "• তাপোৎপাদী বিক্রিয়ায় তাপ নির্গত হয়, তাপহারী বিক্রিয়ায় তাপ শোষিত হয়।", "• ১ ক্যালরি = ৪.১৮ জুল।"], exam_questions: [] }] },
-    9: { chapter_title: "এসিড-ক্ষারক সমতা", topics: [{ id: "9.1", title: "এসিডের ধর্ম ও পানির ভূমিকা", summary: ["• এসিড পানিতে H⁺ আয়ন দান করে।", "• HCl সবল এসিড, CH₃COOH মৃদু এসিড।", "• নীল লিটমাস লাল হয়।"], exam_questions: [] }] },
-    10: { chapter_title: "খনিজ সম্পদ: ধাতু-অধাতু", topics: [{ id: "10.1", title: "খনিজ, আকরিক ও শিলা", summary: ["• আকরিক থেকে লাভজনকভাবে ধাতু নিষ্কাশন করা যায়।", "• হেমাটাইট (Fe₂O₃) লোহার আকরিক।", "• বক্সাইট (Al₂O₃·2H₂O) অ্যালুমিনিয়ামের আকরিক।"], exam_questions: [] }] },
-    11: { chapter_title: "খনিজ সম্পদ: জীবাশ্ম", topics: [{ id: "11.1", title: "জীবাশ্ম জ্বালানি ও পেট্রোলিয়াম", summary: ["• কয়লা, প্রাকৃতিক গ্যাস ও পেট্রোলিয়াম জীবাশ্ম জ্বালানি।", "• প্রাকৃতিক গ্যাসের প্রধান উপাদান মিথেন (CH₄)।", "• আংশিক পাতন পদ্ধতিতে পেট্রোলিয়াম পৃথক করা হয়।"], exam_questions: [] }] },
-    12: { chapter_title: "আমাদের জীবনে রসায়ন", topics: [{ id: "12.1", title: "গৃহস্থালির রসায়ন", summary: ["• খাদ্যলবণ NaCl, ভিনেগার CH₃COOH এর দ্রবণ।", "• বেকিং সোডা NaHCO₃ কেক ফোলাতে ব্যবহৃত হয়।"], exam_questions: [] }] }
-};
-
 let completedChapters = JSON.parse(localStorage.getItem('chemistry_completed_chapters') || '[]');
 let currentChapterId = null;
 let currentTopicIndex = 0;
+let chapterDataCache = {};
 
+// Load chapter JSON from file
+async function loadChapterData(chapterId) {
+    if (chapterDataCache[chapterId]) {
+        return chapterDataCache[chapterId];
+    }
+    
+    try {
+        const response = await fetch(`data/chapter-${chapterId}.json`);
+        if (!response.ok) {
+            throw new Error(`Chapter ${chapterId} not found`);
+        }
+        const data = await response.json();
+        chapterDataCache[chapterId] = data;
+        return data;
+    } catch (error) {
+        console.warn(`Could not load chapter ${chapterId}:`, error);
+        // Return fallback structure
+        return {
+            chapter_title: CHAPTERS_META.find(c => c.id === chapterId)?.title || `অধ্যায় ${chapterId}`,
+            topics: [{
+                id: `${chapterId}.1`,
+                title: `${CHAPTERS_META.find(c => c.id === chapterId)?.title || `অধ্যায় ${chapterId}`} - পরিচয়`,
+                study: { summary: [`• ${CHAPTERS_META.find(c => c.id === chapterId)?.title || `অধ্যায় ${chapterId}`} অধ্যায়ের বিস্তারিত কন্টেন্ট শীঘ্রই যুক্ত হবে।`] },
+                exam: { questions: [] }
+            }]
+        };
+    }
+}
+
+// Progress functions
 function updateOverallProgress() {
     const percent = Math.round((completedChapters.length / 12) * 100);
     document.getElementById('overallProgress').innerText = percent + '%';
@@ -179,21 +201,32 @@ function showToast(msg, type) {
     setTimeout(() => toast.remove(), 2000);
 }
 
-function renderChaptersGrid() {
+function getBengaliLetter(key) {
+    const letters = { 'ka': 'ক', 'kha': 'খ', 'ga': 'গ', 'gha': 'ঘ' };
+    return letters[key] || key.toUpperCase();
+}
+
+// Render chapters grid
+async function renderChaptersGrid() {
     const container = document.getElementById('chaptersGrid');
-    container.innerHTML = CHAPTERS_META.map(ch => `
-        <div class="glass-card rounded-2xl p-6" data-chapter-id="${ch.id}">
-            <div class="flex justify-between items-start mb-3">
-                <span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">অধ্যায় ${ch.id}</span>
-                ${completedChapters.includes(ch.id) ? '<i class="fas fa-check-circle text-green-500 text-xl"></i>' : ''}
+    
+    let html = '';
+    for (const ch of CHAPTERS_META) {
+        html += `
+            <div class="glass-card rounded-2xl p-6" data-chapter-id="${ch.id}">
+                <div class="flex justify-between items-start mb-3">
+                    <span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">অধ্যায় ${ch.id}</span>
+                    ${completedChapters.includes(ch.id) ? '<i class="fas fa-check-circle text-green-500 text-xl"></i>' : ''}
+                </div>
+                <h3 class="text-xl font-bold mb-1">${ch.title}</h3>
+                <p class="text-gray-400 text-sm mb-4">${ch.title_en}</p>
+                <button class="view-chapter-btn w-full px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition" data-chapter-id="${ch.id}">
+                    <i class="fas fa-book-open mr-1"></i> পড়ুন
+                </button>
             </div>
-            <h3 class="text-xl font-bold mb-1">${ch.title}</h3>
-            <p class="text-gray-400 text-sm mb-4">${ch.title_en}</p>
-            <button class="view-chapter-btn w-full px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition" data-chapter-id="${ch.id}">
-                <i class="fas fa-book-open mr-1"></i> পড়ুন
-            </button>
-        </div>
-    `).join('');
+        `;
+    }
+    container.innerHTML = html;
     
     document.querySelectorAll('.view-chapter-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -203,14 +236,15 @@ function renderChaptersGrid() {
     });
 }
 
-function openChapter(chapterId) {
+// Open chapter
+async function openChapter(chapterId) {
     currentChapterId = chapterId;
-    const data = CHAPTER_CONTENT[chapterId];
+    const chapterData = await loadChapterData(chapterId);
     
     document.getElementById('chaptersView').classList.add('hidden');
     document.getElementById('chapterView').classList.remove('hidden');
     document.getElementById('chapterNumber').innerText = chapterId;
-    document.getElementById('chapterTitle').innerHTML = data.chapter_title;
+    document.getElementById('chapterTitle').innerHTML = chapterData.chapter_title || CHAPTERS_META.find(c => c.id === chapterId)?.title;
     
     const markBtn = document.getElementById('markChapterCompleteBtn');
     if (completedChapters.includes(chapterId)) {
@@ -223,29 +257,47 @@ function openChapter(chapterId) {
         markBtn.classList.add('bg-green-500/20', 'border-green-500/50', 'text-green-400');
     }
     
+    // Render topics tabs
     const tabsContainer = document.getElementById('topicsTabs');
-    tabsContainer.innerHTML = data.topics.map((t, idx) => `
-        <button class="topic-tab px-4 py-2 rounded-lg text-sm transition ${idx === 0 ? 'bg-amber-500/20 text-amber-400' : 'text-gray-400 hover:text-amber-400'}" data-topic-index="${idx}">${t.id} ${t.title.substring(0, 25)}</button>
-    `).join('');
+    if (chapterData.topics && chapterData.topics.length > 0) {
+        tabsContainer.innerHTML = chapterData.topics.map((topic, idx) => `
+            <button class="topic-tab px-4 py-2 rounded-lg text-sm transition ${idx === 0 ? 'bg-amber-500/20 text-amber-400' : 'text-gray-400 hover:text-amber-400'}" data-topic-index="${idx}">
+                ${topic.id} ${topic.title.substring(0, 30)}${topic.title.length > 30 ? '...' : ''}
+            </button>
+        `).join('');
+    } else {
+        tabsContainer.innerHTML = '<span class="text-gray-400">কোন টপিক পাওয়া যায়নি</span>';
+    }
     
     currentTopicIndex = 0;
-    loadTopicContent(chapterId, 0);
+    await loadTopicContent(chapterId, 0, chapterData);
     
     document.querySelectorAll('.topic-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
+        tab.addEventListener('click', async () => {
             const idx = parseInt(tab.dataset.topicIndex);
             currentTopicIndex = idx;
-            loadTopicContent(chapterId, idx);
+            await loadTopicContent(chapterId, idx, chapterData);
             document.querySelectorAll('.topic-tab').forEach(t => t.classList.remove('bg-amber-500/20', 'text-amber-400'));
             tab.classList.add('bg-amber-500/20', 'text-amber-400');
         });
     });
 }
 
-function loadTopicContent(chapterId, topicIndex) {
-    const topic = CHAPTER_CONTENT[chapterId].topics[topicIndex];
+// Load topic content with all rich data
+async function loadTopicContent(chapterId, topicIndex, chapterData) {
     const container = document.getElementById('topicContent');
-    const examQuestions = topic.exam_questions || [];
+    const topic = chapterData.topics[topicIndex];
+    const study = topic.study || {};
+    const exam = topic.exam || {};
+    
+    // Extract all rich content
+    const summary = study.summary || [];
+    const shortQuestions = study.short_questions || [];
+    const creativeQuestions = study.creative_questions || [];
+    const mathExamples = study.mathematical_examples || [];
+    const chemicalReactions = study.chemical_reactions || [];
+    const tables = study.tables || [];
+    const examQuestions = exam.questions || [];
     
     let html = `
         <div>
@@ -254,21 +306,146 @@ function loadTopicContent(chapterId, topicIndex) {
                 <span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">টপিক ${topic.id}</span>
             </div>
             <h2 class="text-2xl font-bold mb-6">${topic.title}</h2>
+    `;
+    
+    // Summary Section
+    if (summary.length > 0) {
+        html += `
             <div class="mb-6">
                 <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-align-left mr-2"></i>সারাংশ</h3>
                 <div class="space-y-2 bg-black/20 rounded-xl p-4">
-                    ${topic.summary.map(s => `<p class="text-gray-300 leading-relaxed">${s}</p>`).join('')}
+                    ${summary.map(s => `<p class="text-gray-300 leading-relaxed">${s}</p>`).join('')}
                 </div>
             </div>
-    `;
+        `;
+    }
     
+    // Short Questions (Expandable)
+    if (shortQuestions.length > 0) {
+        html += `
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-question-circle mr-2"></i>সংক্ষিপ্ত প্রশ্নোত্তর</h3>
+                <div class="space-y-3">
+                    ${shortQuestions.map((sq, idx) => `
+                        <div class="border border-white/10 rounded-xl overflow-hidden">
+                            <button class="sq-toggle w-full text-left p-3 font-medium hover:bg-white/5 transition flex justify-between items-center" data-idx="${idx}">
+                                <span>${idx+1}. ${sq.q}</span>
+                                <i class="fas fa-chevron-down text-gray-500"></i>
+                            </button>
+                            <div class="sq-answer hidden p-3 pt-0 text-gray-400 border-t border-white/10">
+                                ${sq.a}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+    
+    // Creative Questions (Expandable with sub-questions)
+    if (creativeQuestions.length > 0) {
+        html += `
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-pencil-alt mr-2"></i>সৃজনশীল প্রশ্ন</h3>
+                <div class="space-y-3">
+                    ${creativeQuestions.map((cq, idx) => `
+                        <div class="border border-white/10 rounded-xl overflow-hidden">
+                            <button class="cq-toggle w-full text-left p-3 font-medium hover:bg-white/5 transition flex justify-between items-center" data-idx="${idx}">
+                                <span>${idx+1}. ${cq.paragraph.substring(0, 80)}${cq.paragraph.length > 80 ? '...' : ''}</span>
+                                <i class="fas fa-chevron-down text-gray-500"></i>
+                            </button>
+                            <div class="cq-answer hidden p-3 pt-0 text-gray-400 border-t border-white/10">
+                                ${Object.entries(cq.sub_questions || {}).map(([key, val]) => `
+                                    <div class="mb-3">
+                                        <p class="font-medium text-amber-400">${getBengaliLetter(key)} (${val.marks} নম্বর)</p>
+                                        <p class="mt-1">${val.question}</p>
+                                        <p class="mt-1 text-green-400"><strong>উত্তর:</strong> ${val.answer}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+    
+    // Mathematical Examples
+    if (mathExamples.length > 0) {
+        html += `
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-calculator mr-2"></i>গাণিতিক উদাহরণ</h3>
+                <div class="space-y-3">
+                    ${mathExamples.map((ex, idx) => `
+                        <div class="border border-white/10 rounded-xl overflow-hidden">
+                            <button class="math-toggle w-full text-left p-3 font-medium hover:bg-white/5 transition flex justify-between items-center" data-idx="${idx}">
+                                <span>${ex.title}</span>
+                                <i class="fas fa-chevron-down text-gray-500"></i>
+                            </button>
+                            <div class="math-answer hidden p-3 pt-0 text-gray-400 border-t border-white/10">
+                                <p><strong>সমস্যা:</strong> ${ex.problem}</p>
+                                <p class="mt-2"><strong>সমাধান:</strong></p>
+                                <p class="whitespace-pre-line">${ex.solution}</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+    
+    // Chemical Reactions
+    if (chemicalReactions.length > 0) {
+        html += `
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-flask mr-2"></i>রাসায়নিক বিক্রিয়া</h3>
+                <div class="space-y-3">
+                    ${chemicalReactions.map((cr, idx) => `
+                        <div class="glass rounded-xl p-3">
+                            <p class="font-mono text-amber-400">${cr.equation}</p>
+                            <p class="text-sm text-gray-400 mt-1">${cr.description}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+    
+    // Tables
+    if (tables.length > 0) {
+        html += `
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>
+                ${tables.map(table => `
+                    <div class="overflow-x-auto mb-4">
+                        <table class="w-full text-sm border border-white/10 rounded-xl">
+                            <thead>
+                                <tr class="border-b border-white/10 bg-white/5">
+                                    ${table.headers.map(h => `<th class="p-2 text-left">${h}</th>`).join('')}
+                                 </tr>
+                            </thead>
+                            <tbody>
+                                ${table.rows.map(row => `
+                                    <tr class="border-b border-white/5">
+                                        ${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}
+                                     </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+    
+    // MCQ Exam
     if (examQuestions.length > 0) {
         html += `
             <div class="mt-8 pt-6 border-t border-white/10">
                 <h3 class="text-lg font-semibold text-amber-400 mb-4"><i class="fas fa-question-circle mr-2"></i>MCQ পরীক্ষা</h3>
                 <div id="mcqContainer" class="space-y-4">
                     ${examQuestions.map((mcq, idx) => `
-                        <div class="glass rounded-xl p-4" style="background: rgba(18,25,45,0.5);" data-mcq-idx="${idx}">
+                        <div class="glass rounded-xl p-4" data-mcq-idx="${idx}">
                             <p class="font-medium mb-3">${idx+1}. ${mcq.q}</p>
                             <div class="grid gap-2">
                                 ${mcq.o.map((opt, optIdx) => `
@@ -289,12 +466,24 @@ function loadTopicContent(chapterId, topicIndex) {
     
     container.innerHTML = html;
     
+    // Attach toggle events
+    document.querySelectorAll('.sq-toggle, .cq-toggle, .math-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const answer = btn.nextElementSibling;
+            const icon = btn.querySelector('.fa-chevron-down');
+            answer.classList.toggle('hidden');
+            icon.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        });
+    });
+    
+    // Attach MCQ events
     setTimeout(() => {
         const mcqContainer = document.getElementById('mcqContainer');
         if (mcqContainer) {
             mcqContainer.querySelectorAll('.mcq-option').forEach(opt => {
                 opt.onclick = function() {
-                    this.closest('.glass').querySelectorAll('.mcq-option').forEach(o => o.classList.remove('selected', 'correct', 'wrong'));
+                    const parent = this.closest('.glass');
+                    parent.querySelectorAll('.mcq-option').forEach(o => o.classList.remove('selected', 'correct', 'wrong'));
                     this.classList.add('selected');
                 };
             });
@@ -339,14 +528,16 @@ function markChapterComplete(chapterId) {
     }
 }
 
-function init() {
-    renderChaptersGrid();
+async function init() {
+    await renderChaptersGrid();
     updateOverallProgress();
+    
     document.getElementById('backToChaptersBtn').addEventListener('click', () => {
         document.getElementById('chaptersView').classList.remove('hidden');
         document.getElementById('chapterView').classList.add('hidden');
         renderChaptersGrid();
     });
+    
     document.getElementById('markChapterCompleteBtn').addEventListener('click', () => {
         if (currentChapterId) markChapterComplete(currentChapterId);
     });
