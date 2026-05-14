@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>ন্যাশনাল এগজাম সেন্টার | নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬</title>
-    <meta name="description" content="নবম ও দশম শ্রেণির বিজ্ঞান বিভাগের সম্পূর্ণ প্রস্তুতি। NCTB ২০২৬ আপডেট সিলেবাস।">
+    <meta name="description" content="নবম ও দশম শ্রেণির বিজ্ঞান বিভাগের সম্পূর্ণ প্রস্তুতি (পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান)। NCTB ২০২৬ আপডেট সিলেবাস। মাসিক, ত্রৈমাসিক, ষাণ্মাসিক ও বার্ষিক এক্সেস।">
+    <meta name="keywords" content="Class 9-10 science, নবম দশম বিজ্ঞান, NCTB 2026 syllabus, এসএসসি প্রস্তুতি ২০২৭, রসায়ন ৯ম-১০ম">
     
+    <!-- Tailwind CSS + Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -53,16 +55,78 @@
             border-color: #f59e0b;
             transform: translateY(-2px);
         }
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
-        .float-animation { animation: float 4s ease-in-out infinite; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.05); opacity: 0.9; } }
-        .pulse-animation { animation: pulse 2s ease-in-out infinite; }
-        .floating-wa { position: fixed; bottom: 25px; right: 25px; z-index: 1000; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: all 0.2s ease; }
-        .floating-wa:hover { transform: scale(1.1); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes shine {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .shine-effect {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background-size: 200% 100%;
+            animation: shine 3s infinite;
+        }
+        .floating-wa {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            transition: all 0.2s ease;
+        }
+        .floating-wa:hover {
+            transform: scale(1.1);
+        }
+        .hero-3d-container {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 2rem;
+        }
+        canvas#bg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            border-radius: 2rem;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 3rem;
+        }
+        @media (max-width: 768px) {
+            .hero-3d-container { height: 420px; }
+            .hero-content { padding: 1.8rem; }
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="text-gray-200">
 
+<!-- Navigation -->
 <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-3">
@@ -83,8 +147,10 @@
     </div>
 </nav>
 
-<section class="pt-28 pb-16 px-4">
-    <div class="max-w-6xl mx-auto text-center">
+<!-- Hero Section with 3D Canvas -->
+<div class="hero-3d-container mt-6 md:mt-10 relative mx-4">
+    <canvas id="bg-canvas"></canvas>
+    <div class="hero-content absolute inset-0 flex flex-col justify-center items-center text-center">
         <div class="inline-block px-4 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm mb-4 pulse-animation">
             <i class="fas fa-graduation-cap mr-1"></i> NCTB ২০২৬ আপডেট সিলেবাস
         </div>
@@ -96,7 +162,7 @@
             এসএসসি ২০২৭, ২০২৮ ব্যাচদের জন্য প্রিমিয়াম সাপোর্ট।
         </p>
         <div class="flex flex-wrap gap-4 justify-center">
-            <a href="/chemistry.html" class="btn-gradient px-8 py-3 rounded-full font-bold text-lg inline-block">
+            <a href="/chemistry.html" class="btn-gradient px-8 py-3 rounded-full font-bold text-lg inline-block shine-effect">
                 <i class="fas fa-book-open mr-2"></i> রসায়ন অধ্যায় পড়ুন
             </a>
             <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" target="_blank" class="btn-outline px-6 py-3 rounded-full font-semibold inline-block">
@@ -110,24 +176,31 @@
             <div class="text-center"><div class="text-2xl font-bold text-amber-400">৫০০+</div><div class="text-xs text-gray-500">MCQ</div></div>
         </div>
     </div>
-</section>
+</div>
 
+<!-- Features Grid -->
 <section class="py-12 px-4">
     <div class="max-w-6xl mx-auto">
         <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">✨ কেন আমাদের প্ল্যাটফর্ম?</h2>
         <div class="grid md:grid-cols-3 gap-6">
             <div class="glass-card rounded-2xl p-6 text-center">
-                <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center mx-auto mb-3"><i class="fas fa-chalkboard-user text-xl text-amber-400"></i></div>
+                <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-chalkboard-user text-xl text-amber-400"></i>
+                </div>
                 <h3 class="text-xl font-semibold mb-2">সম্পূর্ণ সিলেবাস</h3>
                 <p class="text-gray-400 text-sm">NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী সকল অধ্যায় কভার করা হয়েছে</p>
             </div>
             <div class="glass-card rounded-2xl p-6 text-center">
-                <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center mx-auto mb-3"><i class="fas fa-question-circle text-xl text-amber-400"></i></div>
+                <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-question-circle text-xl text-amber-400"></i>
+                </div>
                 <h3 class="text-xl font-semibold mb-2">MCQ ও সৃজনশীল</h3>
                 <p class="text-gray-400 text-sm">অধ্যায়ভিত্তিক বহুনির্বাচনি ও সৃজনশীল প্রশ্ন সহ</p>
             </div>
             <div class="glass-card rounded-2xl p-6 text-center">
-                <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center mx-auto mb-3"><i class="fas fa-chart-line text-xl text-amber-400"></i></div>
+                <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-chart-line text-xl text-amber-400"></i>
+                </div>
                 <h3 class="text-xl font-semibold mb-2">প্রোগ্রেস ট্র্যাকিং</h3>
                 <p class="text-gray-400 text-sm">আপনার পড়ার অগ্রগতি সংরক্ষণ ও ট্র্যাক করুন</p>
             </div>
@@ -135,60 +208,231 @@
     </div>
 </section>
 
+<!-- Subjects Preview -->
+<section class="py-12 px-4">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">📚 আমাদের কোর্স সমূহ</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="glass rounded-2xl p-6 text-center border-l-4 border-amber-500">
+                <i class="fas fa-flask text-3xl text-amber-400 mb-3"></i>
+                <h3 class="text-xl font-semibold mb-2">রসায়ন</h3>
+                <p class="text-gray-400 text-sm">পরমাণুর গঠন, পর্যায় সারণি, রাসায়নিক বন্ধন, এসিড-ক্ষার ও জৈব রসায়ন</p>
+                <a href="/chemistry.html" class="inline-block mt-3 text-amber-400 text-sm hover:text-amber-300 transition">
+                    বিস্তারিত <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+            <div class="glass rounded-2xl p-6 text-center border-l-4 border-gray-600">
+                <i class="fas fa-atom text-3xl text-gray-400 mb-3"></i>
+                <h3 class="text-xl font-semibold mb-2">পদার্থবিজ্ঞান</h3>
+                <p class="text-gray-400 text-sm">গতি, বল, শক্তি, তরঙ্গ, আলো, তড়িৎ ও চুম্বকত্ব</p>
+                <span class="inline-block mt-3 text-gray-500 text-sm">
+                    <i class="fas fa-hourglass-half mr-1"></i> শীঘ্রই আসছে
+                </span>
+            </div>
+            <div class="glass rounded-2xl p-6 text-center border-l-4 border-gray-600">
+                <i class="fas fa-dna text-3xl text-gray-400 mb-3"></i>
+                <h3 class="text-xl font-semibold mb-2">জীববিজ্ঞান</h3>
+                <p class="text-gray-400 text-sm">কোষ, টিস্যু, শারীরতত্ত্ব, বংশগতি, ইকোসিস্টেম ও বায়োটেকনোলজি</p>
+                <span class="inline-block mt-3 text-gray-500 text-sm">
+                    <i class="fas fa-hourglass-half mr-1"></i> শীঘ্রই আসছে
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Plans -->
 <section class="py-12 px-4" id="pricing">
     <div class="max-w-6xl mx-auto">
         <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">💰 ফ্লেক্সিবল এক্সেস প্ল্যান</h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="glass-card rounded-2xl p-6 text-center"><div class="text-2xl font-bold">মাসিক</div><div class="text-3xl font-bold text-amber-400 my-2">১০০৳</div><p class="text-sm text-gray-400">৩০ দিন অ্যাক্সেস</p></div>
-            <div class="glass-card rounded-2xl p-6 text-center"><div class="text-2xl font-bold">ত্রৈমাসিক</div><div class="text-3xl font-bold text-amber-400 my-2">২৭৫৳</div><p class="text-sm text-gray-400">৯০ দিন + বোনাস</p></div>
-            <div class="glass-card rounded-2xl p-6 text-center"><div class="text-2xl font-bold">ষাণ্মাসিক</div><div class="text-3xl font-bold text-amber-400 my-2">৫০০৳</div><p class="text-sm text-gray-400">৬ মাস + কুইজ</p></div>
-            <div class="glass-card rounded-2xl p-6 text-center border-2 border-amber-500/40"><div class="text-2xl font-bold">বার্ষিক</div><div class="text-3xl font-bold text-amber-300 my-2">৯০০৳</div><p class="text-sm text-gray-400">৩৬৫ দিন + এসএসসি ২০২৭ সাপোর্ট</p><span class="inline-block mt-2 text-xs bg-amber-500/20 px-2 py-1 rounded-full">বেস্ট ভ্যালু</span></div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="text-2xl font-bold">মাসিক</div>
+                <div class="text-3xl font-bold text-amber-400 my-2">১০০৳</div>
+                <p class="text-sm text-gray-400">৩০ দিন অ্যাক্সেস</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="text-2xl font-bold">ত্রৈমাসিক</div>
+                <div class="text-3xl font-bold text-amber-400 my-2">২৭৫৳</div>
+                <p class="text-sm text-gray-400">৯০ দিন + বোনাস</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="text-2xl font-bold">ষাণ্মাসিক</div>
+                <div class="text-3xl font-bold text-amber-400 my-2">৫০০৳</div>
+                <p class="text-sm text-gray-400">৬ মাস + কুইজ</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center border-2 border-amber-500/40">
+                <div class="text-2xl font-bold">বার্ষিক</div>
+                <div class="text-3xl font-bold text-amber-300 my-2">৯০০৳</div>
+                <p class="text-sm text-gray-400">৩৬৫ দিন + এসএসসি ২০২৭ সাপোর্ট</p>
+                <span class="inline-block mt-2 text-xs bg-amber-500/20 px-2 py-1 rounded-full">বেস্ট ভ্যালু</span>
+            </div>
         </div>
+        
         <div class="glass rounded-2xl p-5 mt-8 text-center">
-            <p><i class="fab fa-bkash text-pink-400 mr-2"></i> <strong>bKash পেমেন্ট:</strong> ০১৬০২১০৫৪৪৭ (Personal)</p>
+            <p><i class="fab fa-bkash text-pink-400 mr-2"></i> <strong>WhatsApp Contact:</strong> 01602105447</p>
             <p class="text-xs text-gray-500 mt-2">পেমেন্টের পর স্ক্রিনশট হোয়াটসঅ্যাপে পাঠান</p>
         </div>
     </div>
 </section>
 
+<!-- Testimonials -->
 <section class="py-12 px-4">
     <div class="max-w-6xl mx-auto">
         <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">💬 শিক্ষার্থীদের মতামত</h2>
         <div class="grid md:grid-cols-3 gap-6">
-            <div class="glass-card rounded-2xl p-6"><div class="flex text-amber-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-gray-300 text-sm">"রসায়নের প্রথম অধ্যায়ের MCQ ও সৃজনশীল প্রশ্নগুলো খুবই helpful।"</p><p class="text-amber-400 text-sm mt-3">— মেহরিন, নবম শ্রেণি</p></div>
-            <div class="glass-card rounded-2xl p-6"><div class="flex text-amber-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-gray-300 text-sm">"সব টপিক খুব সুন্দরভাবে সাজানো। পড়ার মোড ও ডার্ক মোড অসাধারণ!"</p><p class="text-amber-400 text-sm mt-3">— শাহরিয়ার, দশম শ্রেণি</p></div>
-            <div class="glass-card rounded-2xl p-6"><div class="flex text-amber-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-gray-300 text-sm">"বার্ষিক প্ল্যান নিয়েছি। এসএসসি ২০২৭-এর জন্য প্রস্তুতি নিচ্ছি!"</p><p class="text-amber-400 text-sm mt-3">— আবিদ, নবম শ্রেণি</p></div>
+            <div class="glass-card rounded-2xl p-6">
+                <div class="flex text-amber-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-gray-300 text-sm">"রসায়নের প্রথম অধ্যায়ের MCQ ও সৃজনশীল প্রশ্নগুলো খুবই helpful। অগ্রগতি ট্র্যাকার দারুণ!"</p>
+                <p class="text-amber-400 text-sm mt-3">— মেহরিন, নবম শ্রেণি</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6">
+                <div class="flex text-amber-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-gray-300 text-sm">"সব টপিক খুব সুন্দরভাবে সাজানো। পড়ার মোড ও ডার্ক মোড অসাধারণ!"</p>
+                <p class="text-amber-400 text-sm mt-3">— শাহরিয়ার, দশম শ্রেণি</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6">
+                <div class="flex text-amber-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-gray-300 text-sm">"বার্ষিক প্ল্যান নিয়েছি। এসএসসি ২০২৭-এর জন্য আগে থেকেই প্রস্তুতি নিচ্ছি!"</p>
+                <p class="text-amber-400 text-sm mt-3">— আবিদ, নবম শ্রেণি</p>
+            </div>
         </div>
     </div>
 </section>
 
+<!-- FAQ Section -->
 <section class="py-12 px-4">
     <div class="max-w-4xl mx-auto">
         <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">❓ জিজ্ঞাসিত প্রশ্ন</h2>
         <div class="space-y-3">
-            <div class="glass rounded-xl overflow-hidden"><button class="faq-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition">রসায়ন অধ্যায় কিভাবে পড়ব? <i class="fas fa-chevron-down text-gray-500"></i></button><div class="faq-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">উপরের "রসায়ন অধ্যায় পড়ুন" বাটনে ক্লিক করলেই আপনি সম্পূর্ণ ১২টি অধ্যায়ের কন্টেন্ট পড়তে পারবেন।</div></div>
-            <div class="glass rounded-xl overflow-hidden"><button class="faq-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition">কিভাবে পেমেন্ট করে অ্যাক্সেস নেব? <i class="fas fa-chevron-down text-gray-500"></i></button><div class="faq-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">bKash এ টাকা পাঠানোর পর স্ক্রিনশট ও আপনার পছন্দের প্ল্যান হোয়াটসঅ্যাপে (+8801602105447) দিলে ১ ঘণ্টার মধ্যে ইউজারনেম ও পাসওয়ার্ড পেয়ে যাবেন।</div></div>
+            <div class="glass rounded-xl overflow-hidden">
+                <button class="faq-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition">
+                    এই ওয়েবসাইটে কী কী বিষয় আছে?
+                    <i class="fas fa-chevron-down text-gray-500"></i>
+                </button>
+                <div class="faq-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">
+                    বর্তমানে রসায়নের ১২টি অধ্যায় সম্পূর্ণভাবে যুক্ত করা হয়েছে। শীঘ্রই পদার্থবিজ্ঞান ও জীববিজ্ঞান যুক্ত হবে।
+                </div>
+            </div>
+            <div class="glass rounded-xl overflow-hidden">
+                <button class="faq-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition">
+                    কিভাবে পেমেন্ট করে অ্যাক্সেস নেব?
+                    <i class="fas fa-chevron-down text-gray-500"></i>
+                </button>
+                <div class="faq-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">
+                    bKash এ টাকা পাঠানোর পর স্ক্রিনশট ও আপনার পছন্দের প্ল্যান হোয়াটসঅ্যাপে (+8801602105447) দিলে ১ ঘণ্টার মধ্যে ইউজারনেম ও পাসওয়ার্ড পেয়ে যাবেন।
+                </div>
+            </div>
+            <div class="glass rounded-xl overflow-hidden">
+                <button class="faq-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition">
+                    রসায়ন অধ্যায় কিভাবে পড়ব?
+                    <i class="fas fa-chevron-down text-gray-500"></i>
+                </button>
+                <div class="faq-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">
+                    উপরের "রসায়ন অধ্যায় পড়ুন" বাটনে ক্লিক করলেই আপনি সম্পূর্ণ প্রথম অধ্যায়ের কন্টেন্ট পড়তে পারবেন। সেখানে MCQ উত্তর দিতে পারবেন এবং অগ্রগতি ট্র্যাক করতে পারবেন।
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
+<!-- Footer -->
 <footer class="py-8 px-4 border-t border-white/10 mt-8">
     <div class="max-w-6xl mx-auto text-center">
         <div class="flex flex-wrap justify-center gap-6 mb-4">
             <a href="/chemistry.html" class="text-gray-400 text-sm hover:text-amber-400 transition">রসায়ন</a>
             <a href="/privacy.html" class="text-gray-400 text-sm hover:text-amber-400 transition">গোপনীয়তা নীতি</a>
+            <a href="https://drive.google.com/file/d/12ovf-F6Lxty1-S2GKsgs1y8th5bz64FJ/view?usp=drive_link" target="_blank" class="text-gray-400 text-sm hover:text-amber-400 transition">অ্যাপ ডাউনলোড</a>
         </div>
         <p class="text-gray-500 text-xs">© ২০২৬ National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি | NCTB ২০২৬ সিলেবাস</p>
     </div>
 </footer>
 
-<a href="https://wa.me/8801602105447?text=আমি%20নবম-দশম%20বিজ্ঞান%20প্রস্তুতি%20সম্পর্কে%20জানতে%20চাই" class="floating-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<!-- WhatsApp Float -->
+<a href="https://wa.me/8801602105447?text=আমি%20নবম-দশম%20বিজ্ঞান%20প্রস্তুতি%20সম্পর্কে%20জানতে%20চাই" class="floating-wa" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+        }
+    }
+</script>
+
+<script type="module">
+    import * as THREE from 'three';
+    const canvas = document.getElementById('bg-canvas');
+    if (canvas) {
+        const scene = new THREE.Scene();
+        scene.background = null;
+        const camera = new THREE.PerspectiveCamera(45, canvas.parentElement.clientWidth / canvas.parentElement.clientHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+        
+        function setSize() {
+            const container = canvas.parentElement;
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        }
+        setSize();
+        window.addEventListener('resize', setSize);
+        
+        const particleGeometry = new THREE.BufferGeometry();
+        const particleCount = 1600;
+        const positions = new Float32Array(particleCount * 3);
+        for (let i = 0; i < particleCount; i++) {
+            positions[i*3] = (Math.random() - 0.5) * 30;
+            positions[i*3+1] = (Math.random() - 0.5) * 20;
+            positions[i*3+2] = (Math.random() - 0.5) * 25 - 15;
+        }
+        particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const particleMaterial = new THREE.PointsMaterial({ color: 0xffaa55, size: 0.08, transparent: true, opacity: 0.6 });
+        const particles = new THREE.Points(particleGeometry, particleMaterial);
+        scene.add(particles);
+        
+        const knotGeo = new THREE.TorusKnotGeometry(1.2, 0.28, 180, 24, 3, 4);
+        const knotMat = new THREE.MeshStandardMaterial({ color: 0xff914d, emissive: 0xaa4422, emissiveIntensity: 0.8, metalness: 0.7, roughness: 0.3 });
+        const knot = new THREE.Mesh(knotGeo, knotMat);
+        scene.add(knot);
+        
+        const ambientLight = new THREE.AmbientLight(0x222222);
+        scene.add(ambientLight);
+        const light1 = new THREE.PointLight(0xffaa66, 1.5);
+        light1.position.set(5, 5, 8);
+        scene.add(light1);
+        const light2 = new THREE.PointLight(0x3366ff, 0.8);
+        light2.position.set(-4, 3, 5);
+        scene.add(light2);
+        camera.position.z = 8;
+        camera.position.y = 1;
+        
+        let time = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.008;
+            knot.rotation.x = Math.sin(time * 0.5) * 0.5;
+            knot.rotation.y = time * 0.7;
+            knot.rotation.z = time * 0.3;
+            particles.rotation.y = time * 0.1;
+            particles.rotation.x = Math.sin(time * 0.2) * 0.2;
+            camera.position.x = Math.sin(time * 0.2) * 0.5;
+            camera.lookAt(0, 0, 0);
+            renderer.render(scene, camera);
+        }
+        animate();
+    }
+</script>
 
 <script>
-    document.querySelectorAll('.faq-question').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const answer = btn.nextElementSibling;
-            const icon = btn.querySelector('.fa-chevron-down');
+    // FAQ Toggle
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('.fa-chevron-down');
             answer.classList.toggle('hidden');
             icon.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
         });
