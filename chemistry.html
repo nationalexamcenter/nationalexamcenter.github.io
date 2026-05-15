@@ -230,9 +230,39 @@ async function loadChapter(chapterId) {
         const response = await fetch(`data/chapter-${chapterId}.json`);
         if (!response.ok) throw new Error(`Chapter ${chapterId} not found`);
         const data = await response.json();
+        
+        // ========== FIX: Convert answer text to index ==========
+        if (data.topics && data.topics.length > 0) {
+            data.topics.forEach(topic => {
+                if (topic.exam && topic.exam.questions) {
+                    topic.exam.questions.forEach((question, qIdx) => {
+                        // Check if 'a' is a string (answer text) not a number
+                        if (typeof question.a === 'string') {
+                            const answerText = question.a;
+                            const optionIndex = question.o.findIndex(opt => opt === answerText);
+                            
+                            if (optionIndex !== -1) {
+                                console.log(`Question ${qIdx}: Converted "${answerText}" to index ${optionIndex}`);
+                                question.a = optionIndex;
+                            } else {
+                                console.error(`Question ${qIdx}: Answer "${answerText}" not found in options!`, question.o);
+                                question.a = 0; // Default to first option
+                            }
+                        }
+                        // Also handle if 'a' is numeric but stored as string
+                        else if (typeof question.a === 'string' && !isNaN(parseInt(question.a))) {
+                            question.a = parseInt(question.a);
+                        }
+                    });
+                }
+            });
+        }
+        // ========== END FIX ==========
+        
         chapterDataCache[chapterId] = data;
         return data;
     } catch (error) {
+        console.error(`Error loading chapter ${chapterId}:`, error);
         const sampleMCQ = [
             { q: `${CHAPTERS_META.find(c => c.id === chapterId)?.title} অধ্যায়ের মূল বিষয় কী?`, o: ["পারমাণবিক গঠন", "রাসায়নিক বন্ধন", "মৌলের পর্যায়বৃত্ত ধর্ম", "তাপগতি"], a: 1 },
             { q: "রসায়নের জনক কে?", o: ["আইজ্যাক নিউটন", "অ্যান্টনি ল্যাভয়সিয়ে", "আল-বেরুনি", "জাবির ইবনে হাইয়ান"], a: 3 },
@@ -499,23 +529,77 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         }
         
         // FIXED: Properly shuffle questions and track correct answers
-        function shuffleQuestions() {
-            mcqState.questions = examQuestions.map((originalQ, idx) => {
-                const originalOptions = [...originalQ.o];
-                const correctAnswerText = originalOptions[originalQ.a];
-                const shuffledOptions = shuffleArray([...originalOptions]);
-                const newCorrectIndex = shuffledOptions.findIndex(opt => opt === correctAnswerText);
-                
-                return {
-                    id: idx,
-                    text: originalQ.q,
-                    options: shuffledOptions,
-                    correctIndex: newCorrectIndex,
-                    originalCorrectText: correctAnswerText
-                };
-            });
-            mcqState.userAnswers = new Array(mcqState.questions.length).fill(null);
+function shuffleQuestions() {
+    console.log("Original exam questions:", examQuestions);
+    
+    mcqState.questions = examQuestions.map((originalQ, idx) => {
+        // Validate the original question structure
+        if (!originalQ.o || !Array.isArray(originalQ.o)) {
+            console.error(`Question ${idx} has invalid options:`, originalQ);
+            return {
+                id: idx,
+                text: originalQ.q || "প্রশ্ন লোড করতে ব্যর্থ হয়েছে",
+                options: ["বিকল্প ১", "বিকল্প ২", "বিকল্প ৩", "বিকল্প ৪"],
+                correctIndex: 0
+            };
         }
+        
+        const originalOptions = [...originalQ.o];
+        
+        // Get correct answer - could be index number OR answer text
+        let correctAnswerIndex;
+        let correctAnswerText;
+        
+        if (typeof originalQ.a === 'number') {
+            // It's already an index
+            correctAnswerIndex = originalQ.a;
+            correctAnswerText = originalOptions[correctAnswerIndex];
+        } else if (typeof originalQ.a === 'string') {
+            // It's the answer text
+            correctAnswerText = originalQ.a;
+            correctAnswerIndex = originalOptions.findIndex(opt => opt === correctAnswerText);
+            
+            if (correctAnswerIndex === -1) {
+                console.error(`Question ${idx}: Answer "${correctAnswerText}" not found in options!`);
+                correctAnswerIndex = 0;
+                correctAnswerText = originalOptions[0];
+            }
+        } else {
+            // Invalid - default to first option
+            console.error(`Question ${idx}: Invalid 'a' value:`, originalQ.a);
+            correctAnswerIndex = 0;
+            correctAnswerText = originalOptions[0];
+        }
+        
+        console.log(`Q${idx+1}: Correct answer = "${correctAnswerText}" at index ${correctAnswerIndex}`);
+        
+        const shuffledOptions = shuffleArray([...originalOptions]);
+        const newCorrectIndex = shuffledOptions.findIndex(opt => opt === correctAnswerText);
+        
+        if (newCorrectIndex === -1) {
+            console.error(`Q${idx+1}: CRITICAL - Correct answer "${correctAnswerText}" not found in shuffled options!`);
+            return {
+                id: idx,
+                text: originalQ.q,
+                options: shuffledOptions,
+                correctIndex: 0
+            };
+        }
+        
+        console.log(`Q${idx+1}: After shuffle, correct answer at index ${newCorrectIndex}`);
+        
+        return {
+            id: idx,
+            text: originalQ.q,
+            options: shuffledOptions,
+            correctIndex: newCorrectIndex,
+            originalCorrectText: correctAnswerText
+        };
+    });
+    
+    mcqState.userAnswers = new Array(mcqState.questions.length).fill(null);
+    console.log("Final shuffled questions ready:", mcqState.questions.length, "questions");
+}
         
         // FIXED: Render questions with proper event handlers
         function renderQuestions() {
