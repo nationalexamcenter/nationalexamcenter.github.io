@@ -15,7 +15,7 @@
     <meta name="author" content="National Exam Center">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nationalexamcenter.github.io/">
     <meta property="og:title" content="National Exam Center - নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬">
@@ -24,6 +24,7 @@
     <meta property="og:locale" content="bn_BD">
     <meta property="og:site_name" content="National Exam Center">
     
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://nationalexamcenter.github.io/">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -141,14 +142,14 @@
             transform: scale(1.05);
         }
         
-        /* 3D Canvas Container */
+        /* 3D Canvas Container - PURE BACKGROUND, NO BLOCKING */
         #heroCanvasContainer {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
+            z-index: 0;
             border-radius: 2rem;
             overflow: hidden;
             pointer-events: none;
@@ -166,7 +167,6 @@
             overflow: hidden;
             border-radius: 2rem;
             margin: 0 1rem;
-            background: rgba(0,0,0,0.2);
         }
         
         .hero-content {
@@ -180,15 +180,41 @@
             gap: 2rem;
         }
         
-        .hero-left { flex: 1; min-width: 280px; backdrop-filter: blur(4px); border-radius: 2rem; padding: 1rem; }
+        .hero-left { flex: 1; min-width: 280px; }
         .hero-right { flex: 1; min-width: 280px; display: flex; justify-content: center; }
+        
+        [data-theme="light"] .hero-left .bg-black\/40 {
+            background: var(--hero-overlay);
+        }
         
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
         
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+        
+        @keyframes shine {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        @keyframes softPulse {
+            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.2); border-color: rgba(245, 158, 11, 0.3); }
+            50% { box-shadow: 0 0 0 12px rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.7); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.2); border-color: rgba(245, 158, 11, 0.3); }
+        }
+        
         .float-animation { animation: float 4s ease-in-out infinite; }
+        .pulse-animation { animation: pulse 2s ease-in-out infinite; }
+        .shine-effect {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background-size: 200% 100%;
+            animation: shine 3s infinite;
+        }
         
         .mockup-container {
             display: flex;
@@ -222,6 +248,8 @@
             width: 100%;
             height: auto;
             display: block;
+            position: relative;
+            z-index: 1;
         }
         
         .mockup-caption {
@@ -230,12 +258,6 @@
             font-size: 11px;
             color: #f59e0b;
             font-weight: 500;
-        }
-        
-        @keyframes softPulse {
-            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.2); border-color: rgba(245, 158, 11, 0.3); }
-            50% { box-shadow: 0 0 0 12px rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.7); }
-            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.2); border-color: rgba(245, 158, 11, 0.3); }
         }
         
         .feature-card { transition: all 0.3s ease; }
@@ -263,6 +285,10 @@
         .share-btn { transition: all 0.2s ease; }
         .share-btn:hover { transform: scale(1.05); }
         
+        .counter {
+            transition: all 0.3s ease;
+        }
+        
         /* Logo styling */
         .nav-logo-img {
             height: 40px;
@@ -274,6 +300,7 @@
             filter: brightness(0.9);
         }
         
+        /* Mobile Responsive */
         @media (max-width: 1024px) {
             .hero-content { flex-direction: column; text-align: center; padding: 2rem; }
             .hero-left { text-align: center; }
@@ -287,16 +314,22 @@
             .mockup-container { gap: 12px; }
             .mockup-item { width: 100px; }
             .btn-primary, .btn-secondary { padding: 0.5rem 1rem; font-size: 0.875rem; }
+            .glass-card { padding: 1rem; }
+            h2 { font-size: 1.5rem !important; }
             .hero-content { padding: 1.5rem; }
         }
         
+        /* Scrollbar styling */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 10px; }
         ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
         
+        /* Text color overrides for light theme */
         [data-theme="light"] .text-gray-300 { color: #4a5568; }
         [data-theme="light"] .text-gray-400 { color: #718096; }
+        [data-theme="light"] .text-gray-500 { color: #a0aec0; }
         [data-theme="light"] .bg-black\/40 { background: rgba(255, 255, 255, 0.3); }
+        [data-theme="light"] .bg-black\/50 { background: rgba(255, 255, 255, 0.4); }
     </style>
 </head>
 <body>
@@ -305,9 +338,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-3">
             <div class="flex items-center gap-3">
-                <!-- NEW LOGO: NEC3.png (transparent white) -->
+                <!-- NEW LOGO: NEC3.png -->
                 <img src="pic/NEC3.png" alt="National Exam Center Logo" class="nav-logo-img" onerror="this.onerror=null; this.src='https://placehold.co/313x129/ffffff/ff9a3c?text=NEC';">
-                <span class="font-bold text-xl gradient-text hidden md:inline-block">National Exam Center</span>
+                <span class="font-bold text-xl gradient-text">National Exam Center</span>
                 <span class="text-xs bg-amber-500/20 px-2 py-1 rounded-full hidden md:block">ন্যাশনাল এগজাম সেন্টার | SSC ২০২৭</span>
             </div>
             <div class="flex items-center gap-4">
@@ -328,7 +361,7 @@
 </nav>
 
 <div class="hero-wrapper mt-6">
-    <!-- 3D Atomic Model Canvas Container -->
+    <!-- 3D Atomic Model Canvas - Pure Background -->
     <div id="heroCanvasContainer"></div>
     <div class="hero-content">
         <div class="hero-left">
@@ -393,10 +426,22 @@
 <section class="py-8 px-4">
     <div class="max-w-6xl mx-auto">
         <div class="flex flex-wrap justify-center gap-8 items-center opacity-80">
-            <div class="text-center"><i class="fas fa-shield-alt text-3xl text-amber-500 mb-2"></i><p class="text-xs text-gray-400">GDPR & CCPA Compliant</p></div>
-            <div class="text-center"><i class="fas fa-lock text-3xl text-amber-500 mb-2"></i><p class="text-xs text-gray-400">Secure Data Storage</p></div>
-            <div class="text-center"><i class="fas fa-google-play text-3xl text-amber-500 mb-2"></i><p class="text-xs text-gray-400">Coming on Play Store</p></div>
-            <div class="text-center"><i class="fas fa-headset text-3xl text-amber-500 mb-2"></i><p class="text-xs text-gray-400">24/7 Support</p></div>
+            <div class="text-center">
+                <i class="fas fa-shield-alt text-3xl text-amber-500 mb-2"></i>
+                <p class="text-xs text-gray-400">GDPR & CCPA Compliant</p>
+            </div>
+            <div class="text-center">
+                <i class="fas fa-lock text-3xl text-amber-500 mb-2"></i>
+                <p class="text-xs text-gray-400">Secure Data Storage</p>
+            </div>
+            <div class="text-center">
+                <i class="fas fa-google-play text-3xl text-amber-500 mb-2"></i>
+                <p class="text-xs text-gray-400">Coming on Play Store</p>
+            </div>
+            <div class="text-center">
+                <i class="fas fa-headset text-3xl text-amber-500 mb-2"></i>
+                <p class="text-xs text-gray-400">24/7 Support</p>
+            </div>
         </div>
     </div>
 </section>
@@ -406,10 +451,119 @@
     <div class="max-w-6xl mx-auto">
         <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">✨ অ্যাপের বিশেষ বৈশিষ্ট্য</h2>
         <div class="grid md:grid-cols-2 gap-6">
-            <div class="glass-card rounded-2xl p-6 feature-card"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-chalkboard-user text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">সম্পূর্ণ সিলেবাস কভারেজ</h3><p class="text-gray-400 text-sm">NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী রসায়নের ১২টি অধ্যায় সম্পূর্ণভাবে যুক্ত।</p></div></div></div>
-            <div class="glass-card rounded-2xl p-6 feature-card"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-question-circle text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">MCQ ও সৃজনশীল প্রশ্ন</h3><p class="text-gray-400 text-sm">প্রতিটি অধ্যায়ের জন্য অধ্যায়ভিত্তিক বহুনির্বাচনি ও সৃজনশীল প্রশ্ন সহ উত্তর।</p></div></div></div>
-            <div class="glass-card rounded-2xl p-6 feature-card"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-chart-line text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">প্রোগ্রেস ট্র্যাকিং</h3><p class="text-gray-400 text-sm">আপনার পড়ার অগ্রগতি স্বয়ংক্রিয়ভাবে সংরক্ষিত হয়।</p></div></div></div>
-            <div class="glass-card rounded-2xl p-6 feature-card"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-share-alt text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">ফলাফল শেয়ার করুন</h3><p class="text-gray-400 text-sm">MCQ পরীক্ষার ফলাফল সরাসরি Facebook, WhatsApp এ শেয়ার করুন।</p></div></div></div>
+            <div class="glass-card rounded-2xl p-6 feature-card">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-chalkboard-user text-xl text-amber-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">সম্পূর্ণ সিলেবাস কভারেজ</h3>
+                        <p class="text-gray-400 text-sm">NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী রসায়নের ১২টি অধ্যায় সম্পূর্ণভাবে যুক্ত। শীঘ্রই পদার্থবিজ্ঞান ও জীববিজ্ঞান যুক্ত হবে।</p>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 feature-card">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-question-circle text-xl text-amber-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">MCQ ও সৃজনশীল প্রশ্ন</h3>
+                        <p class="text-gray-400 text-sm">প্রতিটি অধ্যায়ের জন্য অধ্যায়ভিত্তিক বহুনির্বাচনি ও সৃজনশীল প্রশ্ন সহ উত্তর। বোর্ড পরীক্ষার প্যাটার্ন অনুযায়ী তৈরি।</p>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 feature-card">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-chart-line text-xl text-amber-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">প্রোগ্রেস ট্র্যাকিং</h3>
+                        <p class="text-gray-400 text-sm">আপনার পড়ার অগ্রগতি স্বয়ংক্রিয়ভাবে সংরক্ষিত হয়। কোন অধ্যায় কতটুকু পড়েছেন তা ট্র্যাক করতে পারবেন।</p>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 feature-card">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-share-alt text-xl text-amber-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">ফলাফল শেয়ার করুন</h3>
+                        <p class="text-gray-400 text-sm">MCQ পরীক্ষার ফলাফল সরাসরি Facebook, WhatsApp ও অন্যান্য সোশ্যাল মিডিয়ায় শেয়ার করতে পারবেন।</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Parent Testimonials Section -->
+<section class="py-12 px-4 bg-gradient-to-r from-amber-500/5 to-transparent">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">🎓 অভিভাবকদের মতামত</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="glass-card rounded-2xl p-6">
+                <i class="fas fa-quote-left text-amber-500/50 text-3xl mb-3"></i>
+                <p class="text-gray-300 text-sm">"আমার মেয়ে National Exam Center ব্যবহার করে রসায়নে অনেক উন্নতি করেছে। MCQ প্রশ্নগুলো বোর্ড পরীক্ষার প্যাটার্নের সাথে পুরোপুরি মিলে যায়।"</p>
+                <p class="text-amber-400 text-sm mt-3">— মোঃ রহমত উল্লাহ, অভিভাবক</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6">
+                <i class="fas fa-quote-left text-amber-500/50 text-3xl mb-3"></i>
+                <p class="text-gray-300 text-sm">"সাশ্রয়ী মূল্যের চমৎকার একটি প্ল্যাটফর্ম। আমার ছেলে এখন নিজে নিজে প্র্যাকটিস করে। প্রোগ্রেস ট্র্যাকিং ফিচারটা অভিভাবক হিসেবে খুব কাজে লাগে।"</p>
+                <p class="text-amber-400 text-sm mt-3">— নাসরিন সুলতানা, অভিভাবক</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Student Testimonials Section -->
+<section class="py-12 px-4">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">💬 শিক্ষার্থীদের মতামত</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="glass-card rounded-2xl p-6">
+                <div class="flex text-amber-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-gray-300 text-sm">"National Exam Center এর রসায়ন অধ্যায়গুলো খুব সুন্দরভাবে সাজানো। MCQ ও সৃজনশীল প্রশ্নগুলো বোর্ড পরীক্ষার জন্য খুবই helpful।"</p>
+                <p class="text-amber-400 text-sm mt-3">— মেহরিন হোসেন, নবম শ্রেণি</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6">
+                <div class="flex text-amber-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-gray-300 text-sm">"প্রোগ্রেস ট্র্যাকিং ফিচারটা দারুণ! কোন অধ্যায় কতটুকু পড়েছি তা বুঝতে পারি। বার্ষিক প্ল্যান নিয়ে ভালো করছি।"</p>
+                <p class="text-amber-400 text-sm mt-3">— শাহরিয়ার রহমান, দশম শ্রেণি</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6">
+                <div class="flex text-amber-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-gray-300 text-sm">"এসএসসি ২০২৭-এর জন্য সেরা প্রস্তুতি অ্যাপ। সব টপিক খুব ক্লিয়ারভাবে ব্যাখ্যা করা আছে। সবার জন্য রিকমেন্ড করছি!"</p>
+                <p class="text-amber-400 text-sm mt-3">— আবিদ হাসান, নবম শ্রেণি</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">❓ সাধারণ জিজ্ঞাসা</h2>
+        <div class="space-y-4" id="qaContainer"></div>
+        
+        <div class="mt-10 text-center">
+            <p class="text-gray-400 mb-4">এই পেজটি শেয়ার করুন:</p>
+            <div class="flex justify-center gap-3 flex-wrap">
+                <button onclick="shareOnFacebook()" class="share-btn px-5 py-2 rounded-lg bg-[#1877F2]/20 text-[#1877F2] border border-[#1877F2]/30 hover:bg-[#1877F2]/30 transition flex items-center gap-2">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </button>
+                <button onclick="shareOnWhatsApp()" class="share-btn px-5 py-2 rounded-lg bg-[#25D366]/20 text-[#25D366] border border-[#25D366]/30 hover:bg-[#25D366]/30 transition flex items-center gap-2">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </button>
+                <button onclick="shareOnTwitter()" class="share-btn px-5 py-2 rounded-lg bg-[#1DA1F2]/20 text-[#1DA1F2] border border-[#1DA1F2]/30 hover:bg-[#1DA1F2]/30 transition flex items-center gap-2">
+                    <i class="fab fa-twitter"></i> Twitter
+                </button>
+                <button onclick="copyPageLink()" class="share-btn px-5 py-2 rounded-lg bg-gray-600/20 text-gray-300 border border-gray-600/30 hover:bg-gray-600/30 transition flex items-center gap-2">
+                    <i class="fas fa-link"></i> কপি লিংক
+                </button>
+            </div>
         </div>
     </div>
 </section>
@@ -419,14 +573,54 @@
     <div class="max-w-6xl mx-auto">
         <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">💰 ফ্লেক্সিবল এক্সেস প্ল্যান</h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="glass-card rounded-2xl p-6 text-center"><div class="text-2xl font-bold">মাসিক</div><div class="text-3xl font-bold text-amber-400 my-2">১০০৳</div><p class="text-sm text-gray-400">৩০ দিন অ্যাক্সেস</p></div>
-            <div class="glass-card rounded-2xl p-6 text-center"><div class="text-2xl font-bold">ত্রৈমাসিক</div><div class="text-3xl font-bold text-amber-400 my-2">২৭৫৳</div><p class="text-sm text-gray-400">৯০ দিন + বোনাস</p></div>
-            <div class="glass-card rounded-2xl p-6 text-center"><div class="text-2xl font-bold">ষাণ্মাসিক</div><div class="text-3xl font-bold text-amber-400 my-2">৫০০৳</div><p class="text-sm text-gray-400">৬ মাস + কুইজ</p></div>
-            <div class="glass-card rounded-2xl p-6 text-center border-2 border-amber-500/40 relative"><div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-amber-600 to-orange-600 text-white text-xs px-3 py-1 rounded-full">বেস্ট ভ্যালু</div><div class="text-2xl font-bold mt-2">বার্ষিক</div><div class="text-3xl font-bold text-amber-300 my-2">৯০০৳</div><p class="text-sm text-gray-400">৩৬৫ দিন + এসএসসি ২০২৭ সাপোর্ট</p></div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="text-2xl font-bold">মাসিক</div>
+                <div class="text-3xl font-bold text-amber-400 my-2">১০০৳</div>
+                <p class="text-sm text-gray-400">৩০ দিন অ্যাক্সেস</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="text-2xl font-bold">ত্রৈমাসিক</div>
+                <div class="text-3xl font-bold text-amber-400 my-2">২৭৫৳</div>
+                <p class="text-sm text-gray-400">৯০ দিন + বোনাস</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="text-2xl font-bold">ষাণ্মাসিক</div>
+                <div class="text-3xl font-bold text-amber-400 my-2">৫০০৳</div>
+                <p class="text-sm text-gray-400">৬ মাস + কুইজ</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center border-2 border-amber-500/40 relative">
+                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-amber-600 to-orange-600 text-white text-xs px-3 py-1 rounded-full">
+                    <i class="fas fa-fire mr-1"></i> বেস্ট ভ্যালু
+                </div>
+                <div class="text-2xl font-bold mt-2">বার্ষিক</div>
+                <div class="text-3xl font-bold text-amber-300 my-2">৯০০৳</div>
+                <p class="text-sm text-gray-400">৩৬৫ দিন + এসএসসি ২০২৭ সাপোর্ট</p>
+            </div>
         </div>
-        <div class="glass rounded-2xl p-5 mt-8 text-center"><p><i class="fab fa-whatsapp text-green-500 mr-2"></i> <strong>পেমেন্ট ও সাপোর্টের জন্য WhatsApp:</strong> <a href="https://wa.me/8801602105447" class="text-amber-400 hover:underline">+8801602105447</a></p></div>
+        
+        <div class="glass rounded-2xl p-5 mt-8 text-center">
+            <p><i class="fab fa-whatsapp text-green-500 mr-2"></i> <strong>পেমেন্ট ও সাপোর্টের জন্য WhatsApp:</strong> <a href="https://wa.me/8801602105447" class="text-amber-400 hover:underline">+8801602105447</a></p>
+            <p class="text-xs text-gray-500 mt-2">পেমেন্ট সংক্রান্ত সকল তথ্য জানতে WhatsApp এ যোগাযোগ করুন</p>
+        </div>
     </div>
 </section>
+
+<!-- Security & Privacy Notice -->
+<div class="max-w-6xl mx-auto text-center mb-8 px-4">
+    <div class="inline-flex flex-wrap items-center justify-center gap-2 text-xs text-gray-500">
+        <i class="fas fa-shield-alt text-amber-500"></i>
+        <span>256-bit SSL Encrypted</span>
+        <span class="mx-1">•</span>
+        <i class="fas fa-database text-amber-500"></i>
+        <span>GDPR Compliant</span>
+        <span class="mx-1">•</span>
+        <i class="fas fa-clock text-amber-500"></i>
+        <span>24/7 WhatsApp Support</span>
+        <span class="mx-1">•</span>
+        <i class="fas fa-lock text-amber-500"></i>
+        <span>Data Privacy Protected</span>
+    </div>
+</div>
 
 <footer class="py-8 px-4 border-t border-white/10 mt-8">
     <div class="max-w-6xl mx-auto text-center">
@@ -434,15 +628,23 @@
             <a href="/chemistry.html" class="text-gray-400 text-sm hover:text-amber-400 transition">রসায়ন সম্পূর্ণ সিলেবাস</a>
             <a href="/privacy.html" class="text-gray-400 text-sm hover:text-amber-400 transition">গোপনীয়তা নীতি</a>
             <a href="https://wa.me/8801602105447" target="_blank" class="text-gray-400 text-sm hover:text-amber-400 transition"><i class="fab fa-whatsapp mr-1 text-green-500"></i>WhatsApp সাপোর্ট</a>
+            <a href="/chemistry.html" class="text-gray-400 text-sm hover:text-amber-400 transition"><i class="fas fa-play mr-1"></i>ফ্রি ট্রায়াল</a>
         </div>
         <p class="text-gray-500 text-xs">© ২০২৬ National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি | NCTB ২০২৬ সিলেবাস | এসএসসি ২০২৭ প্রস্তুতি</p>
+        <p class="text-gray-600 text-[10px] mt-2">রসায়ন, পদার্থবিজ্ঞান ও জীববিজ্ঞান - সম্পূর্ণ সিলেবাস কভারেজ</p>
     </div>
 </footer>
 
-<a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" class="floating-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" class="floating-wa" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
 <script type="importmap">
-    { "imports": { "three": "https://unpkg.com/three@0.128.0/build/three.module.js" } }
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+        }
+    }
 </script>
 
 <script type="module">
@@ -450,17 +652,15 @@
     
     const container = document.getElementById('heroCanvasContainer');
     if (container) {
-        // Create scene, camera, renderer
         const scene = new THREE.Scene();
-        scene.background = null; // transparent to show gradient
+        scene.background = null;
         
-        // Get parent dimensions
         const parent = container.parentElement;
         const width = parent.clientWidth;
         const height = parent.clientHeight;
         
         const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-        camera.position.set(0, 2, 12);
+        camera.position.set(0, 1.5, 12);
         camera.lookAt(0, 0, 0);
         
         const renderer = new THREE.WebGLRenderer({ alpha: true });
@@ -468,7 +668,6 @@
         renderer.setClearColor(0x000000, 0);
         container.appendChild(renderer.domElement);
         
-        // Resize handler
         window.addEventListener('resize', () => {
             const newWidth = parent.clientWidth;
             const newHeight = parent.clientHeight;
@@ -490,37 +689,33 @@
         backLight.position.set(0, 2, -5);
         scene.add(backLight);
         
-        // Create a glowing atomic nucleus (center sphere)
-        const nucleusGeo = new THREE.SphereGeometry(0.7, 64, 64);
-        const nucleusMat = new THREE.MeshStandardMaterial({ color: 0xff6633, emissive: 0xaa3311, emissiveIntensity: 0.8, metalness: 0.7, roughness: 0.2 });
+        // Nucleus
+        const nucleusGeo = new THREE.SphereGeometry(0.65, 64, 64);
+        const nucleusMat = new THREE.MeshStandardMaterial({ color: 0xff6633, emissive: 0xaa3311, emissiveIntensity: 0.7, metalness: 0.7, roughness: 0.2 });
         const nucleus = new THREE.Mesh(nucleusGeo, nucleusMat);
         scene.add(nucleus);
         
-        // Electron orbits: 3 elliptical paths with different radii and colors
-        const orbitRadii = [2.2, 2.8, 3.2];
+        // Orbits
+        const orbitRadii = [2.0, 2.6, 3.0];
         const orbitColors = [0x33aaff, 0xffaa44, 0x66ff66];
-        const orbitSpeeds = [1.2, 0.9, 1.5];
-        const orbitTilts = [0, 0.5, 0.8];
+        const orbitSpeeds = [1.0, 0.8, 1.3];
+        const orbitTilts = [0, 0.6, 0.9];
         
         const electrons = [];
         
         orbitRadii.forEach((radius, idx) => {
-            // Create orbit ring (visual)
             const points = [];
             const segments = 128;
-            const tilt = orbitTilts[idx];
             for (let i = 0; i <= segments; i++) {
                 const angle = (i / segments) * Math.PI * 2;
                 let x = Math.cos(angle) * radius;
                 let z = Math.sin(angle) * radius;
-                let y = Math.sin(angle) * radius * tilt * 0.6;
-                // rotate for variety: some orbits tilted in XZ plane
+                let y = Math.sin(angle) * radius * orbitTilts[idx] * 0.5;
                 if (idx === 1) {
                     const newX = x * Math.cos(0.7) - z * Math.sin(0.7);
                     const newZ = x * Math.sin(0.7) + z * Math.cos(0.7);
                     x = newX; z = newZ;
                 } else if (idx === 2) {
-                    const newX = x;
                     const newY = y * 0.8 + z * 0.3;
                     const newZ = z * 0.8 - y * 0.3;
                     y = newY;
@@ -528,13 +723,12 @@
                 points.push(new THREE.Vector3(x, y, z));
             }
             const orbitGeo = new THREE.BufferGeometry().setFromPoints(points);
-            const orbitMat = new THREE.LineBasicMaterial({ color: orbitColors[idx], transparent: true, opacity: 0.35 });
+            const orbitMat = new THREE.LineBasicMaterial({ color: orbitColors[idx], transparent: true, opacity: 0.3 });
             const orbitLine = new THREE.LineLoop(orbitGeo, orbitMat);
             scene.add(orbitLine);
             
-            // Electron sphere
-            const electronGeo = new THREE.SphereGeometry(0.22, 32, 32);
-            const electronMat = new THREE.MeshStandardMaterial({ color: orbitColors[idx], emissive: orbitColors[idx], emissiveIntensity: 0.5 });
+            const electronGeo = new THREE.SphereGeometry(0.2, 32, 32);
+            const electronMat = new THREE.MeshStandardMaterial({ color: orbitColors[idx], emissive: orbitColors[idx], emissiveIntensity: 0.4 });
             const electron = new THREE.Mesh(electronGeo, electronMat);
             scene.add(electron);
             
@@ -548,25 +742,19 @@
             });
         });
         
-        // Additional floating particles (glow)
-        const particleCount = 800;
+        // Floating particles
+        const particleCount = 600;
         const particleGeo = new THREE.BufferGeometry();
         const particlePositions = new Float32Array(particleCount * 3);
         for (let i = 0; i < particleCount; i++) {
-            particlePositions[i*3] = (Math.random() - 0.5) * 18;
-            particlePositions[i*3+1] = (Math.random() - 0.5) * 12;
-            particlePositions[i*3+2] = (Math.random() - 0.5) * 15 - 5;
+            particlePositions[i*3] = (Math.random() - 0.5) * 20;
+            particlePositions[i*3+1] = (Math.random() - 0.5) * 15;
+            particlePositions[i*3+2] = (Math.random() - 0.5) * 20 - 5;
         }
         particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-        const particleMat = new THREE.PointsMaterial({ color: 0xffaa55, size: 0.05, transparent: true, opacity: 0.4 });
+        const particleMat = new THREE.PointsMaterial({ color: 0xffaa55, size: 0.06, transparent: true, opacity: 0.3 });
         const particles = new THREE.Points(particleGeo, particleMat);
         scene.add(particles);
-        
-        // Small rotating electron cloud aura
-        const auraGeo = new THREE.SphereGeometry(1.2, 32, 32);
-        const auraMat = new THREE.MeshStandardMaterial({ color: 0xff8844, emissive: 0xff4411, emissiveIntensity: 0.3, transparent: true, opacity: 0.15, wireframe: true });
-        const aura = new THREE.Mesh(auraGeo, auraMat);
-        scene.add(aura);
         
         let time = 0;
         
@@ -574,21 +762,16 @@
             requestAnimationFrame(animate);
             time += 0.016;
             
-            // Rotate nucleus and aura
-            nucleus.rotation.y = time * 0.8;
-            nucleus.rotation.x = Math.sin(time * 0.5) * 0.3;
-            aura.rotation.x = time * 0.4;
-            aura.rotation.y = time * 0.6;
+            nucleus.rotation.y = time * 0.6;
+            nucleus.rotation.x = Math.sin(time * 0.5) * 0.2;
             
-            // Animate electrons along their orbits
             electrons.forEach(electron => {
-                electron.angle += 0.025 * electron.speed;
+                electron.angle += 0.02 * electron.speed;
                 let angle = electron.angle;
                 let rad = electron.radius;
                 let x = Math.cos(angle) * rad;
                 let z = Math.sin(angle) * rad;
                 let y = Math.sin(angle) * rad * electron.tilt * 0.5;
-                // apply same tilts as orbits for consistency
                 if (electron.idx === 1) {
                     const newX = x * Math.cos(0.7) - z * Math.sin(0.7);
                     const newZ = x * Math.sin(0.7) + z * Math.cos(0.7);
@@ -601,13 +784,11 @@
                 electron.mesh.position.set(x, y, z);
             });
             
-            // Rotate star particles slowly
-            particles.rotation.y = time * 0.05;
-            particles.rotation.x = Math.sin(time * 0.1) * 0.1;
+            particles.rotation.y = time * 0.03;
+            particles.rotation.x = Math.sin(time * 0.1) * 0.05;
             
-            // Gentle camera motion
-            camera.position.x = Math.sin(time * 0.2) * 0.3;
-            camera.position.y = 2 + Math.sin(time * 0.4) * 0.1;
+            camera.position.x = Math.sin(time * 0.15) * 0.2;
+            camera.position.y = 1.5 + Math.sin(time * 0.3) * 0.05;
             camera.lookAt(0, 0, 0);
             
             renderer.render(scene, camera);
@@ -618,7 +799,42 @@
 </script>
 
 <script>
-    // Counter animation
+    // FAQ Data - Complete
+    const qaData = [
+        { q: "এই অ্যাপটি কোন ক্লাসের জন্য?", a: "অ্যাপটি নবম ও দশম শ্রেণির বিজ্ঞান বিভাগের শিক্ষার্থীদের জন্য তৈরি। NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী কন্টেন্ট তৈরি করা হয়েছে যা এসএসসি ২০২৭ পরীক্ষার জন্য প্রাসঙ্গিক।" },
+        { q: "অ্যাপটি কি অফলাইনে চলে?", a: "হ্যাঁ, একবার কন্টেন্ট লোড করার পর আপনি অফলাইনে পড়তে পারবেন। শুধু MCQ উত্তর দিতে এবং নতুন কন্টেন্ট লোড করতে ইন্টারনেট প্রয়োজন।" },
+        { q: "কিভাবে পেমেন্ট করে অ্যাক্সেস নেব?", a: "পেমেন্ট ও সাবস্ক্রিপশন সংক্রান্ত সকল তথ্যের জন্য আমাদের WhatsApp নম্বরে (+8801602105447) যোগাযোগ করুন।" },
+        { q: "কুইজ ও MCQ এর উত্তর কিভাবে দেখব?", a: "MCQ উত্তর দেওয়ার পর 'উত্তর জমা দিন' বাটনে ক্লিক করলে আপনার স্কোর দেখাবে এবং সঠিক উত্তরগুলো সবুজ রঙে হাইলাইট হবে।" },
+        { q: "আমার পড়ার অগ্রগতি কোথায় সংরক্ষিত হয়?", a: "আপনার অগ্রগতি আপনার ডিভাইসে সংরক্ষিত থাকে। আপনি যেকোনো সময় অ্যাপ খুলে আপনার পড়া চালিয়ে যেতে পারবেন।" },
+        { q: "কন্টেন্ট কি আপডেট হয়?", a: "হ্যাঁ, NCTB সিলেবাসের পরিবর্তন অনুযায়ী এবং নতুন চ্যাপ্টার যুক্ত করার সাথে সাথে কন্টেন্ট আপডেট করা হবে।" },
+        { q: "ফ্রি ট্রায়াল কিভাবে পাব?", a: "ফ্রি ট্রায়ালের জন্য উপরের 'ফ্রি ট্রায়াল শুরু করুন' বাটনে ক্লিক করুন এবং রসায়ন অধ্যায়গুলো পড়া শুরু করুন।" }
+    ];
+    
+    const qaContainer = document.getElementById('qaContainer');
+    if (qaContainer) {
+        qaContainer.innerHTML = qaData.map((item, idx) => `
+            <div class="glass rounded-xl overflow-hidden">
+                <button class="qa-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition" data-idx="${idx}">
+                    <span><i class="fas fa-question-circle text-amber-400 mr-2"></i> ${item.q}</span>
+                    <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                </button>
+                <div class="qa-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">
+                    ${item.a}
+                </div>
+            </div>
+        `).join('');
+        
+        document.querySelectorAll('.qa-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const answer = btn.nextElementSibling;
+                const icon = btn.querySelector('.fa-chevron-down');
+                answer.classList.toggle('hidden');
+                if (icon) icon.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+        });
+    }
+    
+    // Counter Animation
     function animateCounter() {
         const counters = document.querySelectorAll('.counter');
         counters.forEach(counter => {
@@ -637,48 +853,71 @@
             updateCounter();
         });
     }
+    
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) { animateCounter(); observer.disconnect(); } });
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter();
+                observer.disconnect();
+            }
+        });
     });
+    
     const statsSection = document.querySelector('.hero-left .flex.flex-wrap.gap-8');
     if (statsSection) observer.observe(statsSection);
     
-    // Theme Toggle
+    // Theme Toggle Function
     function toggleTheme() {
         const html = document.documentElement;
         const currentTheme = html.getAttribute('data-theme');
         const sunIcon = document.getElementById('sunIcon');
         const moonIcon = document.getElementById('moonIcon');
+        
         if (currentTheme === 'light') {
             html.removeAttribute('data-theme');
-            if(sunIcon && moonIcon) { sunIcon.style.display = 'none'; moonIcon.style.display = 'inline-block'; }
+            if (sunIcon && moonIcon) {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'inline-block';
+            }
             localStorage.setItem('theme', 'dark');
         } else {
             html.setAttribute('data-theme', 'light');
-            if(sunIcon && moonIcon) { sunIcon.style.display = 'inline-block'; moonIcon.style.display = 'none'; }
+            if (sunIcon && moonIcon) {
+                sunIcon.style.display = 'inline-block';
+                moonIcon.style.display = 'none';
+            }
             localStorage.setItem('theme', 'light');
         }
     }
+    
     const savedTheme = localStorage.getItem('theme');
     const sunIcon = document.getElementById('sunIcon');
     const moonIcon = document.getElementById('moonIcon');
+    
     if (savedTheme === 'light') {
         document.documentElement.setAttribute('data-theme', 'light');
-        if(sunIcon && moonIcon) { sunIcon.style.display = 'inline-block'; moonIcon.style.display = 'none'; }
+        if (sunIcon && moonIcon) {
+            sunIcon.style.display = 'inline-block';
+            moonIcon.style.display = 'none';
+        }
     } else {
-        if(sunIcon && moonIcon) { sunIcon.style.display = 'none'; moonIcon.style.display = 'inline-block'; }
+        if (sunIcon && moonIcon) {
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'inline-block';
+        }
     }
-    window.toggleTheme = toggleTheme;
     
-    // Social share functions
-    function shareOnFacebook() { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank'); }
-    function shareOnWhatsApp() { window.open(`https://wa.me/?text=${encodeURIComponent('ন্যাশনাল এগজাম সেন্টার - নবম-দশম বিজ্ঞান প্রস্তুতি অ্যাপ: ' + window.location.href)}`, '_blank'); }
-    function shareOnTwitter() { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent('ন্যাশনাল এগজাম সেন্টার | এসএসসি ২০২৭ প্রস্তুতি')}&url=${encodeURIComponent(window.location.href)}`, '_blank'); }
+    // Share functions
+    function shareOnFacebook() { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank', 'width=600,height=400'); }
+    function shareOnWhatsApp() { window.open(`https://wa.me/?text=${encodeURIComponent('ন্যাশনাল এগজাম সেন্টার - নবম-দশম বিজ্ঞান প্রস্তুতি অ্যাপ। এসএসসি ২০২৭ পরীক্ষার সেরা প্রস্তুতি। বিস্তারিত: ' + window.location.href)}`, '_blank'); }
+    function shareOnTwitter() { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent('ন্যাশনাল এগজাম সেন্টার - নবম-দশম বিজ্ঞান প্রস্তুতি অ্যাপ | এসএসসি ২০২৭')}&url=${encodeURIComponent(window.location.href)}`, '_blank', 'width=600,height=400'); }
     function copyPageLink() { navigator.clipboard.writeText(window.location.href); alert('🔗 লিংক কপি করা হয়েছে!'); }
+    
     window.shareOnFacebook = shareOnFacebook;
     window.shareOnWhatsApp = shareOnWhatsApp;
     window.shareOnTwitter = shareOnTwitter;
     window.copyPageLink = copyPageLink;
+    window.toggleTheme = toggleTheme;
 </script>
 </body>
 </html>
