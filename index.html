@@ -3,92 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    
+    <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="1fssfuJoDM0IMK2fGR32rA7WIJWf7PyWymdk_ECAVmM" />
-    <title>National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬</title>
-    <meta name="description" content="নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬ সেরা প্রস্তুতি। ২০০০+ MCQ, সৃজনশীল প্রশ্ন ও প্রোগ্রেস ট্র্যাকিং।">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬ | এসএসসি সাজেশন ২০২৭</title>
+    <meta name="title" content="National Exam Center - Class 9-10 Science Preparation 2026 | SSC 2027">
+    <meta name="description" content="এসএসসি ২০২৭ পরীক্ষার সেরা প্রস্তুতি। NCTB ২০২৬ সিলেবাস অনুযায়ী রসায়ন, পদার্থবিজ্ঞান ও জীববিজ্ঞানের সম্পূর্ণ সিলেবাস। ৫০০+ MCQ, সৃজনশীল প্রশ্ন ও প্রোগ্রেস ট্র্যাকিং।">
+    <meta name="keywords" content="National Exam Center, national exam center, ন্যাশনাল এগজাম সেন্টার, class 9-10 science, নবম দশম বিজ্ঞান, এসএসসি প্রস্তুতি ২০২৭, SSC preparation 2027">
+    <meta name="author" content="National Exam Center">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nationalexamcenter.github.io/">
+    <meta property="og:title" content="National Exam Center - নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬">
+    <meta property="og:description" content="এসএসসি ২০২৭ পরীক্ষার সম্পূর্ণ প্রস্তুতি। ৫০০+ MCQ, প্রোগ্রেস ট্র্যাকিং, সম্পূর্ণ সিলেবাস কভারেজ।">
+    <meta property="og:image" content="https://nationalexamcenter.github.io/og-image.jpg">
+    <meta property="og:locale" content="bn_BD">
+    <meta property="og:site_name" content="National Exam Center">
+    
     <link rel="canonical" href="https://nationalexamcenter.github.io/">
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
         * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        
+        /* Dark Theme (Default) */
         :root {
             --bg-primary: #0a0f1a;
             --bg-secondary: #0c1320;
             --card-bg: rgba(18, 25, 45, 0.7);
             --text-primary: #e5e7eb;
+            --text-secondary: #9ca3af;
             --border-color: rgba(245, 158, 11, 0.2);
+            --border-hover: rgba(245, 158, 11, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --hero-overlay: rgba(0, 0, 0, 0.4);
         }
+        
+        /* Light Theme */
         [data-theme="light"] {
             --bg-primary: #f0f2f5;
             --bg-secondary: #e8eaef;
             --card-bg: rgba(255, 255, 255, 0.85);
             --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+            --border-color: rgba(245, 158, 11, 0.3);
+            --border-hover: rgba(245, 158, 11, 0.7);
+            --glass-border: rgba(0, 0, 0, 0.08);
+            --hero-overlay: rgba(255, 255, 255, 0.3);
         }
+        
         body {
             background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
             color: var(--text-primary);
-            transition: background 0.3s, color 0.3s;
+            transition: background 0.3s ease, color 0.3s ease;
         }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+        
+        [data-theme="light"] .glass {
+            background: rgba(0, 0, 0, 0.03);
+        }
+        
         .glass-card {
             background: var(--card-bg);
             backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
-        .glass-card:hover { border-color: rgba(245,158,11,0.5); transform: translateY(-4px); }
+        
+        .glass-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+        
         .gradient-text {
             background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
+        
         .btn-primary {
             background: linear-gradient(105deg, #ff9a3c, #ff6a2c);
             transition: all 0.2s ease;
-            box-shadow: 0 8px 20px rgba(255,100,30,0.3);
+            box-shadow: 0 8px 20px rgba(255, 100, 30, 0.3);
         }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255,100,30,0.5); }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 100, 30, 0.5);
+        }
+        
         .btn-secondary {
             border: 1px solid var(--border-color);
             transition: all 0.2s ease;
             color: var(--text-primary);
         }
-        .btn-secondary:hover { background: rgba(245,158,11,0.1); border-color: #f59e0b; transform: translateY(-2px); }
+        
+        .btn-secondary:hover {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: #f59e0b;
+            transform: translateY(-2px);
+        }
+        
         .btn-wa {
             background: linear-gradient(105deg, #25D366, #128C7E);
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
         }
+        
+        .btn-wa:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+        }
+        
         .btn-theme {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
             cursor: pointer;
             color: var(--text-primary);
         }
-        .floating-sticky-cta {
-            position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
-            background: linear-gradient(135deg, rgba(245,158,11,0.98), rgba(234,88,12,0.98));
-            backdrop-filter: blur(8px);
-            transform: translateY(100%);
-            transition: transform 0.3s ease-in-out;
-            padding: 12px 16px;
+        
+        .btn-theme:hover {
+            border-color: #f59e0b;
+            transform: scale(1.05);
         }
-        .floating-sticky-cta.visible { transform: translateY(0); }
+        
+        /* 3D Canvas Container */
         #heroCanvasContainer {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
+            z-index: 1;
+            border-radius: 2rem;
+            overflow: hidden;
             pointer-events: none;
         }
+        
+        canvas#bg-canvas-3d {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        
         .hero-wrapper {
             position: relative;
             min-height: 600px;
             overflow: hidden;
             border-radius: 2rem;
             margin: 0 1rem;
+            background: rgba(0,0,0,0.2);
         }
+        
         .hero-content {
             position: relative;
             z-index: 2;
@@ -99,437 +179,506 @@
             justify-content: space-between;
             gap: 2rem;
         }
-        .hero-left { flex: 1; min-width: 280px; }
+        
+        .hero-left { flex: 1; min-width: 280px; backdrop-filter: blur(4px); border-radius: 2rem; padding: 1rem; }
         .hero-right { flex: 1; min-width: 280px; display: flex; justify-content: center; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .float-animation { animation: float 4s ease-in-out infinite; }
+        
+        .mockup-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .mockup-item {
+            position: relative;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+        
+        .mockup-item:hover { transform: translateY(-8px); }
+        .mockup-item:hover .mockup-image { border-color: #f59e0b; box-shadow: 0 25px 40px -15px rgba(245, 158, 11, 0.3); }
+        
         .mockup-image {
+            width: 100%;
+            height: auto;
             border-radius: 28px;
-            border: 2px solid rgba(245,158,11,0.4);
             overflow: hidden;
+            border: 2px solid rgba(245, 158, 11, 0.4);
+            transition: all 0.3s ease;
+            animation: softPulse 2.5s ease-in-out infinite;
+            position: relative;
         }
-        .rating-stars { color: #fbbf24; display: inline-flex; gap: 2px; }
-        .step-number {
-            width: 56px; height: 56px;
-            background: linear-gradient(135deg, #f59e0b, #ea580c);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 24px; font-weight: bold; margin: 0 auto 16px;
+        
+        .mockup-image img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
-        .comparison-table td, .comparison-table th {
-            padding: 12px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1);
+        
+        .mockup-caption {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 11px;
+            color: #f59e0b;
+            font-weight: 500;
         }
+        
+        @keyframes softPulse {
+            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.2); border-color: rgba(245, 158, 11, 0.3); }
+            50% { box-shadow: 0 0 0 12px rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.7); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.2); border-color: rgba(245, 158, 11, 0.3); }
+        }
+        
+        .feature-card { transition: all 0.3s ease; }
+        .feature-card:hover { transform: translateY(-3px); border-color: #f59e0b; }
+        
+        .floating-wa {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            transition: all 0.2s ease;
+        }
+        
+        .floating-wa:hover { transform: scale(1.1); }
+        
+        .share-btn { transition: all 0.2s ease; }
+        .share-btn:hover { transform: scale(1.05); }
+        
+        /* Logo styling */
+        .nav-logo-img {
+            height: 40px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        
+        [data-theme="light"] .nav-logo-img {
+            filter: brightness(0.9);
+        }
+        
+        @media (max-width: 1024px) {
+            .hero-content { flex-direction: column; text-align: center; padding: 2rem; }
+            .hero-left { text-align: center; }
+            .hero-left .flex { justify-content: center; }
+            .mockup-item { width: 130px; }
+            h1 { font-size: 2rem !important; }
+        }
+        
         @media (max-width: 640px) {
-            .hero-content { padding: 1.5rem; }
+            .hero-wrapper { min-height: 700px; margin: 0 0.5rem; }
+            .mockup-container { gap: 12px; }
             .mockup-item { width: 100px; }
-            .step-number { width: 44px; height: 44px; font-size: 18px; }
+            .btn-primary, .btn-secondary { padding: 0.5rem 1rem; font-size: 0.875rem; }
+            .hero-content { padding: 1.5rem; }
         }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
+        
+        [data-theme="light"] .text-gray-300 { color: #4a5568; }
+        [data-theme="light"] .text-gray-400 { color: #718096; }
+        [data-theme="light"] .bg-black\/40 { background: rgba(255, 255, 255, 0.3); }
     </style>
 </head>
 <body>
 
-<!-- Floating Sticky CTA (appears on scroll) -->
-<div id="floatingStickyCta" class="floating-sticky-cta">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3">
-        <div class="flex items-center gap-2 text-white text-sm font-semibold"><i class="fas fa-tag"></i><span>সীমিত সময়ের অফার!</span></div>
-        <a href="https://wa.me/8801602105447?text=আমি%20বার্ষিক%20প্ল্যান%20নিতে%20চাই" class="btn-primary px-5 py-2 rounded-full text-white text-sm font-bold"><i class="fas fa-gem"></i> বার্ষিক প্ল্যানে ১৫% ছাড়</a>
-        <a href="#pricing" class="bg-white/20 backdrop-blur px-4 py-2 rounded-full text-white text-sm">সকল প্ল্যান দেখুন</a>
-    </div>
-</div>
-
 <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        <div class="flex items-center gap-3">
-            <img src="pic/NEC3.png" alt="Logo" class="h-10 w-auto" onerror="this.src='https://placehold.co/313x129/f59e0b/white?text=NEC'">
-            <span class="font-bold text-xl gradient-text">National Exam Center</span>
-        </div>
-        <div class="flex items-center gap-4">
-            <button onclick="toggleTheme()" class="btn-theme px-3 py-2 rounded-lg text-sm"><i class="fas fa-sun" id="sunIcon"></i><i class="fas fa-moon" id="moonIcon" style="display:none"></i></button>
-            <a href="/chemistry.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm"><i class="fas fa-book-open mr-1"></i> রসায়ন পড়ুন</a>
-            <a href="/privacy.html" class="hidden md:block text-gray-400 text-sm">গোপনীয়তা</a>
-            <a href="https://wa.me/8801602105447" class="btn-wa px-4 py-2 rounded-lg text-white text-sm font-semibold"><i class="fab fa-whatsapp mr-1"></i> WhatsApp</a>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-3">
+            <div class="flex items-center gap-3">
+                <!-- NEW LOGO: NEC3.png (transparent white) -->
+                <img src="pic/NEC3.png" alt="National Exam Center Logo" class="nav-logo-img" onerror="this.onerror=null; this.src='https://placehold.co/313x129/ffffff/ff9a3c?text=NEC';">
+                <span class="font-bold text-xl gradient-text hidden md:inline-block">National Exam Center</span>
+                <span class="text-xs bg-amber-500/20 px-2 py-1 rounded-full hidden md:block">ন্যাশনাল এগজাম সেন্টার | SSC ২০২৭</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="toggleTheme()" class="btn-theme px-3 py-2 rounded-lg text-sm" aria-label="Theme Toggle">
+                    <i class="fas fa-sun" id="sunIcon"></i>
+                    <i class="fas fa-moon" id="moonIcon" style="display: none;"></i>
+                </button>
+                <a href="/chemistry.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition">
+                    <i class="fas fa-book-open mr-1"></i> রসায়ন পড়ুন
+                </a>
+                <a href="/privacy.html" class="hidden md:block text-gray-400 text-sm hover:text-amber-400 transition">গোপনীয়তা</a>
+                <a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" target="_blank" class="btn-wa px-4 py-2 rounded-lg text-white text-sm font-semibold transition">
+                    <i class="fab fa-whatsapp mr-1"></i> WhatsApp
+                </a>
+            </div>
         </div>
     </div>
 </nav>
 
 <div class="hero-wrapper mt-6">
+    <!-- 3D Atomic Model Canvas Container -->
     <div id="heroCanvasContainer"></div>
     <div class="hero-content">
         <div class="hero-left">
-            <div class="inline-block px-4 py-1 rounded-full bg-black/50 backdrop-blur-sm text-amber-400 text-sm mb-4">NCTB ২০২৬ আপডেট সিলেবাস</div>
-            <h1 class="text-4xl md:text-6xl font-bold mb-4">নবম-দশম <span class="gradient-text">বিজ্ঞান প্রস্তুতি</span> ২০২৬</h1>
-            <p class="text-gray-300 text-lg mb-6 bg-black/40 backdrop-blur-sm p-3 rounded-xl">পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান – সর্বশেষ প্যাটার্ন ও সিলেবাস। ২০০০+ MCQ, সৃজনশীল প্রশ্ন।</p>
-            
-            <!-- Social proof -->
-            <div class="flex flex-wrap items-center gap-4 mb-5">
-                <div class="flex items-center gap-2"><div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><span class="text-sm">৪.৯ (১,২০০+ রিভিউ)</span></div>
-                <div class="flex items-center gap-2"><i class="fas fa-users text-amber-400"></i><span class="text-sm">৫০০+ সক্রিয় শিক্ষার্থী</span></div>
+            <div class="inline-block px-4 py-1 rounded-full bg-black/50 backdrop-blur-sm text-amber-400 text-sm mb-4 pulse-animation">
+                <i class="fas fa-graduation-cap mr-1"></i> NCTB ২০২৬ আপডেট সিলেবাস | এসএসসি ২০২৭
             </div>
-
-            <!-- Multiple CTAs -->
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                নবম-দশম <span class="gradient-text">বিজ্ঞান প্রস্তুতি</span> ২০২৬
+            </h1>
+            <p class="text-gray-300 text-lg max-w-lg mb-6 bg-black/40 backdrop-blur-sm p-3 rounded-xl">
+                পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান - সর্বশেষ প্যাটার্ন ও সিলেবাস। 
+                এসএসসি ২০২৭, ২০২৮ ব্যাচদের জন্য প্রিমিয়াম সাপোর্ট। ৫০০+ MCQ, সৃজনশীল প্রশ্ন।
+            </p>
             <div class="flex flex-wrap gap-4">
-                <a href="/chemistry.html" class="btn-primary px-6 py-3 rounded-full font-bold"><i class="fas fa-play mr-2"></i> ফ্রি ট্রায়াল শুরু করুন</a>
-                <a href="#pricing" class="btn-secondary px-6 py-3 rounded-full font-bold"><i class="fas fa-shopping-cart mr-2"></i> প্যাকেজ কিনুন</a>
-                <a href="#how-it-works" class="px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm font-bold">কিভাবে কাজ করে?</a>
+                <a href="/chemistry.html" class="btn-primary px-6 py-3 rounded-full font-bold text-md inline-block shine-effect">
+                    <i class="fas fa-play mr-2"></i> ফ্রি ট্রায়াল শুরু করুন
+                </a>
             </div>
-
+            
             <div class="flex flex-wrap justify-center gap-8 mt-8">
-                <div class="text-center bg-black/40 backdrop-blur-sm px-6 py-3 rounded-xl"><div class="text-2xl font-bold text-amber-400 counter" data-target="500">0+</div><div class="text-xs">সক্রিয় শিক্ষার্থী</div></div>
-                <div class="text-center bg-black/40 backdrop-blur-sm px-6 py-3 rounded-xl"><div class="text-2xl font-bold text-amber-400">97</div><div class="text-xs">টপিক সম্পূর্ণ</div></div>
-                <div class="text-center bg-black/40 backdrop-blur-sm px-6 py-3 rounded-xl"><div class="text-2xl font-bold text-amber-400 counter" data-target="98">98%</div><div class="text-xs">সন্তুষ্টি হার</div></div>
+                <div class="text-center bg-black/40 backdrop-blur-sm px-6 py-3 rounded-xl">
+                    <div class="text-2xl font-bold text-amber-400 counter" data-target="5000">0+</div>
+                    <div class="text-xs text-gray-300">সক্রিয় শিক্ষার্থী</div>
+                </div>
+                <div class="text-center bg-black/40 backdrop-blur-sm px-6 py-3 rounded-xl">
+                    <div class="text-2xl font-bold text-amber-400">৩০+</div>
+                    <div class="text-xs text-gray-300">অধ্যায় সম্পূর্ণ</div>
+                </div>
+                <div class="text-center bg-black/40 backdrop-blur-sm px-6 py-3 rounded-xl">
+                    <div class="text-2xl font-bold text-amber-400 counter" data-target="98">98%</div>
+                    <div class="text-xs text-gray-300">সন্তুষ্টি হার</div>
+                </div>
             </div>
         </div>
+        
         <div class="hero-right">
-            <div class="flex gap-4">
-                <div class="mockup-item"><div class="mockup-image w-40"><img src="pic/mockup-1.png" onerror="this.src='https://placehold.co/200x400/1a1f2e/f59e0b?text=Home'"></div><div class="mockup-caption text-center mt-2 text-xs">হোম স্ক্রিন</div></div>
-                <div class="mockup-item"><div class="mockup-image w-40"><img src="pic/mockup-2.png" onerror="this.src='https://placehold.co/200x400/1a1f2e/f59e0b?text=Study'"></div><div class="mockup-caption text-center mt-2 text-xs">স্টাডি ভিউ</div></div>
-                <div class="mockup-item"><div class="mockup-image w-40"><img src="pic/mockup-3.png" onerror="this.src='https://placehold.co/200x400/1a1f2e/f59e0b?text=Quiz'"></div><div class="mockup-caption text-center mt-2 text-xs">কুইজ মোড</div></div>
+            <div class="mockup-container">
+                <div class="mockup-item">
+                    <div class="mockup-image">
+                        <img src="pic/mockup-1.png" alt="National Exam Center Home Screen" loading="lazy" onerror="this.src='https://placehold.co/200x400/1a1f2e/ff9a3c?text=Home+Screen'">
+                    </div>
+                    <div class="mockup-caption"><i class="fas fa-home mr-1"></i> হোম স্ক্রিন</div>
+                </div>
+                <div class="mockup-item">
+                    <div class="mockup-image">
+                        <img src="pic/mockup-2.png" alt="National Exam Center Study View" loading="lazy" onerror="this.src='https://placehold.co/200x400/1a1f2e/ff9a3c?text=Study+View'">
+                    </div>
+                    <div class="mockup-caption"><i class="fas fa-book-open mr-1"></i> স্টাডি ভিউ</div>
+                </div>
+                <div class="mockup-item">
+                    <div class="mockup-image">
+                        <img src="pic/mockup-3.png" alt="National Exam Center Quiz Mode" loading="lazy" onerror="this.src='https://placehold.co/200x400/1a1f2e/ff9a3c?text=Quiz+Mode'">
+                    </div>
+                    <div class="mockup-caption"><i class="fas fa-question-circle mr-1"></i> কুইজ মোড</div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- How It Works -->
-<section class="py-16 px-4" id="how-it-works">
-    <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-4">📱 কিভাবে শুরু করবেন?</h2>
-        <p class="text-center text-gray-400 mb-12">মাত্র ৩টি ধাপে শুরু করুন আপনার নবম-দশম বিজ্ঞান ২০২৬ প্রস্তুতি</p>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="glass-card rounded-2xl p-6 text-center"><div class="step-number mx-auto">১</div><h3 class="text-xl font-bold mb-2">অ্যাপ ডাউনলোড করুন</h3><p class="text-gray-400 text-sm">Google Play Store থেকে National Exam Center অ্যাপ ডাউনলোড করুন</p></div>
-            <div class="glass-card rounded-2xl p-6 text-center"><div class="step-number mx-auto">২</div><h3 class="text-xl font-bold mb-2">সাবস্ক্রিপশন নিন</h3><p class="text-gray-400 text-sm">WhatsApp এ যোগাযোগ করে আপনার পছন্দের প্ল্যানটি নিন</p></div>
-            <div class="glass-card rounded-2xl p-6 text-center"><div class="step-number mx-auto">৩</div><h3 class="text-xl font-bold mb-2">পড়া শুরু করুন</h3><p class="text-gray-400 text-sm">৫০০+ MCQ ও সৃজনশীল প্রশ্ন প্র্যাকটিস করুন</p></div>
-        </div>
-    </div>
-</section>
-
-<!-- Comparison Table -->
-<section class="py-16 px-4">
-    <div class="max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-8">📊 ফ্রি vs প্রিমিয়াম – সুবিধা তুলনা</h2>
-        <div class="glass-card rounded-2xl overflow-hidden">
-            <table class="comparison-table w-full text-sm">
-                <thead class="bg-amber-500/10"><tr><th class="p-3 text-left">সুবিধা</th><th class="p-3 text-center">ফ্রি</th><th class="p-3 text-center text-amber-400">প্রিমিয়াম</th></tr></thead>
-                <tbody>
-                    <tr><td class="p-3">অধ্যায়সমূহ</td><td class="p-3 text-center"><i class="fas fa-times text-red-500"></i></td><td class="p-3 text-center"><i class="fas fa-check text-green-500"></i> সম্পূর্ণ ১২টি</td></tr>
-                    <tr><td class="p-3">MCQ প্রশ্ন</td><td class="p-3 text-center">১২টি ডেমো টপিক</td><td class="p-3 text-center"><i class="fas fa-check text-green-500"></i> ৯৭টি টপিক</td></tr>
-                    <tr><td class="p-3">সৃজনশীল প্রশ্ন</td><td class="p-3 text-center"><i class="fas fa-times text-red-500"></i></td><td class="p-3 text-center"><i class="fas fa-check text-green-500"></i> সম্পূর্ণ সমাধানসহ</td></tr>
-                    <tr><td class="p-3">প্রোগ্রেস ট্র্যাকিং</td><td class="p-3 text-center"><i class="fas fa-times text-red-500"></i></td><td class="p-3 text-center"><i class="fas fa-check text-green-500"></i> অটো সেভ</td></tr>
-                    <tr><td class="p-3">অফলাইন পড়া</td><td class="p-3 text-center"><i class="fas fa-times text-red-500"></i></td><td class="p-3 text-center"><i class="fas fa-check text-green-500"></i></td></tr>
-                    <tr><td class="p-3">WhatsApp সাপোর্ট</td><td class="p-3 text-center"><i class="fas fa-times text-red-500"></i></td><td class="p-3 text-center"><i class="fas fa-check text-green-500"></i> ২৪/৭</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
-
-<!-- Trust Badges -->
+<!-- Trust Badges Section -->
 <section class="py-8 px-4">
-    <div class="max-w-6xl mx-auto flex flex-wrap justify-center gap-8 items-center opacity-80">
-        <div class="text-center"><i class="fas fa-shield-alt text-3xl text-amber-500 mb-2"></i><p class="text-xs">GDPR & CCPA Compliant</p></div>
-        <div class="text-center"><i class="fas fa-lock text-3xl text-amber-500 mb-2"></i><p class="text-xs">Secure Data Storage</p></div>
-        <div class="text-center"><i class="fas fa-google-play text-3xl text-amber-500 mb-2"></i><p class="text-xs">Coming on Play Store</p></div>
-        <div class="text-center"><i class="fas fa-headset text-3xl text-amber-500 mb-2"></i><p class="text-xs">24/7 Support</p></div>
+    <div class="max-w-6xl mx-auto">
+        <div class="flex flex-wrap justify-center gap-8 items-center opacity-80">
+            <div class="text-center"><i class="fas fa-shield-alt text-3xl text-amber-500 mb-2"></i><p class="text-xs text-gray-400">GDPR & CCPA Compliant</p></div>
+            <div class="text-center"><i class="fas fa-lock text-3xl text-amber-500 mb-2"></i><p class="text-xs text-gray-400">Secure Data Storage</p></div>
+            <div class="text-center"><i class="fas fa-google-play text-3xl text-amber-500 mb-2"></i><p class="text-xs text-gray-400">Coming on Play Store</p></div>
+            <div class="text-center"><i class="fas fa-headset text-3xl text-amber-500 mb-2"></i><p class="text-xs text-gray-400">24/7 Support</p></div>
+        </div>
     </div>
 </section>
 
 <!-- Feature Section -->
 <section class="py-16 px-4">
     <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-12">✨ অ্যাপের বিশেষ বৈশিষ্ট্য</h2>
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">✨ অ্যাপের বিশেষ বৈশিষ্ট্য</h2>
         <div class="grid md:grid-cols-2 gap-6">
-            <div class="glass-card rounded-2xl p-6"><div class="flex gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-chalkboard-user text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">সম্পূর্ণ সিলেবাস কভারেজ</h3><p class="text-gray-400 text-sm">NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী রসায়নের ১২টি অধ্যায় সম্পূর্ণভাবে যুক্ত।</p></div></div></div>
-            <div class="glass-card rounded-2xl p-6"><div class="flex gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-question-circle text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">MCQ ও সৃজনশীল প্রশ্ন</h3><p class="text-gray-400 text-sm">প্রতিটি অধ্যায়ের জন্য বহুনির্বাচনি ও সৃজনশীল প্রশ্ন সহ উত্তর।</p></div></div></div>
-            <div class="glass-card rounded-2xl p-6"><div class="flex gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-chart-line text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">প্রোগ্রেস ট্র্যাকিং</h3><p class="text-gray-400 text-sm">আপনার পড়ার অগ্রগতি স্বয়ংক্রিয়ভাবে সংরক্ষিত হয়।</p></div></div></div>
-            <div class="glass-card rounded-2xl p-6"><div class="flex gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-share-alt text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">ফলাফল শেয়ার করুন</h3><p class="text-gray-400 text-sm">MCQ ফলাফল সরাসরি Facebook, WhatsApp এ শেয়ার করুন।</p></div></div></div>
+            <div class="glass-card rounded-2xl p-6 feature-card"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-chalkboard-user text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">সম্পূর্ণ সিলেবাস কভারেজ</h3><p class="text-gray-400 text-sm">NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী রসায়নের ১২টি অধ্যায় সম্পূর্ণভাবে যুক্ত।</p></div></div></div>
+            <div class="glass-card rounded-2xl p-6 feature-card"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-question-circle text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">MCQ ও সৃজনশীল প্রশ্ন</h3><p class="text-gray-400 text-sm">প্রতিটি অধ্যায়ের জন্য অধ্যায়ভিত্তিক বহুনির্বাচনি ও সৃজনশীল প্রশ্ন সহ উত্তর।</p></div></div></div>
+            <div class="glass-card rounded-2xl p-6 feature-card"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-chart-line text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">প্রোগ্রেস ট্র্যাকিং</h3><p class="text-gray-400 text-sm">আপনার পড়ার অগ্রগতি স্বয়ংক্রিয়ভাবে সংরক্ষিত হয়।</p></div></div></div>
+            <div class="glass-card rounded-2xl p-6 feature-card"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-share-alt text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">ফলাফল শেয়ার করুন</h3><p class="text-gray-400 text-sm">MCQ পরীক্ষার ফলাফল সরাসরি Facebook, WhatsApp এ শেয়ার করুন।</p></div></div></div>
         </div>
     </div>
 </section>
 
-<!-- Parent Testimonials -->
-<section class="py-12 px-4 bg-gradient-to-r from-amber-500/5 to-transparent">
-    <div class="max-w-6xl mx-auto"><h2 class="text-3xl font-bold text-center mb-8">🎓 অভিভাবকদের মতামত</h2>
-    <div class="grid md:grid-cols-2 gap-6">
-        <div class="glass-card rounded-2xl p-6"><i class="fas fa-quote-left text-amber-500/50 text-3xl mb-3"></i><p class="text-gray-300 text-sm">"আমার মেয়ে National Exam Center ব্যবহার করে রসায়নে অনেক উন্নতি করেছে। MCQ প্রশ্নগুলো বোর্ড পরীক্ষার প্যাটার্নের সাথে পুরোপুরি মিলে যায়।"</p><p class="text-amber-400 text-sm mt-3">— মোঃ রহমত উল্লাহ, অভিভাবক</p></div>
-        <div class="glass-card rounded-2xl p-6"><i class="fas fa-quote-left text-amber-500/50 text-3xl mb-3"></i><p class="text-gray-300 text-sm">"সাশ্রয়ী মূল্যের চমৎকার একটি প্ল্যাটফর্ম। আমার ছেলে এখন নিজে নিজে প্র্যাকটিস করে। প্রোগ্রেস ট্র্যাকিং ফিচারটা অভিভাবক হিসেবে খুব কাজে লাগে।"</p><p class="text-amber-400 text-sm mt-3">— নাসরিন সুলতানা, অভিভাবক</p></div>
-    </div></div>
-</section>
-
-<!-- Student Testimonials -->
-<section class="py-12 px-4">
-    <div class="max-w-6xl mx-auto"><h2 class="text-3xl font-bold text-center mb-8">💬 শিক্ষার্থীদের মতামত</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-        <div class="glass-card rounded-2xl p-6"><div class="flex text-amber-400 mb-3">★★★★★</div><p class="text-gray-300 text-sm">"National Exam Center এর রসায়ন অধ্যায়গুলো খুব সুন্দরভাবে সাজানো। MCQ ও সৃজনশীল প্রশ্নগুলো বোর্ড পরীক্ষার জন্য খুবই helpful।"</p><p class="text-amber-400 text-sm mt-3">— মেহরিন হোসেন, নবম শ্রেণি</p></div>
-        <div class="glass-card rounded-2xl p-6"><div class="flex text-amber-400 mb-3">★★★★★</div><p class="text-gray-300 text-sm">"প্রোগ্রেস ট্র্যাকিং ফিচারটা দারুণ! কোন অধ্যায় কতটুকু পড়েছি তা বুঝতে পারি। বার্ষিক প্ল্যান নিয়ে ভালো করছি।"</p><p class="text-amber-400 text-sm mt-3">— শাহরিয়ার রহমান, দশম শ্রেণি</p></div>
-        <div class="glass-card rounded-2xl p-6"><div class="flex text-amber-400 mb-3">★★★★★</div><p class="text-gray-300 text-sm">"নবম-দশম বিজ্ঞান ২০২৬-এর জন্য সেরা প্রস্তুতি অ্যাপ। সব টপিক খুব ক্লিয়ারভাবে ব্যাখ্যা করা আছে। সবার জন্য রিকমেন্ড করছি!"</p><p class="text-amber-400 text-sm mt-3">— আবিদ হাসান, নবম শ্রেণি</p></div>
-    </div></div>
-</section>
-
-<!-- FAQ -->
-<section class="py-12 px-4">
-    <div class="max-w-4xl mx-auto"><h2 class="text-3xl font-bold text-center mb-8">❓ সাধারণ জিজ্ঞাসা</h2>
-    <div class="space-y-4" id="qaContainer"></div>
-    <div class="mt-10 text-center"><p class="text-gray-400 mb-4">এই পেজটি শেয়ার করুন:</p>
-    <div class="flex justify-center gap-3 flex-wrap">
-        <button onclick="shareOnFacebook()" class="share-btn px-5 py-2 rounded-lg bg-[#1877F2]/20 text-[#1877F2]"><i class="fab fa-facebook-f"></i> Facebook</button>
-        <button onclick="shareOnWhatsApp()" class="share-btn px-5 py-2 rounded-lg bg-[#25D366]/20 text-[#25D366]"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-        <button onclick="shareOnTwitter()" class="share-btn px-5 py-2 rounded-lg bg-[#1DA1F2]/20 text-[#1DA1F2]"><i class="fab fa-twitter"></i> Twitter</button>
-        <button onclick="copyPageLink()" class="share-btn px-5 py-2 rounded-lg bg-gray-600/20 text-gray-300"><i class="fas fa-link"></i> কপি লিংক</button>
-    </div></div></div>
-</section>
-
-<!-- Pricing (with direct purchase buttons) -->
+<!-- Pricing Section -->
 <section class="py-12 px-4" id="pricing">
-    <div class="max-w-6xl mx-auto"><h2 class="text-3xl font-bold text-center mb-8">💰 ফ্লেক্সিবল এক্সেস প্ল্যান</h2>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="glass-card rounded-2xl p-6 text-center"><div class="text-2xl font-bold">মাসিক</div><div class="text-3xl font-bold text-amber-400 my-2">১০০৳</div><p class="text-sm text-gray-400">৩০ দিন অ্যাক্সেস</p><a href="https://wa.me/8801602105447?text=মাসিক%20প্ল্যান%20নিতে%20চাই" class="mt-3 inline-block w-full py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition">নিন</a></div>
-        <div class="glass-card rounded-2xl p-6 text-center"><div class="text-2xl font-bold">ত্রৈমাসিক</div><div class="text-3xl font-bold text-amber-400 my-2">২৭৫৳</div><p class="text-sm text-gray-400">৯০ দিন + বোনাস</p><a href="https://wa.me/8801602105447?text=ত্রৈমাসিক%20প্ল্যান%20নিতে%20চাই" class="mt-3 inline-block w-full py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition">নিন</a></div>
-        <div class="glass-card rounded-2xl p-6 text-center"><div class="text-2xl font-bold">ষাণ্মাসিক</div><div class="text-3xl font-bold text-amber-400 my-2">৫০০৳</div><p class="text-sm text-gray-400">৬ মাস + কুইজ</p><a href="https://wa.me/8801602105447?text=ষাণ্মাসিক%20প্ল্যান%20নিতে%20চাই" class="mt-3 inline-block w-full py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition">নিন</a></div>
-        <div class="glass-card rounded-2xl p-6 text-center border-2 border-amber-500 relative"><div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-amber-500 text-white text-xs px-3 py-1 rounded-full">বেস্ট ভ্যালু</div><div class="text-2xl font-bold mt-2">বার্ষিক</div><div class="text-3xl font-bold text-amber-300 my-2">৯০০৳</div><p class="text-sm text-gray-400">৩৬৫ দিন + এসএসসি ২০২৭ সাপোর্ট</p><a href="https://wa.me/8801602105447?text=বার্ষিক%20প্ল্যান%20নিতে%20চাই" class="mt-3 inline-block w-full py-2 rounded-lg bg-amber-500 text-white font-bold text-sm hover:bg-amber-600 transition">সেরা অফার</a></div>
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">💰 ফ্লেক্সিবল এক্সেস প্ল্যান</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass-card rounded-2xl p-6 text-center"><div class="text-2xl font-bold">মাসিক</div><div class="text-3xl font-bold text-amber-400 my-2">১০০৳</div><p class="text-sm text-gray-400">৩০ দিন অ্যাক্সেস</p></div>
+            <div class="glass-card rounded-2xl p-6 text-center"><div class="text-2xl font-bold">ত্রৈমাসিক</div><div class="text-3xl font-bold text-amber-400 my-2">২৭৫৳</div><p class="text-sm text-gray-400">৯০ দিন + বোনাস</p></div>
+            <div class="glass-card rounded-2xl p-6 text-center"><div class="text-2xl font-bold">ষাণ্মাসিক</div><div class="text-3xl font-bold text-amber-400 my-2">৫০০৳</div><p class="text-sm text-gray-400">৬ মাস + কুইজ</p></div>
+            <div class="glass-card rounded-2xl p-6 text-center border-2 border-amber-500/40 relative"><div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-amber-600 to-orange-600 text-white text-xs px-3 py-1 rounded-full">বেস্ট ভ্যালু</div><div class="text-2xl font-bold mt-2">বার্ষিক</div><div class="text-3xl font-bold text-amber-300 my-2">৯০০৳</div><p class="text-sm text-gray-400">৩৬৫ দিন + এসএসসি ২০২৭ সাপোর্ট</p></div>
+        </div>
+        <div class="glass rounded-2xl p-5 mt-8 text-center"><p><i class="fab fa-whatsapp text-green-500 mr-2"></i> <strong>পেমেন্ট ও সাপোর্টের জন্য WhatsApp:</strong> <a href="https://wa.me/8801602105447" class="text-amber-400 hover:underline">+8801602105447</a></p></div>
     </div>
-    <div class="glass rounded-2xl p-5 mt-8 text-center"><p><i class="fab fa-whatsapp text-green-500 mr-2"></i> <strong>পেমেন্ট ও সাপোর্টের জন্য WhatsApp:</strong> <a href="https://wa.me/8801602105447" class="text-amber-400 hover:underline">+8801602105447</a></p></div></div>
 </section>
 
-<!-- Security & Privacy Notice -->
-<div class="max-w-6xl mx-auto text-center mb-8 px-4"><div class="inline-flex flex-wrap gap-2 text-xs text-gray-500"><i class="fas fa-shield-alt text-amber-500"></i><span>256-bit SSL</span><span>•</span><i class="fas fa-database text-amber-500"></i><span>GDPR Compliant</span><span>•</span><i class="fas fa-clock text-amber-500"></i><span>24/7 Support</span><span>•</span><i class="fas fa-lock text-amber-500"></i><span>Privacy Protected</span></div></div>
+<footer class="py-8 px-4 border-t border-white/10 mt-8">
+    <div class="max-w-6xl mx-auto text-center">
+        <div class="flex flex-wrap justify-center gap-6 mb-4">
+            <a href="/chemistry.html" class="text-gray-400 text-sm hover:text-amber-400 transition">রসায়ন সম্পূর্ণ সিলেবাস</a>
+            <a href="/privacy.html" class="text-gray-400 text-sm hover:text-amber-400 transition">গোপনীয়তা নীতি</a>
+            <a href="https://wa.me/8801602105447" target="_blank" class="text-gray-400 text-sm hover:text-amber-400 transition"><i class="fab fa-whatsapp mr-1 text-green-500"></i>WhatsApp সাপোর্ট</a>
+        </div>
+        <p class="text-gray-500 text-xs">© ২০২৬ National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি | NCTB ২০২৬ সিলেবাস | এসএসসি ২০২৭ প্রস্তুতি</p>
+    </div>
+</footer>
 
-<footer class="py-8 px-4 border-t border-white/10"><div class="max-w-6xl mx-auto text-center"><div class="flex flex-wrap justify-center gap-6 mb-4"><a href="/chemistry.html" class="text-gray-400 text-sm">রসায়ন সম্পূর্ণ সিলেবাস</a><a href="/privacy.html" class="text-gray-400 text-sm">গোপনীয়তা নীতি</a><a href="https://wa.me/8801602105447" class="text-gray-400 text-sm"><i class="fab fa-whatsapp mr-1"></i>WhatsApp সাপোর্ট</a><a href="/chemistry.html" class="text-gray-400 text-sm"><i class="fas fa-play mr-1"></i>ফ্রি ট্রায়াল</a></div><p class="text-gray-500 text-xs">© ২০২৬ National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি | NCTB ২০২৬ সিলেবাস | এসএসসি ২০২৭ প্রস্তুতি</p></div></footer>
+<a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" class="floating-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-<a href="https://wa.me/8801602105447" class="fixed bottom-5 right-5 z-50 bg-green-500 w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-lg"><i class="fab fa-whatsapp text-white"></i></a>
-
-<!-- 3D Animation Script (FIXED) -->
 <script type="importmap">
     { "imports": { "three": "https://unpkg.com/three@0.128.0/build/three.module.js" } }
 </script>
+
 <script type="module">
     import * as THREE from 'three';
     
     const container = document.getElementById('heroCanvasContainer');
-    if (!container) {
-        console.error("Canvas container missing");
-    } else {
+    if (container) {
+        // Create scene, camera, renderer
+        const scene = new THREE.Scene();
+        scene.background = null; // transparent to show gradient
+        
+        // Get parent dimensions
         const parent = container.parentElement;
-        if (!parent) return;
-
-        // Force container to fill parent
-        container.style.width = '100%';
-        container.style.height = '100%';
-
-        let scene, camera, renderer, nucleus, electrons, particles;
-        let time = 0;
-
-        function init() {
-            const width = parent.clientWidth;
-            const height = parent.clientHeight;
-            if (width === 0 || height === 0) {
-                // Retry after a short delay
-                requestAnimationFrame(() => setTimeout(init, 50));
-                return;
-            }
-
-            scene = new THREE.Scene();
-            scene.background = null;
-
-            camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-            camera.position.set(0, 2, 12);
-
-            renderer = new THREE.WebGLRenderer({ alpha: true });
-            renderer.setSize(width, height);
-            renderer.setClearColor(0x000000, 0);
-            container.appendChild(renderer.domElement);
-
-            // Lights
-            const ambient = new THREE.AmbientLight(0x404060);
-            scene.add(ambient);
-            const light = new THREE.DirectionalLight(0xffaa66, 1);
-            light.position.set(5, 10, 7);
-            scene.add(light);
-            const backLight = new THREE.PointLight(0xff6633, 0.5);
-            backLight.position.set(0, 2, -5);
-            scene.add(backLight);
-
-            // Nucleus
-            const nucleusGeo = new THREE.SphereGeometry(0.7, 64, 64);
-            const nucleusMat = new THREE.MeshStandardMaterial({ color: 0xff5533, emissive: 0xff2200, emissiveIntensity: 0.8 });
-            nucleus = new THREE.Mesh(nucleusGeo, nucleusMat);
-            scene.add(nucleus);
-
-            // Orbiting electrons
-            const orbitRadii = [2.0, 2.6, 3.2];
-            const orbitColors = [0x33aaff, 0xffaa44, 0xff6644];
-            electrons = [];
-            orbitRadii.forEach((r, idx) => {
-                const orbitPoints = [];
-                for (let ang = 0; ang <= 128; ang++) {
-                    const a = (ang / 128) * Math.PI * 2;
-                    const x = Math.cos(a) * r;
-                    const z = Math.sin(a) * r;
-                    const y = Math.sin(a * 2) * 0.5;
-                    orbitPoints.push(new THREE.Vector3(x, y, z));
-                }
-                const orbitGeo = new THREE.BufferGeometry().setFromPoints(orbitPoints);
-                const orbitMat = new THREE.LineBasicMaterial({ color: orbitColors[idx], transparent: true, opacity: 0.3 });
-                const orbit = new THREE.LineLoop(orbitGeo, orbitMat);
-                scene.add(orbit);
-                const electron = new THREE.Mesh(new THREE.SphereGeometry(0.18, 16, 16), new THREE.MeshStandardMaterial({ color: orbitColors[idx], emissive: orbitColors[idx], emissiveIntensity: 0.5 }));
-                scene.add(electron);
-                electrons.push({ mesh: electron, radius: r, speed: 0.8 + idx * 0.4, angle: Math.PI * 2 * (idx / 3) });
-            });
-
-            // Floating particles
-            const particleCount = 600;
-            const particleGeo = new THREE.BufferGeometry();
-            const positions = new Float32Array(particleCount * 3);
-            for (let i = 0; i < particleCount; i++) {
-                positions[i*3] = (Math.random() - 0.5) * 12;
-                positions[i*3+1] = (Math.random() - 0.5) * 8;
-                positions[i*3+2] = (Math.random() - 0.5) * 12 - 4;
-            }
-            particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-            const particleMat = new THREE.PointsMaterial({ color: 0xffaa66, size: 0.07, transparent: true, blending: THREE.AdditiveBlending });
-            particles = new THREE.Points(particleGeo, particleMat);
-            scene.add(particles);
-
-            // Animation loop
-            function animate() {
-                requestAnimationFrame(animate);
-                time += 0.016;
-                if (nucleus) {
-                    nucleus.rotation.y = time * 0.5;
-                    nucleus.rotation.x = Math.sin(time * 0.7) * 0.2;
-                    nucleus.material.emissiveIntensity = 0.7 + Math.sin(time * 8) * 0.3;
-                }
-                if (electrons) {
-                    electrons.forEach(e => {
-                        e.angle += 0.025 * e.speed;
-                        const x = Math.cos(e.angle) * e.radius;
-                        const z = Math.sin(e.angle) * e.radius;
-                        const y = Math.sin(e.angle * 2) * 0.5;
-                        e.mesh.position.set(x, y, z);
-                    });
-                }
-                if (particles) {
-                    particles.rotation.y = time * 0.03;
-                    particles.rotation.x = Math.sin(time * 0.1) * 0.05;
-                }
-                if (camera) {
-                    camera.position.x = Math.sin(time * 0.15) * 0.2;
-                    camera.position.y = 2 + Math.sin(time * 0.2) * 0.1;
-                    camera.lookAt(0, 0, 0);
-                }
-                if (renderer && scene && camera) renderer.render(scene, camera);
-            }
-            animate();
-            console.log("3D animation started with size", width, height);
-        }
-
-        // Use ResizeObserver to keep canvas size in sync
-        const resizeObserver = new ResizeObserver(() => {
-            if (renderer && camera) {
-                const w = parent.clientWidth;
-                const h = parent.clientHeight;
-                if (w > 0 && h > 0) {
-                    renderer.setSize(w, h);
-                    camera.aspect = w / h;
-                    camera.updateProjectionMatrix();
-                }
-            }
+        const width = parent.clientWidth;
+        const height = parent.clientHeight;
+        
+        const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+        camera.position.set(0, 2, 12);
+        camera.lookAt(0, 0, 0);
+        
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(width, height);
+        renderer.setClearColor(0x000000, 0);
+        container.appendChild(renderer.domElement);
+        
+        // Resize handler
+        window.addEventListener('resize', () => {
+            const newWidth = parent.clientWidth;
+            const newHeight = parent.clientHeight;
+            renderer.setSize(newWidth, newHeight);
+            camera.aspect = newWidth / newHeight;
+            camera.updateProjectionMatrix();
         });
-        resizeObserver.observe(parent);
-
-        // Start after a short delay to ensure layout is ready
-        setTimeout(init, 100);
+        
+        // Lights
+        const ambientLight = new THREE.AmbientLight(0x404060);
+        scene.add(ambientLight);
+        const mainLight = new THREE.DirectionalLight(0xffaa66, 1);
+        mainLight.position.set(5, 10, 7);
+        scene.add(mainLight);
+        const fillLight = new THREE.PointLight(0x4466ff, 0.5);
+        fillLight.position.set(-3, 2, 4);
+        scene.add(fillLight);
+        const backLight = new THREE.PointLight(0xffaa33, 0.4);
+        backLight.position.set(0, 2, -5);
+        scene.add(backLight);
+        
+        // Create a glowing atomic nucleus (center sphere)
+        const nucleusGeo = new THREE.SphereGeometry(0.7, 64, 64);
+        const nucleusMat = new THREE.MeshStandardMaterial({ color: 0xff6633, emissive: 0xaa3311, emissiveIntensity: 0.8, metalness: 0.7, roughness: 0.2 });
+        const nucleus = new THREE.Mesh(nucleusGeo, nucleusMat);
+        scene.add(nucleus);
+        
+        // Electron orbits: 3 elliptical paths with different radii and colors
+        const orbitRadii = [2.2, 2.8, 3.2];
+        const orbitColors = [0x33aaff, 0xffaa44, 0x66ff66];
+        const orbitSpeeds = [1.2, 0.9, 1.5];
+        const orbitTilts = [0, 0.5, 0.8];
+        
+        const electrons = [];
+        
+        orbitRadii.forEach((radius, idx) => {
+            // Create orbit ring (visual)
+            const points = [];
+            const segments = 128;
+            const tilt = orbitTilts[idx];
+            for (let i = 0; i <= segments; i++) {
+                const angle = (i / segments) * Math.PI * 2;
+                let x = Math.cos(angle) * radius;
+                let z = Math.sin(angle) * radius;
+                let y = Math.sin(angle) * radius * tilt * 0.6;
+                // rotate for variety: some orbits tilted in XZ plane
+                if (idx === 1) {
+                    const newX = x * Math.cos(0.7) - z * Math.sin(0.7);
+                    const newZ = x * Math.sin(0.7) + z * Math.cos(0.7);
+                    x = newX; z = newZ;
+                } else if (idx === 2) {
+                    const newX = x;
+                    const newY = y * 0.8 + z * 0.3;
+                    const newZ = z * 0.8 - y * 0.3;
+                    y = newY;
+                }
+                points.push(new THREE.Vector3(x, y, z));
+            }
+            const orbitGeo = new THREE.BufferGeometry().setFromPoints(points);
+            const orbitMat = new THREE.LineBasicMaterial({ color: orbitColors[idx], transparent: true, opacity: 0.35 });
+            const orbitLine = new THREE.LineLoop(orbitGeo, orbitMat);
+            scene.add(orbitLine);
+            
+            // Electron sphere
+            const electronGeo = new THREE.SphereGeometry(0.22, 32, 32);
+            const electronMat = new THREE.MeshStandardMaterial({ color: orbitColors[idx], emissive: orbitColors[idx], emissiveIntensity: 0.5 });
+            const electron = new THREE.Mesh(electronGeo, electronMat);
+            scene.add(electron);
+            
+            electrons.push({
+                mesh: electron,
+                radius: radius,
+                speed: orbitSpeeds[idx],
+                angle: Math.PI * 2 * (idx / 3),
+                tilt: orbitTilts[idx],
+                idx: idx
+            });
+        });
+        
+        // Additional floating particles (glow)
+        const particleCount = 800;
+        const particleGeo = new THREE.BufferGeometry();
+        const particlePositions = new Float32Array(particleCount * 3);
+        for (let i = 0; i < particleCount; i++) {
+            particlePositions[i*3] = (Math.random() - 0.5) * 18;
+            particlePositions[i*3+1] = (Math.random() - 0.5) * 12;
+            particlePositions[i*3+2] = (Math.random() - 0.5) * 15 - 5;
+        }
+        particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+        const particleMat = new THREE.PointsMaterial({ color: 0xffaa55, size: 0.05, transparent: true, opacity: 0.4 });
+        const particles = new THREE.Points(particleGeo, particleMat);
+        scene.add(particles);
+        
+        // Small rotating electron cloud aura
+        const auraGeo = new THREE.SphereGeometry(1.2, 32, 32);
+        const auraMat = new THREE.MeshStandardMaterial({ color: 0xff8844, emissive: 0xff4411, emissiveIntensity: 0.3, transparent: true, opacity: 0.15, wireframe: true });
+        const aura = new THREE.Mesh(auraGeo, auraMat);
+        scene.add(aura);
+        
+        let time = 0;
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.016;
+            
+            // Rotate nucleus and aura
+            nucleus.rotation.y = time * 0.8;
+            nucleus.rotation.x = Math.sin(time * 0.5) * 0.3;
+            aura.rotation.x = time * 0.4;
+            aura.rotation.y = time * 0.6;
+            
+            // Animate electrons along their orbits
+            electrons.forEach(electron => {
+                electron.angle += 0.025 * electron.speed;
+                let angle = electron.angle;
+                let rad = electron.radius;
+                let x = Math.cos(angle) * rad;
+                let z = Math.sin(angle) * rad;
+                let y = Math.sin(angle) * rad * electron.tilt * 0.5;
+                // apply same tilts as orbits for consistency
+                if (electron.idx === 1) {
+                    const newX = x * Math.cos(0.7) - z * Math.sin(0.7);
+                    const newZ = x * Math.sin(0.7) + z * Math.cos(0.7);
+                    x = newX; z = newZ;
+                } else if (electron.idx === 2) {
+                    const newY = y * 0.8 + z * 0.3;
+                    const newZ = z * 0.8 - y * 0.3;
+                    y = newY;
+                }
+                electron.mesh.position.set(x, y, z);
+            });
+            
+            // Rotate star particles slowly
+            particles.rotation.y = time * 0.05;
+            particles.rotation.x = Math.sin(time * 0.1) * 0.1;
+            
+            // Gentle camera motion
+            camera.position.x = Math.sin(time * 0.2) * 0.3;
+            camera.position.y = 2 + Math.sin(time * 0.4) * 0.1;
+            camera.lookAt(0, 0, 0);
+            
+            renderer.render(scene, camera);
+        }
+        
+        animate();
     }
 </script>
 
 <script>
-    // FAQ data
-    const qaData = [
-        { q: "এই অ্যাপটি কোন ক্লাসের জন্য?", a: "নবম ও দশম শ্রেণির বিজ্ঞান বিভাগের শিক্ষার্থীদের জন্য।" },
-        { q: "অ্যাপটি কি অফলাইনে চলে?", a: "হ্যাঁ, একবার কন্টেন্ট লোড করলে অফলাইনে পড়া যাবে।" },
-        { q: "কিভাবে পেমেন্ট করে অ্যাক্সেস নেব?", a: "WhatsApp নম্বরে (+8801602105447) যোগাযোগ করুন।" },
-        { q: "কুইজ ও MCQ এর উত্তর কিভাবে দেখব?", a: "উত্তর জমা দিলে স্কোর ও সঠিক উত্তর দেখাবে।" },
-        { q: "আমার পড়ার অগ্রগতি কোথায় সংরক্ষিত হয়?", a: "আপনার ডিভাইসে লোকাল স্টোরেজে সংরক্ষিত হয়।" },
-        { q: "কন্টেন্ট কি আপডেট হয়?", a: "হ্যাঁ, NCTB সিলেবাস অনুযায়ী আপডেট করা হবে।" },
-        { q: "ফ্রি ট্রায়াল কিভাবে পাব?", a: "উপরের 'ফ্রি ট্রায়াল শুরু করুন' বাটনে ক্লিক করুন।" }
-    ];
-    const qaContainer = document.getElementById('qaContainer');
-    if (qaContainer) {
-        qaContainer.innerHTML = qaData.map((item, idx) => `
-            <div class="glass rounded-xl overflow-hidden">
-                <button class="qa-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition" data-idx="${idx}">
-                    <span><i class="fas fa-question-circle text-amber-400 mr-2"></i> ${item.q}</span>
-                    <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
-                </button>
-                <div class="qa-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">${item.a}</div>
-            </div>
-        `).join('');
-        document.querySelectorAll('.qa-question').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const ans = btn.nextElementSibling;
-                const icon = btn.querySelector('.fa-chevron-down');
-                ans.classList.toggle('hidden');
-                if (icon) icon.style.transform = ans.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
-            });
-        });
-    }
     // Counter animation
     function animateCounter() {
-        document.querySelectorAll('.counter').forEach(c => {
-            let target = parseInt(c.dataset.target), current = 0, inc = target / 50;
-            const update = () => {
-                current += inc;
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            const target = parseInt(counter.dataset.target);
+            let current = 0;
+            const increment = target / 50;
+            const updateCounter = () => {
+                current += increment;
                 if (current < target) {
-                    c.innerText = Math.ceil(current) + (target > 100 ? '+' : '%');
-                    requestAnimationFrame(update);
+                    counter.innerText = Math.ceil(current) + (target > 100 ? '+' : '%');
+                    requestAnimationFrame(updateCounter);
                 } else {
-                    c.innerText = target + (target > 100 ? '+' : '%');
+                    counter.innerText = target + (target > 100 ? '+' : '%');
                 }
             };
-            update();
+            updateCounter();
         });
     }
-    const counterObserver = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) { animateCounter(); counterObserver.disconnect(); }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) { animateCounter(); observer.disconnect(); } });
     });
-    const firstCounter = document.querySelector('.counter');
-    if (firstCounter) counterObserver.observe(firstCounter);
-    // Theme toggle
+    const statsSection = document.querySelector('.hero-left .flex.flex-wrap.gap-8');
+    if (statsSection) observer.observe(statsSection);
+    
+    // Theme Toggle
     function toggleTheme() {
         const html = document.documentElement;
-        const cur = html.getAttribute('data-theme');
-        const sun = document.getElementById('sunIcon'), moon = document.getElementById('moonIcon');
-        if (cur === 'light') {
+        const currentTheme = html.getAttribute('data-theme');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+        if (currentTheme === 'light') {
             html.removeAttribute('data-theme');
-            sun.style.display = 'none'; moon.style.display = 'inline-block';
+            if(sunIcon && moonIcon) { sunIcon.style.display = 'none'; moonIcon.style.display = 'inline-block'; }
             localStorage.setItem('theme', 'dark');
         } else {
             html.setAttribute('data-theme', 'light');
-            sun.style.display = 'inline-block'; moon.style.display = 'none';
+            if(sunIcon && moonIcon) { sunIcon.style.display = 'inline-block'; moonIcon.style.display = 'none'; }
             localStorage.setItem('theme', 'light');
         }
     }
     const savedTheme = localStorage.getItem('theme');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
     if (savedTheme === 'light') {
         document.documentElement.setAttribute('data-theme', 'light');
-        document.getElementById('sunIcon').style.display = 'inline-block';
-        document.getElementById('moonIcon').style.display = 'none';
+        if(sunIcon && moonIcon) { sunIcon.style.display = 'inline-block'; moonIcon.style.display = 'none'; }
     } else {
-        document.getElementById('sunIcon').style.display = 'none';
-        document.getElementById('moonIcon').style.display = 'inline-block';
+        if(sunIcon && moonIcon) { sunIcon.style.display = 'none'; moonIcon.style.display = 'inline-block'; }
     }
-    // Share functions
-    function shareOnFacebook() { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location.href)}`); }
-    function shareOnWhatsApp() { window.open(`https://wa.me/?text=${encodeURIComponent(location.href)}`); }
-    function shareOnTwitter() { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent('ন্যাশনাল এগজাম সেন্টার')}&url=${encodeURIComponent(location.href)}`); }
-    function copyPageLink() { navigator.clipboard.writeText(location.href); alert('🔗 লিংক কপি করা হয়েছে!'); }
     window.toggleTheme = toggleTheme;
+    
+    // Social share functions
+    function shareOnFacebook() { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank'); }
+    function shareOnWhatsApp() { window.open(`https://wa.me/?text=${encodeURIComponent('ন্যাশনাল এগজাম সেন্টার - নবম-দশম বিজ্ঞান প্রস্তুতি অ্যাপ: ' + window.location.href)}`, '_blank'); }
+    function shareOnTwitter() { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent('ন্যাশনাল এগজাম সেন্টার | এসএসসি ২০২৭ প্রস্তুতি')}&url=${encodeURIComponent(window.location.href)}`, '_blank'); }
+    function copyPageLink() { navigator.clipboard.writeText(window.location.href); alert('🔗 লিংক কপি করা হয়েছে!'); }
     window.shareOnFacebook = shareOnFacebook;
     window.shareOnWhatsApp = shareOnWhatsApp;
     window.shareOnTwitter = shareOnTwitter;
     window.copyPageLink = copyPageLink;
-    // Floating CTA on scroll
-    window.addEventListener('scroll', () => {
-        const cta = document.getElementById('floatingStickyCta');
-        if (window.scrollY > 300) cta.classList.add('visible');
-        else cta.classList.remove('visible');
-    });
 </script>
 </body>
 </html>
