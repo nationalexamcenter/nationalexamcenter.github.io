@@ -1,191 +1,6 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    
-    <!-- Google Search Console Verification -->
-    <meta name="google-site-verification" content="1fssfuJoDM0IMK2fGR32rA7WIJWf7PyWymdk_ECAVmM" />
-    
-    <title>রসায়ন সম্পূর্ণ সিলেবাস ২০২৬ | NCTB | নবম-দশম বিজ্ঞান | MCQ পরীক্ষা সিস্টেম</title>
-    <meta name="description" content="NCTB ২০২৬ সিলেবাস অনুযায়ী নবম-দশম শ্রেণির রসায়নের ১২টি অধ্যায়। সম্পূর্ণ স্টাডি মেটেরিয়াল এবং MCQ পরীক্ষা।">
-    <meta name="keywords" content="রসায়ন ৯ম ১০ম শ্রেণি, chemistry class 9-10, এসএসসি রসায়ন সাজেশন">
-    <meta name="author" content="National Exam Center">
-    <meta name="robots" content="index, follow">
-    
-    <link rel="canonical" href="https://nationalexamcenter.github.io/chemistry.html">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <style>
-        * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        body { background: linear-gradient(135deg, #0a0f1a 0%, #0c1320 100%); }
-        
-        .glass-card {
-            background: rgba(18, 25, 45, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            transition: all 0.3s ease;
-        }
-        .glass-card:hover {
-            border-color: rgba(245, 158, 11, 0.5);
-            transform: translateY(-4px);
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .progress-bar {
-            background: linear-gradient(90deg, #f59e0b, #ea580c);
-            transition: width 0.5s ease;
-        }
-        
-        .mcq-option {
-            transition: all 0.2s ease;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-        }
-        .mcq-option:hover:not(.exam-not-started) { 
-            background: rgba(245, 158, 11, 0.15); 
-            border-color: #f59e0b;
-            transform: translateX(4px);
-        }
-        .mcq-option.selected { 
-            background: rgba(245, 158, 11, 0.3); 
-            border-color: #f59e0b;
-            box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
-        }
-        .mcq-option.correct { background: rgba(34, 197, 94, 0.25); border-color: #22c55e; }
-        .mcq-option.wrong { background: rgba(239, 68, 68, 0.25); border-color: #ef4444; }
-        .mcq-option.exam-not-started { 
-            opacity: 0.5; 
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-        
-        .result-card {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(234, 88, 12, 0.05));
-            border: 1px solid rgba(245, 158, 11, 0.4);
-        }
-        
-        .creative-paragraph {
-            background: rgba(245, 158, 11, 0.1);
-            border-left: 3px solid #f59e0b;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 12px;
-        }
-        .sub-question-box {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            padding: 10px;
-            margin-top: 8px;
-        }
-        
-        .instruction-box {
-            background: rgba(59, 130, 246, 0.1);
-            border-left: 4px solid #3b82f6;
-        }
-        
-        .timer-warning {
-            animation: timerPulse 1s ease-in-out infinite;
-        }
-        
-        @keyframes timerPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-        
-        @keyframes float { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); } 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); } }
-        
-        .float-animation { animation: float 4s ease-in-out infinite; }
-        .start-exam-btn { animation: pulse 2s infinite; }
-        
-        .floating-wa { position: fixed; bottom: 25px; right: 25px; z-index: 1000; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: all 0.2s ease; }
-        .floating-wa:hover { transform: scale(1.1); }
-        
-        .loader { border: 3px solid rgba(245, 158, 11, 0.3); border-top: 3px solid #f59e0b; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    </style>
-</head>
-<body class="text-gray-200">
-
-<nav class="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-md border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        <div class="flex items-center gap-3">
-            <i class="fas fa-flask text-2xl text-amber-500 float-animation"></i>
-            <span class="font-bold text-xl gradient-text">রসায়ন সম্পূর্ণ সিলেবাস ২০২৬</span>
-            <span class="text-xs bg-amber-500/20 px-2 py-1 rounded-full hidden md:inline-block">NCTB ২০২৬ | এসএসসি ২০২৭</span>
-        </div>
-        <div class="flex gap-4">
-            <div class="hidden md:flex items-center gap-2 text-sm">
-                <i class="fas fa-chart-line text-amber-500"></i>
-                <span id="overallProgress" class="font-mono">0%</span>
-            </div>
-            <a href="/" class="px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition">
-                <i class="fas fa-home mr-1"></i> হোম
-            </a>
-            <a href="/privacy.html" class="hidden md:block text-gray-400 text-sm hover:text-amber-400 transition">গোপনীয়তা</a>
-        </div>
-    </div>
-</nav>
-
-<div class="pt-16">
-    <div id="chaptersView" class="max-w-7xl mx-auto px-4 py-8">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold gradient-text mb-4">রসায়ন সম্পূর্ণ সিলেবাস ২০২৬</h1>
-            <p class="text-gray-400 max-w-2xl mx-auto">NCTB ২০২৬ সিলেবাস অনুযায়ী নবম ও দশম শ্রেণির রসায়নের ১২টি অধ্যায় | এসএসসি ২০২৭ পরীক্ষার প্রস্তুতি</p>
-        </div>
-        
-        <div class="glass-card rounded-2xl p-6 mb-8">
-            <h3 class="text-lg font-semibold mb-3"><i class="fas fa-chart-line text-amber-400 mr-2"></i>আপনার পড়ার অগ্রগতি</h3>
-            <div class="h-3 bg-gray-800 rounded-full overflow-hidden">
-                <div id="mainProgressBar" class="h-full progress-bar rounded-full" style="width: 0%"></div>
-            </div>
-            <p class="text-sm text-gray-400 mt-2"><span id="completedChaptersCount">0</span>/<span id="totalChaptersCount">12</span> অধ্যায় সম্পূর্ণ</p>
-        </div>
-        
-        <div id="chaptersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-    </div>
-    
-    <div id="chapterView" class="hidden max-w-5xl mx-auto px-4 py-6">
-        <div class="mb-6">
-            <button id="backToChaptersBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition">
-                <i class="fas fa-arrow-left"></i> সব অধ্যায়ে ফিরুন
-            </button>
-        </div>
-        
-        <div class="glass-card rounded-2xl p-6 mb-8">
-            <div class="flex justify-between items-start flex-wrap gap-3">
-                <div>
-                    <span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">অধ্যায় <span id="chapterNumber"></span></span>
-                    <h1 class="text-2xl md:text-3xl font-bold mt-2" id="chapterTitle"></h1>
-                </div>
-                <button id="markChapterCompleteBtn" class="px-4 py-2 rounded-lg bg-green-500/20 border border-green-500/50 text-green-400 text-sm hover:bg-green-500/30 transition">
-                    <i class="fas fa-check-circle mr-1"></i> অধ্যায় সম্পূর্ণ চিহ্নিত করুন
-                </button>
-            </div>
-        </div>
-        
-        <div class="flex flex-wrap gap-2 mb-6 border-b border-white/10 pb-3" id="topicsTabs"></div>
-        
-        <div id="topicContent" class="glass-card rounded-2xl p-6">
-            <div class="loader"></div>
-        </div>
-    </div>
-</div>
-
-<a href="https://wa.me/8801602105447" class="floating-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
-
 <script>
 // ============================================
-// COMPLETE CHEMISTRY APP - FULLY WORKING
+// COMPLETE CHEMISTRY APP - FULLY WORKING (FIXED)
 // MCQ Selection Fixed + Scoring Fixed + Timer
 // ============================================
 
@@ -417,14 +232,16 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>${tables.map(table => `<div class="overflow-x-auto mb-4"><table class="w-full text-sm border border-white/10 rounded-xl"><thead><tr class="border-b border-white/10 bg-white/5">${(table.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}</tr></thead><tbody>${(table.rows || []).map(row => `<tr class="border-b border-white/5">${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('')}</div>`;
     }
     
-    // =============== MCQ SECTION - COMPLETELY REWRITTEN ===============
+    // =============== MCQ SECTION - FIXED VERSION ===============
     if (examQuestions.length > 0) {
+        // Create a fresh state object for this topic
         let mcqState = {
             questions: [],
             userAnswers: [],
             examStarted: false,
             timerInterval: null,
-            timeRemaining: 0
+            timeRemaining: 0,
+            isResultShown: false
         };
         
         const TIME_PER_QUESTION = 60;
@@ -472,6 +289,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         `;
         container.innerHTML = html;
         
+        // Helper functions
         function stopTimer() {
             if (mcqState.timerInterval) {
                 clearInterval(mcqState.timerInterval);
@@ -499,7 +317,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
             mcqState.timeRemaining = totalTime;
             updateTimerDisplay();
             mcqState.timerInterval = setInterval(() => {
-                if (mcqState.timeRemaining > 0 && mcqState.examStarted) {
+                if (mcqState.timeRemaining > 0 && mcqState.examStarted && !mcqState.isResultShown) {
                     mcqState.timeRemaining--;
                     updateTimerDisplay();
                     if (mcqState.timeRemaining === 0) {
@@ -512,22 +330,32 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         }
         
         function shuffleQuestions() {
-            mcqState.questions = examQuestions.map(originalQ => {
-                const originalOptions = [...originalQ.o];
-                const correctAnswerText = originalOptions[originalQ.a];
+            // Store the original correct answers for reference
+            const originalQuestions = [...examQuestions];
+            
+            mcqState.questions = originalQuestions.map((q, idx) => {
+                // Create a copy of options and shuffle them
+                const originalOptions = [...q.o];
+                const correctAnswerText = originalOptions[q.a];
                 const shuffledOptions = shuffleArray([...originalOptions]);
                 const newCorrectIndex = shuffledOptions.findIndex(opt => opt === correctAnswerText);
+                
                 return {
-                    text: originalQ.q,
+                    id: idx,
+                    text: q.q,
                     options: shuffledOptions,
-                    correctIndex: newCorrectIndex
+                    correctIndex: newCorrectIndex,
+                    originalCorrectAnswer: correctAnswerText
                 };
             });
+            // Reset user answers
             mcqState.userAnswers = new Array(mcqState.questions.length).fill(null);
         }
         
         function renderQuestions() {
             const container = document.getElementById('mcqQuestionsContainer');
+            if (!container) return;
+            
             container.innerHTML = mcqState.questions.map((q, qIdx) => `
                 <div class="glass rounded-xl p-4 border border-white/10" data-qidx="${qIdx}">
                     <p class="font-semibold mb-3 text-base"><span class="text-amber-400">${qIdx+1}.</span> ${q.text}</p>
@@ -542,58 +370,105 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                 </div>
             `).join('');
             
-            // Add click event listeners to all options
+            // Add click event listeners with a more robust approach
             document.querySelectorAll('.mcq-option').forEach(opt => {
-                opt.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    
-                    if (!mcqState.examStarted) {
-                        showToast('⚠️ দয়া করে প্রথমে "পরীক্ষা শুরু করুন" বাটনে ক্লিক করুন!', 'error');
-                        return;
-                    }
-                    
-                    const qIdx = parseInt(this.dataset.qidx);
-                    const selectedIdx = parseInt(this.dataset.optidx);
-                    
-                    // Update user answers
-                    if (mcqState.userAnswers[qIdx] === selectedIdx) {
-                        mcqState.userAnswers[qIdx] = null;
-                    } else {
-                        mcqState.userAnswers[qIdx] = selectedIdx;
-                    }
-                    
-                    // Update UI for this question only
-                    const allOptionsInQuestion = document.querySelectorAll(`.mcq-option[data-qidx="${qIdx}"]`);
-                    allOptionsInQuestion.forEach(option => {
-                        const optIdx = parseInt(option.dataset.optidx);
-                        const circleSpan = option.querySelector('.option-letter');
-                        if (optIdx === mcqState.userAnswers[qIdx]) {
-                            option.classList.add('selected');
-                            if (circleSpan) circleSpan.classList.add('bg-amber-500', 'text-black');
-                        } else {
-                            option.classList.remove('selected');
-                            if (circleSpan) circleSpan.classList.remove('bg-amber-500', 'text-black');
-                        }
-                    });
-                });
+                opt.removeEventListener('click', handleOptionClick);
+                opt.addEventListener('click', handleOptionClick);
             });
         }
         
+        // Separate function for handling option clicks
+        function handleOptionClick(e) {
+            // Find the actual option div (in case event bubbles from inner span)
+            let target = e.target;
+            while (target && !target.classList?.contains('mcq-option')) {
+                target = target.parentElement;
+                if (!target || target === document.body) return;
+            }
+            if (!target) return;
+            
+            if (!mcqState.examStarted) {
+                showToast('⚠️ দয়া করে প্রথমে "পরীক্ষা শুরু করুন" বাটনে ক্লিক করুন!', 'error');
+                return;
+            }
+            
+            if (mcqState.isResultShown) {
+                showToast('⚠️ ফলাফল দেখার পরে পরীক্ষা পরিবর্তন করা যাবে না। "রিসেট করুন" বাটনে ক্লিক করুন নতুন পরীক্ষা দিতে।', 'error');
+                return;
+            }
+            
+            const qIdx = parseInt(target.dataset.qidx);
+            const selectedIdx = parseInt(target.dataset.optidx);
+            
+            // Update user answers - toggle if same option is clicked again
+            if (mcqState.userAnswers[qIdx] === selectedIdx) {
+                mcqState.userAnswers[qIdx] = null;
+            } else {
+                mcqState.userAnswers[qIdx] = selectedIdx;
+            }
+            
+            // Update UI for this question
+            const allOptionsInQuestion = document.querySelectorAll(`.mcq-option[data-qidx="${qIdx}"]`);
+            allOptionsInQuestion.forEach(option => {
+                const optIdx = parseInt(option.dataset.optidx);
+                const circleSpan = option.querySelector('.option-letter');
+                if (optIdx === mcqState.userAnswers[qIdx]) {
+                    option.classList.add('selected');
+                    if (circleSpan) {
+                        circleSpan.classList.add('bg-amber-500', 'text-black');
+                        circleSpan.classList.remove('border-amber-500/50');
+                    }
+                } else {
+                    option.classList.remove('selected');
+                    if (circleSpan) {
+                        circleSpan.classList.remove('bg-amber-500', 'text-black');
+                        circleSpan.classList.add('border-amber-500/50');
+                    }
+                }
+            });
+            
+            // Optional: Show feedback for selection
+            const selectedOption = mcqState.userAnswers[qIdx];
+            if (selectedOption !== null) {
+                // Just a subtle feedback
+            }
+        }
+        
         function calculateAndShowResult() {
+            if (mcqState.isResultShown) {
+                showToast('ফলাফল ইতিমধ্যে দেখানো হয়েছে!', 'info');
+                return;
+            }
+            
             stopTimer();
+            mcqState.isResultShown = true;
+            
             const totalQuestions = mcqState.questions.length;
             let correctCount = 0;
+            const resultDetails = [];
             
+            // Calculate score
             for (let i = 0; i < totalQuestions; i++) {
                 const userAnswer = mcqState.userAnswers[i];
                 const correctAnswer = mcqState.questions[i].correctIndex;
-                if (userAnswer !== null && userAnswer === correctAnswer) {
+                const isCorrect = (userAnswer !== null && userAnswer === correctAnswer);
+                if (isCorrect) {
                     correctCount++;
                 }
+                resultDetails.push({
+                    questionIndex: i,
+                    userAnswer: userAnswer,
+                    correctAnswer: correctAnswer,
+                    isCorrect: isCorrect
+                });
             }
             
             const score = `${correctCount}/${totalQuestions}`;
             const percentage = Math.round((correctCount / totalQuestions) * 100);
+            const unansweredCount = mcqState.userAnswers.filter(a => a === null).length;
+            
+            // Store result details for review
+            mcqState.resultDetails = resultDetails;
             
             let resultHtml = `
                 <div class="text-center">
@@ -604,7 +479,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                         <div class="bg-gradient-to-r from-amber-500 to-orange-500 h-3 rounded-full" style="width: ${percentage}%"></div>
                     </div>
                     <p class="mt-3 text-gray-300">সঠিক উত্তর: ${correctCount} / মোট: ${totalQuestions}</p>
-                    <p class="text-sm text-gray-400 mt-1">অনুত্তরিত প্রশ্নগুলো (${totalQuestions - mcqState.userAnswers.filter(a => a !== null).length}টি) ভুল হিসেবে গণ্য হয়েছে।</p>
+                    <p class="text-sm text-gray-400 mt-1">অনুত্তরিত প্রশ্ন: ${unansweredCount}টি (ভুল হিসেবে গণ্য হয়েছে)</p>
                     <div class="flex justify-center gap-3 mt-4">
                         <button id="reviewAnswersBtn" class="px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition">
                             <i class="fas fa-eye mr-1"></i> সঠিক উত্তর দেখুন
@@ -616,48 +491,88 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                 </div>
             `;
             const resultPanel = document.getElementById('mcqResultPanel');
-            resultPanel.innerHTML = resultHtml;
-            resultPanel.classList.remove('hidden');
+            if (resultPanel) {
+                resultPanel.innerHTML = resultHtml;
+                resultPanel.classList.remove('hidden');
+            }
             
-            document.getElementById('reviewAnswersBtn')?.addEventListener('click', () => {
-                document.querySelectorAll('[data-qidx]').forEach((div, idx) => {
-                    const correctIdx = mcqState.questions[idx].correctIndex;
-                    const userChoice = mcqState.userAnswers[idx];
-                    const options = div.querySelectorAll('.mcq-option');
-                    options.forEach((opt, optIdx) => {
-                        opt.classList.remove('correct', 'wrong');
-                        if (optIdx === correctIdx) opt.classList.add('correct');
-                        if (userChoice !== null && optIdx === userChoice && userChoice !== correctIdx) {
-                            opt.classList.add('wrong');
-                        }
+            // Review answers button
+            const reviewBtn = document.getElementById('reviewAnswersBtn');
+            if (reviewBtn) {
+                reviewBtn.addEventListener('click', () => {
+                    // Highlight correct/wrong answers
+                    document.querySelectorAll('[data-qidx]').forEach((questionDiv, idx) => {
+                        const correctIdx = mcqState.questions[idx].correctIndex;
+                        const userChoice = mcqState.userAnswers[idx];
+                        const options = questionDiv.querySelectorAll('.mcq-option');
+                        options.forEach((opt, optIdx) => {
+                            // Remove existing classes
+                            opt.classList.remove('correct', 'wrong', 'selected');
+                            const circleSpan = opt.querySelector('.option-letter');
+                            
+                            if (optIdx === correctIdx) {
+                                opt.classList.add('correct');
+                                if (circleSpan) {
+                                    circleSpan.classList.add('bg-green-500', 'text-white');
+                                    circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
+                                }
+                            }
+                            if (userChoice !== null && optIdx === userChoice && userChoice !== correctIdx) {
+                                opt.classList.add('wrong');
+                                if (circleSpan) {
+                                    circleSpan.classList.add('bg-red-500', 'text-white');
+                                    circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
+                                }
+                            }
+                        });
                     });
+                    showToast('সব প্রশ্নের সঠিক উত্তর সবুজ রঙে এবং আপনার ভুল উত্তর লাল রঙে হাইলাইট করা হয়েছে', 'success');
                 });
-                showToast('সব প্রশ্নের সঠিক উত্তর হাইলাইট করা হয়েছে', 'success');
-            });
+            }
             
-            document.getElementById('tryAgainBtn')?.addEventListener('click', () => {
-                resetExam();
-            });
+            // Try again button
+            const tryAgainBtn = document.getElementById('tryAgainBtn');
+            if (tryAgainBtn) {
+                tryAgainBtn.addEventListener('click', () => {
+                    resetExam();
+                });
+            }
+            
+            showToast(`আপনার স্কোর: ${score} (${percentage}%)`, 'success');
         }
         
         function resetExam() {
             stopTimer();
             mcqState.examStarted = false;
+            mcqState.isResultShown = false;
             mcqState.userAnswers = new Array(mcqState.questions.length).fill(null);
+            
             const examPanel = document.getElementById('mcqExamPanel');
             const startBtn = document.getElementById('startExamBtn');
             const resultPanel = document.getElementById('mcqResultPanel');
+            const timerElement = document.getElementById('examTimer');
             
             if (examPanel) examPanel.style.display = 'none';
-            if (resultPanel) resultPanel.classList.add('hidden');
+            if (resultPanel) {
+                resultPanel.classList.add('hidden');
+                resultPanel.innerHTML = '';
+            }
+            if (timerElement) timerElement.innerHTML = '⏱️ 0:00';
             if (startBtn) {
                 startBtn.disabled = false;
                 startBtn.classList.remove('opacity-50', 'cursor-not-allowed');
                 startBtn.innerHTML = '<i class="fas fa-play mr-2"></i> পরীক্ষা শুরু করুন';
             }
+            
+            // Re-render the questions to reset UI
+            if (mcqState.questions.length > 0) {
+                renderQuestions();
+            }
+            
             showToast('পরীক্ষা রিসেট করা হয়েছে। "পরীক্ষা শুরু করুন" ক্লিক করুন।', 'info');
         }
         
+        // Button event handlers
         const startBtn = document.getElementById('startExamBtn');
         const examPanel = document.getElementById('mcqExamPanel');
         const submitBtn = document.getElementById('submitMcqBtn');
@@ -665,22 +580,31 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         
         if (startBtn) {
             startBtn.onclick = () => {
+                if (mcqState.isResultShown) {
+                    showToast('দয়া করে প্রথমে "রিসেট করুন" বাটনে ক্লিক করুন', 'error');
+                    return;
+                }
                 shuffleQuestions();
                 mcqState.examStarted = true;
+                mcqState.isResultShown = false;
                 if (examPanel) examPanel.style.display = 'block';
                 startBtn.disabled = true;
                 startBtn.classList.add('opacity-50', 'cursor-not-allowed');
                 startBtn.innerHTML = '<i class="fas fa-check-circle mr-2"></i> পরীক্ষা শুরু হয়েছে';
                 renderQuestions();
                 startTimer();
-                showToast('✅ পরীক্ষা শুরু হয়েছে! প্রতিটি প্রশ্নের জন্য একটি করে উত্তর নির্বাচন করুন।', 'success');
+                showToast('✅ পরীক্ষা শুরু হয়েছে! প্রতিটি প্রশ্নের উত্তর নির্বাচন করুন।', 'success');
             };
         }
         
         if (submitBtn) {
             submitBtn.onclick = () => {
                 if (!mcqState.examStarted) {
-                    showToast('⚠️ পরীক্ষা শুরু করেনি! প্রথমে "পরীক্ষা শুরু করুন" ক্লিক করুন।', 'error');
+                    showToast('⚠️ পরীক্ষা শুরু হয়নি! প্রথমে "পরীক্ষা শুরু করুন" ক্লিক করুন।', 'error');
+                    return;
+                }
+                if (mcqState.isResultShown) {
+                    showToast('⚠️ ফলাফল ইতিমধ্যে দেখানো হয়েছে। নতুন পরীক্ষা দিতে "রিসেট করুন" ক্লিক করুন।', 'error');
                     return;
                 }
                 calculateAndShowResult();
@@ -697,7 +621,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         container.innerHTML = html;
     }
     
-    // Attach toggle handlers
+    // Attach toggle handlers for accordions
     setTimeout(() => {
         document.querySelectorAll('.sq-toggle, .cq-toggle, .math-toggle').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -738,5 +662,3 @@ function init() {
 
 init();
 </script>
-</body>
-</html>
