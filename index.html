@@ -34,33 +34,36 @@
     <style>
         * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         
-        /* Light & Dark Theme Variables */
+        /* Dark Theme (Default) */
         :root {
-            --bg-gradient-start: #0a0f1a;
-            --bg-gradient-end: #0c1320;
+            --bg-primary: #0a0f1a;
+            --bg-secondary: #0c1320;
             --card-bg: rgba(18, 25, 45, 0.7);
             --text-primary: #e5e7eb;
             --text-secondary: #9ca3af;
             --border-color: rgba(245, 158, 11, 0.2);
             --border-hover: rgba(245, 158, 11, 0.5);
             --glass-border: rgba(255, 255, 255, 0.05);
+            --hero-overlay: rgba(0, 0, 0, 0.4);
         }
         
-        body.light-theme {
-            --bg-gradient-start: #f3f4f6;
-            --bg-gradient-end: #e5e7eb;
-            --card-bg: rgba(255, 255, 255, 0.8);
-            --text-primary: #1f2937;
-            --text-secondary: #4b5563;
+        /* Light Theme */
+        [data-theme="light"] {
+            --bg-primary: #f0f2f5;
+            --bg-secondary: #e8eaef;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
             --border-color: rgba(245, 158, 11, 0.3);
             --border-hover: rgba(245, 158, 11, 0.7);
-            --glass-border: rgba(0, 0, 0, 0.05);
+            --glass-border: rgba(0, 0, 0, 0.08);
+            --hero-overlay: rgba(255, 255, 255, 0.3);
         }
         
         body {
-            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
             color: var(--text-primary);
-            transition: all 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
         }
         
         .glass {
@@ -69,9 +72,8 @@
             border: 1px solid var(--glass-border);
         }
         
-        body.light-theme .glass {
+        [data-theme="light"] .glass {
             background: rgba(0, 0, 0, 0.03);
-            border: 1px solid var(--glass-border);
         }
         
         .glass-card {
@@ -93,23 +95,24 @@
             color: transparent;
         }
         
-        .btn-gradient {
+        .btn-primary {
             background: linear-gradient(105deg, #ff9a3c, #ff6a2c);
             transition: all 0.2s ease;
             box-shadow: 0 8px 20px rgba(255, 100, 30, 0.3);
         }
         
-        .btn-gradient:hover {
+        .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 30px rgba(255, 100, 30, 0.5);
         }
         
-        .btn-outline {
+        .btn-secondary {
             border: 1px solid var(--border-color);
             transition: all 0.2s ease;
+            color: var(--text-primary);
         }
         
-        .btn-outline:hover {
+        .btn-secondary:hover {
             background: rgba(245, 158, 11, 0.1);
             border-color: #f59e0b;
             transform: translateY(-2px);
@@ -131,6 +134,7 @@
             border: 1px solid var(--border-color);
             transition: all 0.2s ease;
             cursor: pointer;
+            color: var(--text-primary);
         }
         
         .btn-theme:hover {
@@ -197,6 +201,10 @@
         
         .hero-left { flex: 1; min-width: 280px; }
         .hero-right { flex: 1; min-width: 280px; display: flex; justify-content: center; }
+        
+        [data-theme="light"] .hero-left .bg-black\/40 {
+            background: var(--hero-overlay);
+        }
         
         .mockup-container {
             display: flex;
@@ -281,26 +289,29 @@
         }
         
         @media (max-width: 640px) {
-            .hero-wrapper { min-height: 700px; }
+            .hero-wrapper { min-height: 700px; margin: 0 0.5rem; }
             .mockup-container { gap: 12px; }
             .mockup-item { width: 100px; }
-            .btn-gradient, .btn-wa { padding: 0.5rem 1rem; font-size: 0.875rem; }
+            .btn-primary, .btn-secondary { padding: 0.5rem 1rem; font-size: 0.875rem; }
             .glass-card { padding: 1rem; }
             h2 { font-size: 1.5rem !important; }
-        }
-        
-        /* Smooth transitions for theme change */
-        body, .glass-card, .glass, .btn-theme, .btn-gradient, .btn-wa, .btn-outline {
-            transition: all 0.3s ease;
+            .hero-content { padding: 1.5rem; }
         }
         
         /* Scrollbar styling */
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--card-bg); border-radius: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 10px; }
         ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
+        
+        /* Text color overrides for light theme */
+        [data-theme="light"] .text-gray-300 { color: #4a5568; }
+        [data-theme="light"] .text-gray-400 { color: #718096; }
+        [data-theme="light"] .text-gray-500 { color: #a0aec0; }
+        [data-theme="light"] .bg-black\/40 { background: rgba(255, 255, 255, 0.3); }
+        [data-theme="light"] .bg-black\/50 { background: rgba(255, 255, 255, 0.4); }
     </style>
 </head>
-<body class="text-gray-200">
+<body>
 
 <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -312,15 +323,15 @@
             </div>
             <div class="flex items-center gap-4">
                 <button onclick="toggleTheme()" class="btn-theme px-3 py-2 rounded-lg text-sm" aria-label="Theme Toggle">
-                    <i class="fas fa-sun hidden dark-icon"></i>
-                    <i class="fas fa-moon light-icon"></i>
+                    <i class="fas fa-sun" id="sunIcon"></i>
+                    <i class="fas fa-moon" id="moonIcon" style="display: none;"></i>
                 </button>
                 <a href="/chemistry.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition">
                     <i class="fas fa-book-open mr-1"></i> রসায়ন পড়ুন
                 </a>
                 <a href="/privacy.html" class="hidden md:block text-gray-400 text-sm hover:text-amber-400 transition">গোপনীয়তা</a>
                 <a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" target="_blank" class="btn-wa px-4 py-2 rounded-lg text-white text-sm font-semibold transition">
-                    <i class="fab fa-whatsapp mr-1"></i> WhatsApp এ যোগাযোগ করুন
+                    <i class="fab fa-whatsapp mr-1"></i> WhatsApp
                 </a>
             </div>
         </div>
@@ -342,10 +353,7 @@
                 এসএসসি ২০২৭, ২০২৮ ব্যাচদের জন্য প্রিমিয়াম সাপোর্ট। ৫০০+ MCQ, সৃজনশীল প্রশ্ন।
             </p>
             <div class="flex flex-wrap gap-4">
-                <a href="/chemistry.html" class="btn-gradient px-6 py-3 rounded-full font-bold text-md inline-block shine-effect">
-                    <i class="fas fa-book-open mr-2"></i> রসায়ন অধ্যায় পড়ুন
-                </a>
-                <a href="/chemistry.html" class="btn-outline px-6 py-3 rounded-full font-semibold inline-block">
+                <a href="/chemistry.html" class="btn-primary px-6 py-3 rounded-full font-bold text-md inline-block shine-effect">
                     <i class="fas fa-play mr-2"></i> ফ্রি ট্রায়াল শুরু করুন
                 </a>
             </div>
@@ -557,7 +565,7 @@
                 <div class="text-3xl font-bold text-amber-400 my-2">৫০০৳</div>
                 <p class="text-sm text-gray-400">৬ মাস + কুইজ</p>
             </div>
-            <div class="glass-card rounded-2xl p-6 text-center border-2 border-amber-500/40">
+            <div class="glass-card rounded-2xl p-6 text-center border-2 border-amber-500/40 relative">
                 <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-amber-600 to-orange-600 text-white text-xs px-3 py-1 rounded-full">
                     <i class="fas fa-fire mr-1"></i> বেস্ট ভ্যালু
                 </div>
@@ -753,40 +761,40 @@
     
     // Theme Toggle Function
     function toggleTheme() {
-        const body = document.body;
-        const sunIcon = document.querySelector('.fa-sun');
-        const moonIcon = document.querySelector('.fa-moon');
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
         
-        if (body.classList.contains('light-theme')) {
-            body.classList.remove('light-theme');
-            localStorage.setItem('theme', 'dark');
+        if (currentTheme === 'light') {
+            html.removeAttribute('data-theme');
             if (sunIcon && moonIcon) {
                 sunIcon.style.display = 'none';
                 moonIcon.style.display = 'inline-block';
             }
+            localStorage.setItem('theme', 'dark');
         } else {
-            body.classList.add('light-theme');
-            localStorage.setItem('theme', 'light');
+            html.setAttribute('data-theme', 'light');
             if (sunIcon && moonIcon) {
                 sunIcon.style.display = 'inline-block';
                 moonIcon.style.display = 'none';
             }
+            localStorage.setItem('theme', 'light');
         }
     }
     
     // Load saved theme
     const savedTheme = localStorage.getItem('theme');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    
     if (savedTheme === 'light') {
-        document.body.classList.add('light-theme');
-        const sunIcon = document.querySelector('.fa-sun');
-        const moonIcon = document.querySelector('.fa-moon');
+        document.documentElement.setAttribute('data-theme', 'light');
         if (sunIcon && moonIcon) {
             sunIcon.style.display = 'inline-block';
             moonIcon.style.display = 'none';
         }
     } else {
-        const sunIcon = document.querySelector('.fa-sun');
-        const moonIcon = document.querySelector('.fa-moon');
         if (sunIcon && moonIcon) {
             sunIcon.style.display = 'none';
             moonIcon.style.display = 'inline-block';
