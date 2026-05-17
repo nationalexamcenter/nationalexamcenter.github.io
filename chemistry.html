@@ -648,89 +648,105 @@ function shuffleQuestions() {
         }
         
         // --- Calculate score ---
-        function calculateAndShowResult() {
-            if (mcqState.examEnded) {
-                showToast('ফলাফল ইতিমধ্যে দেখানো হয়েছে!', 'info');
-                return;
-            }
-            stopTimer();
-            mcqState.examEnded = true;
-            
-            const totalQuestions = mcqState.questions.length;
-            let correctCount = 0;
-            for (let i = 0; i < totalQuestions; i++) {
-                const userAns = mcqState.userAnswers[i];
-                const correctAns = mcqState.questions[i].correctIndex;
-                if (userAns !== null && userAns === correctAns) correctCount++;
-            }
-            
-            const score = `${correctCount}/${totalQuestions}`;
-            const percentage = Math.round((correctCount / totalQuestions) * 100);
-            const unansweredCount = mcqState.userAnswers.filter(a => a === null).length;
-            
-            const resultHtml = `
-                <div class="text-center">
-                    <i class="fas fa-chart-simple text-4xl text-amber-400 mb-3"></i>
-                    <h4 class="text-2xl font-bold">আপনার ফলাফল</h4>
-                    <div class="text-4xl font-bold text-amber-400 my-3">${score}</div>
-                    <div class="w-full bg-gray-700 rounded-full h-3 max-w-xs mx-auto">
-                        <div class="bg-gradient-to-r from-amber-500 to-orange-500 h-3 rounded-full" style="width: ${percentage}%"></div>
-                    </div>
-                    <p class="mt-3 text-gray-300">সঠিক উত্তর: ${correctCount} / মোট: ${totalQuestions}</p>
-                    <p class="text-sm text-gray-400 mt-1">অনুত্তরিত প্রশ্ন: ${unansweredCount}টি (ভুল হিসেবে গণ্য হয়েছে)</p>
-                    <div class="flex justify-center gap-3 mt-4">
-                        <button id="reviewAnswersBtn" class="px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition">
-                            <i class="fas fa-eye mr-1"></i> সঠিক উত্তর দেখুন
-                        </button>
-                        <button id="tryAgainBtn" class="px-4 py-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition">
-                            <i class="fas fa-redo-alt mr-1"></i> আবার চেষ্টা করুন
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            const resultPanel = document.getElementById('mcqResultPanel');
-            resultPanel.innerHTML = resultHtml;
-            resultPanel.classList.remove('hidden');
-            
-            // Review answers: highlight correct (green) and user's wrong (red)
-            document.getElementById('reviewAnswersBtn')?.addEventListener('click', () => {
-                document.querySelectorAll('[data-qidx]').forEach((div, idx) => {
-                    if (idx >= mcqState.questions.length) return;
-                    const correctIdx = mcqState.questions[idx].correctIndex;
-                    const userChoice = mcqState.userAnswers[idx];
-                    const options = div.querySelectorAll('.mcq-option');
-                    options.forEach((opt, optIdx) => {
-                        opt.classList.remove('correct', 'wrong', 'selected');
-                        const circleSpan = opt.querySelector('.option-letter');
-                        if (optIdx === correctIdx) {
-                            opt.classList.add('correct');
-                            if (circleSpan) {
-                                circleSpan.classList.add('bg-green-500', 'text-white');
-                                circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
-                            }
+       function calculateAndShowResult() {
+    if (mcqState.examEnded) {
+        showToast('ফলাফল ইতিমধ্যে দেখানো হয়েছে!', 'info');
+        return;
+    }
+    stopTimer();
+    mcqState.examEnded = true;
+
+    const totalQuestions = mcqState.questions.length;
+    let correctCount = 0;
+    for (let i = 0; i < totalQuestions; i++) {
+        const userAns = mcqState.userAnswers[i];
+        const correctAns = mcqState.questions[i].correctIndex;
+        if (userAns !== null && userAns === correctAns) correctCount++;
+    }
+
+    const score = `${correctCount}/${totalQuestions}`;
+    const percentage = Math.round((correctCount / totalQuestions) * 100);
+    const unansweredCount = mcqState.userAnswers.filter(a => a === null).length;
+
+    const resultHtml = `
+        <div class="text-center">
+            <i class="fas fa-chart-simple text-4xl text-amber-400 mb-3"></i>
+            <h4 class="text-2xl font-bold">আপনার ফলাফল</h4>
+            <div class="text-4xl font-bold text-amber-400 my-3">${score}</div>
+            <div class="w-full bg-gray-700 rounded-full h-3 max-w-xs mx-auto">
+                <div class="bg-gradient-to-r from-amber-500 to-orange-500 h-3 rounded-full" style="width: ${percentage}%"></div>
+            </div>
+            <p class="mt-3 text-gray-300">সঠিক উত্তর: ${correctCount} / মোট: ${totalQuestions}</p>
+            <p class="text-sm text-gray-400 mt-1">অনুত্তরিত প্রশ্ন: ${unansweredCount}টি (ভুল হিসেবে গণ্য হয়েছে)</p>
+            <div class="flex justify-center gap-3 mt-4">
+                <button id="reviewAnswersBtn" class="px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition">
+                    <i class="fas fa-eye mr-1"></i> সঠিক উত্তর দেখুন
+                </button>
+                <button id="tryAgainBtn" class="px-4 py-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition">
+                    <i class="fas fa-redo-alt mr-1"></i> আবার চেষ্টা করুন
+                </button>
+            </div>
+        </div>
+    `;
+
+    const resultPanel = document.getElementById('mcqResultPanel');
+    resultPanel.innerHTML = resultHtml;
+    resultPanel.classList.remove('hidden');
+
+    // --- FIXED REVIEW BUTTON: always use the current mcqState ---
+    const reviewBtn = document.getElementById('reviewAnswersBtn');
+    if (reviewBtn) {
+        // Remove any previous listener to avoid duplicates
+        const newReviewBtn = reviewBtn.cloneNode(true);
+        reviewBtn.parentNode.replaceChild(newReviewBtn, reviewBtn);
+        newReviewBtn.addEventListener('click', () => {
+            // Loop through each question and highlight directly using mcqState
+            for (let idx = 0; idx < mcqState.questions.length; idx++) {
+                const correctIdx = mcqState.questions[idx].correctIndex;
+                const userChoice = mcqState.userAnswers[idx];
+                // Find the question div by data-qidx
+                const questionDiv = document.querySelector(`.mcq-option[data-qidx="${idx}"]`)?.closest('[data-qidx]');
+                if (!questionDiv) continue;
+                const options = questionDiv.querySelectorAll('.mcq-option');
+                options.forEach((opt, optIdx) => {
+                    opt.classList.remove('correct', 'wrong', 'selected');
+                    const circleSpan = opt.querySelector('.option-letter');
+                    if (optIdx === correctIdx) {
+                        opt.classList.add('correct');
+                        if (circleSpan) {
+                            circleSpan.classList.add('bg-green-500', 'text-white');
+                            circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
                         }
-                        if (userChoice !== null && optIdx === userChoice && userChoice !== correctIdx) {
-                            opt.classList.add('wrong');
-                            if (circleSpan) {
-                                circleSpan.classList.add('bg-red-500', 'text-white');
-                                circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
-                            }
+                    }
+                    if (userChoice !== null && optIdx === userChoice && userChoice !== correctIdx) {
+                        opt.classList.add('wrong');
+                        if (circleSpan) {
+                            circleSpan.classList.add('bg-red-500', 'text-white');
+                            circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
                         }
-                        if (userChoice !== null && optIdx === userChoice && userChoice === correctIdx) {
-                            if (circleSpan) {
-                                circleSpan.classList.add('bg-green-500', 'text-white');
-                                circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
-                            }
+                    }
+                    // If user chose correctly, already green from above; ensure circle is green
+                    if (userChoice !== null && optIdx === userChoice && userChoice === correctIdx) {
+                        if (circleSpan) {
+                            circleSpan.classList.add('bg-green-500', 'text-white');
+                            circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
                         }
-                    });
+                    }
                 });
-                showToast('সঠিক উত্তর সবুজ, আপনার ভুল উত্তর লাল রঙে হাইলাইট করা হয়েছে', 'success');
-            });
-            
-            document.getElementById('tryAgainBtn')?.addEventListener('click', () => resetExam());
-            showToast(`আপনার স্কোর: ${score} (${percentage}%)`, 'success');
-        }
+            }
+            showToast('সঠিক উত্তর সবুজ, আপনার ভুল উত্তর লাল রঙে হাইলাইট করা হয়েছে', 'success');
+        });
+    }
+
+    const tryAgainBtn = document.getElementById('tryAgainBtn');
+    if (tryAgainBtn) {
+        const newTryAgain = tryAgainBtn.cloneNode(true);
+        tryAgainBtn.parentNode.replaceChild(newTryAgain, tryAgainBtn);
+        newTryAgain.addEventListener('click', () => resetExam());
+    }
+
+    showToast(`আপনার স্কোর: ${score} (${percentage}%)`, 'success');
+}
         
         function resetExam() {
             stopTimer();
