@@ -376,6 +376,7 @@ async function openChapter(chapterId) {
     });
 }
 
+// ==================== REPLACE THE EXISTING loadTopicContent FUNCTION ====================
 async function loadTopicContent(chapterId, topicIndex, chapterData) {
     const topic = chapterData.topics[topicIndex];
     const container = document.getElementById('topicContent');
@@ -427,10 +428,10 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
     
     // Tables
     if (tables.length > 0) {
-        html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>${tables.map(table => `<div class="overflow-x-auto mb-4"><table class="w-full text-sm border border-white/10 rounded-xl"><thead><tr class="border-b border-white/10 bg-white/5">${(table.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}</td></thead><tbody>${(table.rows || []).map(row => `<tr class="border-b border-white/5">${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('')}</div>`;
+        html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>${tables.map(table => `<div class="overflow-x-auto mb-4"><table class="w-full text-sm border border-white/10 rounded-xl"><thead><tr class="border-b border-white/10 bg-white/5">${(table.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}</tr></thead><tbody>${(table.rows || []).map(row => `<tr class="border-b border-white/5">${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('')}</div>`;
     }
     
-    // MCQ Section with full fix
+    // =============== FIXED MCQ SECTION WITH ROBUST MATCHING ===============
     if (examQuestions.length > 0) {
         let mcqState = {
             questions: [],
@@ -486,70 +487,50 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         `;
         container.innerHTML = html;
         
-        // Helper functions
-        function stopTimer() {
-            if (mcqState.timerInterval) {
-                clearInterval(mcqState.timerInterval);
-                mcqState.timerInterval = null;
-            }
+        // --- Helper: Normalize Bengali text (trim, collapse spaces, Unicode NFC) ---
+        function normalizeText(str) {
+            if (typeof str !== 'string') return '';
+            // Trim and normalize Unicode (NFC) to handle identical-looking Bengali characters
+            return str.trim().normalize('NFC').replace(/\s+/g, ' ');
         }
         
-        function updateTimerDisplay() {
-            const minutes = Math.floor(mcqState.timeRemaining / 60);
-            const seconds = mcqState.timeRemaining % 60;
-            const timerElement = document.getElementById('examTimer');
-            if (timerElement) {
-                timerElement.innerHTML = `<i class="fas fa-hourglass-half mr-1"></i> ${minutes}:${seconds.toString().padStart(2, '0')}`;
-                if (mcqState.timeRemaining < 60) {
-                    timerElement.classList.add('timer-warning');
-                } else {
-                    timerElement.classList.remove('timer-warning');
-                }
-            }
-        }
-        
-        function startTimer() {
-            stopTimer();
-            const totalTime = mcqState.questions.length * TIME_PER_QUESTION;
-            mcqState.timeRemaining = totalTime;
-            updateTimerDisplay();
-            mcqState.timerInterval = setInterval(() => {
-                if (mcqState.timeRemaining > 0 && mcqState.examStarted && !mcqState.examEnded) {
-                    mcqState.timeRemaining--;
-                    updateTimerDisplay();
-                    if (mcqState.timeRemaining === 0) {
-                        stopTimer();
-                        showToast('⏰ সময় শেষ! উত্তর জমা দেওয়া হচ্ছে...', 'error');
-                        calculateAndShowResult();
-                    }
-                }
-            }, 1000);
-        }
-        
-        // Shuffle questions and options, keep correct answer mapping
+        // --- Shuffle with robust text matching ---
         function shuffleQuestions() {
             mcqState.questions = examQuestions.map((originalQ, idx) => {
                 const originalOptions = [...originalQ.o];
-                const correctAnswerIndex = originalQ.a; // already normalized index
-                const correctAnswerText = originalOptions[correctAnswerIndex];
+                let correctAnswerIndex;
+                let correctAnswerText;
                 
-                if (!correctAnswerText) {
-                    console.error(`Question ${idx}: invalid correct answer index ${correctAnswerIndex}`);
-                    return {
-                        id: idx,
-                        text: originalQ.q,
-                        options: originalOptions,
-                        correctIndex: correctAnswerIndex,
-                        originalCorrectText: originalOptions[0]
-                    };
+                // Determine correct answer (either stored as index or string)
+                if (typeof originalQ.a === 'number') {
+                    correctAnswerIndex = originalQ.a;
+                    correctAnswerText = originalOptions[correctAnswerIndex];
+                } else if (typeof originalQ.a === 'string') {
+                    const normalizedAnswer = normalizeText(originalQ.a);
+                    // Try to find the matching option by normalized text
+                    correctAnswerIndex = originalOptions.findIndex(opt => normalizeText(opt) === normalizedAnswer);
+                    if (correctAnswerIndex === -1) {
+                        console.warn(`Question ${idx+1}: Answer "${originalQ.a}" not found in options! Falling back to index 0.`);
+                        correctAnswerIndex = 0;
+                        correctAnswerText = originalOptions[0];
+                    } else {
+                        correctAnswerText = originalOptions[correctAnswerIndex];
+                    }
+                } else {
+                    console.error(`Question ${idx+1}: Invalid answer type. Defaulting to index 0.`);
+                    correctAnswerIndex = 0;
+                    correctAnswerText = originalOptions[0];
                 }
                 
+                // Shuffle options
                 const shuffledOptions = shuffleArray([...originalOptions]);
-                const newCorrectIndex = shuffledOptions.findIndex(opt => opt === correctAnswerText);
+                // Find new index of the correct answer text (using normalized comparison)
+                const normalizedCorrect = normalizeText(correctAnswerText);
+                let newCorrectIndex = shuffledOptions.findIndex(opt => normalizeText(opt) === normalizedCorrect);
                 
                 if (newCorrectIndex === -1) {
-                    console.error(`Q${idx+1}: Correct answer "${correctAnswerText}" not found after shuffle!`);
-                    // Fallback: keep original order
+                    console.error(`Question ${idx+1}: CRITICAL - Correct answer "${correctAnswerText}" not found after shuffle! Keeping original order.`);
+                    // Fallback: use unshuffled options
                     return {
                         id: idx,
                         text: originalQ.q,
@@ -559,6 +540,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                     };
                 }
                 
+                console.log(`Q${idx+1}: Correct = "${correctAnswerText}" (new index ${newCorrectIndex})`);
                 return {
                     id: idx,
                     text: originalQ.q,
@@ -570,7 +552,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
             mcqState.userAnswers = new Array(mcqState.questions.length).fill(null);
         }
         
-        // Render questions and attach click handlers
+        // --- Render questions ---
         function renderQuestions() {
             const container = document.getElementById('mcqQuestionsContainer');
             if (!container) return;
@@ -589,7 +571,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                 </div>
             `).join('');
             
-            // Attach click listeners
+            // Attach click handlers
             document.querySelectorAll('.mcq-option').forEach(opt => {
                 opt.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -612,7 +594,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                         mcqState.userAnswers[qIdx] = selectedIdx;
                     }
                     
-                    // Update UI for this question
+                    // Update UI
                     const allOptions = document.querySelectorAll(`.mcq-option[data-qidx="${qIdx}"]`);
                     allOptions.forEach(option => {
                         const optIdx = parseInt(option.dataset.optidx);
@@ -635,13 +617,49 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
             });
         }
         
-        // Calculate and display result with full highlighting capability
+        // --- Timer functions ---
+        function stopTimer() {
+            if (mcqState.timerInterval) {
+                clearInterval(mcqState.timerInterval);
+                mcqState.timerInterval = null;
+            }
+        }
+        
+        function updateTimerDisplay() {
+            const minutes = Math.floor(mcqState.timeRemaining / 60);
+            const seconds = mcqState.timeRemaining % 60;
+            const timerElement = document.getElementById('examTimer');
+            if (timerElement) {
+                timerElement.innerHTML = `<i class="fas fa-hourglass-half mr-1"></i> ${minutes}:${seconds.toString().padStart(2, '0')}`;
+                if (mcqState.timeRemaining < 60) timerElement.classList.add('timer-warning');
+                else timerElement.classList.remove('timer-warning');
+            }
+        }
+        
+        function startTimer() {
+            stopTimer();
+            const totalTime = mcqState.questions.length * TIME_PER_QUESTION;
+            mcqState.timeRemaining = totalTime;
+            updateTimerDisplay();
+            mcqState.timerInterval = setInterval(() => {
+                if (mcqState.timeRemaining > 0 && mcqState.examStarted && !mcqState.examEnded) {
+                    mcqState.timeRemaining--;
+                    updateTimerDisplay();
+                    if (mcqState.timeRemaining === 0) {
+                        stopTimer();
+                        showToast('⏰ সময় শেষ! উত্তর জমা দেওয়া হচ্ছে...', 'error');
+                        calculateAndShowResult();
+                    }
+                }
+            }, 1000);
+        }
+        
+        // --- Calculate score ---
         function calculateAndShowResult() {
             if (mcqState.examEnded) {
                 showToast('ফলাফল ইতিমধ্যে দেখানো হয়েছে!', 'info');
                 return;
             }
-            
             stopTimer();
             mcqState.examEnded = true;
             
@@ -684,19 +702,14 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
             
             // Review answers: highlight correct (green) and user's wrong (red)
             document.getElementById('reviewAnswersBtn')?.addEventListener('click', () => {
-                // Loop over each question container
                 document.querySelectorAll('[data-qidx]').forEach((div, idx) => {
-                    if (idx >= mcqState.questions.length) return; // safety
+                    if (idx >= mcqState.questions.length) return;
                     const correctIdx = mcqState.questions[idx].correctIndex;
                     const userChoice = mcqState.userAnswers[idx];
                     const options = div.querySelectorAll('.mcq-option');
-                    
                     options.forEach((opt, optIdx) => {
-                        // Remove existing highlight classes
                         opt.classList.remove('correct', 'wrong', 'selected');
                         const circleSpan = opt.querySelector('.option-letter');
-                        
-                        // Always highlight the correct answer in green
                         if (optIdx === correctIdx) {
                             opt.classList.add('correct');
                             if (circleSpan) {
@@ -704,7 +717,6 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                                 circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
                             }
                         }
-                        // If user selected a wrong answer, highlight it in red
                         if (userChoice !== null && optIdx === userChoice && userChoice !== correctIdx) {
                             opt.classList.add('wrong');
                             if (circleSpan) {
@@ -712,10 +724,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                                 circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
                             }
                         }
-                        // If user selected correct answer, we already have green from above; 
-                        // but also ensure the selected style doesn't conflict (green already applied)
                         if (userChoice !== null && optIdx === userChoice && userChoice === correctIdx) {
-                            // Already correct class, no extra
                             if (circleSpan) {
                                 circleSpan.classList.add('bg-green-500', 'text-white');
                                 circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
@@ -726,11 +735,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                 showToast('সঠিক উত্তর সবুজ, আপনার ভুল উত্তর লাল রঙে হাইলাইট করা হয়েছে', 'success');
             });
             
-            // Try again: reset exam completely
-            document.getElementById('tryAgainBtn')?.addEventListener('click', () => {
-                resetExam();
-            });
-            
+            document.getElementById('tryAgainBtn')?.addEventListener('click', () => resetExam());
             showToast(`আপনার স্কোর: ${score} (${percentage}%)`, 'success');
         }
         
@@ -756,15 +761,11 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                 startBtn.classList.remove('opacity-50', 'cursor-not-allowed');
                 startBtn.innerHTML = '<i class="fas fa-play mr-2"></i> পরীক্ষা শুরু করুন';
             }
-            
-            // Re-render questions with clean UI
-            if (mcqState.questions.length > 0) {
-                renderQuestions();
-            }
+            if (mcqState.questions.length > 0) renderQuestions();
             showToast('পরীক্ষা রিসেট করা হয়েছে। "পরীক্ষা শুরু করুন" ক্লিক করুন।', 'info');
         }
         
-        // Button event bindings
+        // --- Attach button events ---
         const startBtn = document.getElementById('startExamBtn');
         const examPanel = document.getElementById('mcqExamPanel');
         const submitBtn = document.getElementById('submitMcqBtn');
@@ -776,7 +777,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
                     showToast('দয়া করে প্রথমে "রিসেট করুন" বাটনে ক্লিক করুন', 'error');
                     return;
                 }
-                shuffleQuestions();   // fresh shuffle each start
+                shuffleQuestions();
                 mcqState.examStarted = true;
                 if (examPanel) examPanel.style.display = 'block';
                 startBtn.disabled = true;
@@ -803,10 +804,9 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         }
         
         if (resetBtn) {
-            resetBtn.onclick = () => {
-                resetExam();
-            };
+            resetBtn.onclick = () => resetExam();
         }
+        
     } else {
         html += `<div class="text-center text-gray-400 py-8"><i class="fas fa-flask text-2xl mb-2"></i><p>এই টপিকের জন্য MCQ পরীক্ষা শীঘ্রই যুক্ত হবে।</p></div>`;
         container.innerHTML = html;
@@ -826,6 +826,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         });
     }, 100);
 }
+// ==================== END OF loadTopicContent REPLACEMENT ====================
 
 // Make functions global
 window.openChapter = openChapter;
