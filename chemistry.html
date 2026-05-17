@@ -186,6 +186,10 @@ let currentChapterId = null;
 let currentTopicIndex = 0;
 let chapterDataCache = {};
 
+// Global timer and exam state flags
+let activeExamTimer = null;
+let isExamInProgress = false;
+
 function showToast(message, type = 'info') {
     const toast = document.createElement('div');
     toast.className = `fixed bottom-20 left-1/2 transform -translate-x-1/2 px-5 py-3 rounded-xl text-sm z-50 shadow-xl font-medium ${
@@ -333,6 +337,13 @@ function renderChaptersGrid() {
 }
 
 async function openChapter(chapterId) {
+    // Clean up any running exam before leaving current chapter
+    if (activeExamTimer) {
+        clearInterval(activeExamTimer);
+        activeExamTimer = null;
+    }
+    isExamInProgress = false;
+    
     currentChapterId = chapterId;
     const chapterData = await loadChapter(chapterId);
     
@@ -364,6 +375,18 @@ async function openChapter(chapterId) {
     
     document.querySelectorAll('.topic-tab').forEach(tab => {
         tab.addEventListener('click', async () => {
+            // Warn if exam in progress
+            if (isExamInProgress) {
+                const confirmLeave = confirm('⚠️ পরীক্ষা চলছে। টপিক পরিবর্তন করলে আপনার উত্তর ও সময় হারিয়ে যাবে। আপনি কি নিশ্চিত?');
+                if (!confirmLeave) return;
+            }
+            // Clean up timer and flags
+            if (activeExamTimer) {
+                clearInterval(activeExamTimer);
+                activeExamTimer = null;
+            }
+            isExamInProgress = false;
+            
             const idx = parseInt(tab.dataset.topicIndex);
             currentTopicIndex = idx;
             await loadTopicContent(chapterId, idx, chapterData);
@@ -376,8 +399,14 @@ async function openChapter(chapterId) {
     });
 }
 
-// ==================== REPLACE THE EXISTING loadTopicContent FUNCTION ====================
 async function loadTopicContent(chapterId, topicIndex, chapterData) {
+    // Clean up any previous exam timer before loading new content
+    if (activeExamTimer) {
+        clearInterval(activeExamTimer);
+        activeExamTimer = null;
+    }
+    isExamInProgress = false;
+    
     const topic = chapterData.topics[topicIndex];
     const container = document.getElementById('topicContent');
     
@@ -490,60 +519,48 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         // --- Helper: Normalize Bengali text (trim, collapse spaces, Unicode NFC) ---
         function normalizeText(str) {
             if (typeof str !== 'string') return '';
-            // Trim and normalize Unicode (NFC) to handle identical-looking Bengali characters
             return str.trim().normalize('NFC').replace(/\s+/g, ' ');
         }
         
-        // --- Shuffle with robust text matching ---
-        // ==================== REPLACE ONLY THE shuffleQuestions FUNCTION ====================
-function shuffleQuestions() {
-    mcqState.questions = examQuestions.map((originalQ, idx) => {
-        // original options array (preserve original order)
-        const originalOptions = [...originalQ.o];
-        
-        // Determine correct answer index from normalized question
-        let correctOriginalIndex;
-        if (typeof originalQ.a === 'number') {
-            correctOriginalIndex = originalQ.a;
-        } else if (typeof originalQ.a === 'string') {
-            // Fallback for safety (should not happen if normalized earlier)
-            const normalizedAnswer = normalizeText(originalQ.a);
-            correctOriginalIndex = originalOptions.findIndex(opt => normalizeText(opt) === normalizedAnswer);
-            if (correctOriginalIndex === -1) correctOriginalIndex = 0;
-        } else {
-            correctOriginalIndex = 0;
+        // --- Shuffle with index tracking (no string matching after shuffle) ---
+        function shuffleQuestions() {
+            mcqState.questions = examQuestions.map((originalQ, idx) => {
+                const originalOptions = [...originalQ.o];
+                let correctOriginalIndex;
+                if (typeof originalQ.a === 'number') {
+                    correctOriginalIndex = originalQ.a;
+                } else if (typeof originalQ.a === 'string') {
+                    const normalizedAnswer = normalizeText(originalQ.a);
+                    correctOriginalIndex = originalOptions.findIndex(opt => normalizeText(opt) === normalizedAnswer);
+                    if (correctOriginalIndex === -1) correctOriginalIndex = 0;
+                } else {
+                    correctOriginalIndex = 0;
+                }
+                
+                const indexedOptions = originalOptions.map((text, i) => ({ text, originalIndex: i }));
+                const shuffledIndexed = shuffleArray([...indexedOptions]);
+                const shuffledOptions = shuffledIndexed.map(item => item.text);
+                const newCorrectIndex = shuffledIndexed.findIndex(item => item.originalIndex === correctOriginalIndex);
+                
+                if (newCorrectIndex === -1) {
+                    console.error(`Question ${idx+1}: CRITICAL - original index ${correctOriginalIndex} not found after shuffle!`);
+                    return {
+                        id: idx,
+                        text: originalQ.q,
+                        options: originalOptions,
+                        correctIndex: correctOriginalIndex,
+                    };
+                }
+                console.log(`Q${idx+1}: Correct originally at index ${correctOriginalIndex}, moved to ${newCorrectIndex}`);
+                return {
+                    id: idx,
+                    text: originalQ.q,
+                    options: shuffledOptions,
+                    correctIndex: newCorrectIndex,
+                };
+            });
+            mcqState.userAnswers = new Array(mcqState.questions.length).fill(null);
         }
-        
-        // Create an array of { text, originalIndex }
-        const indexedOptions = originalOptions.map((text, idx) => ({ text, originalIndex: idx }));
-        // Shuffle the indexed options
-        const shuffledIndexed = shuffleArray([...indexedOptions]);
-        
-        // Extract shuffled texts (for display) and build a mapping: originalIndex -> newIndex
-        const shuffledOptions = shuffledIndexed.map(item => item.text);
-        const newCorrectIndex = shuffledIndexed.findIndex(item => item.originalIndex === correctOriginalIndex);
-        
-        if (newCorrectIndex === -1) {
-            console.error(`Question ${idx+1}: CRITICAL - original index ${correctOriginalIndex} not found after shuffle!`);
-            // Fallback: keep original order
-            return {
-                id: idx,
-                text: originalQ.q,
-                options: originalOptions,
-                correctIndex: correctOriginalIndex,
-            };
-        }
-        
-        console.log(`Q${idx+1}: Correct originally at index ${correctOriginalIndex}, moved to ${newCorrectIndex}`);
-        return {
-            id: idx,
-            text: originalQ.q,
-            options: shuffledOptions,
-            correctIndex: newCorrectIndex,
-        };
-    });
-    mcqState.userAnswers = new Array(mcqState.questions.length).fill(null);
-}
         
         // --- Render questions ---
         function renderQuestions() {
@@ -564,7 +581,6 @@ function shuffleQuestions() {
                 </div>
             `).join('');
             
-            // Attach click handlers
             document.querySelectorAll('.mcq-option').forEach(opt => {
                 opt.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -580,14 +596,12 @@ function shuffleQuestions() {
                     const qIdx = parseInt(opt.dataset.qidx);
                     const selectedIdx = parseInt(opt.dataset.optidx);
                     
-                    // Toggle selection
                     if (mcqState.userAnswers[qIdx] === selectedIdx) {
                         mcqState.userAnswers[qIdx] = null;
                     } else {
                         mcqState.userAnswers[qIdx] = selectedIdx;
                     }
                     
-                    // Update UI
                     const allOptions = document.querySelectorAll(`.mcq-option[data-qidx="${qIdx}"]`);
                     allOptions.forEach(option => {
                         const optIdx = parseInt(option.dataset.optidx);
@@ -610,11 +624,15 @@ function shuffleQuestions() {
             });
         }
         
-        // --- Timer functions ---
+        // --- Timer functions with global cleanup ---
         function stopTimer() {
             if (mcqState.timerInterval) {
                 clearInterval(mcqState.timerInterval);
                 mcqState.timerInterval = null;
+            }
+            if (activeExamTimer) {
+                clearInterval(activeExamTimer);
+                activeExamTimer = null;
             }
         }
         
@@ -645,108 +663,107 @@ function shuffleQuestions() {
                     }
                 }
             }, 1000);
+            activeExamTimer = mcqState.timerInterval;
         }
         
-        // --- Calculate score ---
-       function calculateAndShowResult() {
-    if (mcqState.examEnded) {
-        showToast('ফলাফল ইতিমধ্যে দেখানো হয়েছে!', 'info');
-        return;
-    }
-    stopTimer();
-    mcqState.examEnded = true;
-
-    const totalQuestions = mcqState.questions.length;
-    let correctCount = 0;
-    for (let i = 0; i < totalQuestions; i++) {
-        const userAns = mcqState.userAnswers[i];
-        const correctAns = mcqState.questions[i].correctIndex;
-        if (userAns !== null && userAns === correctAns) correctCount++;
-    }
-
-    const score = `${correctCount}/${totalQuestions}`;
-    const percentage = Math.round((correctCount / totalQuestions) * 100);
-    const unansweredCount = mcqState.userAnswers.filter(a => a === null).length;
-
-    const resultHtml = `
-        <div class="text-center">
-            <i class="fas fa-chart-simple text-4xl text-amber-400 mb-3"></i>
-            <h4 class="text-2xl font-bold">আপনার ফলাফল</h4>
-            <div class="text-4xl font-bold text-amber-400 my-3">${score}</div>
-            <div class="w-full bg-gray-700 rounded-full h-3 max-w-xs mx-auto">
-                <div class="bg-gradient-to-r from-amber-500 to-orange-500 h-3 rounded-full" style="width: ${percentage}%"></div>
-            </div>
-            <p class="mt-3 text-gray-300">সঠিক উত্তর: ${correctCount} / মোট: ${totalQuestions}</p>
-            <p class="text-sm text-gray-400 mt-1">অনুত্তরিত প্রশ্ন: ${unansweredCount}টি (ভুল হিসেবে গণ্য হয়েছে)</p>
-            <div class="flex justify-center gap-3 mt-4">
-                <button id="reviewAnswersBtn" class="px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition">
-                    <i class="fas fa-eye mr-1"></i> সঠিক উত্তর দেখুন
-                </button>
-                <button id="tryAgainBtn" class="px-4 py-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition">
-                    <i class="fas fa-redo-alt mr-1"></i> আবার চেষ্টা করুন
-                </button>
-            </div>
-        </div>
-    `;
-
-    const resultPanel = document.getElementById('mcqResultPanel');
-    resultPanel.innerHTML = resultHtml;
-    resultPanel.classList.remove('hidden');
-
-    // --- FIXED REVIEW BUTTON: always use the current mcqState ---
-    const reviewBtn = document.getElementById('reviewAnswersBtn');
-    if (reviewBtn) {
-        const newReviewBtn = reviewBtn.cloneNode(true);
-        reviewBtn.parentNode.replaceChild(newReviewBtn, reviewBtn);
-        newReviewBtn.addEventListener('click', () => {
-        // Get ALL question divs directly
-            const allQuestionDivs = document.querySelectorAll('#mcqQuestionsContainer > div[data-qidx]');
-            allQuestionDivs.forEach((questionDiv) => {
-                const idx = parseInt(questionDiv.getAttribute('data-qidx'));
-                if (isNaN(idx) || idx >= mcqState.questions.length) return;
-                const correctIdx = mcqState.questions[idx].correctIndex;
-                const userChoice = mcqState.userAnswers[idx];
-                const options = questionDiv.querySelectorAll('.mcq-option');
-                options.forEach((opt, optIdx) => {
-                    opt.classList.remove('correct', 'wrong', 'selected');
-                    const circleSpan = opt.querySelector('.option-letter');
-                // Always highlight correct answer in green
-                    if (optIdx === correctIdx) {
-                        opt.classList.add('correct');
-                        if (circleSpan) {
-                            circleSpan.classList.add('bg-green-500', 'text-white');
-                            circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
-                    }
-                }
-                // Highlight user's wrong answer in red (if different from correct)
-                    if (userChoice !== null && optIdx === userChoice && userChoice !== correctIdx) {
-                        opt.classList.add('wrong');
-                        if (circleSpan) {
-                            circleSpan.classList.add('bg-red-500', 'text-white');
-                            circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
-                    }
-                }
-                // If user chose correctly, ensure green (already done above)
-            });
-        });
-            showToast('সঠিক উত্তর সবুজ, আপনার ভুল উত্তর লাল রঙে হাইলাইট করা হয়েছে', 'success');
-    });
-}
-
-    const tryAgainBtn = document.getElementById('tryAgainBtn');
-    if (tryAgainBtn) {
-        const newTryAgain = tryAgainBtn.cloneNode(true);
-        tryAgainBtn.parentNode.replaceChild(newTryAgain, tryAgainBtn);
-        newTryAgain.addEventListener('click', () => resetExam());
-    }
-
-    showToast(`আপনার স্কোর: ${score} (${percentage}%)`, 'success');
-}
+        // --- Calculate score and show result ---
+        function calculateAndShowResult() {
+            if (mcqState.examEnded) {
+                showToast('ফলাফল ইতিমধ্যে দেখানো হয়েছে!', 'info');
+                return;
+            }
+            stopTimer();
+            mcqState.examEnded = true;
+            isExamInProgress = false;   // exam finished
+            
+            const totalQuestions = mcqState.questions.length;
+            let correctCount = 0;
+            for (let i = 0; i < totalQuestions; i++) {
+                const userAns = mcqState.userAnswers[i];
+                const correctAns = mcqState.questions[i].correctIndex;
+                if (userAns !== null && userAns === correctAns) correctCount++;
+            }
+            
+            const score = `${correctCount}/${totalQuestions}`;
+            const percentage = Math.round((correctCount / totalQuestions) * 100);
+            const unansweredCount = mcqState.userAnswers.filter(a => a === null).length;
+            
+            const resultHtml = `
+                <div class="text-center">
+                    <i class="fas fa-chart-simple text-4xl text-amber-400 mb-3"></i>
+                    <h4 class="text-2xl font-bold">আপনার ফলাফল</h4>
+                    <div class="text-4xl font-bold text-amber-400 my-3">${score}</div>
+                    <div class="w-full bg-gray-700 rounded-full h-3 max-w-xs mx-auto">
+                        <div class="bg-gradient-to-r from-amber-500 to-orange-500 h-3 rounded-full" style="width: ${percentage}%"></div>
+                    </div>
+                    <p class="mt-3 text-gray-300">সঠিক উত্তর: ${correctCount} / মোট: ${totalQuestions}</p>
+                    <p class="text-sm text-gray-400 mt-1">অনুত্তরিত প্রশ্ন: ${unansweredCount}টি (ভুল হিসেবে গণ্য হয়েছে)</p>
+                    <div class="flex justify-center gap-3 mt-4">
+                        <button id="reviewAnswersBtn" class="px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition">
+                            <i class="fas fa-eye mr-1"></i> সঠিক উত্তর দেখুন
+                        </button>
+                        <button id="tryAgainBtn" class="px-4 py-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition">
+                            <i class="fas fa-redo-alt mr-1"></i> আবার চেষ্টা করুন
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            const resultPanel = document.getElementById('mcqResultPanel');
+            resultPanel.innerHTML = resultHtml;
+            resultPanel.classList.remove('hidden');
+            
+            // Review button: highlight correct answers for ALL questions
+            const reviewBtn = document.getElementById('reviewAnswersBtn');
+            if (reviewBtn) {
+                const newReviewBtn = reviewBtn.cloneNode(true);
+                reviewBtn.parentNode.replaceChild(newReviewBtn, reviewBtn);
+                newReviewBtn.addEventListener('click', () => {
+                    const allQuestionDivs = document.querySelectorAll('#mcqQuestionsContainer > div[data-qidx]');
+                    allQuestionDivs.forEach((questionDiv) => {
+                        const idx = parseInt(questionDiv.getAttribute('data-qidx'));
+                        if (isNaN(idx) || idx >= mcqState.questions.length) return;
+                        const correctIdx = mcqState.questions[idx].correctIndex;
+                        const userChoice = mcqState.userAnswers[idx];
+                        const options = questionDiv.querySelectorAll('.mcq-option');
+                        options.forEach((opt, optIdx) => {
+                            opt.classList.remove('correct', 'wrong', 'selected');
+                            const circleSpan = opt.querySelector('.option-letter');
+                            if (optIdx === correctIdx) {
+                                opt.classList.add('correct');
+                                if (circleSpan) {
+                                    circleSpan.classList.add('bg-green-500', 'text-white');
+                                    circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
+                                }
+                            }
+                            if (userChoice !== null && optIdx === userChoice && userChoice !== correctIdx) {
+                                opt.classList.add('wrong');
+                                if (circleSpan) {
+                                    circleSpan.classList.add('bg-red-500', 'text-white');
+                                    circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
+                                }
+                            }
+                        });
+                    });
+                    showToast('সঠিক উত্তর সবুজ, আপনার ভুল উত্তর লাল রঙে হাইলাইট করা হয়েছে', 'success');
+                });
+            }
+            
+            const tryAgainBtn = document.getElementById('tryAgainBtn');
+            if (tryAgainBtn) {
+                const newTryAgain = tryAgainBtn.cloneNode(true);
+                tryAgainBtn.parentNode.replaceChild(newTryAgain, tryAgainBtn);
+                newTryAgain.addEventListener('click', () => resetExam());
+            }
+            
+            showToast(`আপনার স্কোর: ${score} (${percentage}%)`, 'success');
+        }
         
         function resetExam() {
             stopTimer();
             mcqState.examStarted = false;
             mcqState.examEnded = false;
+            isExamInProgress = false;
             mcqState.userAnswers = new Array(mcqState.questions.length).fill(null);
             
             const examPanel = document.getElementById('mcqExamPanel');
@@ -783,6 +800,7 @@ function shuffleQuestions() {
                 }
                 shuffleQuestions();
                 mcqState.examStarted = true;
+                isExamInProgress = true;
                 if (examPanel) examPanel.style.display = 'block';
                 startBtn.disabled = true;
                 startBtn.classList.add('opacity-50', 'cursor-not-allowed');
@@ -830,7 +848,6 @@ function shuffleQuestions() {
         });
     }, 100);
 }
-// ==================== END OF loadTopicContent REPLACEMENT ====================
 
 // Make functions global
 window.openChapter = openChapter;
@@ -842,6 +859,15 @@ function init() {
     const backBtn = document.getElementById('backToChaptersBtn');
     if (backBtn) {
         backBtn.onclick = () => {
+            if (isExamInProgress) {
+                const confirmLeave = confirm('⚠️ আপনার একটি অসমাপ্ত পরীক্ষা চলছে। আপনি কি নিশ্চিত যে আপনি ফিরে যেতে চান? আপনার অগ্রগতি হারিয়ে যাবে।');
+                if (!confirmLeave) return;
+            }
+            if (activeExamTimer) {
+                clearInterval(activeExamTimer);
+                activeExamTimer = null;
+            }
+            isExamInProgress = false;
             document.getElementById('chaptersView').classList.remove('hidden');
             document.getElementById('chapterView').classList.add('hidden');
             currentChapterId = null;
