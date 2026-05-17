@@ -495,62 +495,55 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
         }
         
         // --- Shuffle with robust text matching ---
-        function shuffleQuestions() {
-            mcqState.questions = examQuestions.map((originalQ, idx) => {
-                const originalOptions = [...originalQ.o];
-                let correctAnswerIndex;
-                let correctAnswerText;
-                
-                // Determine correct answer (either stored as index or string)
-                if (typeof originalQ.a === 'number') {
-                    correctAnswerIndex = originalQ.a;
-                    correctAnswerText = originalOptions[correctAnswerIndex];
-                } else if (typeof originalQ.a === 'string') {
-                    const normalizedAnswer = normalizeText(originalQ.a);
-                    // Try to find the matching option by normalized text
-                    correctAnswerIndex = originalOptions.findIndex(opt => normalizeText(opt) === normalizedAnswer);
-                    if (correctAnswerIndex === -1) {
-                        console.warn(`Question ${idx+1}: Answer "${originalQ.a}" not found in options! Falling back to index 0.`);
-                        correctAnswerIndex = 0;
-                        correctAnswerText = originalOptions[0];
-                    } else {
-                        correctAnswerText = originalOptions[correctAnswerIndex];
-                    }
-                } else {
-                    console.error(`Question ${idx+1}: Invalid answer type. Defaulting to index 0.`);
-                    correctAnswerIndex = 0;
-                    correctAnswerText = originalOptions[0];
-                }
-                
-                // Shuffle options
-                const shuffledOptions = shuffleArray([...originalOptions]);
-                // Find new index of the correct answer text (using normalized comparison)
-                const normalizedCorrect = normalizeText(correctAnswerText);
-                let newCorrectIndex = shuffledOptions.findIndex(opt => normalizeText(opt) === normalizedCorrect);
-                
-                if (newCorrectIndex === -1) {
-                    console.error(`Question ${idx+1}: CRITICAL - Correct answer "${correctAnswerText}" not found after shuffle! Keeping original order.`);
-                    // Fallback: use unshuffled options
-                    return {
-                        id: idx,
-                        text: originalQ.q,
-                        options: originalOptions,
-                        correctIndex: correctAnswerIndex,
-                        originalCorrectText: correctAnswerText
-                    };
-                }
-                
-                console.log(`Q${idx+1}: Correct = "${correctAnswerText}" (new index ${newCorrectIndex})`);
-                return {
-                    id: idx,
-                    text: originalQ.q,
-                    options: shuffledOptions,
-                    correctIndex: newCorrectIndex,
-                    originalCorrectText: correctAnswerText
-                };
-            });
-            mcqState.userAnswers = new Array(mcqState.questions.length).fill(null);
+        // ==================== REPLACE ONLY THE shuffleQuestions FUNCTION ====================
+function shuffleQuestions() {
+    mcqState.questions = examQuestions.map((originalQ, idx) => {
+        // original options array (preserve original order)
+        const originalOptions = [...originalQ.o];
+        
+        // Determine correct answer index from normalized question
+        let correctOriginalIndex;
+        if (typeof originalQ.a === 'number') {
+            correctOriginalIndex = originalQ.a;
+        } else if (typeof originalQ.a === 'string') {
+            // Fallback for safety (should not happen if normalized earlier)
+            const normalizedAnswer = normalizeText(originalQ.a);
+            correctOriginalIndex = originalOptions.findIndex(opt => normalizeText(opt) === normalizedAnswer);
+            if (correctOriginalIndex === -1) correctOriginalIndex = 0;
+        } else {
+            correctOriginalIndex = 0;
         }
+        
+        // Create an array of { text, originalIndex }
+        const indexedOptions = originalOptions.map((text, idx) => ({ text, originalIndex: idx }));
+        // Shuffle the indexed options
+        const shuffledIndexed = shuffleArray([...indexedOptions]);
+        
+        // Extract shuffled texts (for display) and build a mapping: originalIndex -> newIndex
+        const shuffledOptions = shuffledIndexed.map(item => item.text);
+        const newCorrectIndex = shuffledIndexed.findIndex(item => item.originalIndex === correctOriginalIndex);
+        
+        if (newCorrectIndex === -1) {
+            console.error(`Question ${idx+1}: CRITICAL - original index ${correctOriginalIndex} not found after shuffle!`);
+            // Fallback: keep original order
+            return {
+                id: idx,
+                text: originalQ.q,
+                options: originalOptions,
+                correctIndex: correctOriginalIndex,
+            };
+        }
+        
+        console.log(`Q${idx+1}: Correct originally at index ${correctOriginalIndex}, moved to ${newCorrectIndex}`);
+        return {
+            id: idx,
+            text: originalQ.q,
+            options: shuffledOptions,
+            correctIndex: newCorrectIndex,
+        };
+    });
+    mcqState.userAnswers = new Array(mcqState.questions.length).fill(null);
+}
         
         // --- Render questions ---
         function renderQuestions() {
