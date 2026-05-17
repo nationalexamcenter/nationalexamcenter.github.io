@@ -696,47 +696,42 @@ function shuffleQuestions() {
     // --- FIXED REVIEW BUTTON: always use the current mcqState ---
     const reviewBtn = document.getElementById('reviewAnswersBtn');
     if (reviewBtn) {
-        // Remove any previous listener to avoid duplicates
         const newReviewBtn = reviewBtn.cloneNode(true);
         reviewBtn.parentNode.replaceChild(newReviewBtn, reviewBtn);
         newReviewBtn.addEventListener('click', () => {
-            // Loop through each question and highlight directly using mcqState
-            for (let idx = 0; idx < mcqState.questions.length; idx++) {
+        // Get ALL question divs directly
+            const allQuestionDivs = document.querySelectorAll('#mcqQuestionsContainer > div[data-qidx]');
+            allQuestionDivs.forEach((questionDiv) => {
+                const idx = parseInt(questionDiv.getAttribute('data-qidx'));
+                if (isNaN(idx) || idx >= mcqState.questions.length) return;
                 const correctIdx = mcqState.questions[idx].correctIndex;
                 const userChoice = mcqState.userAnswers[idx];
-                // Find the question div by data-qidx
-                const questionDiv = document.querySelector(`.mcq-option[data-qidx="${idx}"]`)?.closest('[data-qidx]');
-                if (!questionDiv) continue;
                 const options = questionDiv.querySelectorAll('.mcq-option');
                 options.forEach((opt, optIdx) => {
                     opt.classList.remove('correct', 'wrong', 'selected');
                     const circleSpan = opt.querySelector('.option-letter');
+                // Always highlight correct answer in green
                     if (optIdx === correctIdx) {
                         opt.classList.add('correct');
                         if (circleSpan) {
                             circleSpan.classList.add('bg-green-500', 'text-white');
                             circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
-                        }
                     }
+                }
+                // Highlight user's wrong answer in red (if different from correct)
                     if (userChoice !== null && optIdx === userChoice && userChoice !== correctIdx) {
                         opt.classList.add('wrong');
                         if (circleSpan) {
                             circleSpan.classList.add('bg-red-500', 'text-white');
                             circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
-                        }
                     }
-                    // If user chose correctly, already green from above; ensure circle is green
-                    if (userChoice !== null && optIdx === userChoice && userChoice === correctIdx) {
-                        if (circleSpan) {
-                            circleSpan.classList.add('bg-green-500', 'text-white');
-                            circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
-                        }
-                    }
-                });
-            }
-            showToast('সঠিক উত্তর সবুজ, আপনার ভুল উত্তর লাল রঙে হাইলাইট করা হয়েছে', 'success');
+                }
+                // If user chose correctly, ensure green (already done above)
+            });
         });
-    }
+            showToast('সঠিক উত্তর সবুজ, আপনার ভুল উত্তর লাল রঙে হাইলাইট করা হয়েছে', 'success');
+    });
+}
 
     const tryAgainBtn = document.getElementById('tryAgainBtn');
     if (tryAgainBtn) {
