@@ -31,6 +31,114 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyAOBvQOqaF19oZbrvXY6N1f9G-7z50G_yM",
+            authDomain: "website-nctb2026.firebaseapp.com",
+            projectId: "website-nctb2026",
+            storageBucket: "website-nctb2026.firebasestorage.app",
+            messagingSenderId: "1014641365233",
+            appId: "1:1014641365233:web:88d717b02a956428edd950"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+        
+        // Make auth and functions globally accessible for inline event handlers
+        window.auth = auth;
+        window.signOutUser = () => signOut(auth);
+        window.showSignInModal = () => {
+            document.getElementById('authModal').classList.remove('hidden');
+        };
+        window.hideAuthModal = () => {
+            document.getElementById('authModal').classList.add('hidden');
+        };
+        
+        // Handle Google Sign-In
+        window.googleSignIn = async () => {
+            try {
+                await signInWithPopup(auth, provider);
+                hideAuthModal();
+            } catch (error) {
+                console.error(error);
+                alert('Google sign-in failed: ' + error.message);
+            }
+        };
+        
+        // Handle Email/Password Sign-In or Sign-Up
+        window.submitEmailAuth = async () => {
+            const email = document.getElementById('emailInput').value;
+            const password = document.getElementById('passwordInput').value;
+            const isLogin = document.getElementById('authModeToggle').checked;
+            if (!email || !password) {
+                alert('Please enter email and password');
+                return;
+            }
+            try {
+                if (isLogin) {
+                    await signInWithEmailAndPassword(auth, email, password);
+                } else {
+                    await createUserWithEmailAndPassword(auth, email, password);
+                }
+                hideAuthModal();
+            } catch (error) {
+                console.error(error);
+                alert(error.message);
+            }
+        };
+        
+        // Update UI based on auth state
+        onAuthStateChanged(auth, (user) => {
+            const profileBtn = document.getElementById('profileBtn');
+            const userAvatar = document.getElementById('userAvatar');
+            const userNameSpan = document.getElementById('userName');
+            const userEmailSpan = document.getElementById('userEmail');
+            const signOutBtn = document.getElementById('signOutBtn');
+            const authButtons = document.getElementById('authButtons');
+            const userMenu = document.getElementById('userMenu');
+            
+            if (user) {
+                // User is signed in
+                if (authButtons) authButtons.classList.add('hidden');
+                if (userMenu) userMenu.classList.remove('hidden');
+                if (userNameSpan) userNameSpan.textContent = user.displayName || 'User';
+                if (userEmailSpan) userEmailSpan.textContent = user.email;
+                if (userAvatar) {
+                    userAvatar.src = user.photoURL || 'https://ui-avatars.com/api/?background=f59e0b&color=fff&name=' + (user.displayName || 'User');
+                }
+            } else {
+                // User is signed out
+                if (authButtons) authButtons.classList.remove('hidden');
+                if (userMenu) userMenu.classList.add('hidden');
+            }
+        });
+        
+        // Toggle between Login and Signup
+        window.toggleAuthMode = () => {
+            const toggle = document.getElementById('authModeToggle');
+            const submitBtn = document.getElementById('emailSubmitBtn');
+            const modeText = document.getElementById('authModeText');
+            if (toggle.checked) {
+                submitBtn.innerHTML = '<i class="fas fa-sign-in-alt mr-1"></i> লগইন করুন';
+                modeText.innerText = 'নতুন ব্যবহারকারী? সাইন আপ করুন';
+            } else {
+                submitBtn.innerHTML = '<i class="fas fa-user-plus mr-1"></i> সাইন আপ করুন';
+                modeText.innerText = 'ইতিমধ্যে অ্যাকাউন্ট আছে? লগইন করুন';
+            }
+        };
+        
+        // Close modal when clicking outside
+        window.onclick = (event) => {
+            const modal = document.getElementById('authModal');
+            if (event.target === modal) hideAuthModal();
+        };
+    </script>
+    
     <style>
         * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         
@@ -129,7 +237,7 @@
             box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
         }
         
-        .btn-theme {
+        .btn-theme, .btn-profile {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             transition: all 0.2s ease;
@@ -137,12 +245,12 @@
             color: var(--text-primary);
         }
         
-        .btn-theme:hover {
+        .btn-theme:hover, .btn-profile:hover {
             border-color: #f59e0b;
             transform: scale(1.05);
         }
         
-        /* 3D Canvas Container - PURE BACKGROUND, NO BLOCKING */
+        /* 3D Canvas Container - PURE BACKGROUND */
         #heroCanvasContainer {
             position: absolute;
             top: 0;
@@ -289,7 +397,6 @@
             transition: all 0.3s ease;
         }
         
-        /* Logo styling */
         .nav-logo-img {
             height: 40px;
             width: auto;
@@ -298,6 +405,15 @@
         
         [data-theme="light"] .nav-logo-img {
             filter: brightness(0.9);
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+        }
+        [data-theme="light"] .modal-overlay {
+            background-color: rgba(0,0,0,0.5);
         }
         
         /* Mobile Responsive */
@@ -319,12 +435,10 @@
             .hero-content { padding: 1.5rem; }
         }
         
-        /* Scrollbar styling */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 10px; }
         ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
         
-        /* Text color overrides for light theme */
         [data-theme="light"] .text-gray-300 { color: #4a5568; }
         [data-theme="light"] .text-gray-400 { color: #718096; }
         [data-theme="light"] .text-gray-500 { color: #a0aec0; }
@@ -334,11 +448,53 @@
 </head>
 <body>
 
+<!-- Authentication Modal -->
+<div id="authModal" class="fixed inset-0 z-[1200] hidden items-center justify-center modal-overlay transition-all" style="display: none;">
+    <div class="glass-card rounded-2xl p-6 w-full max-w-md mx-4 relative">
+        <button onclick="hideAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-amber-400 text-2xl">&times;</button>
+        <div class="text-center mb-6">
+            <img src="pic/NEC3.png" alt="NEC" class="h-12 mx-auto mb-2">
+            <h3 class="text-2xl font-bold gradient-text">ন্যাশনাল এগজাম সেন্টার</h3>
+            <p class="text-gray-400 text-sm mt-1">আপনার অ্যাকাউন্টে সাইন ইন করুন</p>
+        </div>
+        
+        <!-- Google Sign In -->
+        <button onclick="googleSignIn()" class="w-full flex items-center justify-center gap-3 bg-white/10 border border-white/20 rounded-lg py-2.5 mb-4 hover:bg-white/20 transition">
+            <i class="fab fa-google text-red-500 text-xl"></i>
+            <span class="font-medium">Google দিয়ে সাইন ইন করুন</span>
+        </button>
+        
+        <div class="relative my-4">
+            <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/20"></div></div>
+            <div class="relative flex justify-center text-xs"><span class="bg-gray-900 px-2 text-gray-400">অথবা ইমেইল ব্যবহার করুন</span></div>
+        </div>
+        
+        <!-- Email/Password -->
+        <div class="space-y-3">
+            <input type="email" id="emailInput" placeholder="ইমেইল ঠিকানা" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
+            <input type="password" id="passwordInput" placeholder="পাসওয়ার্ড" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
+            
+            <div class="flex items-center justify-between text-sm">
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" id="authModeToggle" class="hidden" onchange="toggleAuthMode()">
+                    <span class="w-5 h-5 border border-amber-500 rounded flex items-center justify-center"><i class="fas fa-check text-amber-500 text-xs hidden" id="checkIcon"></i></span>
+                    <span id="authModeText" class="text-gray-400">নতুন ব্যবহারকারী? সাইন আপ করুন</span>
+                </label>
+            </div>
+            
+            <button id="emailSubmitBtn" onclick="submitEmailAuth()" class="w-full btn-primary py-2.5 rounded-lg font-semibold">
+                <i class="fas fa-sign-in-alt mr-1"></i> লগইন করুন
+            </button>
+        </div>
+        
+        <p class="text-center text-xs text-gray-500 mt-4">সাইন ইন করে আপনি আমাদের <a href="/privacy.html" class="text-amber-400">গোপনীয়তা নীতি</a> মেনে নিচ্ছেন।</p>
+    </div>
+</div>
+
 <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-3">
             <div class="flex items-center gap-3">
-                <!-- NEW LOGO: NEC3.png -->
                 <img src="pic/NEC3.png" alt="National Exam Center Logo" class="nav-logo-img" onerror="this.onerror=null; this.src='https://placehold.co/313x129/ffffff/ff9a3c?text=NEC';">
                 <span class="font-bold text-xl gradient-text">National Exam Center</span>
                 <span class="text-xs bg-amber-500/20 px-2 py-1 rounded-full hidden md:block">ন্যাশনাল এগজাম সেন্টার | SSC ২০২৭</span>
@@ -348,6 +504,28 @@
                     <i class="fas fa-sun" id="sunIcon"></i>
                     <i class="fas fa-moon" id="moonIcon" style="display: none;"></i>
                 </button>
+                
+                <!-- Auth Buttons / User Menu -->
+                <div id="authButtons" class="flex gap-2">
+                    <button onclick="showSignInModal()" class="btn-secondary px-3 py-2 rounded-lg text-sm">
+                        <i class="fas fa-user mr-1"></i> লগইন
+                    </button>
+                </div>
+                <div id="userMenu" class="hidden relative group">
+                    <button id="profileBtn" class="btn-profile w-9 h-9 rounded-full overflow-hidden border-2 border-amber-500/50 flex items-center justify-center">
+                        <img id="userAvatar" src="https://ui-avatars.com/api/?background=f59e0b&color=fff&name=User" alt="Avatar" class="w-full h-full object-cover">
+                    </button>
+                    <div class="absolute right-0 mt-2 w-56 glass-card rounded-xl p-3 hidden group-hover:block z-50">
+                        <div class="border-b border-white/10 pb-2 mb-2">
+                            <p id="userName" class="font-semibold text-sm">User</p>
+                            <p id="userEmail" class="text-xs text-gray-400 truncate">user@example.com</p>
+                        </div>
+                        <button onclick="signOutUser()" class="w-full text-left text-sm text-red-400 hover:bg-red-500/10 px-2 py-1.5 rounded-lg transition">
+                            <i class="fas fa-sign-out-alt mr-2"></i> সাইন আউট
+                        </button>
+                    </div>
+                </div>
+                
                 <a href="/chemistry.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition">
                     <i class="fas fa-book-open mr-1"></i> রসায়ন পড়ুন
                 </a>
@@ -361,7 +539,6 @@
 </nav>
 
 <div class="hero-wrapper mt-6">
-    <!-- 3D Atomic Model Canvas - Pure Background -->
     <div id="heroCanvasContainer"></div>
     <div class="hero-content">
         <div class="hero-left">
@@ -918,6 +1095,24 @@
     window.shareOnTwitter = shareOnTwitter;
     window.copyPageLink = copyPageLink;
     window.toggleTheme = toggleTheme;
+    
+    // Helper for checkbox toggle style
+    const toggleCheckbox = document.getElementById('authModeToggle');
+    if (toggleCheckbox) {
+        const checkIcon = document.getElementById('checkIcon');
+        const updateCheck = () => {
+            if (checkIcon) checkIcon.style.display = toggleCheckbox.checked ? 'inline-block' : 'none';
+        };
+        toggleCheckbox.addEventListener('change', updateCheck);
+        updateCheck();
+    }
+    // Ensure modal close on escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('authModal');
+            if (modal && !modal.classList.contains('hidden')) hideAuthModal();
+        }
+    });
 </script>
 </body>
 </html>
