@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Firebase SDKs -->
+    <!-- Firebase SDKs (same as index.html) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
@@ -32,13 +32,11 @@
         window.auth = auth;
         window.db = db;
         
-        // Save user profile to Firestore
         async function saveUserProfile(uid, profileData) {
             const userRef = doc(db, "users", uid);
             await setDoc(userRef, profileData, { merge: true });
         }
         
-        // Show profile modal for new users
         async function showProfileModal(user, isNewUser = false) {
             const modal = document.getElementById('profileModal');
             const nameField = document.getElementById('profileName');
@@ -76,7 +74,6 @@
             };
         }
         
-        // Update UI (navbar + drawer) with user profile from Firestore
         async function updateUIWithUserProfile(uid) {
             const userRef = doc(db, "users", uid);
             const docSnap = await getDoc(userRef);
@@ -89,7 +86,6 @@
                 const avatar = document.getElementById('userAvatar');
                 if (data.photoURL) avatar.src = data.photoURL;
                 else avatar.src = `https://ui-avatars.com/api/?background=f59e0b&color=fff&name=${encodeURIComponent(data.name || 'User')}`;
-                // Drawer profile
                 document.getElementById('drawerUserName').textContent = data.name || 'User';
                 document.getElementById('drawerUserSchool').textContent = data.school || 'স্কুল';
                 document.getElementById('drawerUserClass').textContent = data.class || 'ক্লাস';
@@ -100,121 +96,72 @@
             }
         }
         
-        // Save chapter completion to Firestore (per user)
+        // Save chapter progress to Firestore
         window.saveChapterProgress = async (chapterId) => {
             const user = auth.currentUser;
             if (!user) return false;
             const progressRef = doc(db, "users", user.uid, "progress", "chemistry");
             const progressSnap = await getDoc(progressRef);
-            let completed = [];
-            if (progressSnap.exists()) completed = progressSnap.data().completedChapters || [];
+            let completed = progressSnap.exists() ? progressSnap.data().completedChapters || [] : [];
             if (!completed.includes(chapterId)) {
                 completed.push(chapterId);
-                await setDoc(progressRef, { completedChapters: completed, updatedAt: new Date().toISOString() }, { merge: true });
+                await setDoc(progressRef, { completedChapters: completed, updatedAt: new Date().toISOString() });
             }
             return true;
         };
         
-        // Load chapter completion from Firestore
         window.loadChapterProgress = async () => {
             const user = auth.currentUser;
             if (!user) return [];
             const progressRef = doc(db, "users", user.uid, "progress", "chemistry");
             const progressSnap = await getDoc(progressRef);
-            if (progressSnap.exists()) return progressSnap.data().completedChapters || [];
-            return [];
+            return progressSnap.exists() ? progressSnap.data().completedChapters || [] : [];
         };
         
-        // Auth state handler
         onAuthStateChanged(auth, async (user) => {
             const authButtons = document.getElementById('authButtons');
             const userMenu = document.getElementById('userMenu');
-            const drawer = document.getElementById('sideDrawer');
             if (user) {
                 const userRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(userRef);
-                if (!docSnap.exists()) {
-                    await showProfileModal(user, true);
-                } else {
-                    await updateUIWithUserProfile(user.uid);
-                }
+                if (!docSnap.exists()) await showProfileModal(user, true);
+                else await updateUIWithUserProfile(user.uid);
                 if (authButtons) authButtons.classList.add('hidden');
                 if (userMenu) userMenu.classList.remove('hidden');
                 document.getElementById('drawerLoggedInView').classList.remove('hidden');
                 document.getElementById('drawerLoggedOutView').classList.add('hidden');
-                // Reload chapter progress and refresh UI
                 if (window.refreshChaptersFromFirestore) await window.refreshChaptersFromFirestore();
             } else {
                 if (authButtons) authButtons.classList.remove('hidden');
                 if (userMenu) userMenu.classList.add('hidden');
                 document.getElementById('drawerLoggedInView').classList.add('hidden');
                 document.getElementById('drawerLoggedOutView').classList.remove('hidden');
-                // Clear local completed chapters display
                 if (window.clearLocalProgressDisplay) window.clearLocalProgressDisplay();
             }
         });
         
-        window.signOutUser = async () => {
-            await signOut(auth);
-            closeDrawer();
-            window.location.reload(); // Refresh to reset UI
-        };
-        
-        window.showSignInModal = () => {
-            document.getElementById('authModal').classList.remove('hidden');
-            document.getElementById('authModal').style.display = 'flex';
-        };
-        window.hideAuthModal = () => {
-            document.getElementById('authModal').classList.add('hidden');
-            document.getElementById('authModal').style.display = 'none';
-        };
-        
-        window.googleSignIn = async () => {
-            try {
-                await signInWithPopup(auth, provider);
-                window.hideAuthModal();
-            } catch (error) {
-                if (error.code === 'auth/unauthorized-domain') {
-                    alert('এই ডোমেইন অনুমোদিত নয়। Firebase Console এ authorized domains এ nationalexamcenter.github.io যোগ করুন');
-                } else {
-                    alert('Google sign-in failed: ' + error.message);
-                }
-            }
-        };
-        
+        window.signOutUser = async () => { await signOut(auth); closeDrawer(); window.location.reload(); };
+        window.showSignInModal = () => { document.getElementById('authModal').classList.remove('hidden'); document.getElementById('authModal').style.display = 'flex'; };
+        window.hideAuthModal = () => { document.getElementById('authModal').classList.add('hidden'); document.getElementById('authModal').style.display = 'none'; };
+        window.googleSignIn = async () => { try { await signInWithPopup(auth, provider); window.hideAuthModal(); } catch (error) { alert(error.message); } };
         window.submitEmailAuth = async () => {
             const email = document.getElementById('emailInput').value;
             const password = document.getElementById('passwordInput').value;
             const isLogin = document.getElementById('authModeToggle').checked;
-            if (!email || !password) {
-                alert('ইমেইল ও পাসওয়ার্ড দিন');
-                return;
-            }
+            if (!email || !password) { alert('ইমেইল ও পাসওয়ার্ড দিন'); return; }
             try {
-                if (isLogin) {
-                    await signInWithEmailAndPassword(auth, email, password);
-                } else {
-                    await createUserWithEmailAndPassword(auth, email, password);
-                }
+                if (isLogin) await signInWithEmailAndPassword(auth, email, password);
+                else await createUserWithEmailAndPassword(auth, email, password);
                 window.hideAuthModal();
-            } catch (error) {
-                alert(error.message);
-            }
+            } catch (error) { alert(error.message); }
         };
-        
         window.toggleAuthMode = () => {
             const toggle = document.getElementById('authModeToggle');
             const submitBtn = document.getElementById('emailSubmitBtn');
             const modeText = document.getElementById('authModeText');
-            if (toggle.checked) {
-                submitBtn.innerHTML = '<i class="fas fa-sign-in-alt mr-1"></i> লগইন করুন';
-                modeText.innerText = 'নতুন ব্যবহারকারী? সাইন আপ করুন';
-            } else {
-                submitBtn.innerHTML = '<i class="fas fa-user-plus mr-1"></i> সাইন আপ করুন';
-                modeText.innerText = 'ইতিমধ্যে অ্যাকাউন্ট আছে? লগইন করুন';
-            }
+            if (toggle.checked) { submitBtn.innerHTML = '<i class="fas fa-sign-in-alt mr-1"></i> লগইন করুন'; modeText.innerText = 'নতুন ব্যবহারকারী? সাইন আপ করুন'; }
+            else { submitBtn.innerHTML = '<i class="fas fa-user-plus mr-1"></i> সাইন আপ করুন'; modeText.innerText = 'ইতিমধ্যে অ্যাকাউন্ট আছে? লগইন করুন'; }
         };
-        
         window.editProfile = async () => {
             const user = auth.currentUser;
             if (user) {
@@ -249,28 +196,14 @@
                 };
             }
         };
-        
         window.onclick = (event) => {
             const authModal = document.getElementById('authModal');
             const profileModal = document.getElementById('profileModal');
             if (event.target === authModal) window.hideAuthModal();
-            if (event.target === profileModal) {
-                profileModal.classList.add('hidden');
-                profileModal.style.display = 'none';
-            }
+            if (event.target === profileModal) { profileModal.classList.add('hidden'); profileModal.style.display = 'none'; }
         };
-        
-        // Drawer controls
-        window.openDrawer = () => {
-            document.getElementById('sideDrawer').classList.add('open');
-            document.getElementById('drawerOverlay').classList.add('active');
-        };
-        window.closeDrawer = () => {
-            document.getElementById('sideDrawer').classList.remove('open');
-            document.getElementById('drawerOverlay').classList.remove('active');
-        };
-        
-        console.log('Firebase + Firestore ready for chemistry');
+        window.openDrawer = () => { document.getElementById('sideDrawer').classList.add('open'); document.getElementById('drawerOverlay').classList.add('active'); };
+        window.closeDrawer = () => { document.getElementById('sideDrawer').classList.remove('open'); document.getElementById('drawerOverlay').classList.remove('active'); };
     </script>
     
     <style>
@@ -295,19 +228,10 @@
             --border-hover: rgba(245, 158, 11, 0.7);
             --glass-border: rgba(0, 0, 0, 0.08);
         }
-        body {
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-            color: var(--text-primary);
-            transition: background 0.3s ease, color 0.3s ease;
-        }
+        body { background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%); color: var(--text-primary); transition: background 0.3s ease, color 0.3s ease; }
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); }
         [data-theme="light"] .glass { background: rgba(0, 0, 0, 0.03); }
-        .glass-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
+        .glass-card { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--border-color); transition: all 0.3s ease; }
         .glass-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
         .gradient-text { background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c); -webkit-background-clip: text; background-clip: text; color: transparent; }
         .btn-primary { background: linear-gradient(105deg, #ff9a3c, #ff6a2c); transition: all 0.2s ease; box-shadow: 0 8px 20px rgba(255, 100, 30, 0.3); }
@@ -319,12 +243,7 @@
         .btn-theme, .btn-profile { background: var(--card-bg); border: 1px solid var(--border-color); transition: all 0.2s ease; cursor: pointer; color: var(--text-primary); }
         .btn-theme:hover, .btn-profile:hover { border-color: #f59e0b; transform: scale(1.05); }
         .progress-bar { background: linear-gradient(90deg, #f59e0b, #ea580c); transition: width 0.5s ease; }
-        .mcq-option {
-            transition: all 0.2s ease;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-        }
+        .mcq-option { transition: all 0.2s ease; cursor: pointer; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(245, 158, 11, 0.2); }
         .mcq-option:hover { background: rgba(245, 158, 11, 0.15); border-color: #f59e0b; transform: translateX(4px); }
         .mcq-option.selected { background: rgba(245, 158, 11, 0.3); border-color: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.3); }
         .mcq-option.correct { background: rgba(34, 197, 94, 0.25); border-color: #22c55e; }
@@ -337,18 +256,9 @@
         .sub-question-box { background: rgba(0, 0, 0, 0.3); border-radius: 8px; padding: 10px; margin-top: 8px; }
         .floating-wa { position: fixed; bottom: 25px; right: 25px; z-index: 1000; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: all 0.2s ease; }
         .floating-wa:hover { transform: scale(1.1); }
-        .side-drawer {
-            position: fixed; top: 0; left: -320px; width: 320px; height: 100%; z-index: 1100;
-            background: var(--card-bg); backdrop-filter: blur(20px); border-right: 1px solid var(--border-color);
-            transition: left 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            box-shadow: 10px 0 30px rgba(0,0,0,0.3);
-        }
+        .side-drawer { position: fixed; top: 0; left: -320px; width: 320px; height: 100%; z-index: 1100; background: var(--card-bg); backdrop-filter: blur(20px); border-right: 1px solid var(--border-color); transition: left 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1); box-shadow: 10px 0 30px rgba(0,0,0,0.3); }
         .side-drawer.open { left: 0; }
-        .drawer-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); backdrop-filter: blur(2px); z-index: 1050;
-            opacity: 0; visibility: hidden; transition: 0.2s;
-        }
+        .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(2px); z-index: 1050; opacity: 0; visibility: hidden; transition: 0.2s; }
         .drawer-overlay.active { opacity: 1; visibility: visible; }
         [data-theme="light"] .side-drawer { background: rgba(255, 255, 255, 0.95); }
         .nav-logo-img { height: 40px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
@@ -363,39 +273,7 @@
 </head>
 <body>
 
-<!-- Profile Modal -->
-<div id="profileModal" class="fixed inset-0 z-[1200] hidden items-center justify-center modal-overlay transition-all">
-    <div class="glass-card rounded-2xl p-6 w-full max-w-md mx-4 relative">
-        <button onclick="document.getElementById('profileModal').classList.add('hidden'); this.parentElement.parentElement.style.display='none'" class="absolute top-4 right-4 text-gray-400 hover:text-amber-400 text-2xl">&times;</button>
-        <div class="text-center mb-6"><i class="fas fa-user-circle text-5xl text-amber-400 mb-2"></i><h3 class="text-2xl font-bold gradient-text">আপনার প্রোফাইল</h3><p class="text-gray-400 text-sm">নিচের তথ্যগুলো পূরণ করুন</p></div>
-        <div class="space-y-3">
-            <input type="text" id="profileName" placeholder="আপনার নাম *" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
-            <input type="text" id="profileSchool" placeholder="বিদ্যালয়ের নাম" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
-            <select id="profileClass" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-amber-500"><option value="">শ্রেণি নির্বাচন করুন</option><option>নবম</option><option>দশম</option></select>
-            <input type="text" id="profileDistrict" placeholder="জেলা" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
-            <button id="saveProfileBtn" class="w-full btn-primary py-2.5 rounded-lg font-semibold">প্রোফাইল সংরক্ষণ করুন</button>
-        </div>
-    </div>
-</div>
-
-<!-- Auth Modal -->
-<div id="authModal" class="fixed inset-0 z-[1200] hidden items-center justify-center modal-overlay transition-all">
-    <div class="glass-card rounded-2xl p-6 w-full max-w-md mx-4 relative">
-        <button onclick="hideAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-amber-400 text-2xl">&times;</button>
-        <div class="text-center mb-6"><img src="pic/NEC3.png" alt="NEC" class="h-12 mx-auto mb-2"><h3 class="text-2xl font-bold gradient-text">ন্যাশনাল এগজাম সেন্টার</h3><p class="text-gray-400 text-sm mt-1">আপনার অ্যাকাউন্টে সাইন ইন করুন</p></div>
-        <button onclick="googleSignIn()" class="w-full flex items-center justify-center gap-3 bg-white/10 border border-white/20 rounded-lg py-2.5 mb-4 hover:bg-white/20 transition"><i class="fab fa-google text-red-500 text-xl"></i><span class="font-medium">Google দিয়ে সাইন ইন করুন</span></button>
-        <div class="relative my-4"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/20"></div></div><div class="relative flex justify-center text-xs"><span class="bg-gray-900 px-2 text-gray-400">অথবা ইমেইল ব্যবহার করুন</span></div></div>
-        <div class="space-y-3">
-            <input type="email" id="emailInput" placeholder="ইমেইল ঠিকানা" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
-            <input type="password" id="passwordInput" placeholder="পাসওয়ার্ড" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
-            <div class="flex items-center justify-between text-sm"><label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="authModeToggle" class="hidden" onchange="toggleAuthMode()"><span class="w-5 h-5 border border-amber-500 rounded flex items-center justify-center"><i class="fas fa-check text-amber-500 text-xs hidden" id="checkIcon"></i></span><span id="authModeText" class="text-gray-400">নতুন ব্যবহারকারী? সাইন আপ করুন</span></label></div>
-            <button id="emailSubmitBtn" onclick="submitEmailAuth()" class="w-full btn-primary py-2.5 rounded-lg font-semibold"><i class="fas fa-sign-in-alt mr-1"></i> লগইন করুন</button>
-        </div>
-        <p class="text-center text-xs text-gray-500 mt-4">সাইন ইন করে আপনি আমাদের <a href="/privacy.html" class="text-amber-400">গোপনীয়তা নীতি</a> মেনে নিচ্ছেন।</p>
-    </div>
-</div>
-
-<!-- Side Drawer -->
+<!-- Modals and Drawer (same as index.html) -->
 <div id="drawerOverlay" class="drawer-overlay" onclick="closeDrawer()"></div>
 <div id="sideDrawer" class="side-drawer flex flex-col">
     <div class="p-5 border-b border-white/10">
@@ -416,7 +294,36 @@
     </div>
 </div>
 
-<!-- Navbar -->
+<div id="profileModal" class="fixed inset-0 z-[1200] hidden items-center justify-center modal-overlay transition-all">
+    <div class="glass-card rounded-2xl p-6 w-full max-w-md mx-4 relative">
+        <button onclick="document.getElementById('profileModal').classList.add('hidden'); this.parentElement.parentElement.style.display='none'" class="absolute top-4 right-4 text-gray-400 hover:text-amber-400 text-2xl">&times;</button>
+        <div class="text-center mb-6"><i class="fas fa-user-circle text-5xl text-amber-400 mb-2"></i><h3 class="text-2xl font-bold gradient-text">আপনার প্রোফাইল</h3><p class="text-gray-400 text-sm">নিচের তথ্যগুলো পূরণ করুন</p></div>
+        <div class="space-y-3">
+            <input type="text" id="profileName" placeholder="আপনার নাম *" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
+            <input type="text" id="profileSchool" placeholder="বিদ্যালয়ের নাম" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
+            <select id="profileClass" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-amber-500"><option value="">শ্রেণি নির্বাচন করুন</option><option>নবম</option><option>দশম</option></select>
+            <input type="text" id="profileDistrict" placeholder="জেলা" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
+            <button id="saveProfileBtn" class="w-full btn-primary py-2.5 rounded-lg font-semibold">প্রোফাইল সংরক্ষণ করুন</button>
+        </div>
+    </div>
+</div>
+
+<div id="authModal" class="fixed inset-0 z-[1200] hidden items-center justify-center modal-overlay transition-all">
+    <div class="glass-card rounded-2xl p-6 w-full max-w-md mx-4 relative">
+        <button onclick="hideAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-amber-400 text-2xl">&times;</button>
+        <div class="text-center mb-6"><img src="pic/NEC3.png" alt="NEC" class="h-12 mx-auto mb-2"><h3 class="text-2xl font-bold gradient-text">ন্যাশনাল এগজাম সেন্টার</h3><p class="text-gray-400 text-sm mt-1">আপনার অ্যাকাউন্টে সাইন ইন করুন</p></div>
+        <button onclick="googleSignIn()" class="w-full flex items-center justify-center gap-3 bg-white/10 border border-white/20 rounded-lg py-2.5 mb-4 hover:bg-white/20 transition"><i class="fab fa-google text-red-500 text-xl"></i><span class="font-medium">Google দিয়ে সাইন ইন করুন</span></button>
+        <div class="relative my-4"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/20"></div></div><div class="relative flex justify-center text-xs"><span class="bg-gray-900 px-2 text-gray-400">অথবা ইমেইল ব্যবহার করুন</span></div></div>
+        <div class="space-y-3">
+            <input type="email" id="emailInput" placeholder="ইমেইল ঠিকানা" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
+            <input type="password" id="passwordInput" placeholder="পাসওয়ার্ড" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
+            <div class="flex items-center justify-between text-sm"><label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="authModeToggle" class="hidden" onchange="toggleAuthMode()"><span class="w-5 h-5 border border-amber-500 rounded flex items-center justify-center"><i class="fas fa-check text-amber-500 text-xs hidden" id="checkIcon"></i></span><span id="authModeText" class="text-gray-400">নতুন ব্যবহারকারী? সাইন আপ করুন</span></label></div>
+            <button id="emailSubmitBtn" onclick="submitEmailAuth()" class="w-full btn-primary py-2.5 rounded-lg font-semibold"><i class="fas fa-sign-in-alt mr-1"></i> লগইন করুন</button>
+        </div>
+        <p class="text-center text-xs text-gray-500 mt-4">সাইন ইন করে আপনি আমাদের <a href="/privacy.html" class="text-amber-400">গোপনীয়তা নীতি</a> মেনে নিচ্ছেন।</p>
+    </div>
+</div>
+
 <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-3">
@@ -465,7 +372,7 @@
 
 <script>
 // ============================================
-// CHEMISTRY APP LOGIC (Preserved + Firestore sync)
+// ORIGINAL CHEMISTRY LOGIC (PRESERVED EXACTLY)
 // ============================================
 
 const CHAPTERS_META = [
@@ -547,7 +454,6 @@ async function markChapterComplete(chapterId) {
             const btn = document.getElementById('markChapterCompleteBtn');
             if (btn) { btn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> সম্পূর্ণ!'; btn.classList.remove('bg-green-500/20', 'border-green-500/50', 'text-green-400'); btn.classList.add('bg-gray-700', 'text-gray-400'); }
         }
-        // Save to Firestore if logged in
         if (window.saveChapterProgress) await window.saveChapterProgress(chapterId);
         showToast('🎉 অধ্যায় সম্পূর্ণ চিহ্নিত করা হয়েছে!', 'success');
     }
@@ -600,9 +506,8 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
     if (creativeQuestions.length > 0) { html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-pencil-alt mr-2"></i>সৃজনশীল প্রশ্ন</h3><div class="space-y-4">${creativeQuestions.map((cq, idx) => `<div class="border border-white/10 rounded-xl overflow-hidden"><button class="cq-toggle w-full text-left hover:bg-white/5 transition flex justify-between items-center p-3 font-medium"><span>${idx+1}. ${(cq.paragraph || '').substring(0, 100)}...</span><i class="fas fa-chevron-down text-gray-500"></i></button><div class="cq-answer hidden border-t border-white/10 p-3"><div class="creative-paragraph mb-3"><strong>উদ্দীপক:</strong> ${cq.paragraph || ''}</div>${Object.entries(cq.sub_questions || {}).map(([key, val]) => `<div class="sub-question-box mb-3"><p class="font-medium text-amber-400">${getBengaliLetter(key)} (${val.marks || '?'} নম্বর)</p><p class="mt-1"><strong>প্রশ্ন:</strong> ${val.question || ''}</p><p class="mt-1 text-green-400"><strong>উত্তর:</strong> ${val.answer || ''}</p></div>`).join('')}</div></div>`).join('')}</div></div>`); }
     if (mathExamples.length > 0) { html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-calculator mr-2"></i>গাণিতিক উদাহরণ</h3><div class="space-y-3">${mathExamples.map((ex, idx) => `<div class="border border-white/10 rounded-xl overflow-hidden"><button class="math-toggle w-full text-left p-3 font-medium hover:bg-white/5 transition flex justify-between items-center"><span>${ex.title || 'গাণিতিক সমস্যা'}</span><i class="fas fa-chevron-down text-gray-500"></i></button><div class="math-answer hidden p-3 pt-0 text-gray-400 border-t border-white/10"><p><strong>সমস্যা:</strong> ${ex.problem || ''}</p><p class="mt-2"><strong>সমাধান:</strong></p><p class="whitespace-pre-line">${ex.solution || ''}</p></div></div>`).join('')}</div></div>`); }
     if (chemicalReactions.length > 0) { html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-flask mr-2"></i>রাসায়নিক বিক্রিয়া</h3><div class="space-y-3">${chemicalReactions.map(cr => `<div class="glass rounded-xl p-3"><p class="font-mono text-amber-400">${cr.equation || ''}</p><p class="text-sm text-gray-400 mt-1">${cr.description || ''}</p></div>`).join('')}</div></div>`); }
-    if (tables.length > 0) { html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>${tables.map(table => `<div class="overflow-x-auto mb-4"><table class="w-full text-sm border border-white/10 rounded-xl"><thead><tr class="border-b border-white/10 bg-white/5">${(table.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}</tr></thead><tbody>${(table.rows || []).map(row => `<tr class="border-b border-white/5">${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('')}</div>`); }
+    if (tables.length > 0) { html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>${tables.map(table => `<div class="overflow-x-auto mb-4"><table class="w-full text-sm border border-white/10 rounded-xl"><thead><tr class="border-b border-white/10 bg-white/5">${(table.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}<tr></thead><tbody>${(table.rows || []).map(row => `<tr class="border-b border-white/5">${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}</tr>`).join('')}</tbody>}</table></div>`).join('')}</div>`); }
     
-    // Full MCQ system (preserved)
     if (examQuestions.length > 0) {
         html += `<div class="mt-8 pt-6 border-t border-white/10"><div class="instruction-box rounded-xl p-4 mb-6"><p class="text-sm text-blue-300"><i class="fas fa-info-circle mr-2"></i><strong>MCQ পরীক্ষার নিয়মাবলী:</strong></p><ul class="text-xs text-blue-200/80 mt-2 space-y-1 ml-4"><li>✓ <strong>প্রথমে "পরীক্ষা শুরু করুন" বাটনে ক্লিক করতে হবে</strong></li><li>✓ পরীক্ষা শুরু করার আগে কোন উত্তর নির্বাচন করা যাবে না</li><li>✓ প্রতিটি প্রশ্নের জন্য <strong>মাত্র একটি উত্তর</strong> নির্বাচন করতে পারবেন</li><li>✓ উত্তর না দিলে সেটি <strong>ভুল হিসেবে গণ্য</strong> হবে</li><li>✓ মোট সময়: ${examQuestions.length} × 60 সেকেন্ড</li></ul></div><div class="exam-header flex flex-wrap justify-between items-center gap-4 mb-6 bg-gray-800/50 rounded-xl p-4"><div><h3 class="text-xl font-bold text-amber-400"><i class="fas fa-check-double mr-2"></i>MCQ পরীক্ষা (বহুনির্বাচনী)</h3><p class="text-sm text-gray-400 mt-1">মোট প্রশ্ন: ${examQuestions.length} | প্রতিটি প্রশ্নের জন্য ১ নম্বর</p></div><div class="flex items-center gap-4"><div id="examTimer" class="text-lg font-mono font-bold text-amber-400 bg-black/50 px-4 py-2 rounded-full">⏱️ 0:00</div><button id="startExamBtn" class="start-exam-btn px-6 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 text-white font-bold shadow-lg transition hover:scale-105"><i class="fas fa-play mr-2"></i> পরীক্ষা শুরু করুন</button></div></div><div id="mcqExamPanel" style="display: none;"><div id="mcqQuestionsContainer" class="space-y-5 mb-6 max-h-[600px] overflow-y-auto pr-2"></div><div class="flex gap-4 mt-6"><button id="submitMcqBtn" class="px-6 py-3 rounded-xl bg-green-600 text-white font-bold shadow-lg hover:bg-green-700 transition"><i class="fas fa-check-circle mr-2"></i> উত্তর জমা দিন ও ফলাফল দেখুন</button><button id="resetMcqBtn" class="px-6 py-3 rounded-xl bg-gray-700 text-gray-300 font-bold hover:bg-gray-600 transition"><i class="fas fa-undo-alt mr-2"></i> রিসেট করুন</button></div></div><div id="mcqResultPanel" class="result-card rounded-xl p-5 mt-6 hidden"></div></div>`;
         container.innerHTML = html;
@@ -649,7 +554,7 @@ function attachMCQLogic(examQuestions) {
     if (resetBtn) resetBtn.onclick = () => resetExam();
 }
 
-// Firestore sync for completed chapters
+// Firestore sync and UI helpers
 window.refreshChaptersFromFirestore = async () => {
     const firestoreCompleted = await window.loadChapterProgress();
     completedChapters = firestoreCompleted;
@@ -663,37 +568,23 @@ window.refreshChaptersFromFirestore = async () => {
         }
     }
 };
-window.clearLocalProgressDisplay = () => {
-    completedChapters = [];
-    updateOverallProgress();
-    renderChaptersGrid();
-};
+window.clearLocalProgressDisplay = () => { completedChapters = []; updateOverallProgress(); renderChaptersGrid(); };
 
-// Theme toggle
 function toggleTheme() { const html = document.documentElement; const cur = html.getAttribute('data-theme'); const sun = document.getElementById('sunIcon'); const moon = document.getElementById('moonIcon'); if (cur === 'light') { html.removeAttribute('data-theme'); if (sun && moon) { sun.style.display = 'none'; moon.style.display = 'inline-block'; } localStorage.setItem('theme', 'dark'); } else { html.setAttribute('data-theme', 'light'); if (sun && moon) { sun.style.display = 'inline-block'; moon.style.display = 'none'; } localStorage.setItem('theme', 'light'); } }
-const savedTheme = localStorage.getItem('theme'); if (savedTheme === 'light') { document.documentElement.setAttribute('data-theme', 'light'); if (document.getElementById('sunIcon')) document.getElementById('sunIcon').style.display = 'inline-block'; if (document.getElementById('moonIcon')) document.getElementById('moonIcon').style.display = 'none'; } else { if (document.getElementById('sunIcon')) document.getElementById('sunIcon').style.display = 'none'; if (document.getElementById('moonIcon')) document.getElementById('moonIcon').style.display = 'inline-block'; }
+const saved = localStorage.getItem('theme'); if (saved === 'light') { document.documentElement.setAttribute('data-theme', 'light'); if (document.getElementById('sunIcon')) document.getElementById('sunIcon').style.display = 'inline-block'; if (document.getElementById('moonIcon')) document.getElementById('moonIcon').style.display = 'none'; } else { if (document.getElementById('sunIcon')) document.getElementById('sunIcon').style.display = 'none'; if (document.getElementById('moonIcon')) document.getElementById('moonIcon').style.display = 'inline-block'; }
 window.toggleTheme = toggleTheme;
 
-// Initialize
 document.addEventListener('DOMContentLoaded', async () => {
-    // Load from Firestore if logged in, else empty
-    if (window.auth && window.auth.currentUser) {
-        completedChapters = await window.loadChapterProgress();
-    } else {
-        completedChapters = [];
-    }
+    if (window.auth && window.auth.currentUser) completedChapters = await window.loadChapterProgress();
+    else completedChapters = [];
     await updateOverallProgress();
     renderChaptersGrid();
-    
     const backBtn = document.getElementById('backToChaptersBtn');
-    if (backBtn) { backBtn.onclick = () => { if (isExamInProgress && !confirm('⚠️ আপনার একটি অসমাপ্ত পরীক্ষা চলছে। আপনি কি নিশ্চিত যে আপনি ফিরে যেতে চান? আপনার অগ্রগতি হারিয়ে যাবে।')) return; if (activeExamTimer) { clearInterval(activeExamTimer); activeExamTimer = null; } isExamInProgress = false; document.getElementById('chaptersView').classList.remove('hidden'); document.getElementById('chapterView').classList.add('hidden'); currentChapterId = null; }; }
+    if (backBtn) { backBtn.onclick = () => { if (isExamInProgress && !confirm('⚠️ আপনার একটি অসমাপ্ত পরীক্ষা চলছে। আপনি কি নিশ্চিত যে আপনি ফিরে যেতে চান?')) return; if (activeExamTimer) clearInterval(activeExamTimer); isExamInProgress = false; document.getElementById('chaptersView').classList.remove('hidden'); document.getElementById('chapterView').classList.add('hidden'); currentChapterId = null; }; }
     const markBtn = document.getElementById('markChapterCompleteBtn');
     if (markBtn) { markBtn.onclick = () => { if (currentChapterId) markChapterComplete(currentChapterId); }; }
-    
-    // Show/hide drawer sign out button based on auth
     setInterval(() => { const signOutBtnDrawer = document.getElementById('drawerSignOutBtn'); if (window.auth && window.auth.currentUser) { if (signOutBtnDrawer) signOutBtnDrawer.classList.remove('hidden'); } else { if (signOutBtnDrawer) signOutBtnDrawer.classList.add('hidden'); } }, 500);
 });
-
 window.openChapter = openChapter;
 </script>
 </body>
