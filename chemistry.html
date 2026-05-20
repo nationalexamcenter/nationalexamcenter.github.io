@@ -1,378 +1,164 @@
 <!DOCTYPE html>
-<html lang="bn" data-theme="dark">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>রসায়ন সম্পূর্ণ সিলেবাস | National Exam Center</title>
+    <title>রসায়ন সম্পূর্ণ সিলেবাস ২০২৬ | NCTB | নবম-দশম বিজ্ঞান | MCQ পরীক্ষা সিস্টেম</title>
     <meta name="description" content="NCTB ২০২৬ সিলেবাস অনুযায়ী নবম-দশম শ্রেণির রসায়নের ১২টি অধ্যায়। সম্পূর্ণ স্টাডি মেটেরিয়াল এবং MCQ পরীক্ষা।">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <!-- Firebase SDKs (same as index.html) -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-        
-        const firebaseConfig = {
-            apiKey: "AIzaSyAOBvQOqaF19oZbrvXY6N1f9G-7z50G_yM",
-            authDomain: "website-nctb2026.firebaseapp.com",
-            projectId: "website-nctb2026",
-            storageBucket: "website-nctb2026.firebasestorage.app",
-            messagingSenderId: "1014641365233",
-            appId: "1:1014641365233:web:88d717b02a956428edd950"
-        };
-        
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const provider = new GoogleAuthProvider();
-        
-        window.auth = auth;
-        window.db = db;
-        
-        async function saveUserProfile(uid, profileData) {
-            const userRef = doc(db, "users", uid);
-            await setDoc(userRef, profileData, { merge: true });
-        }
-        
-        async function showProfileModal(user, isNewUser = false) {
-            const modal = document.getElementById('profileModal');
-            const nameField = document.getElementById('profileName');
-            const schoolField = document.getElementById('profileSchool');
-            const classField = document.getElementById('profileClass');
-            const districtField = document.getElementById('profileDistrict');
-            
-            nameField.value = user.displayName || '';
-            schoolField.value = '';
-            classField.value = '';
-            districtField.value = '';
-            
-            modal.classList.remove('hidden');
-            modal.style.display = 'flex';
-            
-            const saveBtn = document.getElementById('saveProfileBtn');
-            const newSaveBtn = saveBtn.cloneNode(true);
-            saveBtn.parentNode.replaceChild(newSaveBtn, saveBtn);
-            newSaveBtn.onclick = async () => {
-                const profile = {
-                    name: nameField.value,
-                    school: schoolField.value,
-                    class: classField.value,
-                    district: districtField.value,
-                    email: user.email,
-                    photoURL: user.photoURL || null,
-                    updatedAt: new Date().toISOString()
-                };
-                if (isNewUser) profile.createdAt = new Date().toISOString();
-                await saveUserProfile(user.uid, profile);
-                modal.classList.add('hidden');
-                modal.style.display = 'none';
-                await updateUIWithUserProfile(user.uid);
-                alert('প্রোফাইল সেভ করা হয়েছে!');
-            };
-        }
-        
-        async function updateUIWithUserProfile(uid) {
-            const userRef = doc(db, "users", uid);
-            const docSnap = await getDoc(userRef);
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                document.getElementById('userName').textContent = data.name || 'User';
-                document.getElementById('userSchool').textContent = data.school || 'স্কুল দেওয়া হয়নি';
-                document.getElementById('userClass').textContent = data.class || 'ক্লাস দেওয়া হয়নি';
-                document.getElementById('userDistrict').textContent = data.district || 'জেলা দেওয়া হয়নি';
-                const avatar = document.getElementById('userAvatar');
-                if (data.photoURL) avatar.src = data.photoURL;
-                else avatar.src = `https://ui-avatars.com/api/?background=f59e0b&color=fff&name=${encodeURIComponent(data.name || 'User')}`;
-                document.getElementById('drawerUserName').textContent = data.name || 'User';
-                document.getElementById('drawerUserSchool').textContent = data.school || 'স্কুল';
-                document.getElementById('drawerUserClass').textContent = data.class || 'ক্লাস';
-                document.getElementById('drawerUserDistrict').textContent = data.district || 'জেলা';
-                const drawerAvatar = document.getElementById('drawerUserAvatar');
-                if (data.photoURL) drawerAvatar.src = data.photoURL;
-                else drawerAvatar.src = `https://ui-avatars.com/api/?background=f59e0b&color=fff&name=${encodeURIComponent(data.name || 'User')}`;
-            }
-        }
-        
-        // Save chapter progress to Firestore
-        window.saveChapterProgress = async (chapterId) => {
-            const user = auth.currentUser;
-            if (!user) return false;
-            const progressRef = doc(db, "users", user.uid, "progress", "chemistry");
-            const progressSnap = await getDoc(progressRef);
-            let completed = progressSnap.exists() ? progressSnap.data().completedChapters || [] : [];
-            if (!completed.includes(chapterId)) {
-                completed.push(chapterId);
-                await setDoc(progressRef, { completedChapters: completed, updatedAt: new Date().toISOString() });
-            }
-            return true;
-        };
-        
-        window.loadChapterProgress = async () => {
-            const user = auth.currentUser;
-            if (!user) return [];
-            const progressRef = doc(db, "users", user.uid, "progress", "chemistry");
-            const progressSnap = await getDoc(progressRef);
-            return progressSnap.exists() ? progressSnap.data().completedChapters || [] : [];
-        };
-        
-        onAuthStateChanged(auth, async (user) => {
-            const authButtons = document.getElementById('authButtons');
-            const userMenu = document.getElementById('userMenu');
-            if (user) {
-                const userRef = doc(db, "users", user.uid);
-                const docSnap = await getDoc(userRef);
-                if (!docSnap.exists()) await showProfileModal(user, true);
-                else await updateUIWithUserProfile(user.uid);
-                if (authButtons) authButtons.classList.add('hidden');
-                if (userMenu) userMenu.classList.remove('hidden');
-                document.getElementById('drawerLoggedInView').classList.remove('hidden');
-                document.getElementById('drawerLoggedOutView').classList.add('hidden');
-                if (window.refreshChaptersFromFirestore) await window.refreshChaptersFromFirestore();
-            } else {
-                if (authButtons) authButtons.classList.remove('hidden');
-                if (userMenu) userMenu.classList.add('hidden');
-                document.getElementById('drawerLoggedInView').classList.add('hidden');
-                document.getElementById('drawerLoggedOutView').classList.remove('hidden');
-                if (window.clearLocalProgressDisplay) window.clearLocalProgressDisplay();
-            }
-        });
-        
-        window.signOutUser = async () => { await signOut(auth); closeDrawer(); window.location.reload(); };
-        window.showSignInModal = () => { document.getElementById('authModal').classList.remove('hidden'); document.getElementById('authModal').style.display = 'flex'; };
-        window.hideAuthModal = () => { document.getElementById('authModal').classList.add('hidden'); document.getElementById('authModal').style.display = 'none'; };
-        window.googleSignIn = async () => { try { await signInWithPopup(auth, provider); window.hideAuthModal(); } catch (error) { alert(error.message); } };
-        window.submitEmailAuth = async () => {
-            const email = document.getElementById('emailInput').value;
-            const password = document.getElementById('passwordInput').value;
-            const isLogin = document.getElementById('authModeToggle').checked;
-            if (!email || !password) { alert('ইমেইল ও পাসওয়ার্ড দিন'); return; }
-            try {
-                if (isLogin) await signInWithEmailAndPassword(auth, email, password);
-                else await createUserWithEmailAndPassword(auth, email, password);
-                window.hideAuthModal();
-            } catch (error) { alert(error.message); }
-        };
-        window.toggleAuthMode = () => {
-            const toggle = document.getElementById('authModeToggle');
-            const submitBtn = document.getElementById('emailSubmitBtn');
-            const modeText = document.getElementById('authModeText');
-            if (toggle.checked) { submitBtn.innerHTML = '<i class="fas fa-sign-in-alt mr-1"></i> লগইন করুন'; modeText.innerText = 'নতুন ব্যবহারকারী? সাইন আপ করুন'; }
-            else { submitBtn.innerHTML = '<i class="fas fa-user-plus mr-1"></i> সাইন আপ করুন'; modeText.innerText = 'ইতিমধ্যে অ্যাকাউন্ট আছে? লগইন করুন'; }
-        };
-        window.editProfile = async () => {
-            const user = auth.currentUser;
-            if (user) {
-                const userRef = doc(db, "users", user.uid);
-                const docSnap = await getDoc(userRef);
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    document.getElementById('profileName').value = data.name || '';
-                    document.getElementById('profileSchool').value = data.school || '';
-                    document.getElementById('profileClass').value = data.class || '';
-                    document.getElementById('profileDistrict').value = data.district || '';
-                }
-                const modal = document.getElementById('profileModal');
-                modal.classList.remove('hidden');
-                modal.style.display = 'flex';
-                const saveBtn = document.getElementById('saveProfileBtn');
-                const newSaveBtn = saveBtn.cloneNode(true);
-                saveBtn.parentNode.replaceChild(newSaveBtn, saveBtn);
-                newSaveBtn.onclick = async () => {
-                    const profile = {
-                        name: document.getElementById('profileName').value,
-                        school: document.getElementById('profileSchool').value,
-                        class: document.getElementById('profileClass').value,
-                        district: document.getElementById('profileDistrict').value,
-                        updatedAt: new Date().toISOString()
-                    };
-                    await saveUserProfile(user.uid, profile);
-                    modal.classList.add('hidden');
-                    modal.style.display = 'none';
-                    await updateUIWithUserProfile(user.uid);
-                    alert('প্রোফাইল আপডেট করা হয়েছে!');
-                };
-            }
-        };
-        window.onclick = (event) => {
-            const authModal = document.getElementById('authModal');
-            const profileModal = document.getElementById('profileModal');
-            if (event.target === authModal) window.hideAuthModal();
-            if (event.target === profileModal) { profileModal.classList.add('hidden'); profileModal.style.display = 'none'; }
-        };
-        window.openDrawer = () => { document.getElementById('sideDrawer').classList.add('open'); document.getElementById('drawerOverlay').classList.add('active'); };
-        window.closeDrawer = () => { document.getElementById('sideDrawer').classList.remove('open'); document.getElementById('drawerOverlay').classList.remove('active'); };
-    </script>
-    
     <style>
         * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        :root {
-            --bg-primary: #0a0f1a;
-            --bg-secondary: #0c1320;
-            --card-bg: rgba(18, 25, 45, 0.7);
-            --text-primary: #e5e7eb;
-            --text-secondary: #9ca3af;
-            --border-color: rgba(245, 158, 11, 0.2);
-            --border-hover: rgba(245, 158, 11, 0.5);
-            --glass-border: rgba(255, 255, 255, 0.05);
+        body { background: linear-gradient(135deg, #0a0f1a 0%, #0c1320 100%); }
+        .glass-card {
+            background: rgba(18, 25, 45, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            transition: all 0.3s ease;
         }
-        [data-theme="light"] {
-            --bg-primary: #f0f2f5;
-            --bg-secondary: #e8eaef;
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --text-primary: #1a1a2e;
-            --text-secondary: #4a5568;
-            --border-color: rgba(245, 158, 11, 0.3);
-            --border-hover: rgba(245, 158, 11, 0.7);
-            --glass-border: rgba(0, 0, 0, 0.08);
+        .glass-card:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+            transform: translateY(-4px);
         }
-        body { background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%); color: var(--text-primary); transition: background 0.3s ease, color 0.3s ease; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); }
-        [data-theme="light"] .glass { background: rgba(0, 0, 0, 0.03); }
-        .glass-card { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--border-color); transition: all 0.3s ease; }
-        .glass-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-        .gradient-text { background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .btn-primary { background: linear-gradient(105deg, #ff9a3c, #ff6a2c); transition: all 0.2s ease; box-shadow: 0 8px 20px rgba(255, 100, 30, 0.3); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255, 100, 30, 0.5); }
-        .btn-secondary { border: 1px solid var(--border-color); transition: all 0.2s ease; color: var(--text-primary); }
-        .btn-secondary:hover { background: rgba(245, 158, 11, 0.1); border-color: #f59e0b; transform: translateY(-2px); }
-        .btn-wa { background: linear-gradient(105deg, #25D366, #128C7E); transition: all 0.2s ease; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3); }
-        .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5); }
-        .btn-theme, .btn-profile { background: var(--card-bg); border: 1px solid var(--border-color); transition: all 0.2s ease; cursor: pointer; color: var(--text-primary); }
-        .btn-theme:hover, .btn-profile:hover { border-color: #f59e0b; transform: scale(1.05); }
-        .progress-bar { background: linear-gradient(90deg, #f59e0b, #ea580c); transition: width 0.5s ease; }
-        .mcq-option { transition: all 0.2s ease; cursor: pointer; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(245, 158, 11, 0.2); }
-        .mcq-option:hover { background: rgba(245, 158, 11, 0.15); border-color: #f59e0b; transform: translateX(4px); }
-        .mcq-option.selected { background: rgba(245, 158, 11, 0.3); border-color: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.3); }
+        .gradient-text {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .progress-bar {
+            background: linear-gradient(90deg, #f59e0b, #ea580c);
+            transition: width 0.5s ease;
+        }
+        .mcq-option {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        .mcq-option:hover { 
+            background: rgba(245, 158, 11, 0.15); 
+            border-color: #f59e0b;
+            transform: translateX(4px);
+        }
+        .mcq-option.selected { 
+            background: rgba(245, 158, 11, 0.3); 
+            border-color: #f59e0b;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+        }
         .mcq-option.correct { background: rgba(34, 197, 94, 0.25); border-color: #22c55e; }
         .mcq-option.wrong { background: rgba(239, 68, 68, 0.25); border-color: #ef4444; }
-        .result-card { background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(234, 88, 12, 0.05)); border: 1px solid rgba(245, 158, 11, 0.4); }
-        .timer-warning { animation: timerPulse 1s ease-in-out infinite; }
-        @keyframes timerPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
-        .instruction-box { background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; }
-        .creative-paragraph { background: rgba(245, 158, 11, 0.1); border-left: 3px solid #f59e0b; padding: 12px; border-radius: 8px; margin-bottom: 12px; }
-        .sub-question-box { background: rgba(0, 0, 0, 0.3); border-radius: 8px; padding: 10px; margin-top: 8px; }
+        .result-card {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(234, 88, 12, 0.05));
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+        .instruction-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+        }
+        .timer-warning {
+            animation: timerPulse 1s ease-in-out infinite;
+        }
+        @keyframes timerPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        @keyframes float { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); } 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); } }
+        .float-animation { animation: float 4s ease-in-out infinite; }
+        .start-exam-btn { animation: pulse 2s infinite; }
         .floating-wa { position: fixed; bottom: 25px; right: 25px; z-index: 1000; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: all 0.2s ease; }
         .floating-wa:hover { transform: scale(1.1); }
-        .side-drawer { position: fixed; top: 0; left: -320px; width: 320px; height: 100%; z-index: 1100; background: var(--card-bg); backdrop-filter: blur(20px); border-right: 1px solid var(--border-color); transition: left 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1); box-shadow: 10px 0 30px rgba(0,0,0,0.3); }
-        .side-drawer.open { left: 0; }
-        .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(2px); z-index: 1050; opacity: 0; visibility: hidden; transition: 0.2s; }
-        .drawer-overlay.active { opacity: 1; visibility: visible; }
-        [data-theme="light"] .side-drawer { background: rgba(255, 255, 255, 0.95); }
-        .nav-logo-img { height: 40px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
-        [data-theme="light"] .nav-logo-img { filter: brightness(0.9); }
         .loader { border: 3px solid rgba(245, 158, 11, 0.3); border-top: 3px solid #f59e0b; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
-        @media (max-width: 768px) { .side-drawer { width: 280px; } }
+        .creative-paragraph {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 3px solid #f59e0b;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        .sub-question-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 8px;
+        }
     </style>
 </head>
-<body>
+<body class="text-gray-200">
 
-<!-- Drawer and Modals (same as index) -->
-<div id="drawerOverlay" class="drawer-overlay" onclick="closeDrawer()"></div>
-<div id="sideDrawer" class="side-drawer flex flex-col">
-    <div class="p-5 border-b border-white/10">
-        <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold gradient-text">আমার প্রোফাইল</span><button onclick="closeDrawer()" class="text-gray-400 hover:text-amber-400 text-xl">&times;</button></div>
-        <div id="drawerLoggedInView">
-            <div class="flex items-center gap-3 mb-3"><img id="drawerUserAvatar" src="https://ui-avatars.com/api/?background=f59e0b&color=fff&name=User" class="w-14 h-14 rounded-full border-2 border-amber-500 object-cover"><div><p id="drawerUserName" class="font-bold">User</p><button onclick="editProfile()" class="text-xs text-amber-400 mt-1"><i class="fas fa-edit mr-1"></i> প্রোফাইল এডিট</button></div></div>
-            <div class="space-y-1 text-sm"><p><i class="fas fa-school w-5 text-amber-400"></i> <span id="drawerUserSchool">স্কুল</span></p><p><i class="fas fa-graduation-cap w-5 text-amber-400"></i> <span id="drawerUserClass">ক্লাস</span></p><p><i class="fas fa-map-marker-alt w-5 text-amber-400"></i> <span id="drawerUserDistrict">জেলা</span></p></div>
+<nav class="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <i class="fas fa-flask text-2xl text-amber-500 float-animation"></i>
+            <span class="font-bold text-xl gradient-text">রসায়ন সম্পূর্ণ সিলেবাস ২০২৬</span>
+            <span class="text-xs bg-amber-500/20 px-2 py-1 rounded-full hidden md:inline-block">NCTB ২০২৬ | এসএসসি ২০২৭</span>
         </div>
-        <div id="drawerLoggedOutView" class="text-center py-4"><i class="fas fa-user-circle text-5xl text-amber-400 mb-2"></i><p class="text-sm mb-3">প্রোফাইল দেখতে লগইন করুন</p><button onclick="showSignInModal(); closeDrawer()" class="btn-primary px-4 py-2 rounded-lg text-sm w-full">লগইন / সাইন আপ</button></div>
-    </div>
-    <div class="flex-1 p-4 space-y-2">
-        <a href="/" class="flex items-center gap-3 p-2 rounded-lg hover:bg-amber-500/10 transition"><i class="fas fa-home w-5 text-amber-400"></i> হোমপেজ</a>
-        <a href="#pricing" class="flex items-center gap-3 p-2 rounded-lg hover:bg-amber-500/10 transition"><i class="fas fa-tags w-5 text-amber-400"></i> সাবস্ক্রিপশন প্ল্যান</a>
-        <a href="/privacy.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-amber-500/10 transition"><i class="fas fa-shield-alt w-5 text-amber-400"></i> গোপনীয়তা নীতি</a>
-        <hr class="border-white/10 my-2">
-        <button onclick="toggleTheme()" class="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-amber-500/10 transition"><i class="fas fa-moon w-5 text-amber-400"></i> থিম পরিবর্তন</button>
-        <div id="drawerSignOutBtn" class="hidden"><button onclick="signOutUser()" class="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-red-500/10 transition text-red-400"><i class="fas fa-sign-out-alt w-5"></i> সাইন আউট</button></div>
-    </div>
-</div>
-
-<div id="profileModal" class="fixed inset-0 z-[1200] hidden items-center justify-center modal-overlay transition-all">
-    <div class="glass-card rounded-2xl p-6 w-full max-w-md mx-4 relative">
-        <button onclick="document.getElementById('profileModal').classList.add('hidden'); this.parentElement.parentElement.style.display='none'" class="absolute top-4 right-4 text-gray-400 hover:text-amber-400 text-2xl">&times;</button>
-        <div class="text-center mb-6"><i class="fas fa-user-circle text-5xl text-amber-400 mb-2"></i><h3 class="text-2xl font-bold gradient-text">আপনার প্রোফাইল</h3><p class="text-gray-400 text-sm">নিচের তথ্যগুলো পূরণ করুন</p></div>
-        <div class="space-y-3">
-            <input type="text" id="profileName" placeholder="আপনার নাম *" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
-            <input type="text" id="profileSchool" placeholder="বিদ্যালয়ের নাম" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
-            <select id="profileClass" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-amber-500"><option value="">শ্রেণি নির্বাচন করুন</option><option>নবম</option><option>দশম</option></select>
-            <input type="text" id="profileDistrict" placeholder="জেলা" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
-            <button id="saveProfileBtn" class="w-full btn-primary py-2.5 rounded-lg font-semibold">প্রোফাইল সংরক্ষণ করুন</button>
-        </div>
-    </div>
-</div>
-
-<div id="authModal" class="fixed inset-0 z-[1200] hidden items-center justify-center modal-overlay transition-all">
-    <div class="glass-card rounded-2xl p-6 w-full max-w-md mx-4 relative">
-        <button onclick="hideAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-amber-400 text-2xl">&times;</button>
-        <div class="text-center mb-6"><img src="pic/NEC3.png" alt="NEC" class="h-12 mx-auto mb-2"><h3 class="text-2xl font-bold gradient-text">ন্যাশনাল এগজাম সেন্টার</h3><p class="text-gray-400 text-sm mt-1">আপনার অ্যাকাউন্টে সাইন ইন করুন</p></div>
-        <button onclick="googleSignIn()" class="w-full flex items-center justify-center gap-3 bg-white/10 border border-white/20 rounded-lg py-2.5 mb-4 hover:bg-white/20 transition"><i class="fab fa-google text-red-500 text-xl"></i><span class="font-medium">Google দিয়ে সাইন ইন করুন</span></button>
-        <div class="relative my-4"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/20"></div></div><div class="relative flex justify-center text-xs"><span class="bg-gray-900 px-2 text-gray-400">অথবা ইমেইল ব্যবহার করুন</span></div></div>
-        <div class="space-y-3">
-            <input type="email" id="emailInput" placeholder="ইমেইল ঠিকানা" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
-            <input type="password" id="passwordInput" placeholder="পাসওয়ার্ড" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
-            <div class="flex items-center justify-between text-sm"><label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="authModeToggle" class="hidden" onchange="toggleAuthMode()"><span class="w-5 h-5 border border-amber-500 rounded flex items-center justify-center"><i class="fas fa-check text-amber-500 text-xs hidden" id="checkIcon"></i></span><span id="authModeText" class="text-gray-400">নতুন ব্যবহারকারী? সাইন আপ করুন</span></label></div>
-            <button id="emailSubmitBtn" onclick="submitEmailAuth()" class="w-full btn-primary py-2.5 rounded-lg font-semibold"><i class="fas fa-sign-in-alt mr-1"></i> লগইন করুন</button>
-        </div>
-        <p class="text-center text-xs text-gray-500 mt-4">সাইন ইন করে আপনি আমাদের <a href="/privacy.html" class="text-amber-400">গোপনীয়তা নীতি</a> মেনে নিচ্ছেন।</p>
-    </div>
-</div>
-
-<nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center py-3">
-            <div class="flex items-center gap-3">
-                <button onclick="openDrawer()" class="text-2xl text-amber-400 hover:scale-110 transition"><i class="fas fa-bars"></i></button>
-                <img src="pic/NEC3.png" alt="Logo" class="nav-logo-img" onerror="this.src='https://placehold.co/313x129/ffffff/ff9a3c?text=NEC';">
-                <span class="font-bold text-xl gradient-text">National Exam Center</span>
-                <span class="hidden md:inline-block text-xs bg-amber-500/20 px-2 py-1 rounded-full">রসায়ন সম্পূর্ণ সিলেবাস ২০২৬</span>
+        <div class="flex gap-4">
+            <div class="hidden md:flex items-center gap-2 text-sm">
+                <i class="fas fa-chart-line text-amber-500"></i>
+                <span id="overallProgress" class="font-mono">0%</span>
             </div>
-            <div class="flex items-center gap-4">
-                <button onclick="toggleTheme()" class="btn-theme px-3 py-2 rounded-lg text-sm"><i class="fas fa-sun" id="sunIcon"></i><i class="fas fa-moon" id="moonIcon" style="display: none;"></i></button>
-                <div id="authButtons" class="flex gap-2"><button onclick="showSignInModal()" class="btn-secondary px-3 py-2 rounded-lg text-sm"><i class="fas fa-user mr-1"></i> লগইন</button></div>
-                <div id="userMenu" class="hidden relative group">
-                    <button class="btn-profile w-9 h-9 rounded-full overflow-hidden border-2 border-amber-500/50"><img id="userAvatar" src="https://ui-avatars.com/api/?background=f59e0b&color=fff&name=User" class="w-full h-full object-cover"></button>
-                    <div class="absolute right-0 mt-2 w-64 glass-card rounded-xl p-3 hidden group-hover:block z-50">
-                        <div class="border-b border-white/10 pb-2 mb-2"><p id="userName" class="font-semibold text-sm">User</p><p id="userSchool" class="text-xs text-gray-400 truncate">স্কুল</p><p id="userClass" class="text-xs text-gray-400">ক্লাস</p><p id="userDistrict" class="text-xs text-gray-400">জেলা</p></div>
-                        <button onclick="editProfile()" class="w-full text-left text-sm text-amber-400 hover:bg-amber-500/10 px-2 py-1.5 rounded-lg transition"><i class="fas fa-edit mr-2"></i> প্রোফাইল এডিট</button>
-                        <button onclick="signOutUser()" class="w-full text-left text-sm text-red-400 hover:bg-red-500/10 px-2 py-1.5 rounded-lg transition"><i class="fas fa-sign-out-alt mr-2"></i> সাইন আউট</button>
-                    </div>
-                </div>
-                <a href="/" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-home mr-1"></i> হোম</a>
-                <a href="/privacy.html" class="hidden md:block text-gray-400 text-sm hover:text-amber-400 transition">গোপনীয়তা</a>
-                <a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" target="_blank" class="btn-wa px-4 py-2 rounded-lg text-white text-sm font-semibold transition"><i class="fab fa-whatsapp mr-1"></i> WhatsApp</a>
-            </div>
+            <a href="/" class="px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition">
+                <i class="fas fa-home mr-1"></i> হোম
+            </a>
+            <a href="/privacy.html" class="hidden md:block text-gray-400 text-sm hover:text-amber-400 transition">গোপনীয়তা</a>
         </div>
     </div>
 </nav>
 
-<!-- Main Chemistry Content -->
-<div class="pt-20 pb-16">
+<div class="pt-16">
     <div id="chaptersView" class="max-w-7xl mx-auto px-4 py-8">
-        <div class="text-center mb-12"><h1 class="text-4xl md:text-5xl font-bold gradient-text mb-4">রসায়ন সম্পূর্ণ সিলেবাস ২০২৬</h1><p class="text-gray-400 max-w-2xl mx-auto">NCTB ২০২৬ সিলেবাস অনুযায়ী নবম ও দশম শ্রেণির রসায়নের ১২টি অধ্যায় | এসএসসি ২০২৭ পরীক্ষার প্রস্তুতি</p></div>
-        <div class="glass-card rounded-2xl p-6 mb-8"><h3 class="text-lg font-semibold mb-3"><i class="fas fa-chart-line text-amber-400 mr-2"></i>আপনার পড়ার অগ্রগতি</h3><div class="h-3 bg-gray-800 rounded-full overflow-hidden"><div id="mainProgressBar" class="h-full progress-bar rounded-full" style="width: 0%"></div></div><p class="text-sm text-gray-400 mt-2"><span id="completedChaptersCount">0</span>/<span id="totalChaptersCount">12</span> অধ্যায় সম্পূর্ণ</p></div>
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold gradient-text mb-4">রসায়ন সম্পূর্ণ সিলেবাস ২০২৬</h1>
+            <p class="text-gray-400 max-w-2xl mx-auto">NCTB ২০২৬ সিলেবাস অনুযায়ী নবম ও দশম শ্রেণির রসায়নের ১২টি অধ্যায় | এসএসসি ২০২৭ পরীক্ষার প্রস্তুতি</p>
+        </div>
+        
+        <div class="glass-card rounded-2xl p-6 mb-8">
+            <h3 class="text-lg font-semibold mb-3"><i class="fas fa-chart-line text-amber-400 mr-2"></i>আপনার পড়ার অগ্রগতি</h3>
+            <div class="h-3 bg-gray-800 rounded-full overflow-hidden">
+                <div id="mainProgressBar" class="h-full progress-bar rounded-full" style="width: 0%"></div>
+            </div>
+            <p class="text-sm text-gray-400 mt-2"><span id="completedChaptersCount">0</span>/<span id="totalChaptersCount">12</span> অধ্যায় সম্পূর্ণ</p>
+        </div>
+        
         <div id="chaptersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </div>
     
     <div id="chapterView" class="hidden max-w-5xl mx-auto px-4 py-6">
-        <div class="mb-6"><button id="backToChaptersBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition"><i class="fas fa-arrow-left"></i> সব অধ্যায়ে ফিরুন</button></div>
-        <div class="glass-card rounded-2xl p-6 mb-8"><div class="flex justify-between items-start flex-wrap gap-3"><div><span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">অধ্যায় <span id="chapterNumber"></span></span><h1 class="text-2xl md:text-3xl font-bold mt-2" id="chapterTitle"></h1></div><button id="markChapterCompleteBtn" class="px-4 py-2 rounded-lg bg-green-500/20 border border-green-500/50 text-green-400 text-sm hover:bg-green-500/30 transition"><i class="fas fa-check-circle mr-1"></i> অধ্যায় সম্পূর্ণ চিহ্নিত করুন</button></div></div>
+        <div class="mb-6">
+            <button id="backToChaptersBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition">
+                <i class="fas fa-arrow-left"></i> সব অধ্যায়ে ফিরুন
+            </button>
+        </div>
+        
+        <div class="glass-card rounded-2xl p-6 mb-8">
+            <div class="flex justify-between items-start flex-wrap gap-3">
+                <div>
+                    <span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">অধ্যায় <span id="chapterNumber"></span></span>
+                    <h1 class="text-2xl md:text-3xl font-bold mt-2" id="chapterTitle"></h1>
+                </div>
+                <button id="markChapterCompleteBtn" class="px-4 py-2 rounded-lg bg-green-500/20 border border-green-500/50 text-green-400 text-sm hover:bg-green-500/30 transition">
+                    <i class="fas fa-check-circle mr-1"></i> অধ্যায় সম্পূর্ণ চিহ্নিত করুন
+                </button>
+            </div>
+        </div>
+        
         <div class="flex flex-wrap gap-2 mb-6 border-b border-white/10 pb-3" id="topicsTabs"></div>
-        <div id="topicContent" class="glass-card rounded-2xl p-6"><div class="loader"></div></div>
+        
+        <div id="topicContent" class="glass-card rounded-2xl p-6">
+            <div class="loader"></div>
+        </div>
     </div>
 </div>
 
-<a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" class="floating-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<a href="https://wa.me/8801602105447" class="floating-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <script>
 // ============================================
-// COMPLETE ORIGINAL CHEMISTRY LOGIC (FULLY PRESERVED)
+// FULLY FIXED CHEMISTRY APP - MCQ SCORING & REVIEW ANSWERS
 // ============================================
 
 const CHAPTERS_META = [
@@ -391,106 +177,239 @@ const CHAPTERS_META = [
 ];
 
 let completedChapters = [];
+try {
+    const stored = localStorage.getItem('chemistry_completed_chapters');
+    if (stored) completedChapters = JSON.parse(stored);
+} catch(e) { completedChapters = []; }
+
 let currentChapterId = null;
 let currentTopicIndex = 0;
 let chapterDataCache = {};
+
+// Global timer and exam state flags
 let activeExamTimer = null;
 let isExamInProgress = false;
 
 function showToast(message, type = 'info') {
     const toast = document.createElement('div');
-    toast.className = `fixed bottom-20 left-1/2 transform -translate-x-1/2 px-5 py-3 rounded-xl text-sm z-50 shadow-xl font-medium ${type === 'success' ? 'bg-green-600' : type === 'error' ? 'bg-red-600' : 'bg-blue-600'} text-white`;
+    toast.className = `fixed bottom-20 left-1/2 transform -translate-x-1/2 px-5 py-3 rounded-xl text-sm z-50 shadow-xl font-medium ${
+        type === 'success' ? 'bg-green-600' : type === 'error' ? 'bg-red-600' : 'bg-blue-600'
+    } text-white`;
     toast.innerText = message;
     document.body.appendChild(toast);
     setTimeout(() => toast.remove(), 3000);
 }
 
-function getBengaliLetter(key) { const letters = { 'ka': 'ক', 'kha': 'খ', 'ga': 'গ', 'gha': 'ঘ' }; return letters[key] || key.toUpperCase(); }
-function shuffleArray(array) { for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [array[i], array[j]] = [array[j], array[i]]; } return array; }
+function getBengaliLetter(key) {
+    const letters = { 'ka': 'ক', 'kha': 'খ', 'ga': 'গ', 'gha': 'ঘ' };
+    return letters[key] || key.toUpperCase();
+}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// Normalize question: convert answer (string or number) to index
 function normalizeQuestion(question, idx) {
-    if (!question.o || !Array.isArray(question.o)) return question;
+    if (!question.o || !Array.isArray(question.o)) {
+        console.error(`Question ${idx} has invalid options`, question);
+        return question;
+    }
+    const options = question.o;
     let correctIndex = -1;
-    if (typeof question.a === 'number') correctIndex = question.a;
-    else if (typeof question.a === 'string') { const answerText = question.a.trim(); correctIndex = question.o.findIndex(opt => opt.trim() === answerText); if (correctIndex === -1) correctIndex = 0; }
-    else correctIndex = 0;
-    return { q: question.q, o: [...question.o], a: correctIndex };
+    
+    if (typeof question.a === 'number') {
+        correctIndex = question.a;
+        if (correctIndex < 0 || correctIndex >= options.length) {
+            console.error(`Question ${idx}: index ${correctIndex} out of range, default 0`);
+            correctIndex = 0;
+        }
+    } else if (typeof question.a === 'string') {
+        const answerText = question.a.trim();
+        correctIndex = options.findIndex(opt => opt.trim() === answerText);
+        if (correctIndex === -1) {
+            console.error(`Question ${idx}: answer "${answerText}" not found, default 0`);
+            correctIndex = 0;
+        }
+    } else {
+        console.error(`Question ${idx}: invalid 'a' type, default 0`);
+        correctIndex = 0;
+    }
+    
+    return {
+        q: question.q,
+        o: [...options],
+        a: correctIndex
+    };
 }
 
 async function loadChapter(chapterId) {
     if (chapterDataCache[chapterId]) return chapterDataCache[chapterId];
+    
     try {
         const response = await fetch(`data/chapter-${chapterId}.json`);
         if (!response.ok) throw new Error(`Chapter ${chapterId} not found`);
         const data = await response.json();
+        
+        // Normalize all MCQ questions
         if (data.topics && data.topics.length) {
-            data.topics.forEach(topic => { if (topic.exam && topic.exam.questions) { topic.exam.questions = topic.exam.questions.map((q, idx) => normalizeQuestion(q, idx)); } });
+            data.topics.forEach(topic => {
+                if (topic.exam && topic.exam.questions) {
+                    topic.exam.questions = topic.exam.questions.map((q, idx) => normalizeQuestion(q, idx));
+                }
+            });
         }
+        
         chapterDataCache[chapterId] = data;
         return data;
     } catch (error) {
+        console.error(`Error loading chapter ${chapterId}:`, error);
+        // Fallback data with normalized answers
         const fallbackMCQ = [
             { q: `${CHAPTERS_META.find(c => c.id === chapterId)?.title} অধ্যায়ের মূল বিষয় কী?`, o: ["পারমাণবিক গঠন", "রাসায়নিক বন্ধন", "মৌলের পর্যায়বৃত্ত ধর্ম", "তাপগতি"], a: 1 },
-            { q: "রসায়নের জনক কে?", o: ["আইজ্যাক নিউটন", "অ্যান্টনি ল্যাভয়সিয়ে", "আল-বেরুনি", "জাবির ইবনে হাইয়ান"], a: 3 }
+            { q: "রসায়নের জনক কে?", o: ["আইজ্যাক নিউটন", "অ্যান্টনি ল্যাভয়সিয়ে", "আল-বেরুনি", "জাবির ইবনে হাইয়ান"], a: 3 },
+            { q: "মোলার ভরের একক কী?", o: ["গ্রাম", "মোল", "গ্রাম/মোল", "কেজি/মোল"], a: 2 }
         ];
-        return { chapter_title: CHAPTERS_META.find(c => c.id === chapterId)?.title || `অধ্যায় ${chapterId}`, topics: [{ id: `${chapterId}.1`, title: `${CHAPTERS_META.find(c => c.id === chapterId)?.title || `অধ্যায় ${chapterId}`} - সম্পূর্ণ প্রস্তুতি`, study: { summary: [`• ${CHAPTERS_META.find(c => c.id === chapterId)?.title} অধ্যায়ের বিস্তারিত ব্যাখ্যা।`, '• এনসিটিবি ২০২৬ সিলেবাস অনুযায়ী।'] }, exam: { questions: fallbackMCQ } }] };
+        return {
+            chapter_title: CHAPTERS_META.find(c => c.id === chapterId)?.title || `অধ্যায় ${chapterId}`,
+            topics: [{
+                id: `${chapterId}.1`,
+                title: `${CHAPTERS_META.find(c => c.id === chapterId)?.title || `অধ্যায় ${chapterId}`} - সম্পূর্ণ প্রস্তুতি`,
+                study: { 
+                    summary: [`• ${CHAPTERS_META.find(c => c.id === chapterId)?.title} অধ্যায়ের বিস্তারিত ব্যাখ্যা।`, '• এনসিটিবি ২০২৬ সিলেবাস অনুযায়ী।']
+                },
+                exam: { questions: fallbackMCQ }
+            }]
+        };
     }
 }
 
-async function updateOverallProgress() {
+function updateOverallProgress() {
     const percent = Math.round((completedChapters.length / 12) * 100);
+    const progressSpan = document.getElementById('overallProgress');
     const progressBar = document.getElementById('mainProgressBar');
     const completedSpan = document.getElementById('completedChaptersCount');
+    if (progressSpan) progressSpan.innerText = percent + '%';
     if (progressBar) progressBar.style.width = percent + '%';
     if (completedSpan) completedSpan.innerText = completedChapters.length;
     document.getElementById('totalChaptersCount').innerText = 12;
+    localStorage.setItem('chemistry_completed_chapters', JSON.stringify(completedChapters));
 }
 
-async function markChapterComplete(chapterId) {
+function markChapterComplete(chapterId) {
     if (!completedChapters.includes(chapterId)) {
         completedChapters.push(chapterId);
-        await updateOverallProgress();
+        updateOverallProgress();
         renderChaptersGrid();
         if (currentChapterId === chapterId) {
             const btn = document.getElementById('markChapterCompleteBtn');
-            if (btn) { btn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> সম্পূর্ণ!'; btn.classList.remove('bg-green-500/20', 'border-green-500/50', 'text-green-400'); btn.classList.add('bg-gray-700', 'text-gray-400'); }
+            if (btn) {
+                btn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> সম্পূর্ণ!';
+                btn.classList.remove('bg-green-500/20', 'border-green-500/50', 'text-green-400');
+                btn.classList.add('bg-gray-700', 'text-gray-400');
+            }
         }
-        if (window.saveChapterProgress) await window.saveChapterProgress(chapterId);
         showToast('🎉 অধ্যায় সম্পূর্ণ চিহ্নিত করা হয়েছে!', 'success');
     }
 }
 
-async function renderChaptersGrid() {
+function renderChaptersGrid() {
     const container = document.getElementById('chaptersGrid');
     if (!container) return;
+    
     container.innerHTML = CHAPTERS_META.map(ch => `
-        <div class="glass-card rounded-2xl p-6 chapter-card"><div class="flex justify-between items-start mb-3"><span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">অধ্যায় ${ch.id}</span>${completedChapters.includes(ch.id) ? '<i class="fas fa-check-circle text-green-500 text-xl"></i>' : ''}</div><h3 class="text-xl font-bold mb-1">${ch.title}</h3><p class="text-gray-400 text-sm mb-4">${ch.title_en}</p><button onclick="window.openChapter(${ch.id})" class="w-full px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-book-open mr-1"></i> পড়ুন ও পরীক্ষা দিন</button></div>
+        <div class="glass-card rounded-2xl p-6 chapter-card">
+            <div class="flex justify-between items-start mb-3">
+                <span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">অধ্যায় ${ch.id}</span>
+                ${completedChapters.includes(ch.id) ? '<i class="fas fa-check-circle text-green-500 text-xl"></i>' : ''}
+            </div>
+            <h3 class="text-xl font-bold mb-1">${ch.title}</h3>
+            <p class="text-gray-400 text-sm mb-4">${ch.title_en}</p>
+            <button onclick="openChapter(${ch.id})" class="w-full px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition">
+                <i class="fas fa-book-open mr-1"></i> পড়ুন ও পরীক্ষা দিন
+            </button>
+        </div>
     `).join('');
 }
 
 async function openChapter(chapterId) {
-    if (activeExamTimer) { clearInterval(activeExamTimer); activeExamTimer = null; }
+    // Clean up any running exam before leaving current chapter
+    if (activeExamTimer) {
+        clearInterval(activeExamTimer);
+        activeExamTimer = null;
+    }
     isExamInProgress = false;
+    
     currentChapterId = chapterId;
     const chapterData = await loadChapter(chapterId);
+    
     document.getElementById('chaptersView').classList.add('hidden');
     document.getElementById('chapterView').classList.remove('hidden');
     document.getElementById('chapterNumber').innerText = chapterId;
     document.getElementById('chapterTitle').innerHTML = chapterData.chapter_title;
+    
     const markBtn = document.getElementById('markChapterCompleteBtn');
-    if (completedChapters.includes(chapterId)) { markBtn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> সম্পূর্ণ!'; markBtn.classList.remove('bg-green-500/20', 'border-green-500/50', 'text-green-400'); markBtn.classList.add('bg-gray-700', 'text-gray-400'); }
-    else { markBtn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> অধ্যায় সম্পূর্ণ চিহ্নিত করুন'; markBtn.classList.remove('bg-gray-700', 'text-gray-400'); markBtn.classList.add('bg-green-500/20', 'border-green-500/50', 'text-green-400'); }
+    if (completedChapters.includes(chapterId)) {
+        markBtn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> সম্পূর্ণ!';
+        markBtn.classList.remove('bg-green-500/20', 'border-green-500/50', 'text-green-400');
+        markBtn.classList.add('bg-gray-700', 'text-gray-400');
+    } else {
+        markBtn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> অধ্যায় সম্পূর্ণ চিহ্নিত করুন';
+        markBtn.classList.remove('bg-gray-700', 'text-gray-400');
+        markBtn.classList.add('bg-green-500/20', 'border-green-500/50', 'text-green-400');
+    }
+    
     const tabsContainer = document.getElementById('topicsTabs');
-    tabsContainer.innerHTML = chapterData.topics.map((topic, idx) => `<button class="topic-tab px-4 py-2 rounded-lg text-sm transition ${idx === 0 ? 'bg-amber-500/20 text-amber-400' : 'text-gray-400 hover:text-amber-400'}" data-topic-index="${idx}"><i class="fas fa-layer-group mr-1"></i> ${topic.id} ${topic.title.substring(0, 28)}${topic.title.length > 28 ? '...' : ''}</button>`).join('');
+    tabsContainer.innerHTML = chapterData.topics.map((topic, idx) => `
+        <button class="topic-tab px-4 py-2 rounded-lg text-sm transition ${idx === 0 ? 'bg-amber-500/20 text-amber-400' : 'text-gray-400 hover:text-amber-400'}" data-topic-index="${idx}">
+            <i class="fas fa-layer-group mr-1"></i> ${topic.id} ${topic.title.substring(0, 28)}${topic.title.length > 28 ? '...' : ''}
+        </button>
+    `).join('');
+    
     currentTopicIndex = 0;
     await loadTopicContent(chapterId, 0, chapterData);
-    document.querySelectorAll('.topic-tab').forEach(tab => { tab.addEventListener('click', async () => { if (isExamInProgress && !confirm('⚠️ পরীক্ষা চলছে। টপিক পরিবর্তন করলে আপনার উত্তর ও সময় হারিয়ে যাবে। আপনি কি নিশ্চিত?')) return; if (activeExamTimer) { clearInterval(activeExamTimer); activeExamTimer = null; } isExamInProgress = false; const idx = parseInt(tab.dataset.topicIndex); currentTopicIndex = idx; await loadTopicContent(chapterId, idx, chapterData); document.querySelectorAll('.topic-tab').forEach(t => { t.classList.remove('bg-amber-500/20', 'text-amber-400'); t.classList.add('text-gray-400'); }); tab.classList.add('bg-amber-500/20', 'text-amber-400'); }); });
+    
+    document.querySelectorAll('.topic-tab').forEach(tab => {
+        tab.addEventListener('click', async () => {
+            // Warn if exam in progress
+            if (isExamInProgress) {
+                const confirmLeave = confirm('⚠️ পরীক্ষা চলছে। টপিক পরিবর্তন করলে আপনার উত্তর ও সময় হারিয়ে যাবে। আপনি কি নিশ্চিত?');
+                if (!confirmLeave) return;
+            }
+            // Clean up timer and flags
+            if (activeExamTimer) {
+                clearInterval(activeExamTimer);
+                activeExamTimer = null;
+            }
+            isExamInProgress = false;
+            
+            const idx = parseInt(tab.dataset.topicIndex);
+            currentTopicIndex = idx;
+            await loadTopicContent(chapterId, idx, chapterData);
+            document.querySelectorAll('.topic-tab').forEach(t => {
+                t.classList.remove('bg-amber-500/20', 'text-amber-400');
+                t.classList.add('text-gray-400');
+            });
+            tab.classList.add('bg-amber-500/20', 'text-amber-400');
+        });
+    });
 }
 
 async function loadTopicContent(chapterId, topicIndex, chapterData) {
-    if (activeExamTimer) { clearInterval(activeExamTimer); activeExamTimer = null; }
+    // Clean up any previous exam timer before loading new content
+    if (activeExamTimer) {
+        clearInterval(activeExamTimer);
+        activeExamTimer = null;
+    }
     isExamInProgress = false;
+    
     const topic = chapterData.topics[topicIndex];
     const container = document.getElementById('topicContent');
+    
     const study = topic.study || {};
     const summary = study.summary || [`${topic.title} - বিস্তারিত কন্টেন্ট শীঘ্রই যুক্ত হবে।`];
     const shortQuestions = study.short_questions || [];
@@ -500,102 +419,470 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
     const tables = study.tables || [];
     let examQuestions = (topic.exam && topic.exam.questions) ? [...topic.exam.questions] : [];
     
-    let html = `<div><div class="flex items-center gap-2 mb-4"><i class="fas fa-book text-amber-400"></i><span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">টপিক ${topic.id}</span></div><h2 class="text-2xl font-bold mb-6">${topic.title}</h2><div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-align-left mr-2"></i>সারাংশ</h3><div class="space-y-2 bg-black/20 rounded-xl p-4">${summary.map(s => `<p class="text-gray-300 leading-relaxed">${s}</p>`).join('')}</div></div>`;
+    let html = `
+        <div>
+            <div class="flex items-center gap-2 mb-4">
+                <i class="fas fa-book text-amber-400"></i>
+                <span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">টপিক ${topic.id}</span>
+            </div>
+            <h2 class="text-2xl font-bold mb-6">${topic.title}</h2>
+            
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-align-left mr-2"></i>সারাংশ</h3>
+                <div class="space-y-2 bg-black/20 rounded-xl p-4">
+                    ${summary.map(s => `<p class="text-gray-300 leading-relaxed">${s}</p>`).join('')}
+                </div>
+            </div>
+    `;
     
     // Short Questions
-    if (shortQuestions.length > 0) { html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-question-circle mr-2"></i>সংক্ষিপ্ত প্রশ্নোত্তর</h3><div class="space-y-3">${shortQuestions.map((sq, idx) => `<div class="border border-white/10 rounded-xl overflow-hidden"><button class="sq-toggle w-full text-left p-3 font-medium hover:bg-white/5 transition flex justify-between items-center"><span>${idx+1}. ${sq.q}</span><i class="fas fa-chevron-down text-gray-500"></i></button><div class="sq-answer hidden p-3 pt-0 text-gray-400 border-t border-white/10">${sq.a}</div></div>`).join('')}</div></div>`); }
+    if (shortQuestions.length > 0) {
+        html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-question-circle mr-2"></i>সংক্ষিপ্ত প্রশ্নোত্তর</h3><div class="space-y-3">${shortQuestions.map((sq, idx) => `<div class="border border-white/10 rounded-xl overflow-hidden"><button class="sq-toggle w-full text-left p-3 font-medium hover:bg-white/5 transition flex justify-between items-center"><span>${idx+1}. ${sq.q}</span><i class="fas fa-chevron-down text-gray-500"></i></button><div class="sq-answer hidden p-3 pt-0 text-gray-400 border-t border-white/10">${sq.a}</div></div>`).join('')}</div></div>`;
+    }
     
     // Creative Questions
-    if (creativeQuestions.length > 0) { html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-pencil-alt mr-2"></i>সৃজনশীল প্রশ্ন</h3><div class="space-y-4">${creativeQuestions.map((cq, idx) => `<div class="border border-white/10 rounded-xl overflow-hidden"><button class="cq-toggle w-full text-left hover:bg-white/5 transition flex justify-between items-center p-3 font-medium"><span>${idx+1}. ${(cq.paragraph || '').substring(0, 100)}...</span><i class="fas fa-chevron-down text-gray-500"></i></button><div class="cq-answer hidden border-t border-white/10 p-3"><div class="creative-paragraph mb-3"><strong>উদ্দীপক:</strong> ${cq.paragraph || ''}</div>${Object.entries(cq.sub_questions || {}).map(([key, val]) => `<div class="sub-question-box mb-3"><p class="font-medium text-amber-400">${getBengaliLetter(key)} (${val.marks || '?'} নম্বর)</p><p class="mt-1"><strong>প্রশ্ন:</strong> ${val.question || ''}</p><p class="mt-1 text-green-400"><strong>উত্তর:</strong> ${val.answer || ''}</p></div>`).join('')}</div></div>`).join('')}</div></div>`); }
+    if (creativeQuestions.length > 0) {
+        html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-pencil-alt mr-2"></i>সৃজনশীল প্রশ্ন</h3><div class="space-y-4">${creativeQuestions.map((cq, idx) => `<div class="border border-white/10 rounded-xl overflow-hidden"><button class="cq-toggle w-full text-left hover:bg-white/5 transition flex justify-between items-center p-3 font-medium"><span>${idx+1}. ${(cq.paragraph || '').substring(0, 100)}...</span><i class="fas fa-chevron-down text-gray-500"></i></button><div class="cq-answer hidden border-t border-white/10 p-3"><div class="creative-paragraph mb-3"><strong>উদ্দীপক:</strong> ${cq.paragraph || ''}</div>${Object.entries(cq.sub_questions || {}).map(([key, val]) => `<div class="sub-question-box mb-3"><p class="font-medium text-amber-400">${getBengaliLetter(key)} (${val.marks || '?'} নম্বর)</p><p class="mt-1"><strong>প্রশ্ন:</strong> ${val.question || ''}</p><p class="mt-1 text-green-400"><strong>উত্তর:</strong> ${val.answer || ''}</p></div>`).join('')}</div></div>`).join('')}</div></div>`;
+    }
     
     // Mathematical Examples
-    if (mathExamples.length > 0) { html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-calculator mr-2"></i>গাণিতিক উদাহরণ</h3><div class="space-y-3">${mathExamples.map((ex, idx) => `<div class="border border-white/10 rounded-xl overflow-hidden"><button class="math-toggle w-full text-left p-3 font-medium hover:bg-white/5 transition flex justify-between items-center"><span>${ex.title || 'গাণিতিক সমস্যা'}</span><i class="fas fa-chevron-down text-gray-500"></i></button><div class="math-answer hidden p-3 pt-0 text-gray-400 border-t border-white/10"><p><strong>সমস্যা:</strong> ${ex.problem || ''}</p><p class="mt-2"><strong>সমাধান:</strong></p><p class="whitespace-pre-line">${ex.solution || ''}</p></div></div>`).join('')}</div></div>`); }
+    if (mathExamples.length > 0) {
+        html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-calculator mr-2"></i>গাণিতিক উদাহরণ</h3><div class="space-y-3">${mathExamples.map((ex, idx) => `<div class="border border-white/10 rounded-xl overflow-hidden"><button class="math-toggle w-full text-left p-3 font-medium hover:bg-white/5 transition flex justify-between items-center"><span>${ex.title || 'গাণিতিক সমস্যা'}</span><i class="fas fa-chevron-down text-gray-500"></i></button><div class="math-answer hidden p-3 pt-0 text-gray-400 border-t border-white/10"><p><strong>সমস্যা:</strong> ${ex.problem || ''}</p><p class="mt-2"><strong>সমাধান:</strong></p><p class="whitespace-pre-line">${ex.solution || ''}</p></div></div>`).join('')}</div></div>`;
+    }
     
     // Chemical Reactions
-    if (chemicalReactions.length > 0) { html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-flask mr-2"></i>রাসায়নিক বিক্রিয়া</h3><div class="space-y-3">${chemicalReactions.map(cr => `<div class="glass rounded-xl p-3"><p class="font-mono text-amber-400">${cr.equation || ''}</p><p class="text-sm text-gray-400 mt-1">${cr.description || ''}</p></div>`).join('')}</div></div>`); }
+    if (chemicalReactions.length > 0) {
+        html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-flask mr-2"></i>রাসায়নিক বিক্রিয়া</h3><div class="space-y-3">${chemicalReactions.map(cr => `<div class="glass rounded-xl p-3"><p class="font-mono text-amber-400">${cr.equation || ''}</p><p class="text-sm text-gray-400 mt-1">${cr.description || ''}</p></div>`).join('')}</div></div>`;
+    }
     
     // Tables
-    if (tables.length > 0) { html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>${tables.map(table => `<div class="overflow-x-auto mb-4"><table class="w-full text-sm border border-white/10 rounded-xl"><thead><tr class="border-b border-white/10 bg-white/5">${(table.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}</tr></thead><tbody>${(table.rows || []).map(row => `<tr class="border-b border-white/5">${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('')}</div>`); }
+    if (tables.length > 0) {
+        html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>${tables.map(table => `<div class="overflow-x-auto mb-4"><table class="w-full text-sm border border-white/10 rounded-xl"><thead><tr class="border-b border-white/10 bg-white/5">${(table.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}</tr></thead><tbody>${(table.rows || []).map(row => `<tr class="border-b border-white/5">${row.map(cell => `<td class="p-2">${cell}</tr>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('')}</div>`;
+    }
     
-    // MCQ Section (full original logic)
+    // =============== FIXED MCQ SECTION WITH ROBUST MATCHING ===============
     if (examQuestions.length > 0) {
-        html += `<div class="mt-8 pt-6 border-t border-white/10"><div class="instruction-box rounded-xl p-4 mb-6"><p class="text-sm text-blue-300"><i class="fas fa-info-circle mr-2"></i><strong>MCQ পরীক্ষার নিয়মাবলী:</strong></p><ul class="text-xs text-blue-200/80 mt-2 space-y-1 ml-4"><li>✓ <strong>প্রথমে "পরীক্ষা শুরু করুন" বাটনে ক্লিক করতে হবে</strong></li><li>✓ পরীক্ষা শুরু করার আগে কোন উত্তর নির্বাচন করা যাবে না</li><li>✓ প্রতিটি প্রশ্নের জন্য <strong>মাত্র একটি উত্তর</strong> নির্বাচন করতে পারবেন</li><li>✓ উত্তর না দিলে সেটি <strong>ভুল হিসেবে গণ্য</strong> হবে</li><li>✓ মোট সময়: ${examQuestions.length} × 60 সেকেন্ড</li></ul></div><div class="exam-header flex flex-wrap justify-between items-center gap-4 mb-6 bg-gray-800/50 rounded-xl p-4"><div><h3 class="text-xl font-bold text-amber-400"><i class="fas fa-check-double mr-2"></i>MCQ পরীক্ষা (বহুনির্বাচনী)</h3><p class="text-sm text-gray-400 mt-1">মোট প্রশ্ন: ${examQuestions.length} | প্রতিটি প্রশ্নের জন্য ১ নম্বর</p></div><div class="flex items-center gap-4"><div id="examTimer" class="text-lg font-mono font-bold text-amber-400 bg-black/50 px-4 py-2 rounded-full">⏱️ 0:00</div><button id="startExamBtn" class="start-exam-btn px-6 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 text-white font-bold shadow-lg transition hover:scale-105"><i class="fas fa-play mr-2"></i> পরীক্ষা শুরু করুন</button></div></div><div id="mcqExamPanel" style="display: none;"><div id="mcqQuestionsContainer" class="space-y-5 mb-6 max-h-[600px] overflow-y-auto pr-2"></div><div class="flex gap-4 mt-6"><button id="submitMcqBtn" class="px-6 py-3 rounded-xl bg-green-600 text-white font-bold shadow-lg hover:bg-green-700 transition"><i class="fas fa-check-circle mr-2"></i> উত্তর জমা দিন ও ফলাফল দেখুন</button><button id="resetMcqBtn" class="px-6 py-3 rounded-xl bg-gray-700 text-gray-300 font-bold hover:bg-gray-600 transition"><i class="fas fa-undo-alt mr-2"></i> রিসেট করুন</button></div></div><div id="mcqResultPanel" class="result-card rounded-xl p-5 mt-6 hidden"></div></div>`;
+        let mcqState = {
+            questions: [],
+            userAnswers: [],
+            examStarted: false,
+            examEnded: false,
+            timerInterval: null,
+            timeRemaining: 0
+        };
+        
+        const TIME_PER_QUESTION = 60;
+        
+        html += `
+            <div class="mt-8 pt-6 border-t border-white/10">
+                <div class="instruction-box rounded-xl p-4 mb-6">
+                    <p class="text-sm text-blue-300"><i class="fas fa-info-circle mr-2"></i><strong>MCQ পরীক্ষার নিয়মাবলী:</strong></p>
+                    <ul class="text-xs text-blue-200/80 mt-2 space-y-1 ml-4">
+                        <li>✓ <strong>প্রথমে "পরীক্ষা শুরু করুন" বাটনে ক্লিক করতে হবে</strong></li>
+                        <li>✓ পরীক্ষা শুরু করার আগে কোন উত্তর নির্বাচন করা যাবে না</li>
+                        <li>✓ প্রতিটি প্রশ্নের জন্য <strong>মাত্র একটি উত্তর</strong> নির্বাচন করতে পারবেন</li>
+                        <li>✓ উত্তর না দিলে সেটি <strong>ভুল হিসেবে গণ্য</strong> হবে</li>
+                        <li>✓ মোট সময়: ${examQuestions.length} × ${TIME_PER_QUESTION} সেকেন্ড</li>
+                    </ul>
+                </div>
+                
+                <div class="exam-header flex flex-wrap justify-between items-center gap-4 mb-6 bg-gray-800/50 rounded-xl p-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-amber-400"><i class="fas fa-check-double mr-2"></i>MCQ পরীক্ষা (বহুনির্বাচনী)</h3>
+                        <p class="text-sm text-gray-400 mt-1">মোট প্রশ্ন: ${examQuestions.length} | প্রতিটি প্রশ্নের জন্য ১ নম্বর</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div id="examTimer" class="text-lg font-mono font-bold text-amber-400 bg-black/50 px-4 py-2 rounded-full">⏱️ 0:00</div>
+                        <button id="startExamBtn" class="start-exam-btn px-6 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 text-white font-bold shadow-lg transition hover:scale-105">
+                            <i class="fas fa-play mr-2"></i> পরীক্ষা শুরু করুন
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="mcqExamPanel" style="display: none;">
+                    <div id="mcqQuestionsContainer" class="space-y-5 mb-6 max-h-[600px] overflow-y-auto pr-2"></div>
+                    <div class="flex gap-4 mt-6">
+                        <button id="submitMcqBtn" class="px-6 py-3 rounded-xl bg-green-600 text-white font-bold shadow-lg hover:bg-green-700 transition">
+                            <i class="fas fa-check-circle mr-2"></i> উত্তর জমা দিন ও ফলাফল দেখুন
+                        </button>
+                        <button id="resetMcqBtn" class="px-6 py-3 rounded-xl bg-gray-700 text-gray-300 font-bold hover:bg-gray-600 transition">
+                            <i class="fas fa-undo-alt mr-2"></i> রিসেট করুন
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="mcqResultPanel" class="result-card rounded-xl p-5 mt-6 hidden"></div>
+            </div>
+        `;
         container.innerHTML = html;
-        attachMCQLogic(examQuestions);
-    } else { html += `<div class="text-center text-gray-400 py-8"><i class="fas fa-flask text-2xl mb-2"></i><p>এই টপিকের জন্য MCQ পরীক্ষা শীঘ্রই যুক্ত হবে।</p></div>`; container.innerHTML = html; }
-    
-    setTimeout(() => { document.querySelectorAll('.sq-toggle, .cq-toggle, .math-toggle').forEach(btn => { btn.addEventListener('click', () => { const answer = btn.nextElementSibling; const icon = btn.querySelector('.fa-chevron-down'); if (answer) { answer.classList.toggle('hidden'); if (icon) icon.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)'; } }); }); }, 100);
-}
-
-function attachMCQLogic(examQuestions) {
-    let mcqState = { questions: [], userAnswers: [], examStarted: false, examEnded: false, timerInterval: null, timeRemaining: 0 };
-    const TIME_PER_QUESTION = 60;
-    function normalizeText(str) { if (typeof str !== 'string') return ''; return str.trim().normalize('NFC').replace(/\s+/g, ' '); }
-    function shuffleQuestions() {
-        mcqState.questions = examQuestions.map((originalQ, idx) => {
-            const originalOptions = [...originalQ.o];
-            let correctOriginalIndex;
-            if (typeof originalQ.a === 'number') correctOriginalIndex = originalQ.a;
-            else if (typeof originalQ.a === 'string') { const normalizedAnswer = normalizeText(originalQ.a); correctOriginalIndex = originalOptions.findIndex(opt => normalizeText(opt) === normalizedAnswer); if (correctOriginalIndex === -1) correctOriginalIndex = 0; }
-            else correctOriginalIndex = 0;
-            const indexedOptions = originalOptions.map((text, i) => ({ text, originalIndex: i }));
-            const shuffledIndexed = shuffleArray([...indexedOptions]);
-            const shuffledOptions = shuffledIndexed.map(item => item.text);
-            const newCorrectIndex = shuffledIndexed.findIndex(item => item.originalIndex === correctOriginalIndex);
-            if (newCorrectIndex === -1) return { id: idx, text: originalQ.q, options: originalOptions, correctIndex: correctOriginalIndex };
-            return { id: idx, text: originalQ.q, options: shuffledOptions, correctIndex: newCorrectIndex };
-        });
-        mcqState.userAnswers = new Array(mcqState.questions.length).fill(null);
-    }
-    function renderQuestions() {
-        const containerDiv = document.getElementById('mcqQuestionsContainer');
-        if (!containerDiv) return;
-        containerDiv.innerHTML = mcqState.questions.map((q, qIdx) => `<div class="glass rounded-xl p-4 border border-white/10" data-qidx="${qIdx}"><p class="font-semibold mb-3 text-base"><span class="text-amber-400">${qIdx+1}.</span> ${q.text}</p><div class="grid gap-2 ml-2">${q.options.map((opt, optIdx) => `<div class="mcq-option flex items-center gap-3 p-2 px-4 rounded-lg transition" data-qidx="${qIdx}" data-optidx="${optIdx}"><span class="w-6 h-6 rounded-full border border-amber-500/50 flex items-center justify-center text-xs font-bold option-letter">${String.fromCharCode(65+optIdx)}</span><span>${opt}</span></div>`).join('')}</div></div>`).join('');
-        document.querySelectorAll('.mcq-option').forEach(opt => { opt.addEventListener('click', (e) => { if (mcqState.examEnded) { showToast('⚠️ পরীক্ষা শেষ হয়ে গেছে! রিসেট করে আবার চেষ্টা করুন।', 'error'); return; } if (!mcqState.examStarted) { showToast('⚠️ দয়া করে প্রথমে "পরীক্ষা শুরু করুন" বাটনে ক্লিক করুন!', 'error'); return; } const qIdx = parseInt(opt.dataset.qidx); const selectedIdx = parseInt(opt.dataset.optidx); if (mcqState.userAnswers[qIdx] === selectedIdx) { mcqState.userAnswers[qIdx] = null; } else { mcqState.userAnswers[qIdx] = selectedIdx; } const allOptions = document.querySelectorAll(`.mcq-option[data-qidx="${qIdx}"]`); allOptions.forEach(option => { const optIdx = parseInt(option.dataset.optidx); const circleSpan = option.querySelector('.option-letter'); if (optIdx === mcqState.userAnswers[qIdx]) { option.classList.add('selected'); if (circleSpan) { circleSpan.classList.add('bg-amber-500', 'text-black'); circleSpan.classList.remove('border-amber-500/50'); } } else { option.classList.remove('selected'); if (circleSpan) { circleSpan.classList.remove('bg-amber-500', 'text-black'); circleSpan.classList.add('border-amber-500/50'); } } }); }); });
-    }
-    function stopTimer() { if (mcqState.timerInterval) { clearInterval(mcqState.timerInterval); mcqState.timerInterval = null; } if (activeExamTimer) { clearInterval(activeExamTimer); activeExamTimer = null; } }
-    function updateTimerDisplay() { const minutes = Math.floor(mcqState.timeRemaining / 60); const seconds = mcqState.timeRemaining % 60; const timerElement = document.getElementById('examTimer'); if (timerElement) { timerElement.innerHTML = `<i class="fas fa-hourglass-half mr-1"></i> ${minutes}:${seconds.toString().padStart(2, '0')}`; if (mcqState.timeRemaining < 60) timerElement.classList.add('timer-warning'); else timerElement.classList.remove('timer-warning'); } }
-    function startTimer() { stopTimer(); const totalTime = mcqState.questions.length * TIME_PER_QUESTION; mcqState.timeRemaining = totalTime; updateTimerDisplay(); mcqState.timerInterval = setInterval(() => { if (mcqState.timeRemaining > 0 && mcqState.examStarted && !mcqState.examEnded) { mcqState.timeRemaining--; updateTimerDisplay(); if (mcqState.timeRemaining === 0) { stopTimer(); showToast('⏰ সময় শেষ! উত্তর জমা দেওয়া হচ্ছে...', 'error'); calculateAndShowResult(); } } }, 1000); activeExamTimer = mcqState.timerInterval; }
-    function calculateAndShowResult() { if (mcqState.examEnded) { showToast('ফলাফল ইতিমধ্যে দেখানো হয়েছে!', 'info'); return; } stopTimer(); mcqState.examEnded = true; isExamInProgress = false; let correctCount = 0; for (let i = 0; i < mcqState.questions.length; i++) { const userAns = mcqState.userAnswers[i]; const correctAns = mcqState.questions[i].correctIndex; if (userAns !== null && userAns === correctAns) correctCount++; } const score = `${correctCount}/${mcqState.questions.length}`; const percentage = Math.round((correctCount / mcqState.questions.length) * 100); const unansweredCount = mcqState.userAnswers.filter(a => a === null).length; const resultHtml = `<div class="text-center"><i class="fas fa-chart-simple text-4xl text-amber-400 mb-3"></i><h4 class="text-2xl font-bold">আপনার ফলাফল</h4><div class="text-4xl font-bold text-amber-400 my-3">${score}</div><div class="w-full bg-gray-700 rounded-full h-3 max-w-xs mx-auto"><div class="bg-gradient-to-r from-amber-500 to-orange-500 h-3 rounded-full" style="width: ${percentage}%"></div></div><p class="mt-3 text-gray-300">সঠিক উত্তর: ${correctCount} / মোট: ${mcqState.questions.length}</p><p class="text-sm text-gray-400 mt-1">অনুত্তরিত প্রশ্ন: ${unansweredCount}টি (ভুল হিসেবে গণ্য হয়েছে)</p><div class="flex justify-center gap-3 mt-4"><button id="reviewAnswersBtn" class="px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition"><i class="fas fa-eye mr-1"></i> সঠিক উত্তর দেখুন</button><button id="tryAgainBtn" class="px-4 py-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition"><i class="fas fa-redo-alt mr-1"></i> আবার চেষ্টা করুন</button></div></div>`; const resultPanel = document.getElementById('mcqResultPanel'); resultPanel.innerHTML = resultHtml; resultPanel.classList.remove('hidden'); document.getElementById('reviewAnswersBtn')?.addEventListener('click', () => { const allQuestionDivs = document.querySelectorAll('#mcqQuestionsContainer > div[data-qidx]'); allQuestionDivs.forEach((questionDiv) => { const idx = parseInt(questionDiv.getAttribute('data-qidx')); if (isNaN(idx) || idx >= mcqState.questions.length) return; const correctIdx = mcqState.questions[idx].correctIndex; const userChoice = mcqState.userAnswers[idx]; const options = questionDiv.querySelectorAll('.mcq-option'); options.forEach((opt, optIdx) => { opt.classList.remove('correct', 'wrong', 'selected'); const circleSpan = opt.querySelector('.option-letter'); if (optIdx === correctIdx) { opt.classList.add('correct'); if (circleSpan) { circleSpan.classList.add('bg-green-500', 'text-white'); circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50'); } } if (userChoice !== null && optIdx === userChoice && userChoice !== correctIdx) { opt.classList.add('wrong'); if (circleSpan) { circleSpan.classList.add('bg-red-500', 'text-white'); circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50'); } } }); }); showToast('সঠিক উত্তর সবুজ, আপনার ভুল উত্তর লাল রঙে হাইলাইট করা হয়েছে', 'success'); }); document.getElementById('tryAgainBtn')?.addEventListener('click', () => resetExam()); showToast(`আপনার স্কোর: ${score} (${percentage}%)`, 'success'); }
-    function resetExam() { stopTimer(); mcqState.examStarted = false; mcqState.examEnded = false; isExamInProgress = false; mcqState.userAnswers = new Array(mcqState.questions.length).fill(null); const examPanel = document.getElementById('mcqExamPanel'); const startBtn = document.getElementById('startExamBtn'); const resultPanel = document.getElementById('mcqResultPanel'); const timerElement = document.getElementById('examTimer'); if (examPanel) examPanel.style.display = 'none'; if (resultPanel) { resultPanel.classList.add('hidden'); resultPanel.innerHTML = ''; } if (timerElement) timerElement.innerHTML = '⏱️ 0:00'; if (startBtn) { startBtn.disabled = false; startBtn.classList.remove('opacity-50', 'cursor-not-allowed'); startBtn.innerHTML = '<i class="fas fa-play mr-2"></i> পরীক্ষা শুরু করুন'; } if (mcqState.questions.length > 0) renderQuestions(); showToast('পরীক্ষা রিসেট করা হয়েছে। "পরীক্ষা শুরু করুন" ক্লিক করুন।', 'info'); }
-    const startBtn = document.getElementById('startExamBtn'); const examPanel = document.getElementById('mcqExamPanel'); const submitBtn = document.getElementById('submitMcqBtn'); const resetBtn = document.getElementById('resetMcqBtn');
-    if (startBtn) { startBtn.onclick = () => { if (mcqState.examEnded) { showToast('দয়া করে প্রথমে "রিসেট করুন" বাটনে ক্লিক করুন', 'error'); return; } shuffleQuestions(); mcqState.examStarted = true; isExamInProgress = true; if (examPanel) examPanel.style.display = 'block'; startBtn.disabled = true; startBtn.classList.add('opacity-50', 'cursor-not-allowed'); startBtn.innerHTML = '<i class="fas fa-check-circle mr-2"></i> পরীক্ষা শুরু হয়েছে'; renderQuestions(); startTimer(); showToast('✅ পরীক্ষা শুরু হয়েছে! প্রতিটি প্রশ্নের উত্তর নির্বাচন করুন।', 'success'); }; }
-    if (submitBtn) { submitBtn.onclick = () => { if (!mcqState.examStarted) { showToast('⚠️ পরীক্ষা শুরু হয়নি! প্রথমে "পরীক্ষা শুরু করুন" ক্লিক করুন।', 'error'); return; } if (mcqState.examEnded) { showToast('⚠️ ফলাফল ইতিমধ্যে দেখানো হয়েছে। নতুন পরীক্ষা দিতে "রিসেট করুন" ক্লিক করুন।', 'error'); return; } calculateAndShowResult(); }; }
-    if (resetBtn) resetBtn.onclick = () => resetExam();
-}
-
-// Firestore sync helpers
-window.refreshChaptersFromFirestore = async () => {
-    const firestoreCompleted = await window.loadChapterProgress();
-    completedChapters = firestoreCompleted;
-    await updateOverallProgress();
-    renderChaptersGrid();
-    if (currentChapterId) {
-        const markBtn = document.getElementById('markChapterCompleteBtn');
-        if (markBtn) {
-            if (completedChapters.includes(currentChapterId)) { markBtn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> সম্পূর্ণ!'; markBtn.classList.remove('bg-green-500/20', 'border-green-500/50', 'text-green-400'); markBtn.classList.add('bg-gray-700', 'text-gray-400'); }
-            else { markBtn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> অধ্যায় সম্পূর্ণ চিহ্নিত করুন'; markBtn.classList.remove('bg-gray-700', 'text-gray-400'); markBtn.classList.add('bg-green-500/20', 'border-green-500/50', 'text-green-400'); }
+        
+        // --- Helper: Normalize Bengali text (trim, collapse spaces, Unicode NFC) ---
+        function normalizeText(str) {
+            if (typeof str !== 'string') return '';
+            return str.trim().normalize('NFC').replace(/\s+/g, ' ');
         }
+        
+        // --- Shuffle with index tracking (no string matching after shuffle) ---
+        function shuffleQuestions() {
+            mcqState.questions = examQuestions.map((originalQ, idx) => {
+                const originalOptions = [...originalQ.o];
+                let correctOriginalIndex;
+                if (typeof originalQ.a === 'number') {
+                    correctOriginalIndex = originalQ.a;
+                } else if (typeof originalQ.a === 'string') {
+                    const normalizedAnswer = normalizeText(originalQ.a);
+                    correctOriginalIndex = originalOptions.findIndex(opt => normalizeText(opt) === normalizedAnswer);
+                    if (correctOriginalIndex === -1) correctOriginalIndex = 0;
+                } else {
+                    correctOriginalIndex = 0;
+                }
+                
+                const indexedOptions = originalOptions.map((text, i) => ({ text, originalIndex: i }));
+                const shuffledIndexed = shuffleArray([...indexedOptions]);
+                const shuffledOptions = shuffledIndexed.map(item => item.text);
+                const newCorrectIndex = shuffledIndexed.findIndex(item => item.originalIndex === correctOriginalIndex);
+                
+                if (newCorrectIndex === -1) {
+                    console.error(`Question ${idx+1}: CRITICAL - original index ${correctOriginalIndex} not found after shuffle!`);
+                    return {
+                        id: idx,
+                        text: originalQ.q,
+                        options: originalOptions,
+                        correctIndex: correctOriginalIndex,
+                    };
+                }
+                console.log(`Q${idx+1}: Correct originally at index ${correctOriginalIndex}, moved to ${newCorrectIndex}`);
+                return {
+                    id: idx,
+                    text: originalQ.q,
+                    options: shuffledOptions,
+                    correctIndex: newCorrectIndex,
+                };
+            });
+            mcqState.userAnswers = new Array(mcqState.questions.length).fill(null);
+        }
+        
+        // --- Render questions ---
+        function renderQuestions() {
+            const container = document.getElementById('mcqQuestionsContainer');
+            if (!container) return;
+            
+            container.innerHTML = mcqState.questions.map((q, qIdx) => `
+                <div class="glass rounded-xl p-4 border border-white/10" data-qidx="${qIdx}">
+                    <p class="font-semibold mb-3 text-base"><span class="text-amber-400">${qIdx+1}.</span> ${q.text}</p>
+                    <div class="grid gap-2 ml-2">
+                        ${q.options.map((opt, optIdx) => `
+                            <div class="mcq-option flex items-center gap-3 p-2 px-4 rounded-lg transition" data-qidx="${qIdx}" data-optidx="${optIdx}">
+                                <span class="w-6 h-6 rounded-full border border-amber-500/50 flex items-center justify-center text-xs font-bold option-letter">${String.fromCharCode(65+optIdx)}</span>
+                                <span>${opt}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+            
+            document.querySelectorAll('.mcq-option').forEach(opt => {
+                opt.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (mcqState.examEnded) {
+                        showToast('⚠️ পরীক্ষা শেষ হয়ে গেছে! রিসেট করে আবার চেষ্টা করুন।', 'error');
+                        return;
+                    }
+                    if (!mcqState.examStarted) {
+                        showToast('⚠️ দয়া করে প্রথমে "পরীক্ষা শুরু করুন" বাটনে ক্লিক করুন!', 'error');
+                        return;
+                    }
+                    
+                    const qIdx = parseInt(opt.dataset.qidx);
+                    const selectedIdx = parseInt(opt.dataset.optidx);
+                    
+                    if (mcqState.userAnswers[qIdx] === selectedIdx) {
+                        mcqState.userAnswers[qIdx] = null;
+                    } else {
+                        mcqState.userAnswers[qIdx] = selectedIdx;
+                    }
+                    
+                    const allOptions = document.querySelectorAll(`.mcq-option[data-qidx="${qIdx}"]`);
+                    allOptions.forEach(option => {
+                        const optIdx = parseInt(option.dataset.optidx);
+                        const circleSpan = option.querySelector('.option-letter');
+                        if (optIdx === mcqState.userAnswers[qIdx]) {
+                            option.classList.add('selected');
+                            if (circleSpan) {
+                                circleSpan.classList.add('bg-amber-500', 'text-black');
+                                circleSpan.classList.remove('border-amber-500/50');
+                            }
+                        } else {
+                            option.classList.remove('selected');
+                            if (circleSpan) {
+                                circleSpan.classList.remove('bg-amber-500', 'text-black');
+                                circleSpan.classList.add('border-amber-500/50');
+                            }
+                        }
+                    });
+                });
+            });
+        }
+        
+        // --- Timer functions with global cleanup ---
+        function stopTimer() {
+            if (mcqState.timerInterval) {
+                clearInterval(mcqState.timerInterval);
+                mcqState.timerInterval = null;
+            }
+            if (activeExamTimer) {
+                clearInterval(activeExamTimer);
+                activeExamTimer = null;
+            }
+        }
+        
+        function updateTimerDisplay() {
+            const minutes = Math.floor(mcqState.timeRemaining / 60);
+            const seconds = mcqState.timeRemaining % 60;
+            const timerElement = document.getElementById('examTimer');
+            if (timerElement) {
+                timerElement.innerHTML = `<i class="fas fa-hourglass-half mr-1"></i> ${minutes}:${seconds.toString().padStart(2, '0')}`;
+                if (mcqState.timeRemaining < 60) timerElement.classList.add('timer-warning');
+                else timerElement.classList.remove('timer-warning');
+            }
+        }
+        
+        function startTimer() {
+            stopTimer();
+            const totalTime = mcqState.questions.length * TIME_PER_QUESTION;
+            mcqState.timeRemaining = totalTime;
+            updateTimerDisplay();
+            mcqState.timerInterval = setInterval(() => {
+                if (mcqState.timeRemaining > 0 && mcqState.examStarted && !mcqState.examEnded) {
+                    mcqState.timeRemaining--;
+                    updateTimerDisplay();
+                    if (mcqState.timeRemaining === 0) {
+                        stopTimer();
+                        showToast('⏰ সময় শেষ! উত্তর জমা দেওয়া হচ্ছে...', 'error');
+                        calculateAndShowResult();
+                    }
+                }
+            }, 1000);
+            activeExamTimer = mcqState.timerInterval;
+        }
+        
+        // --- Calculate score and show result ---
+        function calculateAndShowResult() {
+            if (mcqState.examEnded) {
+                showToast('ফলাফল ইতিমধ্যে দেখানো হয়েছে!', 'info');
+                return;
+            }
+            stopTimer();
+            mcqState.examEnded = true;
+            isExamInProgress = false;   // exam finished
+            
+            const totalQuestions = mcqState.questions.length;
+            let correctCount = 0;
+            for (let i = 0; i < totalQuestions; i++) {
+                const userAns = mcqState.userAnswers[i];
+                const correctAns = mcqState.questions[i].correctIndex;
+                if (userAns !== null && userAns === correctAns) correctCount++;
+            }
+            
+            const score = `${correctCount}/${totalQuestions}`;
+            const percentage = Math.round((correctCount / totalQuestions) * 100);
+            const unansweredCount = mcqState.userAnswers.filter(a => a === null).length;
+            
+            const resultHtml = `
+                <div class="text-center">
+                    <i class="fas fa-chart-simple text-4xl text-amber-400 mb-3"></i>
+                    <h4 class="text-2xl font-bold">আপনার ফলাফল</h4>
+                    <div class="text-4xl font-bold text-amber-400 my-3">${score}</div>
+                    <div class="w-full bg-gray-700 rounded-full h-3 max-w-xs mx-auto">
+                        <div class="bg-gradient-to-r from-amber-500 to-orange-500 h-3 rounded-full" style="width: ${percentage}%"></div>
+                    </div>
+                    <p class="mt-3 text-gray-300">সঠিক উত্তর: ${correctCount} / মোট: ${totalQuestions}</p>
+                    <p class="text-sm text-gray-400 mt-1">অনুত্তরিত প্রশ্ন: ${unansweredCount}টি (ভুল হিসেবে গণ্য হয়েছে)</p>
+                    <div class="flex justify-center gap-3 mt-4">
+                        <button id="reviewAnswersBtn" class="px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition">
+                            <i class="fas fa-eye mr-1"></i> সঠিক উত্তর দেখুন
+                        </button>
+                        <button id="tryAgainBtn" class="px-4 py-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition">
+                            <i class="fas fa-redo-alt mr-1"></i> আবার চেষ্টা করুন
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            const resultPanel = document.getElementById('mcqResultPanel');
+            resultPanel.innerHTML = resultHtml;
+            resultPanel.classList.remove('hidden');
+            
+            // Review button: highlight correct answers for ALL questions
+            const reviewBtn = document.getElementById('reviewAnswersBtn');
+            if (reviewBtn) {
+                const newReviewBtn = reviewBtn.cloneNode(true);
+                reviewBtn.parentNode.replaceChild(newReviewBtn, reviewBtn);
+                newReviewBtn.addEventListener('click', () => {
+                    const allQuestionDivs = document.querySelectorAll('#mcqQuestionsContainer > div[data-qidx]');
+                    allQuestionDivs.forEach((questionDiv) => {
+                        const idx = parseInt(questionDiv.getAttribute('data-qidx'));
+                        if (isNaN(idx) || idx >= mcqState.questions.length) return;
+                        const correctIdx = mcqState.questions[idx].correctIndex;
+                        const userChoice = mcqState.userAnswers[idx];
+                        const options = questionDiv.querySelectorAll('.mcq-option');
+                        options.forEach((opt, optIdx) => {
+                            opt.classList.remove('correct', 'wrong', 'selected');
+                            const circleSpan = opt.querySelector('.option-letter');
+                            if (optIdx === correctIdx) {
+                                opt.classList.add('correct');
+                                if (circleSpan) {
+                                    circleSpan.classList.add('bg-green-500', 'text-white');
+                                    circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
+                                }
+                            }
+                            if (userChoice !== null && optIdx === userChoice && userChoice !== correctIdx) {
+                                opt.classList.add('wrong');
+                                if (circleSpan) {
+                                    circleSpan.classList.add('bg-red-500', 'text-white');
+                                    circleSpan.classList.remove('bg-amber-500', 'text-black', 'border-amber-500/50');
+                                }
+                            }
+                        });
+                    });
+                    showToast('সঠিক উত্তর সবুজ, আপনার ভুল উত্তর লাল রঙে হাইলাইট করা হয়েছে', 'success');
+                });
+            }
+            
+            const tryAgainBtn = document.getElementById('tryAgainBtn');
+            if (tryAgainBtn) {
+                const newTryAgain = tryAgainBtn.cloneNode(true);
+                tryAgainBtn.parentNode.replaceChild(newTryAgain, tryAgainBtn);
+                newTryAgain.addEventListener('click', () => resetExam());
+            }
+            
+            showToast(`আপনার স্কোর: ${score} (${percentage}%)`, 'success');
+        }
+        
+        function resetExam() {
+            stopTimer();
+            mcqState.examStarted = false;
+            mcqState.examEnded = false;
+            isExamInProgress = false;
+            mcqState.userAnswers = new Array(mcqState.questions.length).fill(null);
+            
+            const examPanel = document.getElementById('mcqExamPanel');
+            const startBtn = document.getElementById('startExamBtn');
+            const resultPanel = document.getElementById('mcqResultPanel');
+            const timerElement = document.getElementById('examTimer');
+            
+            if (examPanel) examPanel.style.display = 'none';
+            if (resultPanel) {
+                resultPanel.classList.add('hidden');
+                resultPanel.innerHTML = '';
+            }
+            if (timerElement) timerElement.innerHTML = '⏱️ 0:00';
+            if (startBtn) {
+                startBtn.disabled = false;
+                startBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                startBtn.innerHTML = '<i class="fas fa-play mr-2"></i> পরীক্ষা শুরু করুন';
+            }
+            if (mcqState.questions.length > 0) renderQuestions();
+            showToast('পরীক্ষা রিসেট করা হয়েছে। "পরীক্ষা শুরু করুন" ক্লিক করুন।', 'info');
+        }
+        
+        // --- Attach button events ---
+        const startBtn = document.getElementById('startExamBtn');
+        const examPanel = document.getElementById('mcqExamPanel');
+        const submitBtn = document.getElementById('submitMcqBtn');
+        const resetBtn = document.getElementById('resetMcqBtn');
+        
+        if (startBtn) {
+            startBtn.onclick = () => {
+                if (mcqState.examEnded) {
+                    showToast('দয়া করে প্রথমে "রিসেট করুন" বাটনে ক্লিক করুন', 'error');
+                    return;
+                }
+                shuffleQuestions();
+                mcqState.examStarted = true;
+                isExamInProgress = true;
+                if (examPanel) examPanel.style.display = 'block';
+                startBtn.disabled = true;
+                startBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                startBtn.innerHTML = '<i class="fas fa-check-circle mr-2"></i> পরীক্ষা শুরু হয়েছে';
+                renderQuestions();
+                startTimer();
+                showToast('✅ পরীক্ষা শুরু হয়েছে! প্রতিটি প্রশ্নের উত্তর নির্বাচন করুন।', 'success');
+            };
+        }
+        
+        if (submitBtn) {
+            submitBtn.onclick = () => {
+                if (!mcqState.examStarted) {
+                    showToast('⚠️ পরীক্ষা শুরু হয়নি! প্রথমে "পরীক্ষা শুরু করুন" ক্লিক করুন।', 'error');
+                    return;
+                }
+                if (mcqState.examEnded) {
+                    showToast('⚠️ ফলাফল ইতিমধ্যে দেখানো হয়েছে। নতুন পরীক্ষা দিতে "রিসেট করুন" ক্লিক করুন।', 'error');
+                    return;
+                }
+                calculateAndShowResult();
+            };
+        }
+        
+        if (resetBtn) {
+            resetBtn.onclick = () => resetExam();
+        }
+        
+    } else {
+        html += `<div class="text-center text-gray-400 py-8"><i class="fas fa-flask text-2xl mb-2"></i><p>এই টপিকের জন্য MCQ পরীক্ষা শীঘ্রই যুক্ত হবে।</p></div>`;
+        container.innerHTML = html;
     }
-};
-window.clearLocalProgressDisplay = () => { completedChapters = []; updateOverallProgress(); renderChaptersGrid(); };
+    
+    // Attach toggle handlers for accordions
+    setTimeout(() => {
+        document.querySelectorAll('.sq-toggle, .cq-toggle, .math-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const answer = btn.nextElementSibling;
+                const icon = btn.querySelector('.fa-chevron-down');
+                if (answer) {
+                    answer.classList.toggle('hidden');
+                    if (icon) icon.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+                }
+            });
+        });
+    }, 100);
+}
 
-function toggleTheme() { const html = document.documentElement; const cur = html.getAttribute('data-theme'); const sun = document.getElementById('sunIcon'); const moon = document.getElementById('moonIcon'); if (cur === 'light') { html.removeAttribute('data-theme'); if (sun && moon) { sun.style.display = 'none'; moon.style.display = 'inline-block'; } localStorage.setItem('theme', 'dark'); } else { html.setAttribute('data-theme', 'light'); if (sun && moon) { sun.style.display = 'inline-block'; moon.style.display = 'none'; } localStorage.setItem('theme', 'light'); } }
-const savedTheme = localStorage.getItem('theme'); if (savedTheme === 'light') { document.documentElement.setAttribute('data-theme', 'light'); if (document.getElementById('sunIcon')) document.getElementById('sunIcon').style.display = 'inline-block'; if (document.getElementById('moonIcon')) document.getElementById('moonIcon').style.display = 'none'; } else { if (document.getElementById('sunIcon')) document.getElementById('sunIcon').style.display = 'none'; if (document.getElementById('moonIcon')) document.getElementById('moonIcon').style.display = 'inline-block'; }
-window.toggleTheme = toggleTheme;
-
-document.addEventListener('DOMContentLoaded', async () => {
-    if (window.auth && window.auth.currentUser) completedChapters = await window.loadChapterProgress();
-    else completedChapters = [];
-    await updateOverallProgress();
-    renderChaptersGrid();
-    const backBtn = document.getElementById('backToChaptersBtn');
-    if (backBtn) { backBtn.onclick = () => { if (isExamInProgress && !confirm('⚠️ আপনার একটি অসমাপ্ত পরীক্ষা চলছে। আপনি কি নিশ্চিত যে আপনি ফিরে যেতে চান? আপনার অগ্রগতি হারিয়ে যাবে।')) return; if (activeExamTimer) { clearInterval(activeExamTimer); activeExamTimer = null; } isExamInProgress = false; document.getElementById('chaptersView').classList.remove('hidden'); document.getElementById('chapterView').classList.add('hidden'); currentChapterId = null; }; }
-    const markBtn = document.getElementById('markChapterCompleteBtn');
-    if (markBtn) { markBtn.onclick = () => { if (currentChapterId) markChapterComplete(currentChapterId); }; }
-    setInterval(() => { const signOutBtnDrawer = document.getElementById('drawerSignOutBtn'); if (window.auth && window.auth.currentUser) { if (signOutBtnDrawer) signOutBtnDrawer.classList.remove('hidden'); } else { if (signOutBtnDrawer) signOutBtnDrawer.classList.add('hidden'); } }, 500);
-});
+// Make functions global
 window.openChapter = openChapter;
+
+function init() {
+    renderChaptersGrid();
+    updateOverallProgress();
+    
+    const backBtn = document.getElementById('backToChaptersBtn');
+    if (backBtn) {
+        backBtn.onclick = () => {
+            if (isExamInProgress) {
+                const confirmLeave = confirm('⚠️ আপনার একটি অসমাপ্ত পরীক্ষা চলছে। আপনি কি নিশ্চিত যে আপনি ফিরে যেতে চান? আপনার অগ্রগতি হারিয়ে যাবে।');
+                if (!confirmLeave) return;
+            }
+            if (activeExamTimer) {
+                clearInterval(activeExamTimer);
+                activeExamTimer = null;
+            }
+            isExamInProgress = false;
+            document.getElementById('chaptersView').classList.remove('hidden');
+            document.getElementById('chapterView').classList.add('hidden');
+            currentChapterId = null;
+        };
+    }
+    
+    const markBtn = document.getElementById('markChapterCompleteBtn');
+    if (markBtn) {
+        markBtn.onclick = () => {
+            if (currentChapterId) markChapterComplete(currentChapterId);
+        };
+    }
+}
+
+init();
 </script>
 </body>
 </html>
