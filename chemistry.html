@@ -474,7 +474,7 @@
 
 <script>
 // ============================================
-// COMPLETE CHEMISTRY APP - FIXED SYNTAX & CORB
+// COMPLETE CHEMISTRY APP - FIXED MISSING ELEMENT ERROR
 // ============================================
 
 const CHAPTERS_META = [
@@ -526,7 +526,6 @@ async function loadChapter(chapterId) {
     if (chapterDataCache[chapterId]) return chapterDataCache[chapterId];
     try {
         const response = await fetch(`data/chapter-${chapterId}.json`);
-        // Prevent CORB: check if response is ok and content-type is json
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const contentType = response.headers.get("content-type");
         if (!contentType || !contentType.includes("application/json")) throw new Error("Not JSON");
@@ -538,8 +537,7 @@ async function loadChapter(chapterId) {
         console.log(`✅ Chapter ${chapterId} loaded from JSON`);
         return data;
     } catch (error) {
-        console.warn(`⚠️ Could not load chapter ${chapterId} JSON, using fallback:`, error);
-        // Fallback data
+        console.warn(`⚠️ Using fallback for chapter ${chapterId}:`, error);
         return {
             chapter_title: CHAPTERS_META.find(c => c.id === chapterId)?.title || `অধ্যায় ${chapterId}`,
             topics: [{
@@ -557,13 +555,13 @@ async function loadChapter(chapterId) {
 
 function updateOverallProgress() {
     const percent = Math.round((completedChapters.length / 12) * 100);
-    const progressSpan = document.getElementById('overallProgress');
+    // FIXED: removed reference to missing 'overallProgress' element
     const progressBar = document.getElementById('mainProgressBar');
     const completedSpan = document.getElementById('completedChaptersCount');
-    if (progressSpan) progressSpan.innerText = percent + '%';
     if (progressBar) progressBar.style.width = percent + '%';
     if (completedSpan) completedSpan.innerText = completedChapters.length;
-    document.getElementById('totalChaptersCount').innerText = 12;
+    const totalSpan = document.getElementById('totalChaptersCount');
+    if (totalSpan) totalSpan.innerText = 12;
     localStorage.setItem('chemistry_completed_chapters', JSON.stringify(completedChapters));
 }
 
@@ -680,14 +678,14 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
     }
     
     if (tables.length > 0) {
-        html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>${tables.map(table => `<div class="overflow-x-auto mb-4"><table class="w-full text-sm border border-white/10 rounded-xl"><thead><tr class="border-b border-white/10 bg-white/5">${(table.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}</tr></thead><tbody>${(table.rows || []).map(row => `<tr class="border-b border-white/5">${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('')}</div>`;
+        html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>${tables.map(table => `<div class="overflow-x-auto mb-4"><table class="w-full text-sm border border-white/10 rounded-xl"><thead><tr class="border-b border-white/10 bg-white/5">${(table.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}<tr></thead><tbody>${(table.rows || []).map(row => `<tr class="border-b border-white/5">${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('')}</div>`;
     }
     
     if (examQuestions.length > 0) {
         html += `<div class="mt-8 pt-6 border-t border-white/10"><div class="instruction-box rounded-xl p-4 mb-6 bg-blue-500/10 border-l-4 border-blue-500"><p class="text-sm text-blue-300"><i class="fas fa-info-circle mr-2"></i><strong>MCQ পরীক্ষার নিয়মাবলী:</strong></p><ul class="text-xs text-blue-200/80 mt-2 space-y-1 ml-4"><li>✓ <strong>প্রথমে "পরীক্ষা শুরু করুন" বাটনে ক্লিক করতে হবে</strong></li><li>✓ পরীক্ষা শুরু করার আগে কোন উত্তর নির্বাচন করা যাবে না</li><li>✓ প্রতিটি প্রশ্নের জন্য <strong>মাত্র একটি উত্তর</strong> নির্বাচন করতে পারবেন</li><li>✓ উত্তর না দিলে সেটি <strong>ভুল হিসেবে গণ্য</strong> হবে</li><li>✓ মোট সময়: ${examQuestions.length} × 60 সেকেন্ড</li></ul></div><div class="exam-header flex flex-wrap justify-between items-center gap-4 mb-6 bg-gray-800/50 rounded-xl p-4"><div><h3 class="text-xl font-bold text-amber-400"><i class="fas fa-check-double mr-2"></i>MCQ পরীক্ষা (বহুনির্বাচনী)</h3><p class="text-sm text-gray-400 mt-1">মোট প্রশ্ন: ${examQuestions.length} | প্রতিটি প্রশ্নের জন্য ১ নম্বর</p></div><div class="flex items-center gap-4"><div id="examTimer" class="text-lg font-mono font-bold text-amber-400 bg-black/50 px-4 py-2 rounded-full">⏱️ 0:00</div><button id="startExamBtn" class="start-exam-btn px-6 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 text-white font-bold shadow-lg transition hover:scale-105"><i class="fas fa-play mr-2"></i> পরীক্ষা শুরু করুন</button></div></div><div id="mcqExamPanel" style="display: none;"><div id="mcqQuestionsContainer" class="space-y-5 mb-6 max-h-[600px] overflow-y-auto pr-2"></div><div class="flex gap-4 mt-6"><button id="submitMcqBtn" class="px-6 py-3 rounded-xl bg-green-600 text-white font-bold shadow-lg hover:bg-green-700 transition"><i class="fas fa-check-circle mr-2"></i> উত্তর জমা দিন ও ফলাফল দেখুন</button><button id="resetMcqBtn" class="px-6 py-3 rounded-xl bg-gray-700 text-gray-300 font-bold hover:bg-gray-600 transition"><i class="fas fa-undo-alt mr-2"></i> রিসেট করুন</button></div></div><div id="mcqResultPanel" class="result-card rounded-xl p-5 mt-6 hidden"></div></div>`;
         container.innerHTML = html;
         
-        // MCQ state and logic (preserved from original)
+        // MCQ logic (same as original, fully functional)
         let mcqState = { questions: [], userAnswers: [], examStarted: false, examEnded: false, timerInterval: null, timeRemaining: 0 };
         const TIME_PER_QUESTION = 60;
         function shuffleQuestions() {
@@ -737,7 +735,7 @@ function init() {
 window.openChapter = openChapter;
 init();
 
-// Theme toggle for chemistry page
+// Theme toggle
 window.toggleTheme = function() {
     const html = document.documentElement;
     const cur = html.getAttribute('data-theme');
