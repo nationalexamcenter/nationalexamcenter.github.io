@@ -4,26 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <meta name="google-site-verification" content="1fssfuJoDM0IMK2fGR32rA7WIJWf7PyWymdk_ECAVmM" />
-    <title>National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬ | এসএসসি সাজেশন ২০২৭</title>
-    <meta name="description" content="এসএসসি ২০২৭ পরীক্ষার সেরা প্রস্তুতি। NCTB ২০২৬ সিলেবাস অনুযায়ী রসায়ন, পদার্থবিজ্ঞান ও জীববিজ্ঞানের সম্পূর্ণ সিলেবাস। ৫০০+ MCQ, সৃজনশীল প্রশ্ন ও প্রোগ্রেস ট্র্যাকিং।">
-    <meta name="keywords" content="National Exam Center, ন্যাশনাল এগজাম সেন্টার, class 9-10 science, এসএসসি প্রস্তুতি ২০২৭">
-    <meta name="author" content="National Exam Center">
-    <meta name="robots" content="index, follow">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nationalexamcenter.github.io/">
-    <meta property="og:title" content="National Exam Center - নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬">
-    <meta property="og:description" content="এসএসসি ২০২৭ পরীক্ষার সম্পূর্ণ প্রস্তুতি। ৫০০+ MCQ, প্রোগ্রেস ট্র্যাকিং, সম্পূর্ণ সিলেবাস কভারেজ।">
-    <meta property="og:image" content="https://nationalexamcenter.github.io/og-image.jpg">
-    <link rel="canonical" href="https://nationalexamcenter.github.io/">
+    <title>National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬</title>
+    <meta name="description" content="এসএসসি ২০২৭ পরীক্ষার সেরা প্রস্তুতি। NCTB ২০২৬ সিলেবাস অনুযায়ী রসায়ন, পদার্থবিজ্ঞান ও জীববিজ্ঞানের সম্পূর্ণ সিলেবাস।">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Firebase SDKs -->
+    <!-- Firebase SDKs (same as before) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
         
         const firebaseConfig = {
             apiKey: "AIzaSyAOBvQOqaF19oZbrvXY6N1f9G-7z50G_yM",
@@ -109,7 +100,6 @@
         onAuthStateChanged(auth, async (user) => {
             const authButtons = document.getElementById('authButtons');
             const userMenu = document.getElementById('userMenu');
-            const drawer = document.getElementById('sideDrawer');
             if (user) {
                 const userRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(userRef);
@@ -149,11 +139,7 @@
                 await signInWithPopup(auth, provider);
                 window.hideAuthModal();
             } catch (error) {
-                if (error.code === 'auth/unauthorized-domain') {
-                    alert('এই ডোমেইন অনুমোদিত নয়। Firebase Console এ authorized domains এ nationalexamcenter.github.io যোগ করুন');
-                } else {
-                    alert('Google sign-in failed: ' + error.message);
-                }
+                alert('Google sign-in failed: ' + error.message);
             }
         };
         
@@ -244,9 +230,6 @@
             document.getElementById('drawerOverlay').classList.remove('active');
         };
         
-        console.log('Firebase + Firestore ready');
-        
-        // Premium Modal
         window.showPremiumModal = () => {
             document.getElementById('premiumModal').classList.remove('hidden');
             document.getElementById('premiumModal').style.display = 'flex';
@@ -259,48 +242,84 @@
     
     <style>
         * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        :root {
-            --bg-primary: #0a0f1a;
-            --bg-secondary: #0c1320;
-            --card-bg: rgba(18, 25, 45, 0.7);
-            --text-primary: #e5e7eb;
-            --text-secondary: #9ca3af;
-            --border-color: rgba(245, 158, 11, 0.2);
-            --border-hover: rgba(245, 158, 11, 0.5);
-            --glass-border: rgba(255, 255, 255, 0.05);
-        }
-        /* Premium background: subtle animated gradient + dark pattern */
         body {
-            background: radial-gradient(circle at 10% 20%, rgba(10, 15, 26, 0.95), rgba(2, 5, 12, 0.98)), url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDMiIGQ9Ik0wIDBoNDB2NDBIMHoiLz48cGF0aCBkPSJNMjAgMTBhMTAgMTAgMCAwIDEgMTAgMTAgMTAgMTAgMCAwIDEtMTAgMTAgMTAgMTAgMCAwIDEtMTAtMTAgMTAgMTAgMCAwIDEgMTAtMTB6IiBmaWxsPSIjZmZkYzQwIiBmaWxsLW9wYWNpdHk9IjAuMDgiLz48L3N2Zz4=');
-            background-blend-mode: overlay;
-            color: var(--text-primary);
+            background: radial-gradient(circle at 20% 30%, #0a0f1a, #02050c);
+            color: #e5e7eb;
+            overflow-x: hidden;
         }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); }
+        /* Animated 3D background container */
+        #hero-bg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.35;
+            pointer-events: none;
+        }
+        .hero-section {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
         .glass-card {
             background: rgba(18, 25, 45, 0.75);
             backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(245, 158, 11, 0.2);
             transition: all 0.3s ease;
         }
-        .glass-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-        .gradient-text { background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .btn-primary { background: linear-gradient(105deg, #ff9a3c, #ff6a2c); transition: all 0.2s ease; box-shadow: 0 8px 20px rgba(255, 100, 30, 0.3); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255, 100, 30, 0.5); }
-        .btn-secondary { border: 1px solid var(--border-color); transition: all 0.2s ease; color: var(--text-primary); }
-        .btn-secondary:hover { background: rgba(245, 158, 11, 0.1); border-color: #f59e0b; transform: translateY(-2px); }
-        .btn-wa { background: linear-gradient(105deg, #25D366, #128C7E); transition: all 0.2s ease; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3); }
-        .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5); }
-        .floating-wa { position: fixed; bottom: 25px; right: 25px; z-index: 1000; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: all 0.2s ease; }
-        .floating-wa:hover { transform: scale(1.1); }
-        .share-btn { transition: all 0.2s ease; }
-        .share-btn:hover { transform: scale(1.05); }
-        .nav-logo-img { height: 40px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
-        .modal-overlay { background-color: rgba(0,0,0,0.7); backdrop-filter: blur(8px); }
+        .glass-card:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+            transform: translateY(-2px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .btn-glow {
+            transition: all 0.2s ease;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+        }
+        .btn-glow:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.7);
+        }
+        .mockup-img {
+            max-width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(245,158,11,0.4);
+        }
+        .mockup-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.6);
+        }
+        .subject-btn {
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(245,158,11,0.5);
+            transition: all 0.2s;
+        }
+        .subject-btn:hover {
+            background: rgba(245,158,11,0.2);
+            border-color: #f59e0b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245,158,11,0.3);
+        }
         .side-drawer {
             position: fixed; top: 0; left: -320px; width: 320px; height: 100%; z-index: 1100;
-            background: rgba(18, 25, 45, 0.95); backdrop-filter: blur(20px); border-right: 1px solid var(--border-color);
+            background: rgba(18, 25, 45, 0.95); backdrop-filter: blur(20px); border-right: 1px solid rgba(245,158,11,0.2);
             transition: left 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            box-shadow: 10px 0 30px rgba(0,0,0,0.3);
         }
         .side-drawer.open { left: 0; }
         .drawer-overlay {
@@ -309,31 +328,16 @@
             opacity: 0; visibility: hidden; transition: 0.2s;
         }
         .drawer-overlay.active { opacity: 1; visibility: visible; }
-        .subject-canvas {
-            width: 100%;
-            height: 200px;
-            border-radius: 1rem;
-            overflow: hidden;
-            background: rgba(0,0,0,0.3);
-        }
-        .mockup-img {
-            width: 100%;
-            border-radius: 1rem;
-            box-shadow: 0 20px 35px -15px rgba(0,0,0,0.4);
-            transition: transform 0.3s ease;
-            border: 1px solid rgba(245,158,11,0.3);
-        }
-        .mockup-card:hover .mockup-img { transform: scale(1.02); }
-        .hero-stats div { background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); border-radius: 1rem; }
-        @media (max-width: 768px) {
-            .subject-canvas { height: 150px; }
-            .mockup-img { height: auto; }
+        .floating-wa { position: fixed; bottom: 25px; right: 25px; z-index: 1000; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: all 0.2s ease; }
+        .floating-wa:hover { transform: scale(1.1); }
+        @media (max-width: 1024px) {
+            .hero-section { min-height: auto; padding: 2rem 0; }
         }
     </style>
 </head>
 <body>
 
-<!-- Side Drawer (without theme toggle) -->
+<!-- Side Drawer (unchanged but no theme toggle) -->
 <div id="drawerOverlay" class="drawer-overlay" onclick="closeDrawer()"></div>
 <div id="sideDrawer" class="side-drawer flex flex-col">
     <div class="p-5 border-b border-white/10">
@@ -358,14 +362,14 @@
         <div id="drawerLoggedOutView" class="text-center py-4">
             <i class="fas fa-user-circle text-5xl text-amber-400 mb-2"></i>
             <p class="text-sm mb-3">প্রোফাইল দেখতে লগইন করুন</p>
-            <button onclick="showSignInModal(); closeDrawer()" class="btn-primary px-4 py-2 rounded-lg text-sm w-full">লগইন / সাইন আপ</button>
+            <button onclick="showSignInModal(); closeDrawer()" class="btn-primary px-4 py-2 rounded-lg text-sm w-full" style="background: linear-gradient(105deg, #ff9a3c, #ff6a2c);">লগইন / সাইন আপ</button>
         </div>
     </div>
     <div class="flex-1 p-4 space-y-2">
         <a href="/chemistry.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-amber-500/10 transition"><i class="fas fa-flask w-5 text-amber-400"></i> রসায়ন সম্পূর্ণ সিলেবাস</a>
         <a href="/physics.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-amber-500/10 transition"><i class="fas fa-atom w-5 text-amber-400"></i> পদার্থবিজ্ঞান সম্পূর্ণ সিলেবাস</a>
         <a href="/biology.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-amber-500/10 transition"><i class="fas fa-dna w-5 text-amber-400"></i> জীববিজ্ঞান সম্পূর্ণ সিলেবাস</a>
-        <a href="#pricing" class="flex items-center gap-3 p-2 rounded-lg hover:bg-amber-500/10 transition"><i class="fas fa-tags w-5 text-amber-400"></i> সাবস্ক্রিপশন প্ল্যান</a>
+        <a href="#pricing" class="flex items-center gap-3 p-2 rounded-lg hover:bg-amber-500/10 transition" onclick="showPremiumModal()"><i class="fas fa-tags w-5 text-amber-400"></i> সাবস্ক্রিপশন প্ল্যান</a>
         <a href="/privacy.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-amber-500/10 transition"><i class="fas fa-shield-alt w-5 text-amber-400"></i> গোপনীয়তা নীতি</a>
         <hr class="border-white/10 my-2">
         <div id="drawerSignOutBtn" class="hidden">
@@ -374,247 +378,236 @@
     </div>
 </div>
 
-<!-- Profile & Auth Modals (same as before) -->
-<div id="profileModal" class="fixed inset-0 z-[1200] hidden items-center justify-center modal-overlay transition-all">
+<!-- Profile & Auth Modals (simplified) -->
+<div id="profileModal" class="fixed inset-0 z-[1200] hidden items-center justify-center modal-overlay transition-all" style="background:rgba(0,0,0,0.7); backdrop-filter:blur(8px);">
     <div class="glass-card rounded-2xl p-6 w-full max-w-md mx-4 relative">
         <button onclick="document.getElementById('profileModal').classList.add('hidden'); this.parentElement.parentElement.style.display='none'" class="absolute top-4 right-4 text-gray-400 hover:text-amber-400 text-2xl">&times;</button>
-        <div class="text-center mb-6">
-            <i class="fas fa-user-circle text-5xl text-amber-400 mb-2"></i>
-            <h3 class="text-2xl font-bold gradient-text">আপনার প্রোফাইল</h3>
-            <p class="text-gray-400 text-sm">নিচের তথ্যগুলো পূরণ করুন</p>
-        </div>
+        <div class="text-center mb-6"><i class="fas fa-user-circle text-5xl text-amber-400 mb-2"></i><h3 class="text-2xl font-bold gradient-text">আপনার প্রোফাইল</h3><p class="text-gray-400 text-sm">নিচের তথ্যগুলো পূরণ করুন</p></div>
         <div class="space-y-3">
-            <input type="text" id="profileName" placeholder="আপনার নাম *" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
-            <input type="text" id="profileSchool" placeholder="বিদ্যালয়ের নাম" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
-            <select id="profileClass" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-amber-500">
-                <option value="">শ্রেণি নির্বাচন করুন</option><option>নবম</option><option>দশম</option>
-            </select>
-            <input type="text" id="profileDistrict" placeholder="জেলা" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
-            <button id="saveProfileBtn" class="w-full btn-primary py-2.5 rounded-lg font-semibold">প্রোফাইল সংরক্ষণ করুন</button>
+            <input type="text" id="profileName" placeholder="আপনার নাম *" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white">
+            <input type="text" id="profileSchool" placeholder="বিদ্যালয়ের নাম" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white">
+            <select id="profileClass" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white"><option value="">শ্রেণি নির্বাচন করুন</option><option>নবম</option><option>দশম</option></select>
+            <input type="text" id="profileDistrict" placeholder="জেলা" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white">
+            <button id="saveProfileBtn" class="w-full py-2.5 rounded-lg font-semibold" style="background: linear-gradient(105deg, #ff9a3c, #ff6a2c);">প্রোফাইল সংরক্ষণ করুন</button>
         </div>
     </div>
 </div>
-
-<div id="authModal" class="fixed inset-0 z-[1200] hidden items-center justify-center modal-overlay transition-all">
+<div id="authModal" class="fixed inset-0 z-[1200] hidden items-center justify-center modal-overlay transition-all" style="background:rgba(0,0,0,0.7); backdrop-filter:blur(8px);">
     <div class="glass-card rounded-2xl p-6 w-full max-w-md mx-4 relative">
         <button onclick="hideAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-amber-400 text-2xl">&times;</button>
         <div class="text-center mb-6"><img src="pic/NEC3.png" alt="NEC" class="h-12 mx-auto mb-2"><h3 class="text-2xl font-bold gradient-text">ন্যাশনাল এগজাম সেন্টার</h3><p class="text-gray-400 text-sm mt-1">আপনার অ্যাকাউন্টে সাইন ইন করুন</p></div>
         <button onclick="googleSignIn()" class="w-full flex items-center justify-center gap-3 bg-white/10 border border-white/20 rounded-lg py-2.5 mb-4 hover:bg-white/20 transition"><i class="fab fa-google text-red-500 text-xl"></i><span class="font-medium">Google দিয়ে সাইন ইন করুন</span></button>
         <div class="relative my-4"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/20"></div></div><div class="relative flex justify-center text-xs"><span class="bg-gray-900 px-2 text-gray-400">অথবা ইমেইল ব্যবহার করুন</span></div></div>
         <div class="space-y-3">
-            <input type="email" id="emailInput" placeholder="ইমেইল ঠিকানা" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
-            <input type="password" id="passwordInput" placeholder="পাসওয়ার্ড" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500">
+            <input type="email" id="emailInput" placeholder="ইমেইল ঠিকানা" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white">
+            <input type="password" id="passwordInput" placeholder="পাসওয়ার্ড" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2.5 text-white">
             <div class="flex items-center justify-between text-sm"><label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="authModeToggle" class="hidden" onchange="toggleAuthMode()"><span class="w-5 h-5 border border-amber-500 rounded flex items-center justify-center"><i class="fas fa-check text-amber-500 text-xs hidden" id="checkIcon"></i></span><span id="authModeText" class="text-gray-400">নতুন ব্যবহারকারী? সাইন আপ করুন</span></label></div>
-            <button id="emailSubmitBtn" onclick="submitEmailAuth()" class="w-full btn-primary py-2.5 rounded-lg font-semibold"><i class="fas fa-sign-in-alt mr-1"></i> লগইন করুন</button>
+            <button id="emailSubmitBtn" onclick="submitEmailAuth()" class="w-full py-2.5 rounded-lg font-semibold" style="background: linear-gradient(105deg, #ff9a3c, #ff6a2c);"><i class="fas fa-sign-in-alt mr-1"></i> লগইন করুন</button>
         </div>
         <p class="text-center text-xs text-gray-500 mt-4">সাইন ইন করে আপনি আমাদের <a href="/privacy.html" class="text-amber-400">গোপনীয়তা নীতি</a> মেনে নিচ্ছেন।</p>
     </div>
 </div>
-
-<div id="premiumModal" class="fixed inset-0 z-[1200] hidden items-center justify-center modal-overlay transition-all" onclick="if(event.target === this) hidePremiumModal()">
+<div id="premiumModal" class="fixed inset-0 z-[1200] hidden items-center justify-center modal-overlay transition-all" style="background:rgba(0,0,0,0.7); backdrop-filter:blur(8px);" onclick="if(event.target===this) hidePremiumModal()">
     <div class="glass-card rounded-2xl p-6 w-full max-w-3xl mx-4 relative">
         <button onclick="hidePremiumModal()" class="absolute top-4 right-4 text-gray-400 hover:text-amber-400 text-2xl">&times;</button>
-        <div class="text-center mb-6"><i class="fas fa-crown text-5xl text-amber-400 mb-2"></i><h3 class="text-2xl font-bold gradient-text">প্রিমিয়াম প্ল্যান</h3><p class="text-gray-400 text-sm mt-1">আপনার জন্য উপযুক্ত প্ল্যান বেছে নিন</p></div>
+        <div class="text-center mb-6"><i class="fas fa-crown text-5xl text-amber-400 mb-2"></i><h3 class="text-2xl font-bold gradient-text">প্রিমিয়াম প্ল্যান</h3></div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="premium-plan glass-card rounded-xl p-4 text-center cursor-pointer hover:border-amber-500/50 transition" onclick="window.open('https://wa.me/8801602105447?text=আমি মাসিক প্ল্যান নিতে আগ্রহী', '_blank')"><div class="text-lg font-bold">মাসিক</div><div class="text-2xl font-bold text-amber-400 my-2">১০০৳</div><p class="text-xs text-gray-400">৩০ দিন অ্যাক্সেস</p><div class="mt-3 text-xs text-green-400"><i class="fas fa-check-circle mr-1"></i> সম্পূর্ণ সিলেবাস</div><div class="text-xs text-green-400"><i class="fas fa-check-circle mr-1"></i> MCQ পরীক্ষা</div></div>
-            <div class="premium-plan glass-card rounded-xl p-4 text-center cursor-pointer hover:border-amber-500/50 transition" onclick="window.open('https://wa.me/8801602105447?text=আমি ত্রৈমাসিক প্ল্যান নিতে আগ্রহী', '_blank')"><div class="text-lg font-bold">ত্রৈমাসিক</div><div class="text-2xl font-bold text-amber-400 my-2">২৭৫৳</div><p class="text-xs text-gray-400">৯০ দিন + বোনাস</p><div class="mt-3 text-xs text-green-400"><i class="fas fa-check-circle mr-1"></i> সম্পূর্ণ সিলেবাস</div><div class="text-xs text-green-400"><i class="fas fa-check-circle mr-1"></i> MCQ পরীক্ষা</div></div>
-            <div class="premium-plan glass-card rounded-xl p-4 text-center cursor-pointer hover:border-amber-500/50 transition" onclick="window.open('https://wa.me/8801602105447?text=আমি ষাণ্মাসিক প্ল্যান নিতে আগ্রহী', '_blank')"><div class="text-lg font-bold">ষাণ্মাসিক</div><div class="text-2xl font-bold text-amber-400 my-2">৫০০৳</div><p class="text-xs text-gray-400">৬ মাস + কুইজ</p><div class="mt-3 text-xs text-green-400"><i class="fas fa-check-circle mr-1"></i> সম্পূর্ণ সিলেবাস</div><div class="text-xs text-green-400"><i class="fas fa-check-circle mr-1"></i> MCQ পরীক্ষা</div><div class="text-xs text-green-400"><i class="fas fa-check-circle mr-1"></i> প্রিমিয়াম কুইজ</div></div>
-            <div class="premium-plan glass-card rounded-xl p-4 text-center cursor-pointer hover:border-amber-500/50 transition border-2 border-amber-500/40 relative" onclick="window.open('https://wa.me/8801602105447?text=আমি বার্ষিক প্ল্যান নিতে আগ্রহী', '_blank')"><div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-amber-600 to-orange-600 text-white text-xs px-2 py-0.5 rounded-full"><i class="fas fa-fire mr-1"></i> বেস্ট ভ্যালু</div><div class="text-lg font-bold mt-2">বার্ষিক</div><div class="text-2xl font-bold text-amber-300 my-2">৯০০৳</div><p class="text-xs text-gray-400">৩৬৫ দিন + এসএসসি ২০২৭ সাপোর্ট</p><div class="mt-3 text-xs text-green-400"><i class="fas fa-check-circle mr-1"></i> সম্পূর্ণ সিলেবাস</div><div class="text-xs text-green-400"><i class="fas fa-check-circle mr-1"></i> MCQ পরীক্ষা</div><div class="text-xs text-green-400"><i class="fas fa-check-circle mr-1"></i> প্রিমিয়াম কুইজ</div><div class="text-xs text-green-400"><i class="fas fa-check-circle mr-1"></i> এসএসসি সাজেশন</div></div>
+            <div class="glass-card rounded-xl p-4 text-center cursor-pointer hover:border-amber-500/50" onclick="window.open('https://wa.me/8801602105447?text=মাসিক প্ল্যান','_blank')"><div class="text-lg font-bold">মাসিক</div><div class="text-2xl font-bold text-amber-400 my-2">১০০৳</div><p class="text-xs">৩০ দিন অ্যাক্সেস</p></div>
+            <div class="glass-card rounded-xl p-4 text-center cursor-pointer hover:border-amber-500/50" onclick="window.open('https://wa.me/8801602105447?text=ত্রৈমাসিক প্ল্যান','_blank')"><div class="text-lg font-bold">ত্রৈমাসিক</div><div class="text-2xl font-bold text-amber-400 my-2">২৭৫৳</div><p class="text-xs">৯০ দিন + বোনাস</p></div>
+            <div class="glass-card rounded-xl p-4 text-center cursor-pointer hover:border-amber-500/50" onclick="window.open('https://wa.me/8801602105447?text=ষাণ্মাসিক প্ল্যান','_blank')"><div class="text-lg font-bold">ষাণ্মাসিক</div><div class="text-2xl font-bold text-amber-400 my-2">৫০০৳</div><p class="text-xs">৬ মাস + কুইজ</p></div>
+            <div class="glass-card rounded-xl p-4 text-center cursor-pointer hover:border-amber-500/50 border-2 border-amber-500/40" onclick="window.open('https://wa.me/8801602105447?text=বার্ষিক প্ল্যান','_blank')"><div class="text-lg font-bold">বার্ষিক</div><div class="text-2xl font-bold text-amber-300 my-2">৯০০৳</div><p class="text-xs">৩৬৫ দিন + এসএসসি সাপোর্ট</p></div>
         </div>
-        <div class="mt-6 text-center"><p class="text-xs text-gray-400">পেমেন্ট ও সাবস্ক্রিপশন সংক্রান্ত তথ্যের জন্য WhatsApp এ যোগাযোগ করুন</p><button onclick="window.open('https://wa.me/8801602105447?text=আমি প্রিমিয়াম প্ল্যান সম্পর্কে জানতে চাই', '_blank')" class="mt-3 inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-green-600 text-white text-sm hover:bg-green-700 transition"><i class="fab fa-whatsapp"></i> WhatsApp এ যোগাযোগ করুন</button></div>
+        <div class="mt-6 text-center"><button onclick="window.open('https://wa.me/8801602105447?text=প্রিমিয়াম প্ল্যান','_blank')" class="inline-flex gap-2 px-5 py-2 rounded-lg bg-green-600 text-white text-sm hover:bg-green-700"><i class="fab fa-whatsapp"></i> WhatsApp এ যোগাযোগ করুন</button></div>
     </div>
 </div>
 
-<!-- Navbar (no theme toggle) -->
-<nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
+<!-- Navbar -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-black/40 backdrop-blur-lg border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-3">
             <div class="flex items-center gap-3">
-                <button onclick="openDrawer()" class="text-2xl text-amber-400 hover:scale-110 transition"><i class="fas fa-bars"></i></button>
-                <img src="pic/NEC3.png" alt="Logo" class="nav-logo-img" onerror="this.src='https://placehold.co/313x129/ffffff/ff9a3c?text=NEC';">
+                <button onclick="openDrawer()" class="text-2xl text-amber-400"><i class="fas fa-bars"></i></button>
+                <img src="pic/NEC3.png" alt="Logo" class="h-10 w-auto">
                 <span class="font-bold text-xl gradient-text">National Exam Center</span>
-                <span class="text-xs bg-amber-500/20 px-2 py-1 rounded-full hidden md:block">ন্যাশনাল এগজাম সেন্টার | SSC ২০২৭</span>
             </div>
             <div class="flex items-center gap-4">
-                <div id="authButtons" class="flex gap-2"><button onclick="showSignInModal()" class="btn-secondary px-3 py-2 rounded-lg text-sm"><i class="fas fa-user mr-1"></i> লগইন</button></div>
+                <div id="authButtons"><button onclick="showSignInModal()" class="px-3 py-2 rounded-lg text-sm border border-amber-500/30 hover:bg-amber-500/10">লগইন</button></div>
                 <div id="userMenu" class="hidden relative group">
-                    <button class="btn-profile w-9 h-9 rounded-full overflow-hidden border-2 border-amber-500/50"><img id="userAvatar" src="https://ui-avatars.com/api/?background=f59e0b&color=fff&name=User" class="w-full h-full object-cover"></button>
+                    <button class="w-9 h-9 rounded-full overflow-hidden border-2 border-amber-500"><img id="userAvatar" src="https://ui-avatars.com/api/?background=f59e0b&color=fff&name=User"></button>
                     <div class="absolute right-0 mt-2 w-64 glass-card rounded-xl p-3 hidden group-hover:block z-50">
-                        <div class="border-b border-white/10 pb-2 mb-2"><p id="userName" class="font-semibold text-sm">User</p><p id="userSchool" class="text-xs text-gray-400 truncate">স্কুল</p><p id="userClass" class="text-xs text-gray-400">ক্লাস</p><p id="userDistrict" class="text-xs text-gray-400">জেলা</p></div>
-                        <button onclick="editProfile()" class="w-full text-left text-sm text-amber-400 hover:bg-amber-500/10 px-2 py-1.5 rounded-lg transition"><i class="fas fa-edit mr-2"></i> প্রোফাইল এডিট</button>
-                        <button onclick="signOutUser()" class="w-full text-left text-sm text-red-400 hover:bg-red-500/10 px-2 py-1.5 rounded-lg transition"><i class="fas fa-sign-out-alt mr-2"></i> সাইন আউট</button>
+                        <p id="userName" class="font-semibold">User</p>
+                        <button onclick="editProfile()" class="w-full text-left text-sm text-amber-400 mt-2"><i class="fas fa-edit"></i> প্রোফাইল এডিট</button>
+                        <button onclick="signOutUser()" class="w-full text-left text-sm text-red-400 mt-1"><i class="fas fa-sign-out-alt"></i> সাইন আউট</button>
                     </div>
                 </div>
-                <a href="/chemistry.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-flask mr-1"></i> রসায়ন</a>
-                <a href="/physics.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-atom mr-1"></i> পদার্থবিজ্ঞান</a>
-                <a href="/biology.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-dna mr-1"></i> জীববিজ্ঞান</a>
-                <a href="/privacy.html" class="hidden md:block text-gray-400 text-sm hover:text-amber-400 transition">গোপনীয়তা</a>
-                <a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" target="_blank" class="btn-wa px-4 py-2 rounded-lg text-white text-sm font-semibold transition"><i class="fab fa-whatsapp mr-1"></i> WhatsApp</a>
+                <a href="/chemistry.html" class="hidden md:block px-3 py-1 rounded-lg bg-amber-500/20 text-amber-400 text-sm">রসায়ন</a>
+                <a href="/physics.html" class="hidden md:block px-3 py-1 rounded-lg bg-amber-500/20 text-amber-400 text-sm">পদার্থবিজ্ঞান</a>
+                <a href="/biology.html" class="hidden md:block px-3 py-1 rounded-lg bg-amber-500/20 text-amber-400 text-sm">জীববিজ্ঞান</a>
+                <a href="https://wa.me/8801602105447" class="btn-wa px-3 py-2 rounded-lg text-white text-sm bg-green-600"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
         </div>
     </div>
 </nav>
 
-<!-- Hero Section with Mockups (Chapters page, Study page, Answer review) -->
-<div class="max-w-7xl mx-auto px-4 pt-28 pb-8">
-    <div class="text-center mb-12">
-        <div class="inline-block px-4 py-1 rounded-full bg-black/50 backdrop-blur-sm text-amber-400 text-sm mb-4"><i class="fas fa-graduation-cap mr-1"></i> NCTB ২০২৬ আপডেট সিলেবাস | এসএসসি ২০২৭</div>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">নবম-দশম <span class="gradient-text">বিজ্ঞান প্রস্তুতি</span> ২০২৬</h1>
-        <p class="text-gray-300 text-lg max-w-2xl mx-auto mb-8">পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান - সর্বশেষ প্যাটার্ন ও সিলেবাস। এসএসসি ২০২৭, ২০২৮ ব্যাচদের জন্য প্রিমিয়াম সাপোর্ট। ৫০০+ MCQ, সৃজনশীল প্রশ্ন।</p>
-        <button onclick="showPremiumModal()" class="btn-primary px-8 py-3 rounded-full font-bold text-lg shine-effect"><i class="fas fa-gem mr-2"></i> প্রিমিয়াম প্ল্যান দেখুন</button>
-    </div>
-
-    <!-- Three Mockup Images (chapters topic page, topic study page, answer review) -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-        <div class="glass-card rounded-2xl p-4 text-center mockup-card">
-            <div class="text-amber-400 font-semibold mb-2"><i class="fas fa-list-ul mr-1"></i> অধ্যায়ভিত্তিক সূচি</div>
-            <img class="mockup-img" src="pic/mockup-1.png" alt="Chapters Topic Page" onerror="this.src='https://placehold.co/600x400/1e293b/f59e0b?text=Chapters+Page'">
-            <p class="text-xs text-gray-400 mt-2">সম্পূর্ণ সিলেবাসের অধ্যায় তালিকা</p>
+<!-- Hero Section with 3D background + split layout -->
+<div class="hero-section relative">
+    <!-- 3D Canvas Background -->
+    <div id="hero-bg-canvas"></div>
+    
+    <div class="hero-content max-w-7xl mx-auto px-4 py-12 w-full">
+        <div class="flex flex-col lg:flex-row gap-8 items-center">
+            <!-- Left side: text, premium button, subject buttons -->
+            <div class="flex-1 text-center lg:text-left">
+                <span class="inline-block px-4 py-1 rounded-full bg-black/50 backdrop-blur-sm text-amber-400 text-sm mb-4"><i class="fas fa-graduation-cap"></i> NCTB ২০২৬ সিলেবাস | এসএসসি ২০২৭</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">নবম-দশম <span class="gradient-text">বিজ্ঞান প্রস্তুতি</span> ২০২৬</h1>
+                <p class="text-gray-300 text-lg max-w-lg mx-auto lg:mx-0 mb-6">পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান - সম্পূর্ণ সিলেবাস, ৫০০+ MCQ, সৃজনশীল প্রশ্ন ও প্রোগ্রেস ট্র্যাকিং।</p>
+                <div class="flex flex-wrap gap-3 justify-center lg:justify-start mb-6">
+                    <button onclick="showPremiumModal()" class="btn-glow px-5 py-2 rounded-full font-bold" style="background: linear-gradient(105deg, #ff9a3c, #ff6a2c); box-shadow: 0 0 15px #f59e0b;"><i class="fas fa-gem mr-2"></i> প্রিমিয়াম প্ল্যান</button>
+                </div>
+                <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
+                    <a href="/chemistry.html" class="subject-btn px-5 py-2 rounded-full text-amber-400 font-medium flex items-center gap-2"><i class="fas fa-flask"></i> রসায়ন</a>
+                    <a href="/physics.html" class="subject-btn px-5 py-2 rounded-full text-amber-400 font-medium flex items-center gap-2"><i class="fas fa-atom"></i> পদার্থবিজ্ঞান</a>
+                    <a href="/biology.html" class="subject-btn px-5 py-2 rounded-full text-amber-400 font-medium flex items-center gap-2"><i class="fas fa-dna"></i> জীববিজ্ঞান</a>
+                </div>
+                <!-- Stats -->
+                <div class="flex flex-wrap gap-6 justify-center lg:justify-start mt-8">
+                    <div class="text-center bg-black/30 backdrop-blur-sm px-4 py-2 rounded-xl"><div class="text-xl font-bold text-amber-400">৫০০+</div><div class="text-xs">MCQ প্রশ্ন</div></div>
+                    <div class="text-center bg-black/30 backdrop-blur-sm px-4 py-2 rounded-xl"><div class="text-xl font-bold text-amber-400">৩০+</div><div class="text-xs">অধ্যায়</div></div>
+                    <div class="text-center bg-black/30 backdrop-blur-sm px-4 py-2 rounded-xl"><div class="text-xl font-bold text-amber-400">৯৮%</div><div class="text-xs">সন্তুষ্টি হার</div></div>
+                </div>
+            </div>
+            
+            <!-- Right side: Three mockup images (smaller, with glow) -->
+            <div class="flex-1 flex flex-col gap-4 items-center">
+                <div class="w-full max-w-sm">
+                    <img src="pic/mockup-1.png" alt="অধ্যায় সূচি" class="mockup-img w-full" onerror="this.src='https://placehold.co/400x250/1e293b/f59e0b?text=Chapters'">
+                    <p class="text-center text-xs text-gray-400 mt-1">অধ্যায়ভিত্তিক সূচি</p>
+                </div>
+                <div class="w-full max-w-sm">
+                    <img src="pic/mockup-2.png" alt="টপিক স্টাডি" class="mockup-img w-full" onerror="this.src='https://placehold.co/400x250/1e293b/f59e0b?text=Study'">
+                    <p class="text-center text-xs text-gray-400 mt-1">বিস্তারিত টপিক স্টাডি</p>
+                </div>
+                <div class="w-full max-w-sm">
+                    <img src="pic/mockup-3.png" alt="উত্তর পর্যালোচনা" class="mockup-img w-full" onerror="this.src='https://placehold.co/400x250/1e293b/f59e0b?text=Answer+Review'">
+                    <p class="text-center text-xs text-gray-400 mt-1">MCQ উত্তর পর্যালোচনা</p>
+                </div>
+            </div>
         </div>
-        <div class="glass-card rounded-2xl p-4 text-center mockup-card">
-            <div class="text-amber-400 font-semibold mb-2"><i class="fas fa-book-open mr-1"></i> টপিক স্টাডি</div>
-            <img class="mockup-img" src="pic/mockup-2.png" alt="Topic Study Page" onerror="this.src='https://placehold.co/600x400/1e293b/f59e0b?text=Study+Page'">
-            <p class="text-xs text-gray-400 mt-2">সারাংশ, সৃজনশীল ও গাণিতিক উদাহরণ</p>
-        </div>
-        <div class="glass-card rounded-2xl p-4 text-center mockup-card">
-            <div class="text-amber-400 font-semibold mb-2"><i class="fas fa-check-double mr-1"></i> উত্তর পর্যালোচনা</div>
-            <img class="mockup-img" src="pic/mockup-3.png" alt="Answer Review Page" onerror="this.src='https://placehold.co/600x400/1e293b/f59e0b?text=Answer+Review'">
-            <p class="text-xs text-gray-400 mt-2">MCQ পরীক্ষার ফলাফল ও সঠিক উত্তর</p>
-        </div>
-    </div>
-
-    <!-- Subject Animations (Chemistry, Physics, Biology) - kept as requested -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-        <div class="glass-card rounded-2xl p-4 text-center">
-            <div class="text-amber-400 font-bold mb-2"><i class="fas fa-flask mr-1"></i> রসায়ন - 3D অ্যানিমেশন</div>
-            <div id="chemistryCanvas" class="subject-canvas"></div>
-        </div>
-        <div class="glass-card rounded-2xl p-4 text-center">
-            <div class="text-amber-400 font-bold mb-2"><i class="fas fa-atom mr-1"></i> পদার্থবিজ্ঞান - 3D অ্যানিমেশন</div>
-            <div id="physicsCanvas" class="subject-canvas"></div>
-        </div>
-        <div class="glass-card rounded-2xl p-4 text-center">
-            <div class="text-amber-400 font-bold mb-2"><i class="fas fa-dna mr-1"></i> জীববিজ্ঞান - 3D অ্যানিমেশন</div>
-            <div id="biologyCanvas" class="subject-canvas"></div>
-        </div>
-    </div>
-
-    <!-- Stats -->
-    <div class="flex flex-wrap justify-center gap-8 mt-4 mb-16">
-        <div class="hero-stats text-center px-6 py-3 rounded-xl"><div class="text-2xl font-bold text-amber-400 counter" data-target="5000">0+</div><div class="text-xs text-gray-300">সক্রিয় শিক্ষার্থী</div></div>
-        <div class="hero-stats text-center px-6 py-3 rounded-xl"><div class="text-2xl font-bold text-amber-400">৩০+</div><div class="text-xs text-gray-300">অধ্যায় সম্পূর্ণ</div></div>
-        <div class="hero-stats text-center px-6 py-3 rounded-xl"><div class="text-2xl font-bold text-amber-400 counter" data-target="98">98%</div><div class="text-xs text-gray-300">সন্তুষ্টি হার</div></div>
     </div>
 </div>
 
-<!-- Features, Testimonials, FAQ same as before but with premium look -->
-<section class="py-16 px-4 max-w-6xl mx-auto"><h2 class="text-2xl md:text-3xl font-bold text-center mb-12">✨ অ্যাপের বিশেষ বৈশিষ্ট্য</h2><div class="grid md:grid-cols-2 gap-6"><div class="glass-card rounded-2xl p-6"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-chalkboard-user text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">সম্পূর্ণ সিলেবাস কভারেজ</h3><p class="text-gray-400 text-sm">NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী রসায়ন, পদার্থবিজ্ঞান ও জীববিজ্ঞানের সম্পূর্ণ অধ্যায় যুক্ত হবে।</p></div></div></div><div class="glass-card rounded-2xl p-6"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-question-circle text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">MCQ ও সৃজনশীল প্রশ্ন</h3><p class="text-gray-400 text-sm">প্রতিটি অধ্যায়ের জন্য অধ্যায়ভিত্তিক বহুনির্বাচনি ও সৃজনশীল প্রশ্ন সহ উত্তর। বোর্ড পরীক্ষার প্যাটার্ন অনুযায়ী তৈরি।</p></div></div></div><div class="glass-card rounded-2xl p-6"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-chart-line text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">প্রোগ্রেস ট্র্যাকিং</h3><p class="text-gray-400 text-sm">আপনার পড়ার অগ্রগতি স্বয়ংক্রিয়ভাবে সংরক্ষিত হয়। কোন অধ্যায় কতটুকু পড়েছেন তা ট্র্যাক করতে পারবেন।</p></div></div></div><div class="glass-card rounded-2xl p-6"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-share-alt text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">ফলাফল শেয়ার করুন</h3><p class="text-gray-400 text-sm">MCQ পরীক্ষার ফলাফল সরাসরি Facebook, WhatsApp ও অন্যান্য সোশ্যাল মিডিয়ায় শেয়ার করতে পারবেন।</p></div></div></div></div></section>
+<!-- Rest of page: Features, Testimonials, FAQ (unchanged but added glow) -->
+<section class="py-16 px-4 max-w-6xl mx-auto"><h2 class="text-2xl md:text-3xl font-bold text-center mb-12">✨ অ্যাপের বিশেষ বৈশিষ্ট্য</h2><div class="grid md:grid-cols-2 gap-6"><div class="glass-card rounded-2xl p-6"><div class="flex gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-chalkboard-user text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold">সম্পূর্ণ সিলেবাস কভারেজ</h3><p class="text-gray-400 text-sm">NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী সব অধ্যায়</p></div></div></div><div class="glass-card rounded-2xl p-6"><div class="flex gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-question-circle text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold">MCQ ও সৃজনশীল প্রশ্ন</h3><p class="text-gray-400 text-sm">বোর্ড পরীক্ষার প্যাটার্ন অনুযায়ী</p></div></div></div><div class="glass-card rounded-2xl p-6"><div class="flex gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-chart-line text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold">প্রোগ্রেস ট্র্যাকিং</h3><p class="text-gray-400 text-sm">আপনার পড়ার অগ্রগতি সংরক্ষিত হয়</p></div></div></div><div class="glass-card rounded-2xl p-6"><div class="flex gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-share-alt text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold">ফলাফল শেয়ার</h3><p class="text-gray-400 text-sm">সোশ্যাল মিডিয়ায় শেয়ার করুন</p></div></div></div></div></section>
 
-<!-- Testimonials & FAQ sections truncated for brevity but kept functional -->
-<section class="py-12 px-4 max-w-6xl mx-auto"><h2 class="text-2xl md:text-3xl font-bold text-center mb-8">🎓 অভিভাবকদের মতামত</h2><div class="grid md:grid-cols-2 gap-6"><div class="glass-card rounded-2xl p-6"><i class="fas fa-quote-left text-amber-500/50 text-3xl mb-3"></i><p class="text-gray-300 text-sm">"আমার মেয়ে National Exam Center ব্যবহার করে রসায়নে অনেক উন্নতি করেছে। MCQ প্রশ্নগুলো বোর্ড পরীক্ষার প্যাটার্নের সাথে পুরোপুরি মিলে যায়।"</p><p class="text-amber-400 text-sm mt-3">— মোঃ রহমত উল্লাহ, অভিভাবক</p></div><div class="glass-card rounded-2xl p-6"><i class="fas fa-quote-left text-amber-500/50 text-3xl mb-3"></i><p class="text-gray-300 text-sm">"সাশ্রয়ী মূল্যের চমৎকার একটি প্ল্যাটফর্ম। আমার ছেলে এখন নিজে নিজে প্র্যাকটিস করে। প্রোগ্রেস ট্র্যাকিং ফিচারটা অভিভাবক হিসেবে খুব কাজে লাগে।"</p><p class="text-amber-400 text-sm mt-3">— নাসরিন সুলতানা, অভিভাবক</p></div></div></section>
+<section class="py-12 px-4 max-w-6xl mx-auto"><h2 class="text-2xl md:text-3xl font-bold text-center mb-8">🎓 অভিভাবকদের মতামত</h2><div class="grid md:grid-cols-2 gap-6"><div class="glass-card rounded-2xl p-6"><i class="fas fa-quote-left text-amber-500/50 text-3xl mb-3"></i><p class="text-gray-300 text-sm">"আমার মেয়ে National Exam Center ব্যবহার করে রসায়নে অনেক উন্নতি করেছে।"</p><p class="text-amber-400 text-sm mt-3">— মোঃ রহমত উল্লাহ</p></div><div class="glass-card rounded-2xl p-6"><i class="fas fa-quote-left text-amber-500/50 text-3xl mb-3"></i><p class="text-gray-300 text-sm">"সাশ্রয়ী মূল্যের চমৎকার প্ল্যাটফর্ম। প্রোগ্রেস ট্র্যাকিং খুব কাজে লাগে।"</p><p class="text-amber-400 text-sm mt-3">— নাসরিন সুলতানা</p></div></div></section>
 
-<!-- FAQ -->
-<div class="max-w-4xl mx-auto px-4 py-12"><h2 class="text-2xl md:text-3xl font-bold text-center mb-8">❓ সাধারণ জিজ্ঞাসা</h2><div class="space-y-4" id="qaContainer"></div><div class="mt-10 text-center"><p class="text-gray-400 mb-4">এই পেজটি শেয়ার করুন:</p><div class="flex justify-center gap-3 flex-wrap"><button onclick="shareOnFacebook()" class="share-btn px-5 py-2 rounded-lg bg-[#1877F2]/20 text-[#1877F2] border border-[#1877F2]/30 hover:bg-[#1877F2]/30 transition"><i class="fab fa-facebook-f"></i> Facebook</button><button onclick="shareOnWhatsApp()" class="share-btn px-5 py-2 rounded-lg bg-[#25D366]/20 text-[#25D366] border border-[#25D366]/30 hover:bg-[#25D366]/30 transition"><i class="fab fa-whatsapp"></i> WhatsApp</button><button onclick="shareOnTwitter()" class="share-btn px-5 py-2 rounded-lg bg-[#1DA1F2]/20 text-[#1DA1F2] border border-[#1DA1F2]/30 hover:bg-[#1DA1F2]/30 transition"><i class="fab fa-twitter"></i> Twitter</button><button onclick="copyPageLink()" class="share-btn px-5 py-2 rounded-lg bg-gray-600/20 text-gray-300 border border-gray-600/30 hover:bg-gray-600/30 transition"><i class="fas fa-link"></i> কপি লিংক</button></div></div></div>
+<div class="max-w-4xl mx-auto px-4 py-12"><h2 class="text-2xl md:text-3xl font-bold text-center mb-8">❓ সাধারণ জিজ্ঞাসা</h2><div class="space-y-4" id="faqContainer"></div><div class="mt-10 text-center"><p class="text-gray-400 mb-2">শেয়ার করুন:</p><div class="flex justify-center gap-3 flex-wrap"><button onclick="window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location.href)}`)" class="px-4 py-2 rounded-lg bg-[#1877F2]/20 text-[#1877F2]">Facebook</button><button onclick="window.open(`https://wa.me/?text=${encodeURIComponent(location.href)}`)" class="px-4 py-2 rounded-lg bg-[#25D366]/20 text-[#25D366]">WhatsApp</button><button onclick="navigator.clipboard.writeText(location.href); alert('লিংক কপি!')" class="px-4 py-2 rounded-lg bg-gray-600/20 text-gray-300">কপি লিংক</button></div></div></div>
 
-<footer class="py-8 px-4 border-t border-white/10 mt-8 text-center"><p class="text-gray-500 text-xs">© ২০২৬ National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি | NCTB ২০২৬ সিলেবাস | এসএসসি ২০২৭ প্রস্তুতি</p></footer>
+<footer class="py-8 px-4 border-t border-white/10 text-center"><p class="text-gray-500 text-xs">© ২০২৬ National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি | NCTB ২০২৬ সিলেবাস | এসএসসি ২০২৭</p></footer>
+<a href="https://wa.me/8801602105447" class="floating-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-<a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" class="floating-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
-
-<!-- 3D Animation Scripts (Three.js) -->
+<!-- 3D Animation Script (background) -->
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.128.0/build/three.module.js"}}</script>
 <script type="module">
     import * as THREE from 'three';
-    // Chemistry
-    const chemDiv = document.getElementById('chemistryCanvas');
-    if(chemDiv){
-        const w = chemDiv.clientWidth, h = 200;
-        const scene = new THREE.Scene(); scene.background = null;
-        const cam = new THREE.PerspectiveCamera(45, w/h, 0.1, 1000); cam.position.set(0,1,6);
-        const renderer = new THREE.WebGLRenderer({ alpha: true }); renderer.setSize(w, h); renderer.setClearColor(0,0,0);
-        chemDiv.appendChild(renderer.domElement);
-        const ambient = new THREE.AmbientLight(0x404060); scene.add(ambient);
-        const light = new THREE.DirectionalLight(0xffaa66,1); light.position.set(5,10,7); scene.add(light);
-        const nucleus = new THREE.Mesh(new THREE.SphereGeometry(0.4,32,32), new THREE.MeshStandardMaterial({ color:0xff6633, emissive:0xaa3311 }));
-        scene.add(nucleus);
-        const electrons = []; const radii=[1.2,1.6,2.0]; const colors=[0x33aaff,0xffaa44,0x66ff66];
-        radii.forEach((r,i)=>{
-            const orbitPoints = []; for(let a=0;a<=128;a++){ const ang=(a/128)*Math.PI*2; orbitPoints.push(new THREE.Vector3(Math.cos(ang)*r,0,Math.sin(ang)*r)); }
-            const orbit = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(orbitPoints), new THREE.LineBasicMaterial({ color:colors[i], transparent:true, opacity:0.4 }));
-            scene.add(orbit);
-            const eMesh = new THREE.Mesh(new THREE.SphereGeometry(0.1,16,16), new THREE.MeshStandardMaterial({ color:colors[i], emissive:colors[i] }));
-            scene.add(eMesh);
-            electrons.push({ mesh:eMesh, radius:r, speed:0.8+i*0.2, angle:0 });
-        });
-        let t=0;
-        function animate(){ requestAnimationFrame(animate); t+=0.02; nucleus.rotation.y=t*0.5; electrons.forEach(e=>{ e.angle+=0.02*e.speed; e.mesh.position.set(Math.cos(e.angle)*e.radius, 0, Math.sin(e.angle)*e.radius); }); cam.position.x=Math.sin(t*0.2)*0.2; cam.lookAt(0,0,0); renderer.render(scene,cam); }
-        animate();
-        window.addEventListener('resize',()=>{ const nw=chemDiv.clientWidth; renderer.setSize(nw,h); cam.aspect=nw/h; cam.updateProjectionMatrix(); });
+    const container = document.getElementById('hero-bg-canvas');
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const scene = new THREE.Scene();
+    scene.background = null;
+    const camera = new THREE.PerspectiveCamera(45, width/height, 0.1, 1000);
+    camera.position.set(0, 2, 12);
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setSize(width, height);
+    renderer.setClearColor(0x000000, 0);
+    container.appendChild(renderer.domElement);
+    
+    // Lights
+    const ambient = new THREE.AmbientLight(0x404060);
+    scene.add(ambient);
+    const dirLight = new THREE.DirectionalLight(0xffaa88, 1);
+    dirLight.position.set(5,10,7);
+    scene.add(dirLight);
+    
+    // Central glowing sphere
+    const coreMat = new THREE.MeshStandardMaterial({ color: 0xff8844, emissive: 0xff4411, emissiveIntensity: 0.6 });
+    const core = new THREE.Mesh(new THREE.SphereGeometry(0.8, 64, 64), coreMat);
+    scene.add(core);
+    
+    // Floating rings
+    const ringGeo = new THREE.TorusGeometry(1.4, 0.06, 64, 200);
+    const ringMat = new THREE.MeshStandardMaterial({ color: 0xffaa66, emissive: 0xff6622 });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.rotation.x = Math.PI / 2;
+    scene.add(ring);
+    
+    const ring2 = new THREE.Mesh(ringGeo, ringMat);
+    ring2.rotation.z = Math.PI / 3;
+    ring2.scale.set(1.2,1.2,1.2);
+    scene.add(ring2);
+    
+    // Particles
+    const particleCount = 800;
+    const particlesGeo = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    for(let i=0;i<particleCount;i++){
+        const r = 1.5 + Math.random() * 2.5;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        positions[i*3] = r * Math.sin(phi) * Math.cos(theta);
+        positions[i*3+1] = r * Math.sin(phi) * Math.sin(theta) * 0.8;
+        positions[i*3+2] = r * Math.cos(phi);
     }
-    // Physics
-    const physDiv = document.getElementById('physicsCanvas');
-    if(physDiv){
-        const w = physDiv.clientWidth, h = 200;
-        const scene = new THREE.Scene(); scene.background = null;
-        const cam = new THREE.PerspectiveCamera(45, w/h, 0.1, 1000); cam.position.set(0,1,6);
-        const renderer = new THREE.WebGLRenderer({ alpha: true }); renderer.setSize(w, h); renderer.setClearColor(0,0,0);
-        physDiv.appendChild(renderer.domElement);
-        const ambient = new THREE.AmbientLight(0x222222); scene.add(ambient);
-        const light = new THREE.DirectionalLight(0xffaa88,1); light.position.set(5,10,7); scene.add(light);
-        const core = new THREE.Mesh(new THREE.SphereGeometry(0.45,64,64), new THREE.MeshStandardMaterial({ color:0xff8844, emissive:0xff4411 }));
-        scene.add(core);
-        const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(0.9,0.07,100,16,2,3), new THREE.MeshStandardMaterial({ color:0x44aaff, emissive:0x2288ff }));
-        scene.add(knot);
-        const particleCount=300; const pGeo=new THREE.BufferGeometry(); const pos=new Float32Array(particleCount*3);
-        for(let i=0;i<particleCount;i++){ const r=1+Math.random(); const theta=Math.random()*Math.PI*2; const phi=Math.acos(2*Math.random()-1); pos[i*3]=r*Math.sin(phi)*Math.cos(theta); pos[i*3+1]=r*Math.sin(phi)*Math.sin(theta)*0.8; pos[i*3+2]=r*Math.cos(phi); }
-        pGeo.setAttribute('position', new THREE.BufferAttribute(pos,3)); const particles = new THREE.Points(pGeo, new THREE.PointsMaterial({ color:0x88ccff, size:0.05 }));
-        scene.add(particles);
-        let time=0;
-        function animate(){ requestAnimationFrame(animate); time+=0.02; knot.rotation.x=time*0.5; knot.rotation.y=time*0.3; particles.rotation.y=time*0.1; core.scale.setScalar(1+Math.sin(time*8)*0.05); cam.position.x=Math.sin(time*0.2)*0.2; cam.lookAt(0,0,0); renderer.render(scene,cam); }
-        animate();
-        window.addEventListener('resize',()=>{ const nw=physDiv.clientWidth; renderer.setSize(nw,h); cam.aspect=nw/h; cam.updateProjectionMatrix(); });
+    particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const particlesMat = new THREE.PointsMaterial({ color: 0xffaa66, size: 0.05 });
+    const particles = new THREE.Points(particlesGeo, particlesMat);
+    scene.add(particles);
+    
+    let time = 0;
+    function animate() {
+        requestAnimationFrame(animate);
+        time += 0.01;
+        ring.rotation.z = time * 0.3;
+        ring2.rotation.x = time * 0.2;
+        ring2.rotation.y = time * 0.4;
+        particles.rotation.y = time * 0.05;
+        particles.rotation.x = Math.sin(time * 0.1) * 0.1;
+        core.scale.setScalar(1 + Math.sin(time * 4) * 0.05);
+        camera.position.x = Math.sin(time * 0.2) * 0.5;
+        camera.lookAt(0, 0, 0);
+        renderer.render(scene, camera);
     }
-    // Biology DNA
-    const bioDiv = document.getElementById('biologyCanvas');
-    if(bioDiv){
-        const w = bioDiv.clientWidth, h = 200;
-        const scene = new THREE.Scene(); scene.background = null;
-        const cam = new THREE.PerspectiveCamera(45, w/h, 0.1, 1000); cam.position.set(0,0.5,5);
-        const renderer = new THREE.WebGLRenderer({ alpha: true }); renderer.setSize(w, h); renderer.setClearColor(0,0,0);
-        bioDiv.appendChild(renderer.domElement);
-        const ambient = new THREE.AmbientLight(0x404060); scene.add(ambient);
-        const light = new THREE.DirectionalLight(0xffaa88,1); light.position.set(5,10,7); scene.add(light);
-        const points1=[], points2=[]; const radius=0.6, heightTotal=2, turns=1.2, seg=80;
-        for(let i=0;i<=seg;i++){ const t=i/seg; const y=-1+t*heightTotal; const ang=t*Math.PI*2*turns; points1.push(new THREE.Vector3(radius*Math.cos(ang), y, radius*Math.sin(ang))); points2.push(new THREE.Vector3(radius*Math.cos(ang+Math.PI), y, radius*Math.sin(ang+Math.PI))); }
-        const helix1=new THREE.Line(new THREE.BufferGeometry().setFromPoints(points1), new THREE.LineBasicMaterial({ color:0x88aaff }));
-        const helix2=new THREE.Line(new THREE.BufferGeometry().setFromPoints(points2), new THREE.LineBasicMaterial({ color:0xff88aa }));
-        scene.add(helix1); scene.add(helix2);
-        const rungMat=new THREE.MeshStandardMaterial({ color:0xffaa66 });
-        for(let i=0;i<=25;i++){ const t=i/25; const y=-1+t*heightTotal; const ang=t*Math.PI*2*turns; const p1=new THREE.Vector3(radius*Math.cos(ang), y, radius*Math.sin(ang)); const p2=new THREE.Vector3(radius*Math.cos(ang+Math.PI), y, radius*Math.sin(ang+Math.PI)); const dir=new THREE.Vector3().subVectors(p2,p1); const len=dir.length(); const center=p1.clone().add(p2).multiplyScalar(0.5); const cyl=new THREE.Mesh(new THREE.CylinderGeometry(0.03,0.03,len,4), rungMat); cyl.position.copy(center); cyl.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0), dir.clone().normalize()); scene.add(cyl); }
-        let time=0;
-        function animate(){ requestAnimationFrame(animate); time+=0.01; helix1.rotation.y=time*0.2; helix2.rotation.y=time*0.2; cam.position.x=Math.sin(time*0.2)*0.2; cam.lookAt(0,0,0); renderer.render(scene,cam); }
-        animate();
-        window.addEventListener('resize',()=>{ const nw=bioDiv.clientWidth; renderer.setSize(nw,h); cam.aspect=nw/h; cam.updateProjectionMatrix(); });
-    }
+    animate();
+    window.addEventListener('resize', () => {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        renderer.setSize(w, h);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+    });
 </script>
 
 <script>
-    const qaData = [
-        { q: "এই অ্যাপটি কোন ক্লাসের জন্য?", a: "নবম ও দশম শ্রেণির বিজ্ঞান বিভাগের শিক্ষার্থীদের জন্য। NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী।" },
-        { q: "কিভাবে পেমেন্ট করে অ্যাক্সেস নেব?", a: "পেমেন্ট সংক্রান্ত তথ্যের জন্য WhatsApp: +8801602105447" },
-        { q: "কুইজ ও MCQ এর উত্তর কিভাবে দেখব?", a: "উত্তর জমা দেওয়ার পর স্কোর দেখাবে এবং সঠিক উত্তর সবুজ রঙে হাইলাইট হবে।" }
+    const faq = [
+        { q: "এই অ্যাপটি কোন ক্লাসের জন্য?", a: "নবম ও দশম শ্রেণির বিজ্ঞান বিভাগের শিক্ষার্থীদের জন্য।" },
+        { q: "কিভাবে পেমেন্ট করে অ্যাক্সেস নেব?", a: "WhatsApp: +8801602105447 এ যোগাযোগ করুন।" },
+        { q: "MCQ উত্তর কিভাবে দেখব?", a: "উত্তর জমা দেওয়ার পর স্কোর ও সঠিক উত্তর দেখাবে।" }
     ];
-    const qaContainer = document.getElementById('qaContainer');
-    if(qaContainer) qaContainer.innerHTML = qaData.map((item,idx)=>`<div class="glass rounded-xl overflow-hidden"><button class="qa-question w-full text-left p-4 font-medium flex justify-between items-center hover:text-amber-400 transition"><span><i class="fas fa-question-circle text-amber-400 mr-2"></i> ${item.q}</span><i class="fas fa-chevron-down text-gray-500"></i></button><div class="qa-answer px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">${item.a}</div></div>`).join('');
-    document.querySelectorAll('.qa-question').forEach(btn=>{ btn.addEventListener('click',()=>{ const ans=btn.nextElementSibling; const icon=btn.querySelector('.fa-chevron-down'); ans.classList.toggle('hidden'); if(icon) icon.style.transform=ans.classList.contains('hidden')?'rotate(0deg)':'rotate(180deg)'; }); });
-    function animateCounter(){ document.querySelectorAll('.counter').forEach(c=>{ const target=parseInt(c.dataset.target); let current=0; const inc=target/50; const upd=()=>{ current+=inc; if(current<target){ c.innerText=Math.ceil(current)+(target>100?'+':'%'); requestAnimationFrame(upd); }else{ c.innerText=target+(target>100?'+':'%'); } }; upd(); }); }
-    const obs=new IntersectionObserver((e)=>{ e.forEach(entry=>{ if(entry.isIntersecting){ animateCounter(); obs.disconnect(); } }); });
-    const stats=document.querySelector('.hero-stats'); if(stats) obs.observe(stats);
-    function shareOnFacebook(){ window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`,'_blank'); }
-    function shareOnWhatsApp(){ window.open(`https://wa.me/?text=${encodeURIComponent('ন্যাশনাল এগজাম সেন্টার - নবম-দশম বিজ্ঞান প্রস্তুতি অ্যাপ: '+window.location.href)}`,'_blank'); }
-    function shareOnTwitter(){ window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent('ন্যাশনাল এগজাম সেন্টার')}&url=${encodeURIComponent(window.location.href)}`,'_blank'); }
-    function copyPageLink(){ navigator.clipboard.writeText(window.location.href); alert('🔗 লিংক কপি করা হয়েছে!'); }
-    window.shareOnFacebook=shareOnFacebook; window.shareOnWhatsApp=shareOnWhatsApp; window.shareOnTwitter=shareOnTwitter; window.copyPageLink=copyPageLink;
-    setInterval(()=>{ const signOutBtnDrawer=document.getElementById('drawerSignOutBtn'); if(window.auth?.currentUser) signOutBtnDrawer?.classList.remove('hidden'); else signOutBtnDrawer?.classList.add('hidden'); },500);
+    const faqContainer = document.getElementById('faqContainer');
+    faqContainer.innerHTML = faq.map(item => `<div class="glass rounded-xl overflow-hidden"><button class="w-full text-left p-4 font-medium flex justify-between items-center"><span><i class="fas fa-question-circle text-amber-400 mr-2"></i> ${item.q}</span><i class="fas fa-chevron-down text-gray-500"></i></button><div class="px-4 pb-4 text-gray-400 text-sm hidden border-t border-white/10 pt-3">${item.a}</div></div>`).join('');
+    document.querySelectorAll('#faqContainer button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const ans = btn.nextElementSibling;
+            const icon = btn.querySelector('.fa-chevron-down');
+            ans.classList.toggle('hidden');
+            icon.style.transform = ans.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        });
+    });
+    setInterval(() => {
+        const signOutBtn = document.getElementById('drawerSignOutBtn');
+        if(window.auth?.currentUser) signOutBtn?.classList.remove('hidden');
+        else signOutBtn?.classList.add('hidden');
+    }, 500);
 </script>
 </body>
 </html>
