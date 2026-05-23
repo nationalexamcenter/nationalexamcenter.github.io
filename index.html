@@ -1,3 +1,4 @@
+<!-- index.html (complete, with all changes and original logic intact) -->
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -89,7 +90,6 @@
             const docSnap = await getDoc(userRef);
             if (docSnap.exists()) {
                 const data = docSnap.data();
-                // Update navbar user menu
                 document.getElementById('userName').textContent = data.name || 'User';
                 document.getElementById('userSchool').textContent = data.school || 'স্কুল দেওয়া হয়নি';
                 document.getElementById('userClass').textContent = data.class || 'ক্লাস দেওয়া হয়নি';
@@ -97,7 +97,6 @@
                 const avatar = document.getElementById('userAvatar');
                 if (data.photoURL) avatar.src = data.photoURL;
                 else avatar.src = `https://ui-avatars.com/api/?background=f59e0b&color=fff&name=${encodeURIComponent(data.name || 'User')}`;
-                // Update drawer profile section
                 document.getElementById('drawerUserName').textContent = data.name || 'User';
                 document.getElementById('drawerUserSchool').textContent = data.school || 'স্কুল';
                 document.getElementById('drawerUserClass').textContent = data.class || 'ক্লাস';
@@ -122,7 +121,6 @@
                 }
                 if (authButtons) authButtons.classList.add('hidden');
                 if (userMenu) userMenu.classList.remove('hidden');
-                // Show drawer's logged-in content
                 document.getElementById('drawerLoggedInView').classList.remove('hidden');
                 document.getElementById('drawerLoggedOutView').classList.add('hidden');
             } else {
@@ -238,7 +236,6 @@
             }
         };
         
-        // Drawer controls
         window.openDrawer = () => {
             document.getElementById('sideDrawer').classList.add('open');
             document.getElementById('drawerOverlay').classList.add('active');
@@ -342,6 +339,22 @@
         .drawer-overlay.active { opacity: 1; visibility: visible; }
         [data-theme="light"] .side-drawer { background: rgba(255, 255, 255, 0.95); }
         
+        /* Subject cards animation */
+        .subject-card {
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .subject-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px -15px rgba(245, 158, 11, 0.3);
+        }
+        @keyframes iconFloat {
+            0%,100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(5deg); }
+        }
+        .subject-icon {
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+        
         @media (max-width: 1024px) { .hero-content { flex-direction: column; text-align: center; padding: 2rem; } .hero-left { text-align: center; } .mockup-item { width: 130px; } h1 { font-size: 2rem !important; } }
         @media (max-width: 640px) { .hero-wrapper { min-height: 700px; margin: 0 0.5rem; } .mockup-item { width: 100px; } .btn-primary, .btn-secondary { padding: 0.5rem 1rem; font-size: 0.875rem; } .hero-content { padding: 1.5rem; } }
         ::-webkit-scrollbar { width: 6px; }
@@ -357,13 +370,11 @@
 <!-- Side Drawer -->
 <div id="drawerOverlay" class="drawer-overlay" onclick="closeDrawer()"></div>
 <div id="sideDrawer" class="side-drawer flex flex-col">
-    <!-- Profile Section (Top) -->
     <div class="p-5 border-b border-white/10">
         <div class="flex justify-between items-center mb-4">
             <span class="text-lg font-bold gradient-text">আমার প্রোফাইল</span>
             <button onclick="closeDrawer()" class="text-gray-400 hover:text-amber-400 text-xl">&times;</button>
         </div>
-        <!-- Logged In View -->
         <div id="drawerLoggedInView">
             <div class="flex items-center gap-3 mb-3">
                 <img id="drawerUserAvatar" src="https://ui-avatars.com/api/?background=f59e0b&color=fff&name=User" class="w-14 h-14 rounded-full border-2 border-amber-500 object-cover">
@@ -378,16 +389,16 @@
                 <p><i class="fas fa-map-marker-alt w-5 text-amber-400"></i> <span id="drawerUserDistrict">জেলা</span></p>
             </div>
         </div>
-        <!-- Logged Out View -->
         <div id="drawerLoggedOutView" class="text-center py-4">
             <i class="fas fa-user-circle text-5xl text-amber-400 mb-2"></i>
             <p class="text-sm mb-3">প্রোফাইল দেখতে লগইন করুন</p>
             <button onclick="showSignInModal(); closeDrawer()" class="btn-primary px-4 py-2 rounded-lg text-sm w-full">লগইন / সাইন আপ</button>
         </div>
     </div>
-    <!-- Navigation Links -->
     <div class="flex-1 p-4 space-y-2">
         <a href="/chemistry.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-amber-500/10 transition"><i class="fas fa-flask w-5 text-amber-400"></i> রসায়ন সম্পূর্ণ সিলেবাস</a>
+        <a href="/physics.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-amber-500/10 transition"><i class="fas fa-atom w-5 text-amber-400"></i> পদার্থবিজ্ঞান সম্পূর্ণ সিলেবাস</a>
+        <a href="/biology.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-amber-500/10 transition"><i class="fas fa-dna w-5 text-amber-400"></i> জীববিজ্ঞান সম্পূর্ণ সিলেবাস</a>
         <a href="#pricing" class="flex items-center gap-3 p-2 rounded-lg hover:bg-amber-500/10 transition"><i class="fas fa-tags w-5 text-amber-400"></i> সাবস্ক্রিপশন প্ল্যান</a>
         <a href="/privacy.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-amber-500/10 transition"><i class="fas fa-shield-alt w-5 text-amber-400"></i> গোপনীয়তা নীতি</a>
         <hr class="border-white/10 my-2">
@@ -462,7 +473,9 @@
                         <button onclick="signOutUser()" class="w-full text-left text-sm text-red-400 hover:bg-red-500/10 px-2 py-1.5 rounded-lg transition"><i class="fas fa-sign-out-alt mr-2"></i> সাইন আউট</button>
                     </div>
                 </div>
-                <a href="/chemistry.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-book-open mr-1"></i> রসায়ন পড়ুন</a>
+                <a href="/chemistry.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-flask mr-1"></i> রসায়ন</a>
+                <a href="/physics.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-atom mr-1"></i> পদার্থবিজ্ঞান</a>
+                <a href="/biology.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-dna mr-1"></i> জীববিজ্ঞান</a>
                 <a href="/privacy.html" class="hidden md:block text-gray-400 text-sm hover:text-amber-400 transition">গোপনীয়তা</a>
                 <a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" target="_blank" class="btn-wa px-4 py-2 rounded-lg text-white text-sm font-semibold transition"><i class="fab fa-whatsapp mr-1"></i> WhatsApp</a>
             </div>
@@ -470,7 +483,7 @@
     </div>
 </nav>
 
-<!-- Hero Section -->
+<!-- Hero Section with 3 Subject Animations -->
 <div class="hero-wrapper mt-6">
     <div id="heroCanvasContainer"></div>
     <div class="hero-content">
@@ -478,7 +491,27 @@
             <div class="inline-block px-4 py-1 rounded-full bg-black/50 backdrop-blur-sm text-amber-400 text-sm mb-4 pulse-animation"><i class="fas fa-graduation-cap mr-1"></i> NCTB ২০২৬ আপডেট সিলেবাস | এসএসসি ২০২৭</div>
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">নবম-দশম <span class="gradient-text">বিজ্ঞান প্রস্তুতি</span> ২০২৬</h1>
             <p class="text-gray-300 text-lg max-w-lg mb-6 bg-black/40 backdrop-blur-sm p-3 rounded-xl">পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান - সর্বশেষ প্যাটার্ন ও সিলেবাস। এসএসসি ২০২৭, ২০২৮ ব্যাচদের জন্য প্রিমিয়াম সাপোর্ট। ৫০০+ MCQ, সৃজনশীল প্রশ্ন।</p>
-            <div class="flex flex-wrap gap-4"><a href="/chemistry.html" class="btn-primary px-6 py-3 rounded-full font-bold text-md inline-block shine-effect"><i class="fas fa-play mr-2"></i> ফ্রি ট্রায়াল শুরু করুন</a></div>
+            
+            <!-- Three animated subject cards -->
+            <div class="flex flex-wrap justify-center gap-5 mt-6">
+                <a href="/chemistry.html" class="subject-card glass-card rounded-2xl p-4 w-40 text-center transition hover:bg-amber-500/10">
+                    <div class="subject-icon text-5xl text-amber-400 mb-2"><i class="fas fa-flask"></i></div>
+                    <div class="font-bold text-lg">রসায়ন</div>
+                    <div class="text-xs text-gray-400">১২ অধ্যায়</div>
+                </a>
+                <a href="/physics.html" class="subject-card glass-card rounded-2xl p-4 w-40 text-center transition hover:bg-amber-500/10">
+                    <div class="subject-icon text-5xl text-amber-400 mb-2"><i class="fas fa-atom"></i></div>
+                    <div class="font-bold text-lg">পদার্থবিজ্ঞান</div>
+                    <div class="text-xs text-gray-400">১৩ অধ্যায়</div>
+                </a>
+                <a href="/biology.html" class="subject-card glass-card rounded-2xl p-4 w-40 text-center transition hover:bg-amber-500/10">
+                    <div class="subject-icon text-5xl text-amber-400 mb-2"><i class="fas fa-dna"></i></div>
+                    <div class="font-bold text-lg">জীববিজ্ঞান</div>
+                    <div class="text-xs text-gray-400">১৪ অধ্যায়</div>
+                </a>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-4 mt-6"><a href="/chemistry.html" class="btn-primary px-6 py-3 rounded-full font-bold text-md inline-block shine-effect"><i class="fas fa-play mr-2"></i> ফ্রি ট্রায়াল শুরু করুন</a></div>
             <div class="flex flex-wrap justify-center gap-8 mt-8">
                 <div class="text-center bg-black/40 backdrop-blur-sm px-6 py-3 rounded-xl"><div class="text-2xl font-bold text-amber-400 counter" data-target="5000">0+</div><div class="text-xs text-gray-300">সক্রিয় শিক্ষার্থী</div></div>
                 <div class="text-center bg-black/40 backdrop-blur-sm px-6 py-3 rounded-xl"><div class="text-2xl font-bold text-amber-400">৩০+</div><div class="text-xs text-gray-300">অধ্যায় সম্পূর্ণ</div></div>
@@ -499,9 +532,9 @@
 <section class="py-8 px-4"><div class="max-w-6xl mx-auto"><div class="flex flex-wrap justify-center gap-8 items-center opacity-80"><div class="text-center"><i class="fas fa-shield-alt text-3xl text-amber-500 mb-2"></i><p class="text-xs text-gray-400">GDPR & CCPA Compliant</p></div><div class="text-center"><i class="fas fa-lock text-3xl text-amber-500 mb-2"></i><p class="text-xs text-gray-400">Secure Data Storage</p></div><div class="text-center"><i class="fas fa-google-play text-3xl text-amber-500 mb-2"></i><p class="text-xs text-gray-400">Coming on Play Store</p></div><div class="text-center"><i class="fas fa-headset text-3xl text-amber-500 mb-2"></i><p class="text-xs text-gray-400">24/7 Support</p></div></div></div></section>
 
 <!-- Features -->
-<section class="py-16 px-4"><div class="max-w-6xl mx-auto"><h2 class="text-2xl md:text-3xl font-bold text-center mb-12">✨ অ্যাপের বিশেষ বৈশিষ্ট্য</h2><div class="grid md:grid-cols-2 gap-6"><div class="glass-card rounded-2xl p-6 feature-card"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-chalkboard-user text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">সম্পূর্ণ সিলেবাস কভারেজ</h3><p class="text-gray-400 text-sm">NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী রসায়নের ১২টি অধ্যায় সম্পূর্ণভাবে যুক্ত। শীঘ্রই পদার্থবিজ্ঞান ও জীববিজ্ঞান যুক্ত হবে।</p></div></div></div><div class="glass-card rounded-2xl p-6 feature-card"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-question-circle text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">MCQ ও সৃজনশীল প্রশ্ন</h3><p class="text-gray-400 text-sm">প্রতিটি অধ্যায়ের জন্য অধ্যায়ভিত্তিক বহুনির্বাচনি ও সৃজনশীল প্রশ্ন সহ উত্তর। বোর্ড পরীক্ষার প্যাটার্ন অনুযায়ী তৈরি।</p></div></div></div><div class="glass-card rounded-2xl p-6 feature-card"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-chart-line text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">প্রোগ্রেস ট্র্যাকিং</h3><p class="text-gray-400 text-sm">আপনার পড়ার অগ্রগতি স্বয়ংক্রিয়ভাবে সংরক্ষিত হয়। কোন অধ্যায় কতটুকু পড়েছেন তা ট্র্যাক করতে পারবেন।</p></div></div></div><div class="glass-card rounded-2xl p-6 feature-card"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-share-alt text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">ফলাফল শেয়ার করুন</h3><p class="text-gray-400 text-sm">MCQ পরীক্ষার ফলাফল সরাসরি Facebook, WhatsApp ও অন্যান্য সোশ্যাল মিডিয়ায় শেয়ার করতে পারবেন।</p></div></div></div></div></div></section>
+<section class="py-16 px-4"><div class="max-w-6xl mx-auto"><h2 class="text-2xl md:text-3xl font-bold text-center mb-12">✨ অ্যাপের বিশেষ বৈশিষ্ট্য</h2><div class="grid md:grid-cols-2 gap-6"><div class="glass-card rounded-2xl p-6 feature-card"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-chalkboard-user text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">সম্পূর্ণ সিলেবাস কভারেজ</h3><p class="text-gray-400 text-sm">NCTB ২০২৬ আপডেট সিলেবাস অনুযায়ী রসায়ন, পদার্থবিজ্ঞান ও জীববিজ্ঞানের সম্পূর্ণ অধ্যায় যুক্ত হবে।</p></div></div></div><div class="glass-card rounded-2xl p-6 feature-card"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-question-circle text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">MCQ ও সৃজনশীল প্রশ্ন</h3><p class="text-gray-400 text-sm">প্রতিটি অধ্যায়ের জন্য অধ্যায়ভিত্তিক বহুনির্বাচনি ও সৃজনশীল প্রশ্ন সহ উত্তর। বোর্ড পরীক্ষার প্যাটার্ন অনুযায়ী তৈরি।</p></div></div></div><div class="glass-card rounded-2xl p-6 feature-card"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-chart-line text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">প্রোগ্রেস ট্র্যাকিং</h3><p class="text-gray-400 text-sm">আপনার পড়ার অগ্রগতি স্বয়ংক্রিয়ভাবে সংরক্ষিত হয়। কোন অধ্যায় কতটুকু পড়েছেন তা ট্র্যাক করতে পারবেন।</p></div></div></div><div class="glass-card rounded-2xl p-6 feature-card"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><i class="fas fa-share-alt text-xl text-amber-400"></i></div><div><h3 class="text-xl font-semibold mb-2">ফলাফল শেয়ার করুন</h3><p class="text-gray-400 text-sm">MCQ পরীক্ষার ফলাফল সরাসরি Facebook, WhatsApp ও অন্যান্য সোশ্যাল মিডিয়ায় শেয়ার করতে পারবেন।</p></div></div></div></div></div></section>
 
-<!-- Testimonials (Parent & Student) -->
+<!-- Testimonials -->
 <section class="py-12 px-4 bg-gradient-to-r from-amber-500/5 to-transparent"><div class="max-w-6xl mx-auto"><h2 class="text-2xl md:text-3xl font-bold text-center mb-8">🎓 অভিভাবকদের মতামত</h2><div class="grid md:grid-cols-2 gap-6"><div class="glass-card rounded-2xl p-6"><i class="fas fa-quote-left text-amber-500/50 text-3xl mb-3"></i><p class="text-gray-300 text-sm">"আমার মেয়ে National Exam Center ব্যবহার করে রসায়নে অনেক উন্নতি করেছে। MCQ প্রশ্নগুলো বোর্ড পরীক্ষার প্যাটার্নের সাথে পুরোপুরি মিলে যায়।"</p><p class="text-amber-400 text-sm mt-3">— মোঃ রহমত উল্লাহ, অভিভাবক</p></div><div class="glass-card rounded-2xl p-6"><i class="fas fa-quote-left text-amber-500/50 text-3xl mb-3"></i><p class="text-gray-300 text-sm">"সাশ্রয়ী মূল্যের চমৎকার একটি প্ল্যাটফর্ম। আমার ছেলে এখন নিজে নিজে প্র্যাকটিস করে। প্রোগ্রেস ট্র্যাকিং ফিচারটা অভিভাবক হিসেবে খুব কাজে লাগে।"</p><p class="text-amber-400 text-sm mt-3">— নাসরিন সুলতানা, অভিভাবক</p></div></div></div></section>
 
 <section class="py-12 px-4"><div class="max-w-6xl mx-auto"><h2 class="text-2xl md:text-3xl font-bold text-center mb-8">💬 শিক্ষার্থীদের মতামত</h2><div class="grid md:grid-cols-3 gap-6"><div class="glass-card rounded-2xl p-6"><div class="flex text-amber-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-gray-300 text-sm">"National Exam Center এর রসায়ন অধ্যায়গুলো খুব সুন্দরভাবে সাজানো। MCQ ও সৃজনশীল প্রশ্নগুলো বোর্ড পরীক্ষার জন্য খুবই helpful।"</p><p class="text-amber-400 text-sm mt-3">— মেহরিন হোসেন, নবম শ্রেণি</p></div><div class="glass-card rounded-2xl p-6"><div class="flex text-amber-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-gray-300 text-sm">"প্রোগ্রেস ট্র্যাকিং ফিচারটা দারুণ! কোন অধ্যায় কতটুকু পড়েছি তা বুঝতে পারি। বার্ষিক প্ল্যান নিয়ে ভালো করছি।"</p><p class="text-amber-400 text-sm mt-3">— শাহরিয়ার রহমান, দশম শ্রেণি</p></div><div class="glass-card rounded-2xl p-6"><div class="flex text-amber-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-gray-300 text-sm">"এসএসসি ২০২৭-এর জন্য সেরা প্রস্তুতি অ্যাপ। সব টপিক খুব ক্লিয়ারভাবে ব্যাখ্যা করা আছে। সবার জন্য রিকমেন্ড করছি!"</p><p class="text-amber-400 text-sm mt-3">— আবিদ হাসান, নবম শ্রেণি</p></div></div></div></section>
@@ -513,7 +546,7 @@
 <section class="py-12 px-4" id="pricing"><div class="max-w-6xl mx-auto"><h2 class="text-2xl md:text-3xl font-bold text-center mb-8">💰 ফ্লেক্সিবল এক্সেস প্ল্যান</h2><div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"><div class="glass-card rounded-2xl p-6 text-center"><div class="text-2xl font-bold">মাসিক</div><div class="text-3xl font-bold text-amber-400 my-2">১০০৳</div><p class="text-sm text-gray-400">৩০ দিন অ্যাক্সেস</p></div><div class="glass-card rounded-2xl p-6 text-center"><div class="text-2xl font-bold">ত্রৈমাসিক</div><div class="text-3xl font-bold text-amber-400 my-2">২৭৫৳</div><p class="text-sm text-gray-400">৯০ দিন + বোনাস</p></div><div class="glass-card rounded-2xl p-6 text-center"><div class="text-2xl font-bold">ষাণ্মাসিক</div><div class="text-3xl font-bold text-amber-400 my-2">৫০০৳</div><p class="text-sm text-gray-400">৬ মাস + কুইজ</p></div><div class="glass-card rounded-2xl p-6 text-center border-2 border-amber-500/40 relative"><div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-amber-600 to-orange-600 text-white text-xs px-3 py-1 rounded-full"><i class="fas fa-fire mr-1"></i> বেস্ট ভ্যালু</div><div class="text-2xl font-bold mt-2">বার্ষিক</div><div class="text-3xl font-bold text-amber-300 my-2">৯০০৳</div><p class="text-sm text-gray-400">৩৬৫ দিন + এসএসসি ২০২৭ সাপোর্ট</p></div></div><div class="glass rounded-2xl p-5 mt-8 text-center"><p><i class="fab fa-whatsapp text-green-500 mr-2"></i> <strong>পেমেন্ট ও সাপোর্টের জন্য WhatsApp:</strong> <a href="https://wa.me/8801602105447" class="text-amber-400 hover:underline">+8801602105447</a></p><p class="text-xs text-gray-500 mt-2">পেমেন্ট সংক্রান্ত সকল তথ্য জানতে WhatsApp এ যোগাযোগ করুন</p></div></div></section>
 
 <!-- Footer -->
-<footer class="py-8 px-4 border-t border-white/10 mt-8"><div class="max-w-6xl mx-auto text-center"><div class="flex flex-wrap justify-center gap-6 mb-4"><a href="/chemistry.html" class="text-gray-400 text-sm hover:text-amber-400 transition">রসায়ন সম্পূর্ণ সিলেবাস</a><a href="/privacy.html" class="text-gray-400 text-sm hover:text-amber-400 transition">গোপনীয়তা নীতি</a><a href="https://wa.me/8801602105447" target="_blank" class="text-gray-400 text-sm hover:text-amber-400 transition"><i class="fab fa-whatsapp mr-1 text-green-500"></i>WhatsApp সাপোর্ট</a><a href="/chemistry.html" class="text-gray-400 text-sm hover:text-amber-400 transition"><i class="fas fa-play mr-1"></i>ফ্রি ট্রায়াল</a></div><p class="text-gray-500 text-xs">© ২০২৬ National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি | NCTB ২০২৬ সিলেবাস | এসএসসি ২০২৭ প্রস্তুতি</p></div></footer>
+<footer class="py-8 px-4 border-t border-white/10 mt-8"><div class="max-w-6xl mx-auto text-center"><div class="flex flex-wrap justify-center gap-6 mb-4"><a href="/chemistry.html" class="text-gray-400 text-sm hover:text-amber-400 transition">রসায়ন সম্পূর্ণ সিলেবাস</a><a href="/physics.html" class="text-gray-400 text-sm hover:text-amber-400 transition">পদার্থবিজ্ঞান সম্পূর্ণ সিলেবাস</a><a href="/biology.html" class="text-gray-400 text-sm hover:text-amber-400 transition">জীববিজ্ঞান সম্পূর্ণ সিলেবাস</a><a href="/privacy.html" class="text-gray-400 text-sm hover:text-amber-400 transition">গোপনীয়তা নীতি</a><a href="https://wa.me/8801602105447" target="_blank" class="text-gray-400 text-sm hover:text-amber-400 transition"><i class="fab fa-whatsapp mr-1 text-green-500"></i>WhatsApp সাপোর্ট</a><a href="/chemistry.html" class="text-gray-400 text-sm hover:text-amber-400 transition"><i class="fas fa-play mr-1"></i>ফ্রি ট্রায়াল</a></div><p class="text-gray-500 text-xs">© ২০২৬ National Exam Center | নবম-দশম বিজ্ঞান প্রস্তুতি | NCTB ২০২৬ সিলেবাস | এসএসসি ২০২৭ প্রস্তুতি</p></div></footer>
 
 <a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" class="floating-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
