@@ -605,6 +605,7 @@
 <script>
 // ============================================
 // BIOLOGY APP - FULL JSON SUPPORT (like chemistry.html)
+// JSON files location: data/biology/chapter-{id}.json
 // ============================================
 
 const CHAPTERS_META = [
@@ -660,7 +661,8 @@ function normalizeQuestion(q) {
 async function loadChapter(chapterId) {
     if (chapterDataCache[chapterId]) return chapterDataCache[chapterId];
     try {
-        const response = await fetch(`data/chapter-${chapterId}.json`);
+        // Updated path: data/biology/chapter-{id}.json
+        const response = await fetch(`data/biology/chapter-${chapterId}.json`);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
         if (data.topics) data.topics.forEach(topic => {
