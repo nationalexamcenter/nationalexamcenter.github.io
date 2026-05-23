@@ -604,7 +604,8 @@
 
 <script>
 // ============================================
-// BIOLOGY APP - FULL JSON SUPPORT (like chemistry.html)
+// BIOLOGY APP - FULL JSON SUPPORT
+// Handles both array format and single-topic format
 // JSON files location: data/biology/chapter-{id}.json
 // ============================================
 
@@ -661,13 +662,37 @@ function normalizeQuestion(q) {
 async function loadChapter(chapterId) {
     if (chapterDataCache[chapterId]) return chapterDataCache[chapterId];
     try {
-        // Updated path: data/biology/chapter-{id}.json
         const response = await fetch(`data/biology/chapter-${chapterId}.json`);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
-        if (data.topics) data.topics.forEach(topic => {
-            if (topic.exam?.questions) topic.exam.questions = topic.exam.questions.map(q => normalizeQuestion(q));
+        
+        // Normalize: if single topic (no topics array but has topic_id), wrap into array
+        if (!data.topics && data.topic_id) {
+            data.topics = [{
+                id: data.topic_id,
+                title: data.topic_title || `টপিক ${data.topic_id}`,
+                study: data.study || {},
+                exam: data.exam || { questions: [] }
+            }];
+        }
+        
+        // Ensure topics array exists
+        if (!data.topics || !Array.isArray(data.topics)) {
+            data.topics = [{
+                id: `${chapterId}.1`,
+                title: data.chapter_title || `অধ্যায় ${chapterId}`,
+                study: { summary: [`${data.chapter_title || 'অধ্যায়'} - বিস্তারিত কন্টেন্ট শীঘ্রই যুক্ত হবে।`] },
+                exam: { questions: [] }
+            }];
+        }
+        
+        // Normalize exam questions inside each topic
+        data.topics.forEach(topic => {
+            if (topic.exam?.questions) {
+                topic.exam.questions = topic.exam.questions.map(q => normalizeQuestion(q));
+            }
         });
+        
         chapterDataCache[chapterId] = data;
         return data;
     } catch (err) {
@@ -680,7 +705,7 @@ async function loadChapter(chapterId) {
                 study: { summary: [`${CHAPTERS_META.find(c => c.id === chapterId)?.title} অধ্যায়ের বিস্তারিত আলোচনা। জীববিজ্ঞানের গুরুত্বপূর্ণ সংজ্ঞা ও ব্যাখ্যা এখানে দেওয়া হয়েছে।`] },
                 exam: { questions: [
                     { q: `${CHAPTERS_META.find(c => c.id === chapterId)?.title} অধ্যায়ের মূল উদ্দেশ্য কী?`, o: ["জীবন প্রক্রিয়া বোঝা", "রাসায়নিক বিক্রিয়া", "পরমাণু গঠন", "তাপগতি"], a: 0 },
-                    { q: "কোনটি প্রোক্যারিওটিক কোষের বৈশিষ্ট্য?", o: ["নিউক্লিয়াস থাকে", "মাইটোকন্ড্রিয়া থাকে", "নিউক্লিয়য়েড থাকে", "ক্লোরোপ্লাস্ট থাকে"], a: 2 }
+                    { q: "কোনটি প্রোক্যারিওটিক কোশের বৈশিষ্ট্য?", o: ["নিউক্লিয়াস থাকে", "মাইটোকন্ড্রিয়া থাকে", "নিউক্লিয়য়েড থাকে", "ক্লোরোপ্লাস্ট থাকে"], a: 2 }
                 ] }
             }]
         };
@@ -819,7 +844,7 @@ async function loadTopicContent(chapterId, topicIndex, chapterData) {
     }
     
     if (tables.length) {
-        html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>${tables.map(tbl => `<div class="overflow-x-auto mb-4"><table class="w-full text-sm border border-white/10 rounded-xl"><thead><tr class="border-b border-white/10 bg-white/5">${(tbl.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}</tr></thead><tbody>${(tbl.rows || []).map(row => `<tr class="border-b border-white/5">${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('')}</div>`;
+        html += `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>${tables.map(tbl => `<div class="overflow-x-auto mb-4"><table class="w-full text-sm border border-white/10 rounded-xl"><thead><tr class="border-b border-white/10 bg-white/5">${(tbl.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}<tr></thead><tbody>${(tbl.rows || []).map(row => `<tr class="border-b border-white/5">${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('')}</div>`;
     }
     
     if (examQuestions.length) {
