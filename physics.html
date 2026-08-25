@@ -8,12 +8,12 @@
     <link rel="canonical" href="https://nationalexamcenter.github.io/physics.html" />
     <link rel="icon" href="pic/favicon.ico" type="image/x-icon" />
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <style>
-        /* === same as chemistry.html === */
         :root {
             --bg-primary: #0a0f1a;
             --bg-secondary: #0c1320;
@@ -32,59 +32,187 @@
             --border-color: rgba(245, 158, 11, 0.3);
             --border-hover: rgba(245, 158, 11, 0.7);
         }
-        * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        * {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
         body {
             background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
             color: var(--text-primary);
             transition: background 0.3s ease, color 0.3s ease;
             padding-top: 72px;
         }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        [data-theme="light"] .glass { background: rgba(0, 0, 0, 0.03); }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        [data-theme="light"] .glass {
+            background: rgba(0, 0, 0, 0.03);
+        }
         .glass-card {
             background: var(--card-bg);
             backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
-        .glass-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-        .gradient-text { background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .btn-primary { background: linear-gradient(105deg, #ff9a3c, #ff6a2c); transition: all 0.2s ease; box-shadow: 0 8px 20px rgba(255, 100, 30, 0.3); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255, 100, 30, 0.5); }
-        .btn-secondary { border: 1px solid var(--border-color); transition: all 0.2s ease; color: var(--text-primary); }
-        .btn-secondary:hover { background: rgba(245, 158, 11, 0.1); border-color: #f59e0b; transform: translateY(-2px); }
-        .btn-wa { background: linear-gradient(105deg, #25D366, #128C7E); transition: all 0.2s ease; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3); }
-        .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5); }
-        .btn-theme, .btn-profile { background: var(--card-bg); border: 1px solid var(--border-color); transition: all 0.2s ease; cursor: pointer; color: var(--text-primary); }
-        .btn-theme:hover, .btn-profile:hover { border-color: #f59e0b; transform: scale(1.05); }
-        .floating-wa { position: fixed; bottom: 25px; right: 25px; z-index: 1000; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: all 0.2s ease; }
-        .floating-wa:hover { transform: scale(1.1); }
-        .modal-overlay { background-color: rgba(0,0,0,0.7); backdrop-filter: blur(8px); }
-        [data-theme="light"] .modal-overlay { background-color: rgba(0,0,0,0.5); }
+        .glass-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .btn-primary {
+            background: linear-gradient(105deg, #ff9a3c, #ff6a2c);
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(255, 100, 30, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 100, 30, 0.5);
+        }
+        .btn-secondary {
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            color: var(--text-primary);
+        }
+        .btn-secondary:hover {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: #f59e0b;
+            transform: translateY(-2px);
+        }
+        .btn-wa {
+            background: linear-gradient(105deg, #25D366, #128C7E);
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+        }
+        .btn-wa:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+        }
+        .btn-theme,
+        .btn-profile {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+        .btn-theme:hover,
+        .btn-profile:hover {
+            border-color: #f59e0b;
+            transform: scale(1.05);
+        }
+        .floating-wa {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.2s ease;
+        }
+        .floating-wa:hover {
+            transform: scale(1.1);
+        }
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+        }
+        [data-theme="light"] .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
         .side-drawer {
-            position: fixed; top: 0; left: -320px; width: 320px; height: 100%; z-index: 1100;
-            background: var(--card-bg); backdrop-filter: blur(20px); border-right: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 320px;
+            height: 100%;
+            z-index: 1100;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid var(--border-color);
             transition: left 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            box-shadow: 10px 0 30px rgba(0,0,0,0.3);
+            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
         }
-        .side-drawer.open { left: 0; }
+        .side-drawer.open {
+            left: 0;
+        }
         .drawer-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); backdrop-filter: blur(2px); z-index: 1050;
-            opacity: 0; visibility: hidden; transition: 0.2s;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s;
         }
-        .drawer-overlay.active { opacity: 1; visibility: visible; }
-        [data-theme="light"] .side-drawer { background: rgba(255, 255, 255, 0.95); }
-        .mcq-option { transition: all 0.2s ease; cursor: pointer; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(245, 158, 11, 0.2); }
-        .mcq-option:hover { background: rgba(245, 158, 11, 0.15); border-color: #f59e0b; transform: translateX(4px); }
-        .mcq-option.selected { background: rgba(245, 158, 11, 0.3); border-color: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.3); }
-        .mcq-option.correct { background: rgba(34, 197, 94, 0.25); border-color: #22c55e; }
-        .mcq-option.wrong { background: rgba(239, 68, 68, 0.25); border-color: #ef4444; }
-        .result-card { background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(234, 88, 12, 0.05)); border: 1px solid rgba(245, 158, 11, 0.4); }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
-        .nav-logo-img { height: 40px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        [data-theme="light"] .side-drawer {
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .mcq-option {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        .mcq-option:hover {
+            background: rgba(245, 158, 11, 0.15);
+            border-color: #f59e0b;
+            transform: translateX(4px);
+        }
+        .mcq-option.selected {
+            background: rgba(245, 158, 11, 0.3);
+            border-color: #f59e0b;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+        }
+        .mcq-option.correct {
+            background: rgba(34, 197, 94, 0.25);
+            border-color: #22c55e;
+        }
+        .mcq-option.wrong {
+            background: rgba(239, 68, 68, 0.25);
+            border-color: #ef4444;
+        }
+        .result-card {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(234, 88, 12, 0.05));
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f59e0b;
+            border-radius: 10px;
+        }
+        .nav-logo-img {
+            height: 40px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
         .hero-canvas {
             position: relative;
             width: 100%;
@@ -116,11 +244,89 @@
             font-weight: 700;
             margin-right: 0.5rem;
         }
+
+        .countdown-timer {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(245, 158, 11, 0.10);
+            border: 1px solid rgba(245, 158, 11, 0.20);
+            border-radius: 9999px;
+            padding: 4px 14px 4px 10px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+        .countdown-timer:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+            background: rgba(245, 158, 11, 0.16);
+        }
+        .countdown-timer .clock-icon {
+            color: #f59e0b;
+            font-size: 0.85rem;
+        }
+        .countdown-timer .timer-label {
+            color: var(--text-secondary);
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        .countdown-timer .timer-value {
+            font-family: 'Inter', monospace;
+            font-weight: 700;
+            color: #fbbf24;
+            font-size: 0.7rem;
+            letter-spacing: 0.2px;
+        }
+        @media (max-width: 768px) {
+            .countdown-timer .timer-label {
+                display: none;
+            }
+            .countdown-timer {
+                padding: 3px 10px 3px 8px;
+                font-size: 0.65rem;
+            }
+            .countdown-timer .timer-value {
+                font-size: 0.6rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .countdown-timer .timer-value {
+                font-size: 0.5rem;
+            }
+            .countdown-timer .clock-icon {
+                font-size: 0.65rem;
+            }
+            .countdown-timer {
+                padding: 2px 6px 2px 5px;
+                gap: 3px;
+            }
+        }
+        .nav-right-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        @media (max-width: 1024px) {
+            .nav-right-group .nav-subject-link {
+                display: none;
+            }
+        }
+        @media (max-width: 640px) {
+            .nav-right-group .btn-wa span {
+                display: none;
+            }
+            .nav-right-group .btn-wa {
+                padding: 0.4rem 0.7rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- ====== SIDE DRAWER (same as chemistry) ====== -->
+    <!-- ====== SIDE DRAWER ====== -->
     <div id="drawerOverlay" class="drawer-overlay" onclick="closeDrawer()"></div>
     <div id="sideDrawer" class="side-drawer flex flex-col">
         <div class="p-5 border-b border-white/10">
@@ -129,7 +335,7 @@
                 <button onclick="closeDrawer()" class="text-2xl text-gray-400 hover:text-amber-400 transition">&times;</button>
             </div>
             <div class="flex items-center gap-3 mb-4">
-                <img src="pic/NEC3.png" alt="NEC Logo" class="h-10 w-auto" onerror="this.src='https://placehold.co/313x129/ffffff/f59e0b?text=NEC';" />
+                <a href="/"><img src="pic/NEC3.png" alt="NEC Logo" class="h-10 w-auto" onerror="this.src='https://placehold.co/313x129/ffffff/f59e0b?text=NEC';" /></a>
                 <div>
                     <p class="text-sm font-semibold">বিজ্ঞান প্রস্তুতি</p>
                     <p class="text-xs text-gray-400">NCTB ২০২৬ সিলেবাস</p>
@@ -155,20 +361,31 @@
 
     <!-- ====== NAVIGATION ====== -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="flex justify-between items-center py-3">
-                <div class="flex items-center gap-3">
-                    <button onclick="openDrawer()" class="text-2xl text-amber-400 hover:scale-110 transition"><i class="fas fa-bars"></i></button>
-                    <img src="pic/NEC3.png" alt="Logo" class="nav-logo-img" onerror="this.src='https://placehold.co/313x129/ffffff/f59e0b?text=NEC';" />
-                    <span class="font-bold text-xl gradient-text">National Exam Center</span>
-                    <span class="text-xs bg-amber-500/20 px-2 py-1 rounded-full hidden md:block">পদার্থবিজ্ঞান · ৩০ মার্চ</span>
+        <div class="max-w-7xl mx-auto px-3 sm:px-6">
+            <div class="flex justify-between items-center py-2.5 md:py-3">
+                <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+                    <button onclick="openDrawer()" class="text-2xl text-amber-400 hover:scale-110 transition flex-shrink-0"><i class="fas fa-bars"></i></button>
+                    <a href="/" class="flex-shrink-0">
+                        <img src="pic/NEC3.png" alt="Logo" class="nav-logo-img" onerror="this.src='https://placehold.co/313x129/ffffff/f59e0b?text=NEC';" />
+                    </a>
+                    <span class="font-bold text-base sm:text-xl gradient-text whitespace-nowrap hidden xs:block">National Exam Center</span>
+                    <span class="text-[0.6rem] bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full hidden md:block flex-shrink-0">পদার্থবিজ্ঞান · ৩০ মার্চ</span>
                 </div>
-                <div class="flex items-center gap-4">
-                    <button onclick="toggleTheme()" class="btn-theme px-3 py-2 rounded-lg text-sm"><i class="fas fa-sun" id="sunIcon"></i><i class="fas fa-moon" id="moonIcon" style="display: none;"></i></button>
-                    <a href="/" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-home mr-1"></i> হোম</a>
-                    <a href="/chemistry.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-flask mr-1"></i> রসায়ন</a>
-                    <a href="/biology.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-dna mr-1"></i> জীববিজ্ঞান</a>
-                    <a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" target="_blank" class="btn-wa px-4 py-2 rounded-lg text-white text-sm font-semibold transition"><i class="fab fa-whatsapp mr-1"></i> WhatsApp</a>
+
+                <div class="flex items-center gap-1.5 sm:gap-3 nav-right-group">
+                    <div class="countdown-timer" id="headerCountdown">
+                        <i class="fas fa-clock clock-icon"></i>
+                        <span class="timer-label">এসএসসি ২০২৭</span>
+                        <span class="timer-value" id="countdownDisplay">00d 00h 00m 00s</span>
+                    </div>
+
+                    <button onclick="toggleTheme()" class="btn-theme w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center text-sm flex-shrink-0"><i class="fas fa-sun" id="sunIcon"></i><i class="fas fa-moon" id="moonIcon" style="display: none;"></i></button>
+
+                    <a href="/" class="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition nav-subject-link"><i class="fas fa-home mr-0.5"></i> হোম</a>
+                    <a href="/chemistry.html" class="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition nav-subject-link"><i class="fas fa-flask mr-0.5"></i> রসায়ন</a>
+                    <a href="/biology.html" class="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition nav-subject-link"><i class="fas fa-dna mr-0.5"></i> জীববিজ্ঞান</a>
+
+                    <a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" target="_blank" class="btn-wa px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-lg text-white text-xs sm:text-sm font-semibold transition flex items-center gap-1 flex-shrink-0"><i class="fab fa-whatsapp"></i> <span>WhatsApp</span></a>
                 </div>
             </div>
         </div>
@@ -293,10 +510,24 @@
     </script>
 
     <script>
-        // ============================================
-        // PHYSICS APP - Merging Extra Topics
-        // ============================================
+        // --- COUNTDOWN TIMER ---
+        function updateHeaderCountdown() {
+            const examDate = new Date(2027, 2, 14).getTime();
+            const now = new Date().getTime();
+            const diff = examDate - now;
+            const el = document.getElementById('countdownDisplay');
+            if (!el) return;
+            if (diff <= 0) { el.innerHTML = '🎯 শুরু!'; return; }
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            el.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+        setInterval(updateHeaderCountdown, 1000);
+        updateHeaderCountdown();
 
+        // --- PHYSICS APP CODE ---
         const CHAPTERS_META = [
             { id: 1, title: "ভৌত রাশি এবং তাদের পরিমাপ", title_en: "Physical Quantities and Their Measurement" },
             { id: 2, title: "গতি", title_en: "Motion" },
@@ -350,29 +581,23 @@
 
         async function loadChapter(chapterId) {
             if (chapterDataCache[chapterId]) return chapterDataCache[chapterId];
-
             try {
                 const baseResponse = await fetch(`data/chapter-${chapterId}.json`);
                 if (!baseResponse.ok) throw new Error(`HTTP ${baseResponse.status}`);
                 const baseData = await baseResponse.json();
-
                 const extra = extraTopicsData[chapterId] || [];
                 let baseTopics = baseData.topics || [];
                 baseTopics = baseTopics.map(t => ({ ...t, is_free: true }));
-
                 const allTopics = [...baseTopics, ...extra];
                 allTopics.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
-
                 baseData.topics = allTopics;
                 baseData.topics.forEach(topic => {
                     if (topic.exam && topic.exam.questions && Array.isArray(topic.exam.questions)) {
                         topic.exam.questions = topic.exam.questions.map(q => normalizeQuestion(q));
                     }
                 });
-
                 chapterDataCache[chapterId] = baseData;
                 return baseData;
-
             } catch (err) {
                 console.warn(`Fallback for physics chapter ${chapterId}:`, err);
                 return {
@@ -411,12 +636,10 @@
             isExamInProgress = false;
             currentChapterId = chapterId;
             const chapterData = await loadChapter(chapterId);
-
             document.getElementById('chaptersView').classList.add('hidden');
             document.getElementById('chapterView').classList.remove('hidden');
             document.getElementById('chapterNumber').innerText = chapterId;
             document.getElementById('chapterTitle').innerHTML = chapterData.chapter_title;
-
             const tabsContainer = document.getElementById('topicsTabs');
             tabsContainer.innerHTML = chapterData.topics.map((topic, idx) => `
                     <button class="topic-tab px-4 py-2 rounded-lg text-sm transition ${idx === 0 ? 'bg-amber-500/20 text-amber-400' : 'text-gray-400 hover:text-amber-400'}" data-topic-index="${idx}">
@@ -424,10 +647,8 @@
                         ${topic.is_free === false ? ' <i class="fas fa-lock text-red-400 text-xs"></i>' : ''}
                     </button>
                 `).join('');
-
             currentTopicIndex = 0;
             await loadTopicContent(chapterId, 0, chapterData);
-
             document.querySelectorAll('.topic-tab').forEach(tab => {
                 tab.addEventListener('click', async () => {
                     if (isExamInProgress && !confirm('⚠️ পরীক্ষা চলছে। টপিক পরিবর্তন করলে উত্তর ও সময় হারাবে। নিশ্চিত?'))
@@ -453,23 +674,19 @@
             isExamInProgress = false;
             const topic = chapterData.topics[topicIndex];
             const container = document.getElementById('topicContent');
-
             if (topic.is_free === false) {
                 container.innerHTML = `
                     <div class="text-center py-12">
                         <i class="fas fa-lock text-6xl text-amber-400 mb-4"></i>
                         <h3 class="text-2xl font-bold text-amber-400 mb-2">🔒 এই টপিকটি লকড!</h3>
-                        <p class="text-gray-300 max-w-md mx-auto">
-                            ${topic.study?.summary?.[0] || 'এই টপিকটি দেখতে প্রিমিয়াম প্ল্যান কিনুন। মাসিক ২৯৯৳, ত্রৈমাসিক ৭৯৯৳, ষাণ্মাসিক ১১৯৯৳, বার্ষিক ১,৪৯৯৳।'}
-                        </p>
+                        <p class="text-gray-300 max-w-md mx-auto">${topic.study?.summary?.[0] || 'প্রিমিয়াম প্ল্যান প্রয়োজন। মাসিক ২৯৯৳, ত্রৈমাসিক ৭৯৯৳, ষাণ্মাসিক ১১৯৯৳, বার্ষিক ১,৪৯৯৳।'}</p>
                         <a href="/#pricing" class="mt-4 inline-block btn-primary px-6 py-2 rounded-lg text-white text-sm">প্ল্যান দেখুন</a>
-                        <a href="https://wa.me/8801602105447?text=আমি%20প্রিমিয়াম%20প্ল্যান%20নিতে%20চাই" target="_blank" class="mt-2 inline-block btn-wa px-6 py-2 rounded-lg text-white text-sm">WhatsApp এ যোগাযোগ করুন</a>
+                        <a href="https://wa.me/8801602105447?text=আমি%20প্রিমিয়াম%20প্ল্যান%20নিতে%20চাই" target="_blank" class="mt-2 inline-block btn-wa px-6 py-2 rounded-lg text-white text-sm">WhatsApp</a>
                     </div>
                 `;
                 return;
             }
 
-            // --- Free topic rendering (same as chemistry) ---
             const study = topic.study || {};
             const summary = study.summary || [`${topic.title} - বিস্তারিত কন্টেন্ট শীঘ্রই যুক্ত হবে।`];
             const shortQuestions = study.short_questions || [];
@@ -488,12 +705,7 @@
                     <div class="mb-6">
                         <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-align-left mr-2"></i>সারাংশ</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            ${summary.map((s, idx) => `
-                                <div class="mind-map-card">
-                                    <span class="bullet">✦</span>
-                                    <span class="text-gray-300 leading-relaxed">${s}</span>
-                                </div>
-                            `).join('')}
+                            ${summary.map((s, idx) => `<div class="mind-map-card"><span class="bullet">✦</span><span class="text-gray-300 leading-relaxed">${s}</span></div>`).join('')}
                         </div>
                     </div>`;
 
@@ -514,12 +726,12 @@
 
             if (chemicalReactions.length) {
                 html +=
-                    `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-flask mr-2"></i>পদার্থবিজ্ঞানের সূত্র ও সমীকরণ</h3><div class="space-y-3">${chemicalReactions.map(cr => `<div class="glass rounded-xl p-3"><p class="font-mono text-amber-400 text-base">${cr.equation || ''}</p><p class="text-sm text-gray-400 mt-1">${cr.description || ''}</p></div>`).join('')}</div></div>`;
+                    `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-flask mr-2"></i>পদার্থবিজ্ঞানের সূত্র ও সমীকরণ</h3><div class="space-y-3">${chemicalReactions.map(cr => `<div class="glass rounded-xl p-3"><p class="font-mono text-amber-400">${cr.equation || ''}</p><p class="text-sm text-gray-400 mt-1">${cr.description || ''}</p></div>`).join('')}</div></div>`;
             }
 
             if (tables.length) {
                 html +=
-                    `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>${tables.map(tbl => `<div class="overflow-x-auto mb-4"><table class="w-full text-sm border border-white/10 rounded-xl"><thead><tr class="border-b border-white/10 bg-white/5">${(tbl.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}<tr></thead><tbody>${(tbl.rows || []).map(row => `<tr class="border-b border-white/5">${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('')}</div>`;
+                    `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>${tables.map(table => `<div class="overflow-x-auto mb-4"><table class="w-full text-sm border border-white/10 rounded-xl"><thead><tr class="border-b border-white/10 bg-white/5">${(table.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}<tr></thead><tbody>${(table.rows || []).map(row => `<tr class="border-b border-white/5">${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('')}</div>`;
             }
 
             if (examQuestions.length) {
@@ -545,7 +757,6 @@
                     </div>`;
                 container.innerHTML = html;
 
-                // --- MCQ Logic (same as chemistry) ---
                 let mcqState = { questions: [], userAnswers: [], examStarted: false, examEnded: false, timerInterval: null,
                     timeRemaining: 0 };
                 const TIME_PER_QUESTION = 60;
@@ -727,7 +938,6 @@
                     console.warn('⚠️ Extra topics file not found.');
                 }
             } catch (e) { console.warn('⚠️ Error loading extra topics:', e); }
-
             renderChaptersGrid();
             document.getElementById('backToChaptersBtn').onclick = () => {
                 if (isExamInProgress && !confirm('পরীক্ষা চলছে, ফিরে গেলে ডাটা হারাবে?')) return;
@@ -738,11 +948,10 @@
                 currentChapterId = null;
             };
         }
-
         window.openChapter = openChapter;
         init();
 
-        // --- Theme and Drawer (same as chemistry) ---
+        // --- Theme and Drawer ---
         window.toggleTheme = function() {
             const html = document.documentElement;
             const cur = html.getAttribute('data-theme');
