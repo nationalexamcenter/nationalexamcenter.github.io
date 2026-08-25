@@ -6,9 +6,9 @@
     <title>রসায়ন সম্পূর্ণ সিলেবাস ২০২৬ | National Exam Center</title>
     <meta name="description" content="NCTB ২০২৬ সিলেবাস অনুযায়ী নবম-দশম শ্রেণির রসায়নের ১২টি অধ্যায়। সম্পূর্ণ স্টাডি মেটেরিয়াল এবং MCQ পরীক্ষা।" />
     <link rel="canonical" href="https://nationalexamcenter.github.io/chemistry.html" />
-    <link rel="icon" href="pic/NEC3.png" type="image/png" />
-    <link rel="apple-touch-icon" href="pic/NEC3.png" />
-    <link rel="shortcut icon" href="pic/NEC3.png" type="image/png" />
+    <link rel="icon" href="pic/fav.png" type="image/png" />
+    <link rel="apple-touch-icon" href="pic/fav.png" />
+    <link rel="shortcut icon" href="pic/fav.png" type="image/png" />
 
     <script src="https://cdn.tailwindcss.com">
     </script>
@@ -326,6 +326,169 @@
                 padding: 0.4rem 0.7rem;
             }
         }
+
+        /* Countdown Calendar (same as index) */
+        .countdown-calendar {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            border-radius: var(--radius-xl);
+            padding: 1.75rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(245, 158, 11, 0.08);
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+        .countdown-calendar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(245, 158, 11, 0.03), transparent 70%);
+            pointer-events: none;
+        }
+        .countdown-calendar:hover {
+            border-color: rgba(245, 158, 11, 0.6);
+            box-shadow: 0 0 60px rgba(245, 158, 11, 0.15);
+            transform: translateY(-4px);
+        }
+        .countdown-calendar .exam-date {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+        }
+        .countdown-calendar .exam-date .date-highlight {
+            color: #f59e0b;
+            font-weight: 700;
+        }
+        .countdown-calendar .days-remaining {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fcd34d, #f59e0b, #ea580c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            margin: 0.25rem 0 0.1rem;
+        }
+        .countdown-calendar .days-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+        .countdown-calendar .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            max-width: 340px;
+            margin: 0.75rem auto 0;
+        }
+        .countdown-calendar .calendar-grid .day-name {
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            padding: 2px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .countdown-calendar .calendar-grid .day-cell {
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 500;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.2s ease;
+            color: var(--text-primary);
+        }
+        .countdown-calendar .calendar-grid .day-cell.other-month {
+            color: var(--text-secondary);
+            opacity: 0.3;
+        }
+        .countdown-calendar .calendar-grid .day-cell.today {
+            background: rgba(245, 158, 11, 0.25);
+            border: 1px solid #f59e0b;
+            font-weight: 700;
+            color: #f59e0b;
+        }
+        .countdown-calendar .calendar-grid .day-cell.exam-day {
+            background: linear-gradient(135deg, #f59e0b, #ea580c);
+            color: #fff;
+            font-weight: 800;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+            border: none;
+        }
+        .countdown-calendar .calendar-grid .day-cell.weekend {
+            color: rgba(245, 158, 11, 0.5);
+        }
+        [data-theme="light"] .countdown-calendar .calendar-grid .day-cell {
+            background: rgba(0, 0, 0, 0.03);
+        }
+        [data-theme="light"] .countdown-calendar .calendar-grid .day-cell.other-month {
+            opacity: 0.25;
+        }
+
+        /* Study Plan Card (same as index) */
+        .study-plan-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border-glow);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            transition: all var(--transition);
+            margin-top: 1.5rem;
+        }
+        .study-plan-card:hover {
+            border-color: rgba(245, 158, 11, 0.4);
+            transform: translateY(-2px);
+        }
+        .topic-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 9999px;
+            padding: 0.2rem 0.9rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #fbbf24;
+        }
+        [data-theme="light"] .topic-badge {
+            color: #b45309;
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+        .progress-bar {
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        .progress-bar .fill {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #f59e0b, #ea580c);
+            transition: width 0.8s ease;
+        }
+
+        :root {
+            --radius-xl: 1.5rem;
+            --border-glow: rgba(245, 158, 11, 0.25);
+            --shadow-glow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+        [data-theme="light"] {
+            --border-glow: rgba(245, 158, 11, 0.4);
+            --shadow-glow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
     </style>
 </head>
 <body>
@@ -408,6 +571,44 @@
                 <h1 class="text-4xl md:text-5xl font-bold gradient-text mb-4">রসায়ন সম্পূর্ণ সিলেবাস ২০২৬</h1>
                 <p class="text-gray-400 max-w-2xl mx-auto">NCTB ২০২৬ সিলেবাস অনুযায়ী নবম ও দশম শ্রেণির রসায়নের ১২টি অধ্যায় | ৯৭ টপিক | এসএসসি ২০২৭ · ৪ এপ্রিল</p>
             </div>
+
+            <!-- Countdown Calendar (visible on chapter view) -->
+            <div class="max-w-md mx-auto mb-8" id="calendarSection">
+                <div class="countdown-calendar" id="countdownCalendar">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="exam-date"><i class="fas fa-calendar-alt mr-1 text-amber-400"></i> এসএসসি ২০২৭</span>
+                        <span class="exam-date"><span class="date-highlight">১৪ মার্চ</span>, ২০২৭</span>
+                    </div>
+                    <div class="days-remaining" id="daysRemainingBig">--</div>
+                    <div class="days-label">দিন বাকি</div>
+                    <div class="calendar-grid" id="calendarGrid"></div>
+                    <div class="text-xs text-gray-400 mt-2 flex justify-center gap-3">
+                        <span><span class="inline-block w-3 h-3 rounded-full bg-amber-500/30 border border-amber-500 align-middle mr-1"></span> আজ</span>
+                        <span><span class="inline-block w-3 h-3 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 align-middle mr-1"></span> পরীক্ষা</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Study Plan -->
+            <div class="max-w-md mx-auto mb-8">
+                <div class="study-plan-card">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400"><i class="fas fa-flask"></i></div>
+                        <div>
+                            <h4 class="font-bold">রসায়ন স্টাডি প্ল্যান</h4>
+                            <span class="topic-badge"><i class="fas fa-list-ul"></i> ৯৭ টপিক</span>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between"><span class="text-gray-400">প্রতি টপিক সময়</span><span class="font-semibold text-amber-400">১.৫ ঘন্টা</span></div>
+                        <div class="flex justify-between"><span class="text-gray-400">মোট সময় প্রয়োজন</span><span class="font-semibold text-amber-400">~১৪৬ ঘন্টা</span></div>
+                        <div class="flex justify-between"><span class="text-gray-400">প্রতিদিন পড়ার সময়</span><span class="font-semibold">২.৫ ঘন্টা</span></div>
+                        <div class="flex justify-between"><span class="text-gray-400">সম্পন্ন হতে সময়</span><span class="font-semibold text-green-400">~৫৮ দিন</span></div>
+                        <div class="progress-bar"><div class="fill" style="width:0%"></div></div>
+                    </div>
+                </div>
+            </div>
+
             <div id="chaptersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </div>
 
@@ -560,10 +761,9 @@
         }
     </script>
 
-    <!-- ====== MAIN APPLICATION SCRIPT ====== -->
     <script>
         // ============================================================
-        // 1. COUNTDOWN TIMER
+        // 1. COUNTDOWN TIMER (Header)
         // ============================================================
         function updateHeaderCountdown() {
             const examDate = new Date(2027, 2, 14).getTime();
@@ -582,7 +782,75 @@
         updateHeaderCountdown();
 
         // ============================================================
-        // 2. CHEMISTRY APP - Full Syllabus
+        // 2. COUNTDOWN CALENDAR (on page)
+        // ============================================================
+        const EXAM_DATE = new Date(2027, 2, 14);
+
+        function updateCalendar() {
+            const now = new Date();
+            const diff = EXAM_DATE - now;
+
+            const daysEl = document.getElementById('daysRemainingBig');
+            if (daysEl) {
+                if (diff <= 0) daysEl.textContent = '🎉';
+                else daysEl.textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+            }
+
+            const grid = document.getElementById('calendarGrid');
+            if (!grid) return;
+
+            const year = EXAM_DATE.getFullYear();
+            const month = EXAM_DATE.getMonth();
+            const examDay = EXAM_DATE.getDate();
+
+            const today = new Date();
+            const todayDate = today.getDate();
+            const todayMonth = today.getMonth();
+            const todayYear = today.getFullYear();
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+            let html = '';
+            dayNames.forEach(d => {
+                html += `<div class="day-name">${d}</div>`;
+            });
+
+            for (let i = 0; i < firstDay; i++) {
+                const prevMonthDays = new Date(year, month, 0).getDate();
+                const prevDate = prevMonthDays - firstDay + i + 1;
+                html += `<div class="day-cell other-month">${prevDate}</div>`;
+            }
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const isToday = (d === todayDate && month === todayMonth && year === todayYear);
+                const isExam = (d === examDay);
+                const dayOfWeek = new Date(year, month, d).getDay();
+                const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
+
+                let cls = 'day-cell';
+                if (isToday) cls += ' today';
+                if (isExam) cls += ' exam-day';
+                if (isWeekend && !isExam) cls += ' weekend';
+
+                html += `<div class="${cls}">${d}</div>`;
+            }
+
+            const totalCells = firstDay + daysInMonth;
+            const remaining = (7 - (totalCells % 7)) % 7;
+            for (let i = 1; i <= remaining; i++) {
+                html += `<div class="day-cell other-month">${i}</div>`;
+            }
+
+            grid.innerHTML = html;
+        }
+
+        setInterval(updateCalendar, 1000);
+        updateCalendar();
+
+        // ============================================================
+        // 3. CHEMISTRY APP - Full Syllabus
         // ============================================================
 
         const CHAPTERS_META = [
@@ -1018,7 +1286,7 @@
         init();
 
         // ============================================================
-        // 3. THEME & DRAWER
+        // 4. THEME & DRAWER
         // ============================================================
         window.toggleTheme = function() {
             const html = document.documentElement;
