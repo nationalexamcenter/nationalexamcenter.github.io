@@ -79,10 +79,10 @@
         }
     </script>
 
-    <!-- Favicon using logo -->
-    <link rel="icon" href="pic/NEC3.png" type="image/png" />
-    <link rel="apple-touch-icon" href="pic/NEC3.png" />
-    <link rel="shortcut icon" href="pic/NEC3.png" type="image/png" />
+    <!-- Favicon using fav.png (40x40) -->
+    <link rel="icon" href="pic/fav.png" type="image/png" />
+    <link rel="apple-touch-icon" href="pic/fav.png" />
+    <link rel="shortcut icon" href="pic/fav.png" type="image/png" />
 
     <script src="https://cdn.tailwindcss.com">
     </script>
@@ -533,6 +533,20 @@
             border-radius: 0 0 12px 12px;
             letter-spacing: 0.5px;
         }
+
+        /* Mockup image styles */
+        .mockup-img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        [data-theme="light"] .mockup-img {
+            background: rgba(0,0,0,0.03);
+            border-color: rgba(0,0,0,0.06);
+        }
     </style>
 </head>
 <body>
@@ -676,25 +690,25 @@
         </div>
     </section>
 
-    <!-- ====== FEATURES ====== -->
+    <!-- ====== FEATURES with Mockup Images ====== -->
     <section class="max-w-7xl mx-auto px-4 py-12">
         <h2 class="text-2xl sm:text-3xl font-bold text-center mb-10">
             📱 <span class="gradient-text">এক্সক্লুসিভ ফিচারসমূহ</span>
         </h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             <div class="glass-card p-6 text-center">
-                <div class="feature-icon mx-auto mb-3"><i class="fas fa-book"></i></div>
-                <h3 class="text-lg font-bold mb-1">টপিক ভিত্তিক পড়া</h3>
+                <img src="pic/mockup-1.png" alt="টপিক নির্বাচন" class="mockup-img" onerror="this.src='https://placehold.co/170x340/1e293b/f59e0b?text=Topics';" />
+                <h3 class="text-lg font-bold mb-1">টপিক নির্বাচন</h3>
                 <p class="text-sm text-gray-400">প্রতিটি অধ্যায়ের টপিক আলাদা। টপিক নির্বাচন করে পড়ুন ও পরীক্ষা দিন।</p>
             </div>
             <div class="glass-card p-6 text-center">
-                <div class="feature-icon mx-auto mb-3"><i class="fas fa-check-double"></i></div>
-                <h3 class="text-lg font-bold mb-1">MCQ পরীক্ষা</h3>
-                <p class="text-sm text-gray-400">প্রতিটি টপিকের জন্য আলাদা MCQ, টাইমার ও ফলাফল বিশ্লেষণ।</p>
+                <img src="pic/mockup-2.png" alt="টপিক স্টাডি" class="mockup-img" onerror="this.src='https://placehold.co/170x340/1e293b/f59e0b?text=Study';" />
+                <h3 class="text-lg font-bold mb-1">টপিক স্টাডি</h3>
+                <p class="text-sm text-gray-400">প্রতিটি টপিকের সারাংশ, সংক্ষিপ্ত ও সৃজনশীল প্রশ্ন সহ সম্পূর্ণ স্টাডি মেটেরিয়াল।</p>
             </div>
             <div class="glass-card p-6 text-center">
-                <div class="feature-icon mx-auto mb-3"><i class="fas fa-chart-simple"></i></div>
-                <h3 class="text-lg font-bold mb-1">ফলাফল ইমেজ শেয়ার</h3>
+                <img src="pic/mockup-3.png" alt="ফলাফল শেয়ার" class="mockup-img" onerror="this.src='https://placehold.co/170x340/1e293b/f59e0b?text=Share';" />
+                <h3 class="text-lg font-bold mb-1">ফলাফল শেয়ার</h3>
                 <p class="text-sm text-gray-400">পরীক্ষার স্কোর ইমেজ হিসেবে সংরক্ষণ ও সোশ্যাল মিডিয়ায় শেয়ার।</p>
             </div>
             <div class="glass-card p-6 text-center">
@@ -705,7 +719,7 @@
         </div>
     </section>
 
-    <!-- ====== STUDY PLAN ====== -->
+    <!-- ====== STUDY PLAN (Updated: 1.5 hours per topic) ====== -->
     <section class="max-w-7xl mx-auto px-4 py-8">
         <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8">
             📚 <span class="gradient-text">সম্পূর্ণ সিলেবাস সম্পন্ন করতে সময়</span>
@@ -721,9 +735,10 @@
                     </div>
                 </div>
                 <div class="space-y-2 text-sm">
-                    <div class="flex justify-between"><span class="text-gray-400">মোট সময় প্রয়োজন</span><span class="font-semibold text-amber-400">~২৯০ ঘন্টা</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">প্রতি টপিক সময়</span><span class="font-semibold text-amber-400">১.৫ ঘন্টা</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">মোট সময় প্রয়োজন</span><span class="font-semibold text-amber-400">~১৪৬ ঘন্টা</span></div>
                     <div class="flex justify-between"><span class="text-gray-400">প্রতিদিন পড়ার সময়</span><span class="font-semibold">২.৫ ঘন্টা</span></div>
-                    <div class="flex justify-between"><span class="text-gray-400">সম্পন্ন হতে সময়</span><span class="font-semibold text-green-400">~১১৬ দিন</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">সম্পন্ন হতে সময়</span><span class="font-semibold text-green-400">~৫৮ দিন</span></div>
                     <div class="progress-bar"><div class="fill" style="width:0%"></div></div>
                 </div>
                 <a href="/chemistry.html" class="mt-3 inline-block text-amber-400 text-sm hover:underline">বিস্তারিত →</a>
@@ -739,9 +754,10 @@
                     </div>
                 </div>
                 <div class="space-y-2 text-sm">
-                    <div class="flex justify-between"><span class="text-gray-400">মোট সময় প্রয়োজন</span><span class="font-semibold text-amber-400">~২৩৪ ঘন্টা</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">প্রতি টপিক সময়</span><span class="font-semibold text-amber-400">১.৫ ঘন্টা</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">মোট সময় প্রয়োজন</span><span class="font-semibold text-amber-400">~১১৭ ঘন্টা</span></div>
                     <div class="flex justify-between"><span class="text-gray-400">প্রতিদিন পড়ার সময়</span><span class="font-semibold">২.০ ঘন্টা</span></div>
-                    <div class="flex justify-between"><span class="text-gray-400">সম্পন্ন হতে সময়</span><span class="font-semibold text-green-400">~১১৭ দিন</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">সম্পন্ন হতে সময়</span><span class="font-semibold text-green-400">~৫৯ দিন</span></div>
                     <div class="progress-bar"><div class="fill" style="width:0%"></div></div>
                 </div>
                 <a href="/physics.html" class="mt-3 inline-block text-amber-400 text-sm hover:underline">বিস্তারিত →</a>
@@ -757,9 +773,10 @@
                     </div>
                 </div>
                 <div class="space-y-2 text-sm">
-                    <div class="flex justify-between"><span class="text-gray-400">মোট সময় প্রয়োজন</span><span class="font-semibold text-amber-400">~১৮৬ ঘন্টা</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">প্রতি টপিক সময়</span><span class="font-semibold text-amber-400">১.৫ ঘন্টা</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">মোট সময় প্রয়োজন</span><span class="font-semibold text-amber-400">~৯৩ ঘন্টা</span></div>
                     <div class="flex justify-between"><span class="text-gray-400">প্রতিদিন পড়ার সময়</span><span class="font-semibold">১.৫ ঘন্টা</span></div>
-                    <div class="flex justify-between"><span class="text-gray-400">সম্পন্ন হতে সময়</span><span class="font-semibold text-green-400">~১২৪ দিন</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">সম্পন্ন হতে সময়</span><span class="font-semibold text-green-400">~৬২ দিন</span></div>
                     <div class="progress-bar"><div class="fill" style="width:0%"></div></div>
                 </div>
                 <a href="/biology.html" class="mt-3 inline-block text-amber-400 text-sm hover:underline">বিস্তারিত →</a>
@@ -1031,12 +1048,17 @@
 
     <script>
         // ============================================================
-        // 1. COUNTDOWN CALENDAR & CLOCK
+        // 1. COUNTDOWN CALENDAR & CLOCK (Fixed BST)
         // ============================================================
         const EXAM_DATE = new Date(2027, 2, 14); // March 14, 2027
 
         function updateCountdown() {
             const now = new Date();
+
+            // --- Fix: Correct BST (UTC+6) ---
+            const bstOffset = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
+            const bstTime = new Date(now.getTime() + bstOffset);
+
             const diff = EXAM_DATE - now;
 
             // Days remaining
@@ -1051,11 +1073,10 @@
                 else daysSmall.textContent = Math.floor(diff / (1000 * 60 * 60 * 24)) + ' দিন';
             }
 
-            // BST Clock
+            // BST Clock (fixed)
             const bstClock = document.getElementById('bstClock');
             if (bstClock) {
-                const bst = new Date(now.getTime() + (6 * 60 * 60 * 1000));
-                bstClock.textContent = bst.toTimeString().slice(0, 8);
+                bstClock.textContent = bstTime.toTimeString().slice(0, 8);
             }
 
             // Calendar
