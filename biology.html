@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <style>
-        /* === same CSS as chemistry === */
         :root {
             --bg-primary: #0a0f1a;
             --bg-secondary: #0c1320;
@@ -246,7 +245,6 @@
             margin-right: 0.5rem;
         }
 
-        /* --- Countdown Timer in Header --- */
         .countdown-timer {
             display: flex;
             align-items: center;
@@ -304,8 +302,6 @@
                 gap: 3px;
             }
         }
-
-        /* --- nav adjustments for countdown --- */
         .nav-right-group {
             display: flex;
             align-items: center;
@@ -330,7 +326,7 @@
 </head>
 <body>
 
-    <!-- ====== SIDE DRAWER (same) ====== -->
+    <!-- ====== SIDE DRAWER ====== -->
     <div id="drawerOverlay" class="drawer-overlay" onclick="closeDrawer()"></div>
     <div id="sideDrawer" class="side-drawer flex flex-col">
         <div class="p-5 border-b border-white/10">
@@ -363,11 +359,10 @@
         </div>
     </div>
 
-    <!-- ====== NAVIGATION with Countdown Timer ====== -->
+    <!-- ====== NAVIGATION ====== -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
         <div class="max-w-7xl mx-auto px-3 sm:px-6">
             <div class="flex justify-between items-center py-2.5 md:py-3">
-                <!-- Left: menu + logo + title -->
                 <div class="flex items-center gap-2 sm:gap-3 min-w-0">
                     <button onclick="openDrawer()" class="text-2xl text-amber-400 hover:scale-110 transition flex-shrink-0"><i class="fas fa-bars"></i></button>
                     <a href="/" class="flex-shrink-0">
@@ -377,9 +372,7 @@
                     <span class="text-[0.6rem] bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full hidden md:block flex-shrink-0">জীববিজ্ঞান · ১৩ এপ্রিল</span>
                 </div>
 
-                <!-- Right: countdown + theme + links + WhatsApp -->
                 <div class="flex items-center gap-1.5 sm:gap-3 nav-right-group">
-                    <!-- COUNTDOWN TIMER -->
                     <div class="countdown-timer" id="headerCountdown">
                         <i class="fas fa-clock clock-icon"></i>
                         <span class="timer-label">এসএসসি ২০২৭</span>
@@ -398,7 +391,7 @@
         </div>
     </nav>
 
-    <!-- ====== 3D CANVAS (DNA) ====== -->
+    <!-- ====== 3D CANVAS ====== -->
     <div id="biologyCanvasContainer" class="hero-canvas"></div>
 
     <div class="pt-20">
@@ -561,32 +554,24 @@
     </script>
 
     <script>
-        // ============================================
-        // BIOLOGY APP - Merging Extra Topics
-        // ============================================
-
-        // --- COUNTDOWN TIMER (global) ---
+        // --- COUNTDOWN TIMER ---
         function updateHeaderCountdown() {
-            const examDate = new Date(2027, 2, 14).getTime(); // March 14, 2027
+            const examDate = new Date(2027, 2, 14).getTime();
             const now = new Date().getTime();
             const diff = examDate - now;
             const el = document.getElementById('countdownDisplay');
             if (!el) return;
-            if (diff <= 0) {
-                el.innerHTML = '🎯 শুরু!';
-                return;
-            }
+            if (diff <= 0) { el.innerHTML = '🎯 শুরু!'; return; }
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
             el.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
         }
-        // run every second
         setInterval(updateHeaderCountdown, 1000);
         updateHeaderCountdown();
 
-        // --- APP CODE ---
+        // --- BIOLOGY APP CODE ---
         const CHAPTERS_META = [
             { id: 1, title: "জীববিজ্ঞানের ধারণা", title_en: "Introduction to Biology" },
             { id: 2, title: "জীবকোষ", title_en: "Cell and Tissue" },
@@ -641,29 +626,23 @@
 
         async function loadChapter(chapterId) {
             if (chapterDataCache[chapterId]) return chapterDataCache[chapterId];
-
             try {
                 const baseResponse = await fetch(`data/chapter-${chapterId}.json`);
                 if (!baseResponse.ok) throw new Error(`HTTP ${baseResponse.status}`);
                 const baseData = await baseResponse.json();
-
                 const extra = extraTopicsData[chapterId] || [];
                 let baseTopics = baseData.topics || [];
                 baseTopics = baseTopics.map(t => ({ ...t, is_free: true }));
-
                 const allTopics = [...baseTopics, ...extra];
                 allTopics.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
-
                 baseData.topics = allTopics;
                 baseData.topics.forEach(topic => {
                     if (topic.exam && topic.exam.questions && Array.isArray(topic.exam.questions)) {
                         topic.exam.questions = topic.exam.questions.map(q => normalizeQuestion(q));
                     }
                 });
-
                 chapterDataCache[chapterId] = baseData;
                 return baseData;
-
             } catch (err) {
                 console.warn(`Fallback for biology chapter ${chapterId}:`, err);
                 return {
@@ -702,12 +681,10 @@
             isExamInProgress = false;
             currentChapterId = chapterId;
             const chapterData = await loadChapter(chapterId);
-
             document.getElementById('chaptersView').classList.add('hidden');
             document.getElementById('chapterView').classList.remove('hidden');
             document.getElementById('chapterNumber').innerText = chapterId;
             document.getElementById('chapterTitle').innerHTML = chapterData.chapter_title;
-
             const tabsContainer = document.getElementById('topicsTabs');
             tabsContainer.innerHTML = chapterData.topics.map((topic, idx) => `
                     <button class="topic-tab px-4 py-2 rounded-lg text-sm transition ${idx === 0 ? 'bg-amber-500/20 text-amber-400' : 'text-gray-400 hover:text-amber-400'}" data-topic-index="${idx}">
@@ -715,10 +692,8 @@
                         ${topic.is_free === false ? ' <i class="fas fa-lock text-red-400 text-xs"></i>' : ''}
                     </button>
                 `).join('');
-
             currentTopicIndex = 0;
             await loadTopicContent(chapterId, 0, chapterData);
-
             document.querySelectorAll('.topic-tab').forEach(tab => {
                 tab.addEventListener('click', async () => {
                     if (isExamInProgress && !confirm('⚠️ পরীক্ষা চলছে। টপিক পরিবর্তন করলে উত্তর ও সময় হারাবে। নিশ্চিত?'))
@@ -744,23 +719,19 @@
             isExamInProgress = false;
             const topic = chapterData.topics[topicIndex];
             const container = document.getElementById('topicContent');
-
             if (topic.is_free === false) {
                 container.innerHTML = `
                     <div class="text-center py-12">
                         <i class="fas fa-lock text-6xl text-amber-400 mb-4"></i>
                         <h3 class="text-2xl font-bold text-amber-400 mb-2">🔒 এই টপিকটি লকড!</h3>
-                        <p class="text-gray-300 max-w-md mx-auto">
-                            ${topic.study?.summary?.[0] || 'এই টপিকটি দেখতে প্রিমিয়াম প্ল্যান কিনুন। মাসিক ২৯৯৳, ত্রৈমাসিক ৭৯৯৳, ষাণ্মাসিক ১১৯৯৳, বার্ষিক ১,৪৯৯৳।'}
-                        </p>
+                        <p class="text-gray-300 max-w-md mx-auto">${topic.study?.summary?.[0] || 'প্রিমিয়াম প্ল্যান প্রয়োজন। মাসিক ২৯৯৳, ত্রৈমাসিক ৭৯৯৳, ষাণ্মাসিক ১১৯৯৳, বার্ষিক ১,৪৯৯৳।'}</p>
                         <a href="/#pricing" class="mt-4 inline-block btn-primary px-6 py-2 rounded-lg text-white text-sm">প্ল্যান দেখুন</a>
-                        <a href="https://wa.me/8801602105447?text=আমি%20প্রিমিয়াম%20প্ল্যান%20নিতে%20চাই" target="_blank" class="mt-2 inline-block btn-wa px-6 py-2 rounded-lg text-white text-sm">WhatsApp এ যোগাযোগ করুন</a>
+                        <a href="https://wa.me/8801602105447?text=আমি%20প্রিমিয়াম%20প্ল্যান%20নিতে%20চাই" target="_blank" class="mt-2 inline-block btn-wa px-6 py-2 rounded-lg text-white text-sm">WhatsApp</a>
                     </div>
                 `;
                 return;
             }
 
-            // --- Free topic rendering ---
             const study = topic.study || {};
             const summary = study.summary || [`${topic.title} - বিস্তারিত কন্টেন্ট শীঘ্রই যুক্ত হবে।`];
             const shortQuestions = study.short_questions || [];
@@ -779,12 +750,7 @@
                     <div class="mb-6">
                         <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-align-left mr-2"></i>সারাংশ</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            ${summary.map((s, idx) => `
-                                <div class="mind-map-card">
-                                    <span class="bullet">✦</span>
-                                    <span class="text-gray-300 leading-relaxed">${s}</span>
-                                </div>
-                            `).join('')}
+                            ${summary.map((s, idx) => `<div class="mind-map-card"><span class="bullet">✦</span><span class="text-gray-300 leading-relaxed">${s}</span></div>`).join('')}
                         </div>
                     </div>`;
 
@@ -810,7 +776,7 @@
 
             if (tables.length) {
                 html +=
-                    `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>${tables.map(tbl => `<div class="overflow-x-auto mb-4"><table class="w-full text-sm border border-white/10 rounded-xl"><thead><tr class="border-b border-white/10 bg-white/5">${(tbl.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}<tr></thead><tbody>${(tbl.rows || []).map(row => `<tr class="border-b border-white/5">${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('')}</div>`;
+                    `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>${tables.map(table => `<div class="overflow-x-auto mb-4"><table class="w-full text-sm border border-white/10 rounded-xl"><thead><tr class="border-b border-white/10 bg-white/5">${(table.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}<tr></thead><tbody>${(table.rows || []).map(row => `<tr class="border-b border-white/5">${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('')}</div>`;
             }
 
             if (examQuestions.length) {
@@ -836,7 +802,6 @@
                     </div>`;
                 container.innerHTML = html;
 
-                // --- MCQ Logic (same) ---
                 let mcqState = { questions: [], userAnswers: [], examStarted: false, examEnded: false, timerInterval: null,
                     timeRemaining: 0 };
                 const TIME_PER_QUESTION = 60;
@@ -1018,7 +983,6 @@
                     console.warn('⚠️ Extra topics file not found.');
                 }
             } catch (e) { console.warn('⚠️ Error loading extra topics:', e); }
-
             renderChaptersGrid();
             document.getElementById('backToChaptersBtn').onclick = () => {
                 if (isExamInProgress && !confirm('পরীক্ষা চলছে, ফিরে গেলে ডাটা হারাবে?')) return;
@@ -1029,7 +993,6 @@
                 currentChapterId = null;
             };
         }
-
         window.openChapter = openChapter;
         init();
 
