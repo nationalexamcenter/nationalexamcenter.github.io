@@ -6,7 +6,6 @@
     <title>রসায়ন সম্পূর্ণ সিলেবাস ২০২৬ | National Exam Center</title>
     <meta name="description" content="NCTB ২০২৬ সিলেবাস অনুযায়ী নবম-দশম শ্রেণির রসায়নের ১২টি অধ্যায়। সম্পূর্ণ স্টাডি মেটেরিয়াল এবং MCQ পরীক্ষা।" />
     <link rel="canonical" href="https://nationalexamcenter.github.io/chemistry.html" />
-
     <link rel="icon" href="pic/favicon.ico" type="image/x-icon" />
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -120,7 +119,6 @@
 </head>
 <body>
 
-    <!-- ====== SIDE DRAWER ====== -->
     <div id="drawerOverlay" class="drawer-overlay" onclick="closeDrawer()"></div>
     <div id="sideDrawer" class="side-drawer flex flex-col">
         <div class="p-5 border-b border-white/10">
@@ -153,7 +151,6 @@
         </div>
     </div>
 
-    <!-- ====== NAVIGATION ====== -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="flex justify-between items-center py-3">
@@ -174,7 +171,6 @@
         </div>
     </nav>
 
-    <!-- ====== 3D CANVAS ====== -->
     <div id="chemistryCanvasContainer" class="hero-canvas"></div>
 
     <div class="pt-20">
@@ -207,7 +203,6 @@
 
     <a href="https://wa.me/8801602105447" class="floating-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-    <!-- ====== THREE.JS ====== -->
     <script type="importmap">
         {
             "imports": {
@@ -331,10 +326,6 @@
     </script>
 
     <script>
-        // ============================================
-        // CHEMISTRY APP - with Visual Mind Maps, NO PROGRESS
-        // ============================================
-
         const CHAPTERS_META = [
             { id: 1, title: "রসায়নের ধারণা", title_en: "The Concepts of Chemistry" },
             { id: 2, title: "পদার্থের অবস্থা", title_en: "States of Matter" },
@@ -494,7 +485,6 @@
                     <h2 class="text-2xl font-bold mb-6">${topic.title}</h2>
                     <div class="mb-6">
                         <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-align-left mr-2"></i>সারাংশ</h3>
-                        <!-- ===== VISUAL MIND MAP ===== -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                             ${summary.map((s, idx) => `
                                 <div class="mind-map-card">
@@ -563,7 +553,6 @@
                     </div>`;
                 container.innerHTML = html;
 
-                // MCQ Logic (full) - same as before, no progress tracking
                 let mcqState = { questions: [], userAnswers: [], examStarted: false, examEnded: false, timerInterval: null,
                     timeRemaining: 0 };
                 const TIME_PER_QUESTION = 60;
@@ -751,7 +740,6 @@
         window.openChapter = openChapter;
         init();
 
-        // Theme toggle
         window.toggleTheme = function() {
             const html = document.documentElement;
             const cur = html.getAttribute('data-theme');
