@@ -6,7 +6,9 @@
     <title>জীববিজ্ঞান সম্পূর্ণ সিলেবাস ২০২৬ | National Exam Center</title>
     <meta name="description" content="NCTB ২০২৬ সিলেবাস অনুযায়ী নবম-দশম শ্রেণির জীববিজ্ঞানের ১৪টি অধ্যায়। সম্পূর্ণ স্টাডি মেটেরিয়াল এবং MCQ পরীক্ষা।" />
     <link rel="canonical" href="https://nationalexamcenter.github.io/biology.html" />
-    <link rel="icon" href="pic/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="pic/NEC3.png" type="image/png" />
+    <link rel="apple-touch-icon" href="pic/NEC3.png" />
+    <link rel="shortcut icon" href="pic/NEC3.png" type="image/png" />
 
     <script src="https://cdn.tailwindcss.com">
     </script>
@@ -14,6 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <style>
+        /* ====== Same base styles as chemistry/physics ====== */
         :root {
             --bg-primary: #0a0f1a;
             --bg-secondary: #0c1320;
@@ -245,6 +248,7 @@
             margin-right: 0.5rem;
         }
 
+        /* Countdown Timer in Header */
         .countdown-timer {
             display: flex;
             align-items: center;
@@ -302,6 +306,7 @@
                 gap: 3px;
             }
         }
+
         .nav-right-group {
             display: flex;
             align-items: center;
@@ -359,10 +364,11 @@
         </div>
     </div>
 
-    <!-- ====== NAVIGATION ====== -->
+    <!-- ====== NAVIGATION with Countdown Timer ====== -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
         <div class="max-w-7xl mx-auto px-3 sm:px-6">
             <div class="flex justify-between items-center py-2.5 md:py-3">
+                <!-- Left -->
                 <div class="flex items-center gap-2 sm:gap-3 min-w-0">
                     <button onclick="openDrawer()" class="text-2xl text-amber-400 hover:scale-110 transition flex-shrink-0"><i class="fas fa-bars"></i></button>
                     <a href="/" class="flex-shrink-0">
@@ -372,7 +378,9 @@
                     <span class="text-[0.6rem] bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full hidden md:block flex-shrink-0">জীববিজ্ঞান · ১৩ এপ্রিল</span>
                 </div>
 
+                <!-- Right -->
                 <div class="flex items-center gap-1.5 sm:gap-3 nav-right-group">
+                    <!-- COUNTDOWN TIMER -->
                     <div class="countdown-timer" id="headerCountdown">
                         <i class="fas fa-clock clock-icon"></i>
                         <span class="timer-label">এসএসসি ২০২৭</span>
@@ -391,14 +399,15 @@
         </div>
     </nav>
 
-    <!-- ====== 3D CANVAS ====== -->
+    <!-- ====== 3D CANVAS (Biology - DNA) ====== -->
     <div id="biologyCanvasContainer" class="hero-canvas"></div>
 
+    <!-- ====== MAIN CONTENT ====== -->
     <div class="pt-20">
         <div id="chaptersView" class="max-w-7xl mx-auto px-4 py-8">
             <div class="text-center mb-12">
                 <h1 class="text-4xl md:text-5xl font-bold gradient-text mb-4">জীববিজ্ঞান সম্পূর্ণ সিলেবাস ২০২৬</h1>
-                <p class="text-gray-400 max-w-2xl mx-auto">NCTB ২০২৬ সিলেবাস অনুযায়ী নবম ও দশম শ্রেণির জীববিজ্ঞানের ১৪টি অধ্যায় | এসএসসি ২০২৭ · ১৩ এপ্রিল</p>
+                <p class="text-gray-400 max-w-2xl mx-auto">NCTB ২০২৬ সিলেবাস অনুযায়ী নবম ও দশম শ্রেণির জীববিজ্ঞানের ১৪টি অধ্যায় | ৬২ টপিক | এসএসসি ২০২৭ · ১৩ এপ্রিল</p>
             </div>
             <div id="chaptersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </div>
@@ -422,8 +431,10 @@
         </div>
     </div>
 
+    <!-- ====== FLOATING WHATSAPP ====== -->
     <a href="https://wa.me/8801602105447" class="floating-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
+    <!-- ====== THREE.JS ====== -->
     <script type="importmap">
         {
             "imports": {
@@ -553,8 +564,11 @@
         }
     </script>
 
+    <!-- ====== MAIN APPLICATION SCRIPT ====== -->
     <script>
-        // --- COUNTDOWN TIMER ---
+        // ============================================================
+        // 1. COUNTDOWN TIMER
+        // ============================================================
         function updateHeaderCountdown() {
             const examDate = new Date(2027, 2, 14).getTime();
             const now = new Date().getTime();
@@ -571,7 +585,10 @@
         setInterval(updateHeaderCountdown, 1000);
         updateHeaderCountdown();
 
-        // --- BIOLOGY APP CODE ---
+        // ============================================================
+        // 2. BIOLOGY APP - Full Syllabus
+        // ============================================================
+
         const CHAPTERS_META = [
             { id: 1, title: "জীববিজ্ঞানের ধারণা", title_en: "Introduction to Biology" },
             { id: 2, title: "জীবকোষ", title_en: "Cell and Tissue" },
@@ -675,16 +692,18 @@
                 `).join('');
         }
 
-        async function openChapter(chapterId) {
+        window.openChapter = async function(chapterId) {
             if (activeExamTimer) { clearInterval(activeExamTimer);
                 activeExamTimer = null; }
             isExamInProgress = false;
             currentChapterId = chapterId;
             const chapterData = await loadChapter(chapterId);
+
             document.getElementById('chaptersView').classList.add('hidden');
             document.getElementById('chapterView').classList.remove('hidden');
             document.getElementById('chapterNumber').innerText = chapterId;
             document.getElementById('chapterTitle').innerHTML = chapterData.chapter_title;
+
             const tabsContainer = document.getElementById('topicsTabs');
             tabsContainer.innerHTML = chapterData.topics.map((topic, idx) => `
                     <button class="topic-tab px-4 py-2 rounded-lg text-sm transition ${idx === 0 ? 'bg-amber-500/20 text-amber-400' : 'text-gray-400 hover:text-amber-400'}" data-topic-index="${idx}">
@@ -692,8 +711,10 @@
                         ${topic.is_free === false ? ' <i class="fas fa-lock text-red-400 text-xs"></i>' : ''}
                     </button>
                 `).join('');
+
             currentTopicIndex = 0;
             await loadTopicContent(chapterId, 0, chapterData);
+
             document.querySelectorAll('.topic-tab').forEach(tab => {
                 tab.addEventListener('click', async () => {
                     if (isExamInProgress && !confirm('⚠️ পরীক্ষা চলছে। টপিক পরিবর্তন করলে উত্তর ও সময় হারাবে। নিশ্চিত?'))
@@ -711,7 +732,7 @@
                     tab.classList.add('bg-amber-500/20', 'text-amber-400');
                 });
             });
-        }
+        };
 
         async function loadTopicContent(chapterId, topicIndex, chapterData) {
             if (activeExamTimer) { clearInterval(activeExamTimer);
@@ -719,6 +740,7 @@
             isExamInProgress = false;
             const topic = chapterData.topics[topicIndex];
             const container = document.getElementById('topicContent');
+
             if (topic.is_free === false) {
                 container.innerHTML = `
                     <div class="text-center py-12">
@@ -802,8 +824,9 @@
                     </div>`;
                 container.innerHTML = html;
 
-                let mcqState = { questions: [], userAnswers: [], examStarted: false, examEnded: false, timerInterval: null,
-                    timeRemaining: 0 };
+                // --- MCQ Logic ---
+                let mcqState = { questions: [], userAnswers: [], examStarted: false, examEnded: false,
+                    timerInterval: null, timeRemaining: 0 };
                 const TIME_PER_QUESTION = 60;
 
                 function shuffleQuestions() {
@@ -814,7 +837,8 @@
                         const shuffled = shuffleArray([...indexed]);
                         const newOpts = shuffled.map(item => item.text);
                         const newCorrect = shuffled.findIndex(item => item.originalIndex === correctIdx);
-                        return { id: idx, text: originalQ.q, options: newOpts, correctIndex: newCorrect >= 0 ? newCorrect : 0 };
+                        return { id: idx, text: originalQ.q, options: newOpts,
+                        correctIndex: newCorrect >= 0 ? newCorrect : 0 };
                     });
                     mcqState.userAnswers = new Array(mcqState.questions.length).fill(null);
                 }
@@ -853,7 +877,8 @@
                         mcqState.timerInterval = null; } if (activeExamTimer) activeExamTimer = null; }
 
                 function updateTimerDisplay() { const minutes = Math.floor(mcqState.timeRemaining / 60); const seconds =
-                        mcqState.timeRemaining % 60; const el = document.getElementById('examTimer'); if (el) el.innerHTML =
+                        mcqState.timeRemaining % 60; const el = document.getElementById('examTimer'); if (el) el
+                        .innerHTML =
                         `<i class="fas fa-hourglass-half mr-1"></i> ${minutes}:${seconds.toString().padStart(2, '0')}`; }
 
                 function startTimer() {
@@ -899,12 +924,15 @@
                                 const span = opt.querySelector('.option-letter');
                                 if (oi === correctIdx) {
                                     opt.classList.add('correct');
-                                    if (span) { span.classList.add('bg-green-500', 'text-white');
+                                    if (span) { span.classList.add('bg-green-500',
+                                        'text-white');
                                         span.classList.remove('bg-amber-500', 'text-black'); }
                                 }
-                                if (userChoice !== null && oi === userChoice && userChoice !== correctIdx) {
+                                if (userChoice !== null && oi === userChoice && userChoice !==
+                                    correctIdx) {
                                     opt.classList.add('wrong');
-                                    if (span) { span.classList.add('bg-red-500', 'text-white');
+                                    if (span) { span.classList.add('bg-red-500',
+                                        'text-white');
                                         span.classList.remove('bg-amber-500', 'text-black'); }
                                 }
                             });
@@ -965,8 +993,8 @@
                         const icon = this.querySelector('.fa-chevron-down');
                         if (ans) {
                             ans.classList.toggle('hidden');
-                            if (icon) icon.style.transform = ans.classList.contains('hidden') ? 'rotate(0deg)' :
-                                'rotate(180deg)';
+                            if (icon) icon.style.transform = ans.classList.contains('hidden') ?
+                                'rotate(0deg)' : 'rotate(180deg)';
                         }
                     });
                 });
@@ -993,10 +1021,11 @@
                 currentChapterId = null;
             };
         }
-        window.openChapter = openChapter;
         init();
 
-        // --- Theme and Drawer ---
+        // ============================================================
+        // 3. THEME & DRAWER
+        // ============================================================
         window.toggleTheme = function() {
             const html = document.documentElement;
             const cur = html.getAttribute('data-theme');
@@ -1037,6 +1066,8 @@
             document.getElementById('drawerOverlay').classList.remove('active');
         }
         window.closeDrawer = closeDrawer;
+
+        console.log('🧬 Biology - 14 Chapters, 62 Topics');
     </script>
 </body>
 </html>
