@@ -79,8 +79,10 @@
         }
     </script>
 
-    <link rel="icon" href="pic/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="pic/apple-touch-icon.png" />
+    <!-- Favicon using logo -->
+    <link rel="icon" href="pic/NEC3.png" type="image/png" />
+    <link rel="apple-touch-icon" href="pic/NEC3.png" />
+    <link rel="shortcut icon" href="pic/NEC3.png" type="image/png" />
 
     <script src="https://cdn.tailwindcss.com">
     </script>
@@ -265,39 +267,164 @@
             box-shadow: 0 12px 40px rgba(37, 211, 102, 0.6);
         }
 
-        .pricing-card {
+        /* Countdown Calendar Card */
+        .countdown-calendar {
             background: var(--card-bg);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid var(--border-glow);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(245, 158, 11, 0.3);
             border-radius: var(--radius-xl);
             padding: 1.75rem 1.5rem;
             text-align: center;
+            box-shadow: 0 0 40px rgba(245, 158, 11, 0.08);
             transition: all var(--transition);
-            box-shadow: var(--shadow-glow);
             position: relative;
             overflow: hidden;
         }
-        .pricing-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(245, 158, 11, 0.6);
-            box-shadow: 0 16px 48px rgba(245, 158, 11, 0.18);
-        }
-        .pricing-card.popular {
-            border-color: #f59e0b;
-            box-shadow: 0 0 0 1px #f59e0b, 0 12px 40px rgba(245, 158, 11, 0.2);
-        }
-        .pricing-card .badge {
+        .countdown-calendar::before {
+            content: '';
             position: absolute;
-            top: -1px;
-            right: 1.5rem;
-            background: linear-gradient(105deg, #f59e0b, #ea580c);
-            color: #fff;
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 0.25rem 1rem;
-            border-radius: 0 0 12px 12px;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(245, 158, 11, 0.03), transparent 70%);
+            pointer-events: none;
+        }
+        .countdown-calendar:hover {
+            border-color: rgba(245, 158, 11, 0.6);
+            box-shadow: 0 0 60px rgba(245, 158, 11, 0.15);
+            transform: translateY(-4px);
+        }
+        .countdown-calendar .exam-date {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
             letter-spacing: 0.5px;
+        }
+        .countdown-calendar .exam-date .date-highlight {
+            color: #f59e0b;
+            font-weight: 700;
+        }
+        .countdown-calendar .days-remaining {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fcd34d, #f59e0b, #ea580c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            margin: 0.25rem 0 0.1rem;
+        }
+        .countdown-calendar .days-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+        .countdown-calendar .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            max-width: 340px;
+            margin: 0.75rem auto 0;
+        }
+        .countdown-calendar .calendar-grid .day-name {
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            padding: 2px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .countdown-calendar .calendar-grid .day-cell {
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 500;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.2s ease;
+            color: var(--text-primary);
+        }
+        .countdown-calendar .calendar-grid .day-cell.other-month {
+            color: var(--text-secondary);
+            opacity: 0.3;
+        }
+        .countdown-calendar .calendar-grid .day-cell.today {
+            background: rgba(245, 158, 11, 0.25);
+            border: 1px solid #f59e0b;
+            font-weight: 700;
+            color: #f59e0b;
+        }
+        .countdown-calendar .calendar-grid .day-cell.exam-day {
+            background: linear-gradient(135deg, #f59e0b, #ea580c);
+            color: #fff;
+            font-weight: 800;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+            border: none;
+        }
+        .countdown-calendar .calendar-grid .day-cell.weekend {
+            color: rgba(245, 158, 11, 0.5);
+        }
+        [data-theme="light"] .countdown-calendar .calendar-grid .day-cell {
+            background: rgba(0, 0, 0, 0.03);
+        }
+        [data-theme="light"] .countdown-calendar .calendar-grid .day-cell.other-month {
+            opacity: 0.25;
+        }
+
+        /* Study Plan Card */
+        .study-plan-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border-glow);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            transition: all var(--transition);
+        }
+        .study-plan-card:hover {
+            border-color: rgba(245, 158, 11, 0.4);
+            transform: translateY(-2px);
+        }
+        .study-plan-card .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fcd34d, #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .study-plan-card .progress-bar {
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        .study-plan-card .progress-bar .fill {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #f59e0b, #ea580c);
+            transition: width 0.8s ease;
+        }
+
+        .topic-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 9999px;
+            padding: 0.2rem 0.9rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #fbbf24;
+        }
+        [data-theme="light"] .topic-badge {
+            color: #b45309;
+            border-color: rgba(245, 158, 11, 0.3);
         }
 
         #hero-canvas {
@@ -305,13 +432,13 @@
             inset: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.25;
+            opacity: 0.2;
             pointer-events: none;
             z-index: 0;
         }
         .hero-wrapper {
             position: relative;
-            min-height: 92vh;
+            min-height: 88vh;
             display: flex;
             align-items: center;
             overflow: hidden;
@@ -320,57 +447,7 @@
         @media (max-width: 768px) {
             .hero-wrapper {
                 min-height: auto;
-                padding: 1.5rem 0 2.5rem;
-            }
-        }
-
-        .feature-icon {
-            width: 3rem;
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 1rem;
-            background: rgba(245, 158, 11, 0.15);
-            font-size: 1.4rem;
-            color: #f59e0b;
-            flex-shrink: 0;
-        }
-
-        .stat-number {
-            font-weight: 800;
-            font-size: 1.8rem;
-            background: linear-gradient(135deg, #fcd34d, #f59e0b);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding-top: 64px;
-            }
-            .hero-wrapper {
                 padding: 1rem 0 2rem;
-            }
-            .pricing-card {
-                padding: 1.25rem 1rem;
-            }
-            .stat-number {
-                font-size: 1.4rem;
-            }
-            .floating-wa {
-                width: 52px;
-                height: 52px;
-                font-size: 26px;
-                bottom: 16px;
-                right: 16px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .hero-wrapper {
-                min-height: 88vh;
             }
         }
 
@@ -403,11 +480,64 @@
             color: #b45309;
             border-color: rgba(245, 158, 11, 0.4);
         }
+        .feature-icon {
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            background: rgba(245, 158, 11, 0.15);
+            font-size: 1.4rem;
+            color: #f59e0b;
+            flex-shrink: 0;
+        }
+        .stat-number {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #fcd34d, #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .pricing-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border-glow);
+            border-radius: var(--radius-xl);
+            padding: 1.75rem 1.5rem;
+            text-align: center;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-glow);
+            position: relative;
+            overflow: hidden;
+        }
+        .pricing-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(245, 158, 11, 0.6);
+            box-shadow: 0 16px 48px rgba(245, 158, 11, 0.18);
+        }
+        .pricing-card.popular {
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 1px #f59e0b, 0 12px 40px rgba(245, 158, 11, 0.2);
+        }
+        .pricing-card .badge {
+            position: absolute;
+            top: -1px;
+            right: 1.5rem;
+            background: linear-gradient(105deg, #f59e0b, #ea580c);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.25rem 1rem;
+            border-radius: 0 0 12px 12px;
+            letter-spacing: 0.5px;
+        }
     </style>
 </head>
-
 <body>
 
+    <!-- ====== SIDE DRAWER ====== -->
     <div id="drawerOverlay" class="drawer-overlay" onclick="closeDrawer()"></div>
     <div id="sideDrawer" class="side-drawer flex flex-col">
         <div class="p-5 border-b border-white/10">
@@ -440,6 +570,7 @@
         </div>
     </div>
 
+    <!-- ====== NAVIGATION ====== -->
     <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="flex justify-between items-center h-[72px]">
@@ -447,7 +578,9 @@
                     <button onclick="openDrawer()" class="text-2xl text-amber-400 hover:scale-110 transition" aria-label="মেনু খুলুন">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <img src="pic/NEC3.png" alt="National Exam Center Logo" class="h-9 w-auto" onerror="this.src='https://placehold.co/313x129/ffffff/f59e0b?text=NEC';" />
+                    <a href="/" class="flex-shrink-0">
+                        <img src="pic/NEC3.png" alt="National Exam Center Logo" class="h-9 w-auto" onerror="this.src='https://placehold.co/313x129/ffffff/f59e0b?text=NEC';" />
+                    </a>
                     <span class="font-bold text-lg gradient-text hidden sm:block">National Exam Center</span>
                     <span class="text-[0.6rem] bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full hidden lg:block font-medium">এসএসসি ২০২৭</span>
                 </div>
@@ -473,11 +606,13 @@
         </div>
     </nav>
 
+    <!-- ====== HERO SECTION ====== -->
     <section class="hero-wrapper">
         <canvas id="hero-canvas"></canvas>
         <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12 fade-in">
-                <div class="flex-1 space-y-5">
+            <div class="flex flex-col lg:flex-row lg:items-start gap-8 fade-in">
+                <!-- Left: Hero Text -->
+                <div class="flex-1 space-y-5 pt-4">
                     <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-1.5 text-sm text-amber-400">
                         <i class="fas fa-graduation-cap"></i>
                         <span>NCTB ২০২৬ আপডেট সিলেবাস</span>
@@ -505,38 +640,43 @@
                         <div><span class="stat-number">৩৯টি</span> <span class="text-sm text-gray-400">অধ্যায়</span></div>
                     </div>
                 </div>
-                <div class="flex-1 flex flex-wrap justify-center gap-4 lg:gap-5">
-                    <div class="glass-card p-3 w-[150px] sm:w-[170px] text-center">
-                        <img src="pic/mockup-1.png" alt="টপিক নির্বাচন" class="w-full rounded-lg mb-1.5" onerror="this.src='https://placehold.co/170x340/1e293b/f59e0b?text=Topics';" />
-                        <p class="text-xs text-amber-400 font-medium"><i class="fas fa-layer-group mr-1"></i> টপিক নির্বাচন</p>
-                    </div>
-                    <div class="glass-card p-3 w-[150px] sm:w-[170px] text-center">
-                        <img src="pic/mockup-2.png" alt="টপিক স্টাডি" class="w-full rounded-lg mb-1.5" onerror="this.src='https://placehold.co/170x340/1e293b/f59e0b?text=Study';" />
-                        <p class="text-xs text-amber-400 font-medium"><i class="fas fa-book-open mr-1"></i> টপিক স্টাডি</p>
-                    </div>
-                    <div class="glass-card p-3 w-[150px] sm:w-[170px] text-center">
-                        <img src="pic/mockup-3.png" alt="ফলাফল শেয়ার" class="w-full rounded-lg mb-1.5" onerror="this.src='https://placehold.co/170x340/1e293b/f59e0b?text=Share';" />
-                        <p class="text-xs text-amber-400 font-medium"><i class="fas fa-share-alt mr-1"></i> ফলাফল শেয়ার</p>
+
+                <!-- Right: Countdown Calendar Card -->
+                <div class="flex-1 max-w-md lg:max-w-sm xl:max-w-md mx-auto lg:mx-0 w-full">
+                    <div class="countdown-calendar" id="countdownCalendar">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="exam-date"><i class="fas fa-calendar-alt mr-1 text-amber-400"></i> এসএসসি ২০২৭</span>
+                            <span class="exam-date"><span class="date-highlight">১৪ মার্চ</span>, ২০২৭</span>
+                        </div>
+                        <div class="days-remaining" id="daysRemainingBig">--</div>
+                        <div class="days-label">দিন বাকি</div>
+                        <div class="calendar-grid" id="calendarGrid"></div>
+                        <div class="text-xs text-gray-400 mt-2 flex justify-center gap-3">
+                            <span><span class="inline-block w-3 h-3 rounded-full bg-amber-500/30 border border-amber-500 align-middle mr-1"></span> আজ</span>
+                            <span><span class="inline-block w-3 h-3 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 align-middle mr-1"></span> পরীক্ষা</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ====== SUBJECT QUICK LINKS ====== -->
     <section class="max-w-7xl mx-auto px-4 pb-6 -mt-4">
         <div class="flex flex-wrap justify-center gap-3">
             <a href="/chemistry.html" class="glass-card px-5 py-2.5 rounded-full text-sm flex items-center gap-2 hover:border-amber-400 transition">
-                <i class="fas fa-flask text-amber-400"></i> রসায়ন · ১২ অধ্যায়
+                <i class="fas fa-flask text-amber-400"></i> রসায়ন · ১২ অধ্যায় · ৯৭ টপিক
             </a>
             <a href="/physics.html" class="glass-card px-5 py-2.5 rounded-full text-sm flex items-center gap-2 hover:border-amber-400 transition">
-                <i class="fas fa-atom text-amber-400"></i> পদার্থবিজ্ঞান · ১৩ অধ্যায়
+                <i class="fas fa-atom text-amber-400"></i> পদার্থবিজ্ঞান · ১৩ অধ্যায় · ৭৮ টপিক
             </a>
             <a href="/biology.html" class="glass-card px-5 py-2.5 rounded-full text-sm flex items-center gap-2 hover:border-amber-400 transition">
-                <i class="fas fa-dna text-amber-400"></i> জীববিজ্ঞান · ১৪ অধ্যায়
+                <i class="fas fa-dna text-amber-400"></i> জীববিজ্ঞান · ১৪ অধ্যায় · ৬২ টপিক
             </a>
         </div>
     </section>
 
+    <!-- ====== FEATURES ====== -->
     <section class="max-w-7xl mx-auto px-4 py-12">
         <h2 class="text-2xl sm:text-3xl font-bold text-center mb-10">
             📱 <span class="gradient-text">এক্সক্লুসিভ ফিচারসমূহ</span>
@@ -565,26 +705,83 @@
         </div>
     </section>
 
-    <section class="max-w-7xl mx-auto px-4 pb-6">
-        <div class="glass-card p-6">
-            <div class="flex flex-wrap items-center gap-4">
-                <div class="feature-icon w-14 h-14 rounded-full bg-amber-500/20 text-2xl"><i class="fas fa-calendar-check"></i></div>
-                <div>
-                    <h3 class="font-bold text-lg">📅 এসএসসি ২০২৭ পরীক্ষার সময়সূচী</h3>
-                    <div class="flex flex-wrap gap-2 mt-2">
-                        <span class="exam-date-badge"><i class="fas fa-flask"></i> রসায়ন: ৪ এপ্রিল</span>
-                        <span class="exam-date-badge"><i class="fas fa-atom"></i> পদার্থবিজ্ঞান: ৩০ মার্চ</span>
-                        <span class="exam-date-badge"><i class="fas fa-dna"></i> জীববিজ্ঞান: ১৩ এপ্রিল</span>
+    <!-- ====== STUDY PLAN ====== -->
+    <section class="max-w-7xl mx-auto px-4 py-8">
+        <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8">
+            📚 <span class="gradient-text">সম্পূর্ণ সিলেবাস সম্পন্ন করতে সময়</span>
+        </h2>
+        <div class="grid md:grid-cols-3 gap-5">
+            <!-- Chemistry -->
+            <div class="study-plan-card">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400"><i class="fas fa-flask"></i></div>
+                    <div>
+                        <h4 class="font-bold">রসায়ন</h4>
+                        <span class="topic-badge"><i class="fas fa-list-ul"></i> ৯৭ টপিক</span>
                     </div>
                 </div>
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between"><span class="text-gray-400">মোট সময় প্রয়োজন</span><span class="font-semibold text-amber-400">~২৯০ ঘন্টা</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">প্রতিদিন পড়ার সময়</span><span class="font-semibold">২.৫ ঘন্টা</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">সম্পন্ন হতে সময়</span><span class="font-semibold text-green-400">~১১৬ দিন</span></div>
+                    <div class="progress-bar"><div class="fill" style="width:0%"></div></div>
+                </div>
+                <a href="/chemistry.html" class="mt-3 inline-block text-amber-400 text-sm hover:underline">বিস্তারিত →</a>
             </div>
-            <div class="mt-4 text-center">
-                <p class="text-sm text-gray-400">পরীক্ষা শুরু হতে বাকি</p>
-                <div id="examCountdown" class="text-3xl font-mono font-bold text-amber-400"></div>
+
+            <!-- Physics -->
+            <div class="study-plan-card">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400"><i class="fas fa-atom"></i></div>
+                    <div>
+                        <h4 class="font-bold">পদার্থবিজ্ঞান</h4>
+                        <span class="topic-badge"><i class="fas fa-list-ul"></i> ৭৮ টপিক</span>
+                    </div>
+                </div>
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between"><span class="text-gray-400">মোট সময় প্রয়োজন</span><span class="font-semibold text-amber-400">~২৩৪ ঘন্টা</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">প্রতিদিন পড়ার সময়</span><span class="font-semibold">২.০ ঘন্টা</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">সম্পন্ন হতে সময়</span><span class="font-semibold text-green-400">~১১৭ দিন</span></div>
+                    <div class="progress-bar"><div class="fill" style="width:0%"></div></div>
+                </div>
+                <a href="/physics.html" class="mt-3 inline-block text-amber-400 text-sm hover:underline">বিস্তারিত →</a>
+            </div>
+
+            <!-- Biology -->
+            <div class="study-plan-card">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400"><i class="fas fa-dna"></i></div>
+                    <div>
+                        <h4 class="font-bold">জীববিজ্ঞান</h4>
+                        <span class="topic-badge"><i class="fas fa-list-ul"></i> ৬২ টপিক</span>
+                    </div>
+                </div>
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between"><span class="text-gray-400">মোট সময় প্রয়োজন</span><span class="font-semibold text-amber-400">~১৮৬ ঘন্টা</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">প্রতিদিন পড়ার সময়</span><span class="font-semibold">১.৫ ঘন্টা</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">সম্পন্ন হতে সময়</span><span class="font-semibold text-green-400">~১২৪ দিন</span></div>
+                    <div class="progress-bar"><div class="fill" style="width:0%"></div></div>
+                </div>
+                <a href="/biology.html" class="mt-3 inline-block text-amber-400 text-sm hover:underline">বিস্তারিত →</a>
+            </div>
+        </div>
+
+        <!-- Combined Study Plan -->
+        <div class="glass-card p-6 mt-6">
+            <h3 class="text-lg font-bold text-center mb-3">🗓️ <span class="gradient-text">সম্মিলিত স্টাডি প্ল্যান (বাংলাদেশ সময়)</span></h3>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-center text-sm">
+                <div><span class="text-gray-400">বর্তমান সময় (BST)</span><br /><span class="font-mono text-amber-400 text-lg" id="bstClock">--:--:--</span></div>
+                <div><span class="text-gray-400">পরীক্ষা পর্যন্ত বাকি</span><br /><span class="font-bold text-amber-400 text-lg" id="daysRemainingSmall">-- দিন</span></div>
+                <div><span class="text-gray-400">প্রতিদিন পড়তে হবে</span><br /><span class="font-bold text-green-400 text-lg">৬.০ ঘন্টা</span></div>
+                <div><span class="text-gray-400">সুপারিশকৃত সময়</span><br /><span class="font-bold text-amber-400 text-lg">সকাল ৬-৮, রাত ৮-১০</span></div>
+            </div>
+            <div class="mt-4 text-xs text-gray-400 text-center border-t border-white/10 pt-3">
+                <i class="fas fa-lightbulb text-amber-400 mr-1"></i> টিপস: প্রতিদিন ৩টি বিষয় পড়ুন। প্রতি ৪৫ মিনিট পড়ে ১০ মিনিট বিরতি নিন।
             </div>
         </div>
     </section>
 
+    <!-- ====== PRICING ====== -->
     <section id="pricing" class="max-w-7xl mx-auto px-4 py-12">
         <div class="text-center mb-10">
             <h2 class="text-2xl sm:text-3xl font-bold mb-2">💰 <span class="gradient-text">প্রিমিয়াম অ্যাপ প্ল্যান</span></h2>
@@ -648,6 +845,7 @@
         </div>
     </section>
 
+    <!-- ====== TESTIMONIALS ====== -->
     <section class="max-w-7xl mx-auto px-4 py-8">
         <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8">🎓 <span class="gradient-text">শিক্ষার্থীদের মতামত</span></h2>
         <div class="grid sm:grid-cols-2 gap-5">
@@ -664,6 +862,7 @@
         </div>
     </section>
 
+    <!-- ====== FAQ ====== -->
     <section class="max-w-4xl mx-auto px-4 py-10">
         <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8">❓ <span class="gradient-text">সাধারণ জিজ্ঞাসা</span></h2>
         <div class="space-y-3" id="faqContainer"></div>
@@ -677,6 +876,7 @@
         </div>
     </section>
 
+    <!-- ====== FOOTER ====== -->
     <footer class="border-t border-white/10 py-6 px-4 text-center">
         <p class="text-xs text-gray-500">© ২০২৬ National Exam Center · নবম-দশম বিজ্ঞান প্রস্তুতি · NCTB ২০২৬ সিলেবাস · এসএসসি ২০২৭</p>
         <div class="flex justify-center gap-4 mt-2 text-xs">
@@ -688,10 +888,12 @@
         </div>
     </footer>
 
+    <!-- ====== FLOATING WHATSAPP ====== -->
     <a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20সম্পর্কে%20জানতে%20চাই" target="_blank" rel="noopener" class="floating-wa" aria-label="WhatsApp যোগাযোগ">
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- ====== THREE.JS CANVAS ====== -->
     <script type="importmap">
         {
             "imports": {
@@ -828,28 +1030,107 @@
     </script>
 
     <script>
-        function updateCountdown() {
-            const examDate = new Date(2027, 2, 14);
-            const now = new Date();
-            const diff = examDate - now;
-            if (diff <= 0) {
-                document.getElementById('examCountdown').innerHTML = '🎯 এসএসসি ২০২৭ শুরু!';
-                return;
-            }
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % 86400000) / 3600000);
-            const minutes = Math.floor((diff % 3600000) / 60000);
-            document.getElementById('examCountdown').innerHTML = `${days} দিন ${hours} ঘন্টা ${minutes} মিনিট`;
-        }
-        updateCountdown();
-        setInterval(updateCountdown, 60000);
+        // ============================================================
+        // 1. COUNTDOWN CALENDAR & CLOCK
+        // ============================================================
+        const EXAM_DATE = new Date(2027, 2, 14); // March 14, 2027
 
+        function updateCountdown() {
+            const now = new Date();
+            const diff = EXAM_DATE - now;
+
+            // Days remaining
+            const daysEl = document.getElementById('daysRemainingBig');
+            const daysSmall = document.getElementById('daysRemainingSmall');
+            if (daysEl) {
+                if (diff <= 0) daysEl.textContent = '🎉';
+                else daysEl.textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+            }
+            if (daysSmall) {
+                if (diff <= 0) daysSmall.textContent = 'শুরু!';
+                else daysSmall.textContent = Math.floor(diff / (1000 * 60 * 60 * 24)) + ' দিন';
+            }
+
+            // BST Clock
+            const bstClock = document.getElementById('bstClock');
+            if (bstClock) {
+                const bst = new Date(now.getTime() + (6 * 60 * 60 * 1000));
+                bstClock.textContent = bst.toTimeString().slice(0, 8);
+            }
+
+            // Calendar
+            renderCalendar(now);
+        }
+
+        function renderCalendar(now) {
+            const grid = document.getElementById('calendarGrid');
+            if (!grid) return;
+
+            const year = EXAM_DATE.getFullYear();
+            const month = EXAM_DATE.getMonth();
+            const examDay = EXAM_DATE.getDate();
+
+            const today = new Date();
+            const todayDate = today.getDate();
+            const todayMonth = today.getMonth();
+            const todayYear = today.getFullYear();
+
+            const firstDay = new Date(year, month, 1).getDay(); // 0=Sun
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+            let html = '';
+            // Day names
+            dayNames.forEach(d => {
+                html += `<div class="day-name">${d}</div>`;
+            });
+
+            // Empty cells before first day
+            for (let i = 0; i < firstDay; i++) {
+                const prevMonthDays = new Date(year, month, 0).getDate();
+                const prevDate = prevMonthDays - firstDay + i + 1;
+                html += `<div class="day-cell other-month">${prevDate}</div>`;
+            }
+
+            // Days of the month
+            for (let d = 1; d <= daysInMonth; d++) {
+                const isToday = (d === todayDate && month === todayMonth && year === todayYear);
+                const isExam = (d === examDay);
+                const dayOfWeek = new Date(year, month, d).getDay();
+                const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
+
+                let cls = 'day-cell';
+                if (isToday) cls += ' today';
+                if (isExam) cls += ' exam-day';
+                if (isWeekend && !isExam) cls += ' weekend';
+
+                html += `<div class="${cls}">${d}</div>`;
+            }
+
+            // Fill remaining cells from next month
+            const totalCells = firstDay + daysInMonth;
+            const remaining = (7 - (totalCells % 7)) % 7;
+            for (let i = 1; i <= remaining; i++) {
+                html += `<div class="day-cell other-month">${i}</div>`;
+            }
+
+            grid.innerHTML = html;
+        }
+
+        // Update every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // ============================================================
+        // 2. FAQ
+        // ============================================================
         const faqData = [{
             q: "প্রিমিয়াম অ্যাপ কিভাবে পাব?",
             a: "ওপরের প্রিমিয়াম প্ল্যান সেকশন থেকে আপনার পছন্দের প্ল্যান নির্বাচন করুন এবং WhatsApp এর মাধ্যমে পেমেন্ট সম্পন্ন করে অ্যাক্সেস পাবেন।"
         }, {
             q: "কোন বিষয়গুলো আছে?",
-            a: "পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান – প্রতিটি বিষয়ের সম্পূর্ণ অধ্যায় ও টপিক ভিত্তিক কন্টেন্ট। মোট ৩৯টি অধ্যায়।"
+            a: "পদার্থবিজ্ঞান (৭৮ টপিক), রসায়ন (৯৭ টপিক), জীববিজ্ঞান (৬২ টপিক) – প্রতিটি বিষয়ের সম্পূর্ণ অধ্যায় ও টপিক ভিত্তিক কন্টেন্ট। মোট ২৩৭টি টপিক।"
         }, {
             q: "কিভাবে ফলাফল ইমেজ শেয়ার করব?",
             a: "অ্যাপের মধ্যে MCQ পরীক্ষা শেষে 'শেয়ার ইমেজ' বাটন পাবেন, সেখান থেকে ইমেজ ডাউনলোড করে শেয়ার করতে পারবেন।"
@@ -859,31 +1140,38 @@
         }];
 
         const faqContainer = document.getElementById('faqContainer');
-        faqContainer.innerHTML = faqData.map((item, idx) => `
-                <div class="glass-card overflow-hidden">
-                    <button class="faq-toggle w-full text-left p-4 font-medium flex justify-between items-center hover:bg-amber-500/5 transition" data-index="${idx}">
-                        <span><i class="fas fa-question-circle text-amber-400 mr-2"></i> ${item.q}</span>
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-200"></i>
-                    </button>
-                    <div class="faq-answer hidden px-4 pb-4 text-gray-400 text-sm border-t border-white/10 pt-3">${item.a}</div>
-                </div>
-            `).join('');
+        if (faqContainer) {
+            faqContainer.innerHTML = faqData.map((item, idx) => `
+                    <div class="glass-card overflow-hidden">
+                        <button class="faq-toggle w-full text-left p-4 font-medium flex justify-between items-center hover:bg-amber-500/5 transition" data-index="${idx}">
+                            <span><i class="fas fa-question-circle text-amber-400 mr-2"></i> ${item.q}</span>
+                            <i class="fas fa-chevron-down text-gray-500 transition-transform duration-200"></i>
+                        </button>
+                        <div class="faq-answer hidden px-4 pb-4 text-gray-400 text-sm border-t border-white/10 pt-3">${item.a}</div>
+                    </div>
+                `).join('');
 
-        document.querySelectorAll('.faq-toggle').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const ans = this.nextElementSibling;
-                const icon = this.querySelector('.fa-chevron-down');
-                ans.classList.toggle('hidden');
-                icon.style.transform = ans.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+            document.querySelectorAll('.faq-toggle').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const ans = this.nextElementSibling;
+                    const icon = this.querySelector('.fa-chevron-down');
+                    ans.classList.toggle('hidden');
+                    icon.style.transform = ans.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+                });
             });
-        });
+        }
 
+        // ============================================================
+        // 3. SHARE FUNCTIONS
+        // ============================================================
         function shareFacebook() {
             window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location.href)}`, '_blank');
         }
 
         function shareWhatsApp() {
-            window.open(`https://wa.me/?text=${encodeURIComponent('ন্যাশনাল এগজাম সেন্টার - নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬: ' + location.href)}`, '_blank');
+            window.open(
+                `https://wa.me/?text=${encodeURIComponent('ন্যাশনাল এগজাম সেন্টার - নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬: ' + location.href)}`,
+                '_blank');
         }
 
         function copyLink() {
@@ -900,6 +1188,9 @@
             });
         }
 
+        // ============================================================
+        // 4. THEME TOGGLE
+        // ============================================================
         function toggleTheme() {
             const html = document.documentElement;
             const cur = html.getAttribute('data-theme');
@@ -931,6 +1222,9 @@
                 moon.style.display = 'inline-block'; }
         }
 
+        // ============================================================
+        // 5. DRAWER
+        // ============================================================
         function openDrawer() {
             document.getElementById('sideDrawer').classList.add('open');
             document.getElementById('drawerOverlay').classList.add('active');
@@ -943,6 +1237,9 @@
         }
         window.closeDrawer = closeDrawer;
 
+        // ============================================================
+        // 6. PRICING BUTTONS
+        // ============================================================
         document.querySelectorAll('.pricing-card button').forEach((btn, idx) => {
             const plans = ['মাসিক ২৯৯৳', 'ত্রৈমাসিক ৭৯৯৳', 'ষাণ্মাসিক ১১৯৯৳', 'বার্ষিক ১৪৯৯৳'];
             btn.addEventListener('click', () => {
@@ -952,8 +1249,9 @@
             });
         });
 
-        console.log('🚀 National Exam Center - SSC 2027 Preparation (No Progress Tracking)');
+        console.log('🚀 National Exam Center - SSC 2027 Preparation');
+        console.log('📚 Chemistry: 97 topics | Physics: 78 topics | Biology: 62 topics');
+        console.log('📅 Exam Date: March 14, 2027');
     </script>
-
 </body>
 </html>
