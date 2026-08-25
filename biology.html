@@ -8,7 +8,8 @@
     <link rel="canonical" href="https://nationalexamcenter.github.io/biology.html" />
     <link rel="icon" href="pic/favicon.ico" type="image/x-icon" />
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
@@ -32,59 +33,187 @@
             --border-color: rgba(245, 158, 11, 0.3);
             --border-hover: rgba(245, 158, 11, 0.7);
         }
-        * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        * {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
         body {
             background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
             color: var(--text-primary);
             transition: background 0.3s ease, color 0.3s ease;
             padding-top: 72px;
         }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        [data-theme="light"] .glass { background: rgba(0, 0, 0, 0.03); }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        [data-theme="light"] .glass {
+            background: rgba(0, 0, 0, 0.03);
+        }
         .glass-card {
             background: var(--card-bg);
             backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
-        .glass-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-        .gradient-text { background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .btn-primary { background: linear-gradient(105deg, #ff9a3c, #ff6a2c); transition: all 0.2s ease; box-shadow: 0 8px 20px rgba(255, 100, 30, 0.3); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255, 100, 30, 0.5); }
-        .btn-secondary { border: 1px solid var(--border-color); transition: all 0.2s ease; color: var(--text-primary); }
-        .btn-secondary:hover { background: rgba(245, 158, 11, 0.1); border-color: #f59e0b; transform: translateY(-2px); }
-        .btn-wa { background: linear-gradient(105deg, #25D366, #128C7E); transition: all 0.2s ease; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3); }
-        .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5); }
-        .btn-theme, .btn-profile { background: var(--card-bg); border: 1px solid var(--border-color); transition: all 0.2s ease; cursor: pointer; color: var(--text-primary); }
-        .btn-theme:hover, .btn-profile:hover { border-color: #f59e0b; transform: scale(1.05); }
-        .floating-wa { position: fixed; bottom: 25px; right: 25px; z-index: 1000; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: all 0.2s ease; }
-        .floating-wa:hover { transform: scale(1.1); }
-        .modal-overlay { background-color: rgba(0,0,0,0.7); backdrop-filter: blur(8px); }
-        [data-theme="light"] .modal-overlay { background-color: rgba(0,0,0,0.5); }
+        .glass-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .btn-primary {
+            background: linear-gradient(105deg, #ff9a3c, #ff6a2c);
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(255, 100, 30, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 100, 30, 0.5);
+        }
+        .btn-secondary {
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            color: var(--text-primary);
+        }
+        .btn-secondary:hover {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: #f59e0b;
+            transform: translateY(-2px);
+        }
+        .btn-wa {
+            background: linear-gradient(105deg, #25D366, #128C7E);
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+        }
+        .btn-wa:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+        }
+        .btn-theme,
+        .btn-profile {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+        .btn-theme:hover,
+        .btn-profile:hover {
+            border-color: #f59e0b;
+            transform: scale(1.05);
+        }
+        .floating-wa {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.2s ease;
+        }
+        .floating-wa:hover {
+            transform: scale(1.1);
+        }
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+        }
+        [data-theme="light"] .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
         .side-drawer {
-            position: fixed; top: 0; left: -320px; width: 320px; height: 100%; z-index: 1100;
-            background: var(--card-bg); backdrop-filter: blur(20px); border-right: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 320px;
+            height: 100%;
+            z-index: 1100;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid var(--border-color);
             transition: left 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            box-shadow: 10px 0 30px rgba(0,0,0,0.3);
+            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
         }
-        .side-drawer.open { left: 0; }
+        .side-drawer.open {
+            left: 0;
+        }
         .drawer-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); backdrop-filter: blur(2px); z-index: 1050;
-            opacity: 0; visibility: hidden; transition: 0.2s;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s;
         }
-        .drawer-overlay.active { opacity: 1; visibility: visible; }
-        [data-theme="light"] .side-drawer { background: rgba(255, 255, 255, 0.95); }
-        .mcq-option { transition: all 0.2s ease; cursor: pointer; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(245, 158, 11, 0.2); }
-        .mcq-option:hover { background: rgba(245, 158, 11, 0.15); border-color: #f59e0b; transform: translateX(4px); }
-        .mcq-option.selected { background: rgba(245, 158, 11, 0.3); border-color: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.3); }
-        .mcq-option.correct { background: rgba(34, 197, 94, 0.25); border-color: #22c55e; }
-        .mcq-option.wrong { background: rgba(239, 68, 68, 0.25); border-color: #ef4444; }
-        .result-card { background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(234, 88, 12, 0.05)); border: 1px solid rgba(245, 158, 11, 0.4); }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
-        .nav-logo-img { height: 40px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        [data-theme="light"] .side-drawer {
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .mcq-option {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        .mcq-option:hover {
+            background: rgba(245, 158, 11, 0.15);
+            border-color: #f59e0b;
+            transform: translateX(4px);
+        }
+        .mcq-option.selected {
+            background: rgba(245, 158, 11, 0.3);
+            border-color: #f59e0b;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+        }
+        .mcq-option.correct {
+            background: rgba(34, 197, 94, 0.25);
+            border-color: #22c55e;
+        }
+        .mcq-option.wrong {
+            background: rgba(239, 68, 68, 0.25);
+            border-color: #ef4444;
+        }
+        .result-card {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(234, 88, 12, 0.05));
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f59e0b;
+            border-radius: 10px;
+        }
+        .nav-logo-img {
+            height: 40px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
         .hero-canvas {
             position: relative;
             width: 100%;
@@ -116,6 +245,87 @@
             font-weight: 700;
             margin-right: 0.5rem;
         }
+
+        /* --- Countdown Timer in Header --- */
+        .countdown-timer {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(245, 158, 11, 0.10);
+            border: 1px solid rgba(245, 158, 11, 0.20);
+            border-radius: 9999px;
+            padding: 4px 14px 4px 10px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+        .countdown-timer:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+            background: rgba(245, 158, 11, 0.16);
+        }
+        .countdown-timer .clock-icon {
+            color: #f59e0b;
+            font-size: 0.85rem;
+        }
+        .countdown-timer .timer-label {
+            color: var(--text-secondary);
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        .countdown-timer .timer-value {
+            font-family: 'Inter', monospace;
+            font-weight: 700;
+            color: #fbbf24;
+            font-size: 0.7rem;
+            letter-spacing: 0.2px;
+        }
+        @media (max-width: 768px) {
+            .countdown-timer .timer-label {
+                display: none;
+            }
+            .countdown-timer {
+                padding: 3px 10px 3px 8px;
+                font-size: 0.65rem;
+            }
+            .countdown-timer .timer-value {
+                font-size: 0.6rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .countdown-timer .timer-value {
+                font-size: 0.5rem;
+            }
+            .countdown-timer .clock-icon {
+                font-size: 0.65rem;
+            }
+            .countdown-timer {
+                padding: 2px 6px 2px 5px;
+                gap: 3px;
+            }
+        }
+
+        /* --- nav adjustments for countdown --- */
+        .nav-right-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        @media (max-width: 1024px) {
+            .nav-right-group .nav-subject-link {
+                display: none;
+            }
+        }
+        @media (max-width: 640px) {
+            .nav-right-group .btn-wa span {
+                display: none;
+            }
+            .nav-right-group .btn-wa {
+                padding: 0.4rem 0.7rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -129,7 +339,7 @@
                 <button onclick="closeDrawer()" class="text-2xl text-gray-400 hover:text-amber-400 transition">&times;</button>
             </div>
             <div class="flex items-center gap-3 mb-4">
-                <img src="pic/NEC3.png" alt="NEC Logo" class="h-10 w-auto" onerror="this.src='https://placehold.co/313x129/ffffff/f59e0b?text=NEC';" />
+                <a href="/"><img src="pic/NEC3.png" alt="NEC Logo" class="h-10 w-auto" onerror="this.src='https://placehold.co/313x129/ffffff/f59e0b?text=NEC';" /></a>
                 <div>
                     <p class="text-sm font-semibold">বিজ্ঞান প্রস্তুতি</p>
                     <p class="text-xs text-gray-400">NCTB ২০২৬ সিলেবাস</p>
@@ -153,22 +363,36 @@
         </div>
     </div>
 
-    <!-- ====== NAVIGATION ====== -->
+    <!-- ====== NAVIGATION with Countdown Timer ====== -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="flex justify-between items-center py-3">
-                <div class="flex items-center gap-3">
-                    <button onclick="openDrawer()" class="text-2xl text-amber-400 hover:scale-110 transition"><i class="fas fa-bars"></i></button>
-                    <img src="pic/NEC3.png" alt="Logo" class="nav-logo-img" onerror="this.src='https://placehold.co/313x129/ffffff/f59e0b?text=NEC';" />
-                    <span class="font-bold text-xl gradient-text">National Exam Center</span>
-                    <span class="text-xs bg-amber-500/20 px-2 py-1 rounded-full hidden md:block">জীববিজ্ঞান · ১৩ এপ্রিল</span>
+        <div class="max-w-7xl mx-auto px-3 sm:px-6">
+            <div class="flex justify-between items-center py-2.5 md:py-3">
+                <!-- Left: menu + logo + title -->
+                <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+                    <button onclick="openDrawer()" class="text-2xl text-amber-400 hover:scale-110 transition flex-shrink-0"><i class="fas fa-bars"></i></button>
+                    <a href="/" class="flex-shrink-0">
+                        <img src="pic/NEC3.png" alt="Logo" class="nav-logo-img" onerror="this.src='https://placehold.co/313x129/ffffff/f59e0b?text=NEC';" />
+                    </a>
+                    <span class="font-bold text-base sm:text-xl gradient-text whitespace-nowrap hidden xs:block">National Exam Center</span>
+                    <span class="text-[0.6rem] bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full hidden md:block flex-shrink-0">জীববিজ্ঞান · ১৩ এপ্রিল</span>
                 </div>
-                <div class="flex items-center gap-4">
-                    <button onclick="toggleTheme()" class="btn-theme px-3 py-2 rounded-lg text-sm"><i class="fas fa-sun" id="sunIcon"></i><i class="fas fa-moon" id="moonIcon" style="display: none;"></i></button>
-                    <a href="/" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-home mr-1"></i> হোম</a>
-                    <a href="/chemistry.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-flask mr-1"></i> রসায়ন</a>
-                    <a href="/physics.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-atom mr-1"></i> পদার্থবিজ্ঞান</a>
-                    <a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" target="_blank" class="btn-wa px-4 py-2 rounded-lg text-white text-sm font-semibold transition"><i class="fab fa-whatsapp mr-1"></i> WhatsApp</a>
+
+                <!-- Right: countdown + theme + links + WhatsApp -->
+                <div class="flex items-center gap-1.5 sm:gap-3 nav-right-group">
+                    <!-- COUNTDOWN TIMER -->
+                    <div class="countdown-timer" id="headerCountdown">
+                        <i class="fas fa-clock clock-icon"></i>
+                        <span class="timer-label">এসএসসি ২০২৭</span>
+                        <span class="timer-value" id="countdownDisplay">00d 00h 00m 00s</span>
+                    </div>
+
+                    <button onclick="toggleTheme()" class="btn-theme w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center text-sm flex-shrink-0"><i class="fas fa-sun" id="sunIcon"></i><i class="fas fa-moon" id="moonIcon" style="display: none;"></i></button>
+
+                    <a href="/" class="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition nav-subject-link"><i class="fas fa-home mr-0.5"></i> হোম</a>
+                    <a href="/chemistry.html" class="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition nav-subject-link"><i class="fas fa-flask mr-0.5"></i> রসায়ন</a>
+                    <a href="/physics.html" class="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition nav-subject-link"><i class="fas fa-atom mr-0.5"></i> পদার্থবিজ্ঞান</a>
+
+                    <a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" target="_blank" class="btn-wa px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-lg text-white text-xs sm:text-sm font-semibold transition flex items-center gap-1 flex-shrink-0"><i class="fab fa-whatsapp"></i> <span>WhatsApp</span></a>
                 </div>
             </div>
         </div>
@@ -341,6 +565,28 @@
         // BIOLOGY APP - Merging Extra Topics
         // ============================================
 
+        // --- COUNTDOWN TIMER (global) ---
+        function updateHeaderCountdown() {
+            const examDate = new Date(2027, 2, 14).getTime(); // March 14, 2027
+            const now = new Date().getTime();
+            const diff = examDate - now;
+            const el = document.getElementById('countdownDisplay');
+            if (!el) return;
+            if (diff <= 0) {
+                el.innerHTML = '🎯 শুরু!';
+                return;
+            }
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            el.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+        // run every second
+        setInterval(updateHeaderCountdown, 1000);
+        updateHeaderCountdown();
+
+        // --- APP CODE ---
         const CHAPTERS_META = [
             { id: 1, title: "জীববিজ্ঞানের ধারণা", title_en: "Introduction to Biology" },
             { id: 2, title: "জীবকোষ", title_en: "Cell and Tissue" },
