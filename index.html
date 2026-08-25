@@ -11,7 +11,6 @@
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <link rel="canonical" href="https://nationalexamcenter.github.io/" />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://nationalexamcenter.github.io/" />
     <meta property="og:title" content="ন্যাশনাল এগজাম সেন্টার | নবম-দশম বিজ্ঞান প্রস্তুতি ২০২৬" />
@@ -27,7 +26,6 @@
     <meta name="twitter:description" content="এসএসসি ২০২৭ পরীক্ষার সেরা প্রস্তুতি। সম্পূর্ণ NCTB ২০২৬ সিলেবাস, টপিক স্টাডি ও MCQ পরীক্ষা।" />
     <meta name="twitter:image" content="https://nationalexamcenter.github.io/pic/og-image.jpg" />
 
-    <!-- Structured Data -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -81,18 +79,15 @@
         }
     </script>
 
-    <!-- Favicon -->
     <link rel="icon" href="pic/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="pic/apple-touch-icon.png" />
 
-    <!-- Styles -->
     <script src="https://cdn.tailwindcss.com">
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <style>
-        /* ===== ROOT VARIABLES ===== */
         :root {
             --bg-primary: #080c18;
             --bg-secondary: #0b1124;
@@ -413,7 +408,6 @@
 
 <body>
 
-    <!-- ====== SIDE DRAWER (No progress) ====== -->
     <div id="drawerOverlay" class="drawer-overlay" onclick="closeDrawer()"></div>
     <div id="sideDrawer" class="side-drawer flex flex-col">
         <div class="p-5 border-b border-white/10">
@@ -446,7 +440,6 @@
         </div>
     </div>
 
-    <!-- ====== NAVIGATION ====== -->
     <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="flex justify-between items-center h-[72px]">
@@ -480,7 +473,6 @@
         </div>
     </nav>
 
-    <!-- ====== HERO SECTION ====== -->
     <section class="hero-wrapper">
         <canvas id="hero-canvas"></canvas>
         <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6">
@@ -531,7 +523,6 @@
         </div>
     </section>
 
-    <!-- ====== SUBJECT QUICK LINKS ====== -->
     <section class="max-w-7xl mx-auto px-4 pb-6 -mt-4">
         <div class="flex flex-wrap justify-center gap-3">
             <a href="/chemistry.html" class="glass-card px-5 py-2.5 rounded-full text-sm flex items-center gap-2 hover:border-amber-400 transition">
@@ -546,7 +537,6 @@
         </div>
     </section>
 
-    <!-- ====== FEATURES ====== -->
     <section class="max-w-7xl mx-auto px-4 py-12">
         <h2 class="text-2xl sm:text-3xl font-bold text-center mb-10">
             📱 <span class="gradient-text">এক্সক্লুসিভ ফিচারসমূহ</span>
@@ -575,7 +565,6 @@
         </div>
     </section>
 
-    <!-- ====== COUNTDOWN + SSC 2027 DATES ====== -->
     <section class="max-w-7xl mx-auto px-4 pb-6">
         <div class="glass-card p-6">
             <div class="flex flex-wrap items-center gap-4">
@@ -596,14 +585,12 @@
         </div>
     </section>
 
-    <!-- ====== PRICING (Monthly 299, Yearly 1499) ====== -->
     <section id="pricing" class="max-w-7xl mx-auto px-4 py-12">
         <div class="text-center mb-10">
             <h2 class="text-2xl sm:text-3xl font-bold mb-2">💰 <span class="gradient-text">প্রিমিয়াম অ্যাপ প্ল্যান</span></h2>
             <p class="text-gray-400 text-sm">আপনার চাহিদা অনুযায়ী সাবস্ক্রিপশন প্ল্যান বেছে নিন</p>
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <!-- Monthly -->
             <div class="pricing-card">
                 <div class="text-sm font-semibold text-gray-400">মাসিক</div>
                 <div class="text-3xl font-bold text-amber-400 my-2">২৯৯৳</div>
@@ -615,8 +602,6 @@
                 </ul>
                 <button class="mt-5 w-full btn-outline text-white text-sm py-2 rounded-lg">নির্বাচন করুন</button>
             </div>
-
-            <!-- Quarterly -->
             <div class="pricing-card">
                 <div class="text-sm font-semibold text-gray-400">ত্রৈমাসিক</div>
                 <div class="text-3xl font-bold text-amber-400 my-2">৭৯৯৳</div>
@@ -628,8 +613,6 @@
                 </ul>
                 <button class="mt-5 w-full btn-outline text-white text-sm py-2 rounded-lg">নির্বাচন করুন</button>
             </div>
-
-            <!-- Half-Yearly -->
             <div class="pricing-card popular border-2 border-amber-500/60">
                 <span class="badge">জনপ্রিয়</span>
                 <div class="text-sm font-semibold text-gray-400">ষাণ্মাসিক</div>
@@ -642,8 +625,6 @@
                 </ul>
                 <button class="mt-5 w-full btn-primary text-white text-sm py-2 rounded-lg font-bold">নির্বাচন করুন</button>
             </div>
-
-            <!-- Yearly (Upto SSC) -->
             <div class="pricing-card">
                 <div class="text-sm font-semibold text-gray-400">বার্ষিক (এসএসসি পর্যন্ত)</div>
                 <div class="text-3xl font-bold text-amber-300 my-2">১,৪৯৯৳</div>
@@ -657,7 +638,6 @@
                 <button class="mt-5 w-full btn-outline text-white text-sm py-2 rounded-lg">নির্বাচন করুন</button>
             </div>
         </div>
-
         <div class="glass-card p-5 mt-8 text-center max-w-lg mx-auto">
             <p class="text-sm text-gray-300">
                 <i class="fab fa-whatsapp text-green-500 mr-2"></i>
@@ -668,7 +648,6 @@
         </div>
     </section>
 
-    <!-- ====== TESTIMONIALS ====== -->
     <section class="max-w-7xl mx-auto px-4 py-8">
         <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8">🎓 <span class="gradient-text">শিক্ষার্থীদের মতামত</span></h2>
         <div class="grid sm:grid-cols-2 gap-5">
@@ -685,11 +664,9 @@
         </div>
     </section>
 
-    <!-- ====== FAQ ====== -->
     <section class="max-w-4xl mx-auto px-4 py-10">
         <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8">❓ <span class="gradient-text">সাধারণ জিজ্ঞাসা</span></h2>
         <div class="space-y-3" id="faqContainer"></div>
-
         <div class="mt-10 text-center">
             <p class="text-sm text-gray-400 mb-3">শেয়ার করুন:</p>
             <div class="flex justify-center gap-3 flex-wrap">
@@ -700,7 +677,6 @@
         </div>
     </section>
 
-    <!-- ====== FOOTER ====== -->
     <footer class="border-t border-white/10 py-6 px-4 text-center">
         <p class="text-xs text-gray-500">© ২০২৬ National Exam Center · নবম-দশম বিজ্ঞান প্রস্তুতি · NCTB ২০২৬ সিলেবাস · এসএসসি ২০২৭</p>
         <div class="flex justify-center gap-4 mt-2 text-xs">
@@ -712,12 +688,10 @@
         </div>
     </footer>
 
-    <!-- ====== FLOATING WHATSAPP ====== -->
     <a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20সম্পর্কে%20জানতে%20চাই" target="_blank" rel="noopener" class="floating-wa" aria-label="WhatsApp যোগাযোগ">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- ====== THREE.JS ====== -->
     <script type="importmap">
         {
             "imports": {
@@ -854,9 +828,8 @@
     </script>
 
     <script>
-        // ===== COUNTDOWN =====
         function updateCountdown() {
-            const examDate = new Date(2027, 2, 14); // March 14, 2027
+            const examDate = new Date(2027, 2, 14);
             const now = new Date();
             const diff = examDate - now;
             if (diff <= 0) {
@@ -871,7 +844,6 @@
         updateCountdown();
         setInterval(updateCountdown, 60000);
 
-        // ===== FAQ =====
         const faqData = [{
             q: "প্রিমিয়াম অ্যাপ কিভাবে পাব?",
             a: "ওপরের প্রিমিয়াম প্ল্যান সেকশন থেকে আপনার পছন্দের প্ল্যান নির্বাচন করুন এবং WhatsApp এর মাধ্যমে পেমেন্ট সম্পন্ন করে অ্যাক্সেস পাবেন।"
@@ -906,7 +878,6 @@
             });
         });
 
-        // ===== SHARE =====
         function shareFacebook() {
             window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location.href)}`, '_blank');
         }
@@ -929,7 +900,6 @@
             });
         }
 
-        // ===== THEME TOGGLE =====
         function toggleTheme() {
             const html = document.documentElement;
             const cur = html.getAttribute('data-theme');
@@ -961,7 +931,6 @@
                 moon.style.display = 'inline-block'; }
         }
 
-        // ===== DRAWER =====
         function openDrawer() {
             document.getElementById('sideDrawer').classList.add('open');
             document.getElementById('drawerOverlay').classList.add('active');
@@ -974,7 +943,6 @@
         }
         window.closeDrawer = closeDrawer;
 
-        // ===== PRICING BUTTONS (WhatsApp) =====
         document.querySelectorAll('.pricing-card button').forEach((btn, idx) => {
             const plans = ['মাসিক ২৯৯৳', 'ত্রৈমাসিক ৭৯৯৳', 'ষাণ্মাসিক ১১৯৯৳', 'বার্ষিক ১৪৯৯৳'];
             btn.addEventListener('click', () => {
@@ -985,7 +953,6 @@
         });
 
         console.log('🚀 National Exam Center - SSC 2027 Preparation (No Progress Tracking)');
-        console.log('📚 বিজ্ঞান প্রস্তুতি ২০২৬ | এসএসসি ২০২৭');
     </script>
 
 </body>
