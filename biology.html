@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <style>
+        /* === same CSS as chemistry === */
         :root {
             --bg-primary: #0a0f1a;
             --bg-secondary: #0c1320;
@@ -119,6 +120,7 @@
 </head>
 <body>
 
+    <!-- ====== SIDE DRAWER (same) ====== -->
     <div id="drawerOverlay" class="drawer-overlay" onclick="closeDrawer()"></div>
     <div id="sideDrawer" class="side-drawer flex flex-col">
         <div class="p-5 border-b border-white/10">
@@ -151,6 +153,7 @@
         </div>
     </div>
 
+    <!-- ====== NAVIGATION ====== -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="flex justify-between items-center py-3">
@@ -171,6 +174,7 @@
         </div>
     </nav>
 
+    <!-- ====== 3D CANVAS (DNA) ====== -->
     <div id="biologyCanvasContainer" class="hero-canvas"></div>
 
     <div class="pt-20">
@@ -333,21 +337,25 @@
     </script>
 
     <script>
+        // ============================================
+        // BIOLOGY APP - Merging Extra Topics
+        // ============================================
+
         const CHAPTERS_META = [
-            { id: 1, title: "জীববিজ্ঞানের পরিচয়", title_en: "Introduction to Biology" },
-            { id: 2, title: "কোষ ও টিস্যু", title_en: "Cell and Tissue" },
-            { id: 3, title: "উদ্ভিদের গঠন ও কাজ", title_en: "Plant Structure & Function" },
-            { id: 4, title: "প্রাণীর গঠন ও কাজ", title_en: "Animal Structure & Function" },
-            { id: 5, title: "পুষ্টি ও খাদ্য গ্রহণ", title_en: "Nutrition & Digestion" },
-            { id: 6, title: "পরিবহন ও সংবহন", title_en: "Transport & Circulation" },
-            { id: 7, title: "শ্বসন ও শক্তি উৎপাদন", title_en: "Respiration & Energy" },
-            { id: 8, title: "রেচন ও নিঃসরণ", title_en: "Excretion" },
-            { id: 9, title: "নিয়ন্ত্রণ ও সমন্বয়", title_en: "Coordination & Control" },
-            { id: 10, title: "প্রজনন ও জীবনচক্র", title_en: "Reproduction & Life Cycle" },
-            { id: 11, title: "বংশগতি ও বিবর্তন", title_en: "Genetics & Evolution" },
-            { id: 12, title: "বাস্তুবিদ্যা ও জীববৈচিত্র্য", title_en: "Ecology & Biodiversity" },
-            { id: 13, title: "উদ্ভিদে জল ও খনিজ পরিবহন", title_en: "Water & Mineral Transport in Plants" },
-            { id: 14, title: "মানবদেহের রোগ প্রতিরোধ", title_en: "Human Immune System" }
+            { id: 1, title: "জীববিজ্ঞানের ধারণা", title_en: "Introduction to Biology" },
+            { id: 2, title: "জীবকোষ", title_en: "Cell and Tissue" },
+            { id: 3, title: "কোষ বিভাজন", title_en: "Cell Division" },
+            { id: 4, title: "জীবনীশক্তি", title_en: "Bioenergetics" },
+            { id: 5, title: "পুষ্টি", title_en: "Nutrition" },
+            { id: 6, title: "পরিবহন", title_en: "Transportation" },
+            { id: 7, title: "শ্বসন", title_en: "Respiration" },
+            { id: 8, title: "রেচন", title_en: "Excretion" },
+            { id: 9, title: "কঙ্কাল ও পেশি", title_en: "Skeleton and Muscles" },
+            { id: 10, title: "সমন্বয়", title_en: "Coordination" },
+            { id: 11, title: "প্রজনন", title_en: "Reproduction" },
+            { id: 12, title: "বংশগতি", title_en: "Heredity" },
+            { id: 13, title: "বাস্তুতন্ত্র", title_en: "Ecosystem" },
+            { id: 14, title: "জীবপ্রযুক্তি", title_en: "Biotechnology" }
         ];
 
         let currentChapterId = null;
@@ -355,6 +363,7 @@
         let chapterDataCache = {};
         let activeExamTimer = null;
         let isExamInProgress = false;
+        let extraTopicsData = {};
 
         function showToast(message, type = 'info') {
             const toast = document.createElement('div');
@@ -386,40 +395,37 @@
 
         async function loadChapter(chapterId) {
             if (chapterDataCache[chapterId]) return chapterDataCache[chapterId];
+
             try {
-                const response = await fetch(`data/biology/chapter-${chapterId}.json`);
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                const data = await response.json();
-                if (!data.topics && data.topic_id) {
-                    data.topics = [{
-                        id: data.topic_id,
-                        title: data.topic_title || `টপিক ${data.topic_id}`,
-                        study: data.study || {},
-                        exam: data.exam || { questions: [] }
-                    }];
-                }
-                if (!data.topics || !Array.isArray(data.topics)) {
-                    data.topics = [{
-                        id: `${chapterId}.1`,
-                        title: data.chapter_title || `অধ্যায় ${chapterId}`,
-                        study: { summary: [`${data.chapter_title || 'অধ্যায়'} - বিস্তারিত কন্টেন্ট শীঘ্রই যুক্ত হবে।`] },
-                        exam: { questions: [] }
-                    }];
-                }
-                data.topics.forEach(topic => {
-                    if (topic.exam?.questions) {
+                const baseResponse = await fetch(`data/chapter-${chapterId}.json`);
+                if (!baseResponse.ok) throw new Error(`HTTP ${baseResponse.status}`);
+                const baseData = await baseResponse.json();
+
+                const extra = extraTopicsData[chapterId] || [];
+                let baseTopics = baseData.topics || [];
+                baseTopics = baseTopics.map(t => ({ ...t, is_free: true }));
+
+                const allTopics = [...baseTopics, ...extra];
+                allTopics.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
+
+                baseData.topics = allTopics;
+                baseData.topics.forEach(topic => {
+                    if (topic.exam && topic.exam.questions && Array.isArray(topic.exam.questions)) {
                         topic.exam.questions = topic.exam.questions.map(q => normalizeQuestion(q));
                     }
                 });
-                chapterDataCache[chapterId] = data;
-                return data;
+
+                chapterDataCache[chapterId] = baseData;
+                return baseData;
+
             } catch (err) {
-                console.warn(`Fallback for biology chapter ${chapterId}`, err);
+                console.warn(`Fallback for biology chapter ${chapterId}:`, err);
                 return {
                     chapter_title: CHAPTERS_META.find(c => c.id === chapterId)?.title || `অধ্যায় ${chapterId}`,
                     topics: [{
                         id: `${chapterId}.1`,
                         title: `${CHAPTERS_META.find(c => c.id === chapterId)?.title} - মূল ধারণা`,
+                        is_free: true,
                         study: { summary: [`${CHAPTERS_META.find(c => c.id === chapterId)?.title} অধ্যায়ের বিস্তারিত আলোচনা।`] },
                         exam: { questions: [] }
                     }]
@@ -460,6 +466,7 @@
             tabsContainer.innerHTML = chapterData.topics.map((topic, idx) => `
                     <button class="topic-tab px-4 py-2 rounded-lg text-sm transition ${idx === 0 ? 'bg-amber-500/20 text-amber-400' : 'text-gray-400 hover:text-amber-400'}" data-topic-index="${idx}">
                         <i class="fas fa-layer-group mr-1"></i> ${topic.id} ${topic.title.substring(0, 28)}${topic.title.length > 28 ? '...' : ''}
+                        ${topic.is_free === false ? ' <i class="fas fa-lock text-red-400 text-xs"></i>' : ''}
                     </button>
                 `).join('');
 
@@ -491,6 +498,23 @@
             isExamInProgress = false;
             const topic = chapterData.topics[topicIndex];
             const container = document.getElementById('topicContent');
+
+            if (topic.is_free === false) {
+                container.innerHTML = `
+                    <div class="text-center py-12">
+                        <i class="fas fa-lock text-6xl text-amber-400 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-amber-400 mb-2">🔒 এই টপিকটি লকড!</h3>
+                        <p class="text-gray-300 max-w-md mx-auto">
+                            ${topic.study?.summary?.[0] || 'এই টপিকটি দেখতে প্রিমিয়াম প্ল্যান কিনুন। মাসিক ২৯৯৳, ত্রৈমাসিক ৭৯৯৳, ষাণ্মাসিক ১১৯৯৳, বার্ষিক ১,৪৯৯৳।'}
+                        </p>
+                        <a href="/#pricing" class="mt-4 inline-block btn-primary px-6 py-2 rounded-lg text-white text-sm">প্ল্যান দেখুন</a>
+                        <a href="https://wa.me/8801602105447?text=আমি%20প্রিমিয়াম%20প্ল্যান%20নিতে%20চাই" target="_blank" class="mt-2 inline-block btn-wa px-6 py-2 rounded-lg text-white text-sm">WhatsApp এ যোগাযোগ করুন</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // --- Free topic rendering ---
             const study = topic.study || {};
             const summary = study.summary || [`${topic.title} - বিস্তারিত কন্টেন্ট শীঘ্রই যুক্ত হবে।`];
             const shortQuestions = study.short_questions || [];
@@ -498,7 +522,7 @@
             const mathExamples = study.mathematical_examples || [];
             const chemicalReactions = study.chemical_reactions || [];
             const tables = study.tables || [];
-            let examQuestions = (topic.exam?.questions) ? [...topic.exam.questions] : [];
+            let examQuestions = (topic.exam && topic.exam.questions) ? [...topic.exam.questions] : [];
 
             let html = `<div>
                     <div class="flex items-center gap-2 mb-4">
@@ -566,6 +590,7 @@
                     </div>`;
                 container.innerHTML = html;
 
+                // --- MCQ Logic (same) ---
                 let mcqState = { questions: [], userAnswers: [], examStarted: false, examEnded: false, timerInterval: null,
                     timeRemaining: 0 };
                 const TIME_PER_QUESTION = 60;
@@ -737,7 +762,17 @@
             }, 100);
         }
 
-        function init() {
+        async function init() {
+            try {
+                const res = await fetch('data/biology_extra_topics.json');
+                if (res.ok) {
+                    extraTopicsData = await res.json();
+                    console.log('✅ Extra topics loaded for Biology');
+                } else {
+                    console.warn('⚠️ Extra topics file not found.');
+                }
+            } catch (e) { console.warn('⚠️ Error loading extra topics:', e); }
+
             renderChaptersGrid();
             document.getElementById('backToChaptersBtn').onclick = () => {
                 if (isExamInProgress && !confirm('পরীক্ষা চলছে, ফিরে গেলে ডাটা হারাবে?')) return;
@@ -752,6 +787,7 @@
         window.openChapter = openChapter;
         init();
 
+        // --- Theme and Drawer ---
         window.toggleTheme = function() {
             const html = document.documentElement;
             const cur = html.getAttribute('data-theme');
@@ -769,7 +805,6 @@
                 localStorage.setItem('theme', 'light');
             }
         };
-
         const savedTheme = localStorage.getItem('theme');
         const sun = document.getElementById('sunIcon');
         const moon = document.getElementById('moonIcon');
