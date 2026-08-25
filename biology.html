@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>জীববিজ্ঞান সম্পূর্ণ সিলেবাস ২০২৬ | National Exam Center</title>
+    <meta name="description" content="NCTB ২০২৬ সিলেবাস অনুযায়ী নবম-দশম শ্রেণির জীববিজ্ঞানের ১৪টি অধ্যায়। সম্পূর্ণ স্টাডি মেটেরিয়াল এবং MCQ পরীক্ষা।" />
+    <link rel="canonical" href="https://nationalexamcenter.github.io/biology.html" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="pic/fav.png" type="image/png" />
+    <link rel="apple-touch-icon" href="pic/fav.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        :root {
+            --bg-primary: #0a0f1a;
+            --bg-secondary: #0c1320;
+            --card-bg: rgba(18, 25, 45, 0.7);
+            --text-primary: #e5e7eb;
+            --text-secondary: #9ca3af;
+            --border-color: rgba(245, 158, 11, 0.2);
+            --border-hover: rgba(245, 158, 11, 0.5);
+        }
+        [data-theme="light"] {
+            --bg-primary: #f0f2f5;
+            --bg-secondary: #e8eaef;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+            --border-color: rgba(245, 158, 11, 0.3);
+            --border-hover: rgba(245, 158, 11, 0.7);
+        }
+        * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        body {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            color: var(--text-primary);
+            transition: background 0.3s ease, color 0.3s ease;
+            padding-top: 72px;
+        }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        [data-theme="light"] .glass { background: rgba(0, 0, 0, 0.03); }
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+        .gradient-text { background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .btn-primary { background: linear-gradient(105deg, #ff9a3c, #ff6a2c); transition: all 0.2s ease; box-shadow: 0 8px 20px rgba(255, 100, 30, 0.3); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255, 100, 30, 0.5); }
+        .btn-secondary { border: 1px solid var(--border-color); transition: all 0.2s ease; color: var(--text-primary); }
+        .btn-secondary:hover { background: rgba(245, 158, 11, 0.1); border-color: #f59e0b; transform: translateY(-2px); }
+        .btn-wa { background: linear-gradient(105deg, #25D366, #128C7E); transition: all 0.2s ease; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3); }
+        .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5); }
+        .btn-fb { background: linear-gradient(105deg, #1877F2, #0d65d9); transition: all 0.2s ease; box-shadow: 0 8px 20px rgba(24, 119, 242, 0.3); }
+        .btn-fb:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(24, 119, 242, 0.5); }
+        .btn-theme, .btn-profile { background: var(--card-bg); border: 1px solid var(--border-color); transition: all 0.2s ease; cursor: pointer; color: var(--text-primary); }
+        .btn-theme:hover, .btn-profile:hover { border-color: #f59e0b; transform: scale(1.05); }
+        .floating-btn-group {
+            position: fixed; bottom: 24px; right: 24px; z-index: 999;
+            display: flex; flex-direction: column; gap: 12px; align-items: flex-end;
+        }
+        .floating-btn {
+            width: 56px; height: 56px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; color: #fff;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.3);
+            transition: all 0.2s ease; text-decoration: none; border: none; cursor: pointer;
+            position: relative;
+        }
+        .floating-btn:hover { transform: scale(1.12); }
+        .floating-btn-wa { background: #25D366; }
+        .floating-btn-wa:hover { box-shadow: 0 12px 40px rgba(37, 211, 102, 0.6); }
+        .floating-btn-fb { background: #1877F2; }
+        .floating-btn-fb:hover { box-shadow: 0 12px 40px rgba(24, 119, 242, 0.6); }
+        .floating-btn-routine { background: linear-gradient(105deg, #f59e0b, #ea580c); }
+        .floating-btn-routine:hover { box-shadow: 0 12px 40px rgba(245, 158, 11, 0.6); }
+        .floating-btn-routine.active { background: #ef4444; }
+        .floating-btn-label {
+            position: absolute; right: 64px;
+            background: rgba(0,0,0,0.8); color: #fff;
+            padding: 4px 12px; border-radius: 8px;
+            font-size: 12px; white-space: nowrap;
+            opacity: 0; pointer-events: none; transition: opacity 0.2s;
+        }
+        .floating-btn:hover .floating-btn-label { opacity: 1; }
+        .modal-overlay { background-color: rgba(0,0,0,0.7); backdrop-filter: blur(8px); }
+        [data-theme="light"] .modal-overlay { background-color: rgba(0,0,0,0.5); }
+        .side-drawer {
+            position: fixed; top: 0; left: -320px; width: 320px; height: 100%; z-index: 1100;
+            background: var(--card-bg); backdrop-filter: blur(20px); border-right: 1px solid var(--border-color);
+            transition: left 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 10px 0 30px rgba(0,0,0,0.3);
+        }
+        .side-drawer.open { left: 0; }
+        .drawer-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(2px); z-index: 1050;
+            opacity: 0; visibility: hidden; transition: 0.2s;
+        }
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+        [data-theme="light"] .side-drawer { background: rgba(255, 255, 255, 0.95); }
+        .mcq-option { transition: all 0.2s ease; cursor: pointer; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(245, 158, 11, 0.2); }
+        .mcq-option:hover { background: rgba(245, 158, 11, 0.15); border-color: #f59e0b; transform: translateX(4px); }
+        .mcq-option.selected { background: rgba(245, 158, 11, 0.3); border-color: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.3); }
+        .mcq-option.correct { background: rgba(34, 197, 94, 0.25); border-color: #22c55e; }
+        .mcq-option.wrong { background: rgba(239, 68, 68, 0.25); border-color: #ef4444; }
+        .result-card { background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(234, 88, 12, 0.05)); border: 1px solid rgba(245, 158, 11, 0.4); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
+        .nav-logo-img { height: 40px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+        .hero-canvas {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+            border-radius: 1.5rem;
+            background: transparent;
+        }
+        .mind-map-card {
+            background: rgba(0, 0, 0, 0.25);
+            border-left: 4px solid #f59e0b;
+            padding: 1rem 1.25rem;
+            border-radius: 0 0.75rem 0.75rem 0;
+            transition: all 0.3s ease;
+        }
+        .mind-map-card:hover {
+            background: rgba(0, 0, 0, 0.35);
+            transform: translateX(4px);
+        }
+        [data-theme="light"] .mind-map-card {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        [data-theme="light"] .mind-map-card:hover {
+            background: rgba(0, 0, 0, 0.08);
+        }
+        .mind-map-card .bullet {
+            color: #f59e0b;
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        /* Study Plan */
+        .study-plan-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1200;
+            width: 92%;
+            max-width: 1100px;
+            max-height: 85vh;
+            background: var(--card-bg);
+            backdrop-filter: blur(28px);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+            overflow: hidden;
+        }
+        .study-plan-container.open { display: flex; flex-direction: column; }
+        .study-plan-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .study-plan-header h2 { font-size: 1.2rem; font-weight: 700; margin: 0; }
+        .study-plan-header .close-btn {
+            background: none; border: none;
+            color: var(--text-secondary); font-size: 1.5rem;
+            cursor: pointer; transition: color 0.2s;
+        }
+        .study-plan-header .close-btn:hover { color: #ef4444; }
+        .study-plan-body {
+            overflow-y: auto;
+            padding: 16px 24px 24px;
+            flex: 1;
+        }
+        .study-plan-body table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        .study-plan-body th {
+            background: rgba(245, 158, 11, 0.15);
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            backdrop-filter: blur(4px);
+        }
+        .study-plan-body td {
+            padding: 8px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            vertical-align: middle;
+        }
+        .study-plan-body tr.revision td { background: rgba(239, 68, 68, 0.08); }
+        .study-plan-body tr.exam-day td { background: rgba(245, 158, 11, 0.12); font-weight: 600; }
+        .study-plan-body tr.today td { border-left: 3px solid #f59e0b; }
+        .study-plan-body .subject-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .subject-tag.chemistry { background: rgba(59, 130, 246, 0.3); color: #60a5fa; }
+        .subject-tag.physics { background: rgba(236, 72, 153, 0.3); color: #f472b6; }
+        .subject-tag.biology { background: rgba(52, 211, 153, 0.3); color: #34d399; }
+        .study-plan-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+            z-index: 1150; display: none;
+        }
+        .study-plan-overlay.active { display: block; }
+        .routine-toggle-btn {
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: #f59e0b;
+            padding: 8px 18px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .routine-toggle-btn:hover {
+            background: rgba(245, 158, 11, 0.25);
+            transform: scale(1.03);
+        }
+        .exam-date-badge {
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            border-radius: 9999px;
+            padding: 0.25rem 1rem;
+            font-size: 0.7rem;
+            color: #fcd34d;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        [data-theme="light"] .exam-date-badge {
+            color: #b45309;
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+        @media (max-width: 480px) {
+            .floating-btn-group { bottom: 16px; right: 16px; gap: 10px; }
+            .floating-btn { width: 48px; height: 48px; font-size: 20px; }
+            .study-plan-container { width: 96%; max-height: 80vh; }
+            .study-plan-body { padding: 12px 12px 16px; }
+            .study-plan-body table { font-size: 0.7rem; }
+            .study-plan-body th, .study-plan-body td { padding: 6px 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== SIDE DRAWER ====== -->
+    <div id="drawerOverlay" class="drawer-overlay" onclick="closeDrawer()"></div>
+    <div id="sideDrawer" class="side-drawer flex flex-col">
+        <div class="p-5 border-b border-white/10">
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-lg font-bold gradient-text">ন্যাশনাল এগজাম সেন্টার</span>
+                <button onclick="closeDrawer()" class="text-2xl text-gray-400 hover:text-amber-400 transition">&times;</button>
+            </div>
+            <div class="flex items-center gap-3 mb-4">
+                <a href="/">
+                    <img src="pic/NEC3.png" alt="NEC Logo" class="h-10 w-auto" onerror="this.src='https://placehold.co/313x129/ffffff/f59e0b?text=NEC';" />
+                </a>
+                <div>
+                    <p class="text-sm font-semibold">বিজ্ঞান প্রস্তুতি</p>
+                    <p class="text-xs text-gray-400">NCTB ২০২৬ সিলেবাস</p>
+                </div>
+            </div>
+            <hr class="border-white/10" />
+        </div>
+        <div class="flex-1 p-4 space-y-1.5">
+            <a href="/" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-amber-500/10 transition"><i class="fas fa-home w-5 text-amber-400"></i> হোম</a>
+            <a href="/chemistry.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-amber-500/10 transition"><i class="fas fa-flask w-5 text-amber-400"></i> রসায়ন</a>
+            <a href="/physics.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-amber-500/10 transition"><i class="fas fa-atom w-5 text-amber-400"></i> পদার্থবিজ্ঞান</a>
+            <a href="/biology.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-amber-500/10 transition"><i class="fas fa-dna w-5 text-amber-400"></i> জীববিজ্ঞান</a>
+            <a href="/privacy.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-amber-500/10 transition"><i class="fas fa-shield-alt w-5 text-amber-400"></i> গোপনীয়তা নীতি</a>
+            <hr class="border-white/10 my-2" />
+            <button onclick="toggleTheme()" class="w-full flex items-center gap-3 p-2.5 rounded-xl hover:bg-amber-500/10 transition"><i class="fas fa-moon w-5 text-amber-400"></i> থিম পরিবর্তন</button>
+            <a href="/#pricing" onclick="closeDrawer()" class="flex items-center gap-3 p-2.5 rounded-xl bg-amber-500/20 text-amber-400 font-semibold hover:bg-amber-500/30 transition"><i class="fas fa-crown w-5"></i> প্রিমিয়াম প্ল্যান</a>
+        </div>
+        <div class="p-4 border-t border-white/10 text-xs text-gray-500">
+            <p>© ২০২৬ National Exam Center</p>
+            <p class="mt-0.5">এসএসসি ২০২৭ · বিজ্ঞান বিভাগ</p>
+        </div>
+    </div>
+
+    <!-- ====== NAVIGATION ====== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex justify-between items-center py-3">
+                <div class="flex items-center gap-3">
+                    <button onclick="openDrawer()" class="text-2xl text-amber-400 hover:scale-110 transition"><i class="fas fa-bars"></i></button>
+                    <a href="/">
+                        <img src="pic/NEC3.png" alt="Logo" class="nav-logo-img" onerror="this.src='https://placehold.co/313x129/ffffff/f59e0b?text=NEC';" />
+                    </a>
+                    <span class="font-bold text-xl gradient-text">National Exam Center</span>
+                    <span class="text-xs bg-amber-500/20 px-2 py-1 rounded-full hidden md:block">জীববিজ্ঞান · ১৩ এপ্রিল</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleTheme()" class="btn-theme px-3 py-2 rounded-lg text-sm"><i class="fas fa-sun" id="sunIcon"></i><i class="fas fa-moon" id="moonIcon" style="display: none;"></i></button>
+                    <a href="/" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-home mr-1"></i> হোম</a>
+                    <a href="/chemistry.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-flask mr-1"></i> রসায়ন</a>
+                    <a href="/physics.html" class="hidden md:block px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition"><i class="fas fa-atom mr-1"></i> পদার্থবিজ্ঞান</a>
+                    <a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" target="_blank" class="btn-wa px-4 py-2 rounded-lg text-white text-sm font-semibold transition"><i class="fab fa-whatsapp mr-1"></i> WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ====== 3D CANVAS ====== -->
+    <div id="biologyCanvasContainer" class="hero-canvas"></div>
+
+    <!-- Exam Date Banner -->
+    <div class="max-w-7xl mx-auto px-4 py-3">
+        <div class="flex flex-wrap items-center justify-between gap-3 glass-card p-4 rounded-xl">
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="exam-date-badge"><i class="fas fa-flask"></i> রসায়ন: ৪ এপ্রিল <span id="chemDays" class="font-bold text-amber-400 ml-1"></span></span>
+                <span class="exam-date-badge"><i class="fas fa-atom"></i> পদার্থবিজ্ঞান: ৩০ মার্চ <span id="physDays" class="font-bold text-amber-400 ml-1"></span></span>
+                <span class="exam-date-badge"><i class="fas fa-dna"></i> জীববিজ্ঞান: ১৩ এপ্রিল <span id="bioDays" class="font-bold text-amber-400 ml-1"></span></span>
+            </div>
+            <button onclick="toggleStudyPlan()" class="routine-toggle-btn">
+                <i class="fas fa-calendar-alt"></i> স্টাডি প্ল্যান
+            </button>
+        </div>
+    </div>
+
+    <div class="pt-4">
+        <div id="chaptersView" class="max-w-7xl mx-auto px-4 py-8">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold gradient-text mb-4">জীববিজ্ঞান সম্পূর্ণ সিলেবাস ২০২৬</h1>
+                <p class="text-gray-400 max-w-2xl mx-auto">NCTB ২০২৬ সিলেবাস অনুযায়ী নবম ও দশম শ্রেণির জীববিজ্ঞানের ১৪টি অধ্যায় | এসএসসি ২০২৭ · ১৩ এপ্রিল</p>
+            </div>
+            <div id="chaptersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+
+        <div id="chapterView" class="hidden max-w-5xl mx-auto px-4 py-6">
+            <div class="mb-6">
+                <button id="backToChaptersBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition">
+                    <i class="fas fa-arrow-left"></i> সব অধ্যায়ে ফিরুন
+                </button>
+            </div>
+            <div class="glass-card rounded-2xl p-6 mb-8">
+                <div class="flex justify-between items-start flex-wrap gap-3">
+                    <div>
+                        <span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">অধ্যায় <span id="chapterNumber"></span></span>
+                        <h1 class="text-2xl md:text-3xl font-bold mt-2" id="chapterTitle"></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-6 border-b border-white/10 pb-3" id="topicsTabs"></div>
+            <div id="topicContent" class="glass-card rounded-2xl p-6"></div>
+        </div>
+    </div>
+
+    <!-- ====== FLOATING BUTTONS ====== -->
+    <div class="floating-btn-group">
+        <button onclick="toggleStudyPlan()" class="floating-btn floating-btn-routine" id="routineFloatingBtn" aria-label="স্টাডি প্ল্যান">
+            <i class="fas fa-calendar-alt"></i>
+            <span class="floating-btn-label">স্টাডি প্ল্যান</span>
+        </button>
+        <a href="https://m.me/143276416362406" target="_blank" rel="noopener" class="floating-btn floating-btn-fb" aria-label="Facebook Messenger">
+            <i class="fab fa-facebook-messenger"></i>
+            <span class="floating-btn-label">Messenger</span>
+        </a>
+        <a href="https://wa.me/8801602105447?text=আমি%20ন্যাশনাল%20এগজাম%20সেন্টার%20অ্যাপ%20সম্পর্কে%20জানতে%20চাই" target="_blank" rel="noopener" class="floating-btn floating-btn-wa" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="floating-btn-label">WhatsApp</span>
+        </a>
+    </div>
+
+    <!-- ====== STUDY PLAN MODAL ====== -->
+    <div class="study-plan-overlay" id="studyPlanOverlay" onclick="closeStudyPlan()"></div>
+    <div class="study-plan-container" id="studyPlanModal">
+        <div class="study-plan-header">
+            <h2 class="gradient-text">📚 সম্মিলিত স্টাডি প্ল্যান</h2>
+            <button class="close-btn" onclick="closeStudyPlan()">&times;</button>
+        </div>
+        <div class="study-plan-body" id="studyPlanModalBody">
+            <!-- Generated by JavaScript -->
+        </div>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        const container = document.getElementById('biologyCanvasContainer');
+        if (container) {
+            const width = container.clientWidth;
+            const height = 350;
+            const scene = new THREE.Scene();
+            scene.background = null;
+            const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+            camera.position.set(0, 1.5, 10);
+            camera.lookAt(0, 0, 0);
+            const renderer = new THREE.WebGLRenderer({ alpha: true });
+            renderer.setSize(width, height);
+            renderer.setClearColor(0x000000, 0);
+            container.appendChild(renderer.domElement);
+
+            const ambientLight = new THREE.AmbientLight(0x333333);
+            scene.add(ambientLight);
+            const mainLight = new THREE.DirectionalLight(0xffffff, 1);
+            mainLight.position.set(5, 10, 7);
+            scene.add(mainLight);
+            const fillLight = new THREE.PointLight(0x44aaff, 0.6);
+            fillLight.position.set(0, 2, 3);
+            scene.add(fillLight);
+
+            const dnaGroup = new THREE.Group();
+            const radius = 1.2;
+            const heightHelix = 3.5;
+            const turns = 2.2;
+            const segments = 32;
+            const colors = [0x44aaff, 0xff66cc, 0x66ff66, 0xffaa44];
+
+            function addSphere(x, y, z, color, scale = 0.12) {
+                const geometry = new THREE.SphereGeometry(scale, 24, 24);
+                const material = new THREE.MeshStandardMaterial({ color: color, emissive: color, emissiveIntensity: 0.3 });
+                const sphere = new THREE.Mesh(geometry, material);
+                sphere.position.set(x, y, z);
+                dnaGroup.add(sphere);
+                return sphere;
+            }
+
+            function addCylinder(p1, p2, color, radiusCyl = 0.04) {
+                const start = new THREE.Vector3(p1.x, p1.y, p1.z);
+                const end = new THREE.Vector3(p2.x, p2.y, p2.z);
+                const direction = new THREE.Vector3().subVectors(end, start);
+                const length = direction.length();
+                const center = start.clone().add(end).multiplyScalar(0.5);
+                const geometry = new THREE.CylinderGeometry(radiusCyl, radiusCyl, length, 8);
+                const material = new THREE.MeshStandardMaterial({ color: color });
+                const cylinder = new THREE.Mesh(geometry, material);
+                cylinder.position.copy(center);
+                cylinder.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction.clone().normalize());
+                dnaGroup.add(cylinder);
+            }
+
+            let prevPoints = [];
+            for (let i = 0; i <= segments; i++) {
+                const t = i / segments;
+                const y = (t - 0.5) * heightHelix;
+                const angle1 = t * Math.PI * 2 * turns;
+                const angle2 = angle1 + Math.PI;
+                const x1 = radius * Math.cos(angle1);
+                const z1 = radius * Math.sin(angle1);
+                const x2 = radius * Math.cos(angle2);
+                const z2 = radius * Math.sin(angle2);
+                const color1 = colors[Math.floor(t * 3) % colors.length];
+                const color2 = colors[(Math.floor(t * 3) + 2) % colors.length];
+                addSphere(x1, y, z1, color1, 0.1);
+                addSphere(x2, y, z2, color2, 0.1);
+                const p1 = new THREE.Vector3(x1, y, z1);
+                const p2 = new THREE.Vector3(x2, y, z2);
+                addCylinder(p1, p2, 0xaa88ff, 0.06);
+                if (i > 0) {
+                    const prev1 = prevPoints[0];
+                    const prev2 = prevPoints[1];
+                    if (prev1) addCylinder(prev1, p1, 0x88aaff, 0.05);
+                    if (prev2) addCylinder(prev2, p2, 0xff88aa, 0.05);
+                }
+                prevPoints = [p1, p2];
+            }
+
+            const particleCount = 800;
+            const particleGeo = new THREE.BufferGeometry();
+            const particlePositions = new Float32Array(particleCount * 3);
+            for (let i = 0; i < particleCount; i++) {
+                particlePositions[i * 3] = (Math.random() - 0.5) * 6;
+                particlePositions[i * 3 + 1] = (Math.random() - 0.5) * 5;
+                particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 5;
+            }
+            particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+            const particleMat = new THREE.PointsMaterial({ color: 0x66ccff, size: 0.04 });
+            const particles = new THREE.Points(particleGeo, particleMat);
+            dnaGroup.add(particles);
+            scene.add(dnaGroup);
+
+            let time = 0;
+
+            function animate() {
+                requestAnimationFrame(animate);
+                time += 0.008;
+                dnaGroup.rotation.y = time * 0.3;
+                dnaGroup.rotation.x = Math.sin(time * 0.2) * 0.1;
+                dnaGroup.rotation.z = Math.sin(time * 0.15) * 0.05;
+                particles.rotation.y = time * 0.05;
+                particles.rotation.x = Math.sin(time * 0.1) * 0.1;
+                fillLight.intensity = 0.5 + Math.sin(time * 2) * 0.2;
+                camera.position.x = Math.sin(time * 0.2) * 0.2;
+                camera.lookAt(0, 0, 0);
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            window.addEventListener('resize', () => {
+                const newWidth = container.clientWidth;
+                renderer.setSize(newWidth, height);
+                camera.aspect = newWidth / height;
+                camera.updateProjectionMatrix();
+            });
+        }
+    </script>
+
+    <script>
+        // ============================================================
+        // BIOLOGY PAGE - Full App + Study Plan
+        // ============================================================
+
+        // Subject config (same as index)
+        const SUBJECTS = {
+            chemistry: {
+                name: 'রসায়ন',
+                icon: 'fa-flask',
+                totalTopics: 97,
+                examDate: new Date(2027, 3, 4),
+                color: '#60a5fa',
+                tagClass: 'chemistry'
+            },
+            physics: {
+                name: 'পদার্থবিজ্ঞান',
+                icon: 'fa-atom',
+                totalTopics: 78,
+                examDate: new Date(2027, 2, 30),
+                color: '#f472b6',
+                tagClass: 'physics'
+            },
+            biology: {
+                name: 'জীববিজ্ঞান',
+                icon: 'fa-dna',
+                totalTopics: 62,
+                examDate: new Date(2027, 3, 13),
+                color: '#34d399',
+                tagClass: 'biology'
+            }
+        };
+
+        const REVISION_DAYS = 7;
+        const TODAY = new Date();
+        TODAY.setHours(0, 0, 0, 0);
+
+        function daysBetween(d1, d2) {
+            const ms = d2.getTime() - d1.getTime();
+            return Math.ceil(ms / (1000 * 60 * 60 * 24));
+        }
+
+        function formatDate(date) {
+            const d = new Date(date);
+            const months = ['জানু', 'ফেব্রু', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
+            return `${d.getDate()} ${months[d.getMonth()]}`;
+        }
+
+        function isToday(date) {
+            const d = new Date(date);
+            return d.getFullYear() === TODAY.getFullYear() &&
+                d.getMonth() === TODAY.getMonth() &&
+                d.getDate() === TODAY.getDate();
+        }
+
+        function generateStudyPlan() {
+            const allDays = [];
+            const startDate = new Date(TODAY);
+            const subjectPlans = {};
+            let maxEndDate = new Date(TODAY);
+
+            for (const [key, subj] of Object.entries(SUBJECTS)) {
+                const examDate = new Date(subj.examDate);
+                const daysUntilExam = daysBetween(TODAY, examDate);
+                if (daysUntilExam < 0) {
+                    subjectPlans[key] = { days: [], totalDays: 0 };
+                    continue;
+                }
+                let studyDays = daysUntilExam - REVISION_DAYS;
+                if (studyDays < 1) studyDays = 1;
+                const topicsPerDay = Math.ceil(subj.totalTopics / studyDays);
+                const plan = [];
+                let remainingTopics = subj.totalTopics;
+                for (let i = 0; i < daysUntilExam; i++) {
+                    const currentDate = new Date(TODAY);
+                    currentDate.setDate(currentDate.getDate() + i);
+                    const isRevision = i >= daysUntilExam - REVISION_DAYS;
+                    let topics = 0;
+                    let isExamDay = false;
+                    if (i === daysUntilExam - 1) {
+                        isExamDay = true;
+                        topics = 0;
+                    } else if (isRevision) {
+                        topics = 0;
+                    } else {
+                        topics = Math.min(topicsPerDay, remainingTopics);
+                        remainingTopics -= topics;
+                    }
+                    plan.push({
+                        date: currentDate,
+                        topics: topics,
+                        isRevision: isRevision && !isExamDay,
+                        isExamDay: isExamDay,
+                        cumulative: subj.totalTopics - remainingTopics
+                    });
+                }
+                subjectPlans[key] = { days: plan, totalDays: plan.length };
+                const lastDate = plan.length > 0 ? plan[plan.length - 1].date : new Date(TODAY);
+                if (lastDate > maxEndDate) maxEndDate = lastDate;
+            }
+
+            const combined = [];
+            const totalDays = daysBetween(TODAY, maxEndDate) + 1;
+            for (let i = 0; i < totalDays; i++) {
+                const date = new Date(TODAY);
+                date.setDate(date.getDate() + i);
+                const entry = {
+                    date: date,
+                    chemistry: { topics: 0, isRevision: false, isExamDay: false },
+                    physics: { topics: 0, isRevision: false, isExamDay: false },
+                    biology: { topics: 0, isRevision: false, isExamDay: false },
+                    isToday: isToday(date)
+                };
+                for (const [key, plan] of Object.entries(subjectPlans)) {
+                    if (i < plan.days.length) {
+                        const day = plan.days[i];
+                        entry[key] = {
+                            topics: day.topics,
+                            isRevision: day.isRevision,
+                            isExamDay: day.isExamDay
+                        };
+                    }
+                }
+                combined.push(entry);
+            }
+            return combined;
+        }
+
+        function renderStudyPlanTable(planData, containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            let html = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="min-width:100px;">তারিখ</th>
+                            <th style="min-width:80px;">দিন</th>
+                            <th style="min-width:100px; color: #60a5fa;">🧪 রসায়ন</th>
+                            <th style="min-width:100px; color: #f472b6;">⚛️ পদার্থবিজ্ঞান</th>
+                            <th style="min-width:100px; color: #34d399;">🧬 জীববিজ্ঞান</th>
+                            <th style="min-width:80px;">স্ট্যাটাস</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            for (const day of planData) {
+                const dateStr = formatDate(day.date);
+                const dayNames = ['রবি', 'সোম', 'মঙ্গল', 'বুধ', 'বৃহস্পতি', 'শুক্র', 'শনি'];
+                const dayName = dayNames[day.date.getDay()];
+
+                let rowClass = '';
+                let statusText = '';
+                let statusColor = '';
+
+                const isAnyExam = day.chemistry.isExamDay || day.physics.isExamDay || day.biology.isExamDay;
+                const isAnyRevision = day.chemistry.isRevision || day.physics.isRevision || day.biology.isRevision;
+
+                if (isAnyExam) {
+                    rowClass = 'exam-day';
+                    statusText = '📝 পরীক্ষা';
+                    statusColor = '#fbbf24';
+                } else if (isAnyRevision) {
+                    rowClass = 'revision';
+                    statusText = '🔄 রিভিশন';
+                    statusColor = '#f87171';
+                } else if (day.isToday) {
+                    rowClass = 'today';
+                    statusText = '📍 আজ';
+                    statusColor = '#f59e0b';
+                } else {
+                    statusText = '📖 পড়া';
+                    statusColor = '#9ca3af';
+                }
+
+                const chemTopics = day.chemistry.topics > 0 ? `${day.chemistry.topics} টি` : (day.chemistry.isExamDay ? '📝' : '—');
+                const physTopics = day.physics.topics > 0 ? `${day.physics.topics} টি` : (day.physics.isExamDay ? '📝' : '—');
+                const bioTopics = day.biology.topics > 0 ? `${day.biology.topics} টি` : (day.biology.isExamDay ? '📝' : '—');
+
+                html += `
+                    <tr class="${rowClass}">
+                        <td><strong>${dateStr}</strong></td>
+                        <td>${dayName}</td>
+                        <td>${chemTopics}</td>
+                        <td>${physTopics}</td>
+                        <td>${bioTopics}</td>
+                        <td><span style="color:${statusColor};font-weight:600;">${statusText}</span></td>
+                    </tr>
+                `;
+            }
+
+            html += `</tbody></table>`;
+            container.innerHTML = html;
+        }
+
+        // ============================================================
+        // UI CONTROLS
+        // ============================================================
+
+        let studyPlanData = null;
+
+        function toggleStudyPlan() {
+            const modal = document.getElementById('studyPlanModal');
+            const overlay = document.getElementById('studyPlanOverlay');
+            const btn = document.getElementById('routineFloatingBtn');
+
+            if (modal.classList.contains('open')) {
+                closeStudyPlan();
+            } else {
+                openStudyPlan();
+            }
+        }
+
+        function openStudyPlan() {
+            const modal = document.getElementById('studyPlanModal');
+            const overlay = document.getElementById('studyPlanOverlay');
+            const btn = document.getElementById('routineFloatingBtn');
+
+            if (!studyPlanData) {
+                studyPlanData = generateStudyPlan();
+            }
+
+            renderStudyPlanTable(studyPlanData, 'studyPlanModalBody');
+            modal.classList.add('open');
+            overlay.classList.add('active');
+            if (btn) btn.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeStudyPlan() {
+            const modal = document.getElementById('studyPlanModal');
+            const overlay = document.getElementById('studyPlanOverlay');
+            const btn = document.getElementById('routineFloatingBtn');
+
+            modal.classList.remove('open');
+            overlay.classList.remove('active');
+            if (btn) btn.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ============================================================
+        // EXAM DAYS
+        // ============================================================
+
+        function updateExamDays() {
+            const chemDays = daysBetween(TODAY, SUBJECTS.chemistry.examDate);
+            const physDays = daysBetween(TODAY, SUBJECTS.physics.examDate);
+            const bioDays = daysBetween(TODAY, SUBJECTS.biology.examDate);
+
+            document.getElementById('chemDays').textContent = chemDays > 0 ? `(${chemDays} দিন)` : chemDays === 0 ? '(আজ)' : '(শেষ)';
+            document.getElementById('physDays').textContent = physDays > 0 ? `(${physDays} দিন)` : physDays === 0 ? '(আজ)' : '(শেষ)';
+            document.getElementById('bioDays').textContent = bioDays > 0 ? `(${bioDays} দিন)` : bioDays === 0 ? '(আজ)' : '(শেষ)';
+        }
+
+        // ============================================================
+        // CHAPTERS & TOPICS (existing biology app logic)
+        // ============================================================
+
+        const CHAPTERS_META = [
+            { id: 1, title: "জীববিজ্ঞানের ধারণা", title_en: "Introduction to Biology" },
+            { id: 2, title: "জীবকোষ", title_en: "Cell and Tissue" },
+            { id: 3, title: "কোষ বিভাজন", title_en: "Cell Division" },
+            { id: 4, title: "জীবনীশক্তি", title_en: "Bioenergetics" },
+            { id: 5, title: "পুষ্টি", title_en: "Nutrition" },
+            { id: 6, title: "পরিবহন", title_en: "Transportation" },
+            { id: 7, title: "শ্বসন", title_en: "Respiration" },
+            { id: 8, title: "রেচন", title_en: "Excretion" },
+            { id: 9, title: "কঙ্কাল ও পেশি", title_en: "Skeleton and Muscles" },
+            { id: 10, title: "সমন্বয়", title_en: "Coordination" },
+            { id: 11, title: "প্রজনন", title_en: "Reproduction" },
+            { id: 12, title: "বংশগতি", title_en: "Heredity" },
+            { id: 13, title: "বাস্তুতন্ত্র", title_en: "Ecosystem" },
+            { id: 14, title: "জীবপ্রযুক্তি", title_en: "Biotechnology" }
+        ];
+
+        let currentChapterId = null;
+        let currentTopicIndex = 0;
+        let chapterDataCache = {};
+        let activeExamTimer = null;
+        let isExamInProgress = false;
+        let extraTopicsData = {};
+
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className =
+                `fixed bottom-20 left-1/2 transform -translate-x-1/2 px-5 py-3 rounded-xl text-sm z-50 shadow-xl font-medium ${type === 'success' ? 'bg-green-600' : type === 'error' ? 'bg-red-600' : 'bg-blue-600'} text-white`;
+            toast.innerText = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function normalizeQuestion(q) {
+            if (!q.o || !Array.isArray(q.o)) return q;
+            let correctIndex = -1;
+            if (typeof q.a === 'number') { correctIndex = q.a; } else if (typeof q.a === 'string') {
+                const ansText = q.a.trim();
+                correctIndex = q.o.findIndex(opt => opt.trim() === ansText);
+                if (correctIndex === -1) correctIndex = 0;
+            } else { correctIndex = 0; }
+            return { q: q.q, o: [...q.o], a: correctIndex };
+        }
+
+        async function loadChapter(chapterId) {
+            if (chapterDataCache[chapterId]) return chapterDataCache[chapterId];
+
+            try {
+                const baseResponse = await fetch(`data/chapter-${chapterId}.json`);
+                if (!baseResponse.ok) throw new Error(`HTTP ${baseResponse.status}`);
+                const baseData = await baseResponse.json();
+
+                const extra = extraTopicsData[chapterId] || [];
+                let baseTopics = baseData.topics || [];
+                baseTopics = baseTopics.map(t => ({ ...t, is_free: true }));
+
+                const allTopics = [...baseTopics, ...extra];
+                allTopics.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
+
+                baseData.topics = allTopics;
+                baseData.topics.forEach(topic => {
+                    if (topic.exam && topic.exam.questions && Array.isArray(topic.exam.questions)) {
+                        topic.exam.questions = topic.exam.questions.map(q => normalizeQuestion(q));
+                    }
+                });
+
+                chapterDataCache[chapterId] = baseData;
+                return baseData;
+
+            } catch (err) {
+                console.warn(`Fallback for biology chapter ${chapterId}:`, err);
+                return {
+                    chapter_title: CHAPTERS_META.find(c => c.id === chapterId)?.title || `অধ্যায় ${chapterId}`,
+                    topics: [{
+                        id: `${chapterId}.1`,
+                        title: `${CHAPTERS_META.find(c => c.id === chapterId)?.title} - মূল ধারণা`,
+                        is_free: true,
+                        study: { summary: [`${CHAPTERS_META.find(c => c.id === chapterId)?.title} অধ্যায়ের বিস্তারিত আলোচনা।`] },
+                        exam: { questions: [] }
+                    }]
+                };
+            }
+        }
+
+        function renderChaptersGrid() {
+            const container = document.getElementById('chaptersGrid');
+            if (!container) return;
+            container.innerHTML = CHAPTERS_META.map(ch => `
+                    <div class="glass-card rounded-2xl p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">অধ্যায় ${ch.id}</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1">${ch.title}</h3>
+                        <p class="text-gray-400 text-sm mb-4">${ch.title_en}</p>
+                        <button onclick="window.openChapter(${ch.id})" class="w-full px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 text-sm hover:bg-amber-500/30 transition">
+                            <i class="fas fa-book-open mr-1"></i> পড়ুন ও পরীক্ষা দিন
+                        </button>
+                    </div>
+                `).join('');
+        }
+
+        async function openChapter(chapterId) {
+            if (activeExamTimer) { clearInterval(activeExamTimer);
+                activeExamTimer = null; }
+            isExamInProgress = false;
+            currentChapterId = chapterId;
+            const chapterData = await loadChapter(chapterId);
+
+            document.getElementById('chaptersView').classList.add('hidden');
+            document.getElementById('chapterView').classList.remove('hidden');
+            document.getElementById('chapterNumber').innerText = chapterId;
+            document.getElementById('chapterTitle').innerHTML = chapterData.chapter_title;
+
+            const tabsContainer = document.getElementById('topicsTabs');
+            tabsContainer.innerHTML = chapterData.topics.map((topic, idx) => `
+                    <button class="topic-tab px-4 py-2 rounded-lg text-sm transition ${idx === 0 ? 'bg-amber-500/20 text-amber-400' : 'text-gray-400 hover:text-amber-400'}" data-topic-index="${idx}">
+                        <i class="fas fa-layer-group mr-1"></i> ${topic.id} ${topic.title.substring(0, 28)}${topic.title.length > 28 ? '...' : ''}
+                        ${topic.is_free === false ? ' <i class="fas fa-lock text-red-400 text-xs"></i>' : ''}
+                    </button>
+                `).join('');
+
+            currentTopicIndex = 0;
+            await loadTopicContent(chapterId, 0, chapterData);
+
+            document.querySelectorAll('.topic-tab').forEach(tab => {
+                tab.addEventListener('click', async () => {
+                    if (isExamInProgress && !confirm('⚠️ পরীক্ষা চলছে। টপিক পরিবর্তন করলে উত্তর ও সময় হারাবে। নিশ্চিত?'))
+                        return;
+                    if (activeExamTimer) { clearInterval(activeExamTimer);
+                        activeExamTimer = null; }
+                    isExamInProgress = false;
+                    const idx = parseInt(tab.dataset.topicIndex);
+                    currentTopicIndex = idx;
+                    await loadTopicContent(chapterId, idx, chapterData);
+                    document.querySelectorAll('.topic-tab').forEach(t => {
+                        t.classList.remove('bg-amber-500/20', 'text-amber-400');
+                        t.classList.add('text-gray-400');
+                    });
+                    tab.classList.add('bg-amber-500/20', 'text-amber-400');
+                });
+            });
+        }
+
+        async function loadTopicContent(chapterId, topicIndex, chapterData) {
+            if (activeExamTimer) { clearInterval(activeExamTimer);
+                activeExamTimer = null; }
+            isExamInProgress = false;
+            const topic = chapterData.topics[topicIndex];
+            const container = document.getElementById('topicContent');
+
+            if (topic.is_free === false) {
+                container.innerHTML = `
+                    <div class="text-center py-12">
+                        <i class="fas fa-lock text-6xl text-amber-400 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-amber-400 mb-2">🔒 এই টপিকটি লকড!</h3>
+                        <p class="text-gray-300 max-w-md mx-auto">
+                            ${topic.study?.summary?.[0] || 'এই টপিকটি দেখতে প্রিমিয়াম প্ল্যান কিনুন। মাসিক ২৯৯৳, ত্রৈমাসিক ৭৯৯৳, ষাণ্মাসিক ১১৯৯৳, বার্ষিক ১,৪৯৯৳।'}
+                        </p>
+                        <a href="/#pricing" class="mt-4 inline-block btn-primary px-6 py-2 rounded-lg text-white text-sm">প্ল্যান দেখুন</a>
+                        <a href="https://wa.me/8801602105447?text=আমি%20প্রিমিয়াম%20প্ল্যান%20নিতে%20চাই" target="_blank" class="mt-2 inline-block btn-wa px-6 py-2 rounded-lg text-white text-sm">WhatsApp এ যোগাযোগ করুন</a>
+                    </div>
+                `;
+                return;
+            }
+
+            const study = topic.study || {};
+            const summary = study.summary || [`${topic.title} - বিস্তারিত কন্টেন্ট শীঘ্রই যুক্ত হবে।`];
+            const shortQuestions = study.short_questions || [];
+            const creativeQuestions = study.creative_questions || [];
+            const mathExamples = study.mathematical_examples || [];
+            const chemicalReactions = study.chemical_reactions || [];
+            const tables = study.tables || [];
+            let examQuestions = (topic.exam && topic.exam.questions) ? [...topic.exam.questions] : [];
+
+            let html = `<div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-dna text-amber-400"></i>
+                        <span class="text-xs text-amber-400 bg-amber-500/10 px-2 py-1 rounded-full">টপিক ${topic.id}</span>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-6">${topic.title}</h2>
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-align-left mr-2"></i>সারাংশ</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            ${summary.map((s, idx) => `
+                                <div class="mind-map-card">
+                                    <span class="bullet">✦</span>
+                                    <span class="text-gray-300 leading-relaxed">${s}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>`;
+
+            if (shortQuestions.length) {
+                html +=
+                    `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-question-circle mr-2"></i>সংক্ষিপ্ত প্রশ্নোত্তর</h3><div class="space-y-3">${shortQuestions.map((sq, idx) => `<div class="border border-white/10 rounded-xl overflow-hidden"><button class="sq-toggle w-full text-left p-3 font-medium hover:bg-white/5 transition flex justify-between items-center"><span>${idx+1}. ${sq.q}</span><i class="fas fa-chevron-down text-gray-500"></i></button><div class="sq-answer hidden p-3 pt-0 text-gray-400 border-t border-white/10">${sq.a}</div></div>`).join('')}</div></div>`;
+            }
+
+            if (creativeQuestions.length) {
+                html +=
+                    `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-pencil-alt mr-2"></i>সৃজনশীল প্রশ্ন</h3><div class="space-y-4">${creativeQuestions.map((cq, idx) => `<div class="border border-white/10 rounded-xl overflow-hidden"><button class="cq-toggle w-full text-left hover:bg-white/5 transition flex justify-between items-center p-3 font-medium"><span>${idx+1}. ${(cq.paragraph || '').substring(0, 100)}...</span><i class="fas fa-chevron-down text-gray-500"></i></button><div class="cq-answer hidden border-t border-white/10 p-3"><div class="creative-paragraph mb-3"><strong>উদ্দীপক:</strong> ${cq.paragraph || ''}</div>${Object.entries(cq.sub_questions || {}).map(([key, val]) => `<div class="sub-question-box mb-3"><p class="font-medium text-amber-400">${key.toUpperCase()} (${val.marks || '?'} নম্বর)</p><p class="mt-1"><strong>প্রশ্ন:</strong> ${val.question || ''}</p><p class="mt-1 text-green-400"><strong>উত্তর:</strong> ${val.answer || ''}</p></div>`).join('')}</div></div>`).join('')}</div></div>`;
+            }
+
+            if (mathExamples.length) {
+                html +=
+                    `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-calculator mr-2"></i>গাণিতিক উদাহরণ</h3><div class="space-y-3">${mathExamples.map((ex, idx) => `<div class="border border-white/10 rounded-xl overflow-hidden"><button class="math-toggle w-full text-left p-3 font-medium hover:bg-white/5 transition flex justify-between items-center"><span>${ex.title || 'গাণিতিক সমস্যা'}</span><i class="fas fa-chevron-down text-gray-500"></i></button><div class="math-answer hidden p-3 pt-0 text-gray-400 border-t border-white/10"><p><strong>সমস্যা:</strong> ${ex.problem || ''}</p><p class="mt-2"><strong>সমাধান:</strong></p><p class="whitespace-pre-line">${ex.solution || ''}</p></div></div>`).join('')}</div></div>`;
+            }
+
+            if (chemicalReactions.length) {
+                html +=
+                    `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-flask mr-2"></i>জৈবিক প্রক্রিয়া/বিক্রিয়া</h3><div class="space-y-3">${chemicalReactions.map(cr => `<div class="glass rounded-xl p-3"><p class="font-mono text-amber-400">${cr.equation || ''}</p><p class="text-sm text-gray-400 mt-1">${cr.description || ''}</p></div>`).join('')}</div></div>`;
+            }
+
+            if (tables.length) {
+                html +=
+                    `<div class="mb-6"><h3 class="text-lg font-semibold text-amber-400 mb-3"><i class="fas fa-table mr-2"></i>তুলনামূলক তথ্য</h3>${tables.map(table => `<div class="overflow-x-auto mb-4"><table class="w-full text-sm border border-white/10 rounded-xl"><thead><tr class="border-b border-white/10 bg-white/5">${(table.headers || []).map(h => `<th class="p-2 text-left">${h}</th>`).join('')}<tr></thead><tbody>${(table.rows || []).map(row => `<tr class="border-b border-white/5">${row.map(cell => `<td class="p-2">${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('')}</div>`;
+            }
+
+            if (examQuestions.length) {
+                html += `<div class="mt-8 pt-6 border-t border-white/10">
+                        <div class="instruction-box rounded-xl p-4 mb-6 bg-blue-500/10 border-l-4 border-blue-500">
+                            <p class="text-sm text-blue-300"><i class="fas fa-info-circle mr-2"></i><strong>MCQ পরীক্ষার নিয়মাবলী:</strong></p>
+                            <ul class="text-xs text-blue-200/80 mt-2 space-y-1 ml-4">
+                                <li>✓ প্রথমে "পরীক্ষা শুরু করুন" বাটনে ক্লিক করুন</li>
+                                <li>✓ প্রতিটি প্রশ্নের জন্য মাত্র একটি উত্তর</li>
+                                <li>✓ উত্তর না দিলে ভুল গণ্য হবে</li>
+                                <li>✓ মোট সময়: ${examQuestions.length} × 60 সেকেন্ড</li>
+                            </ul>
+                        </div>
+                        <div class="exam-header flex flex-wrap justify-between items-center gap-4 mb-6 bg-gray-800/50 rounded-xl p-4">
+                            <div><h3 class="text-xl font-bold text-amber-400"><i class="fas fa-check-double mr-2"></i>MCQ পরীক্ষা</h3><p class="text-sm text-gray-400">মোট প্রশ্ন: ${examQuestions.length}</p></div>
+                            <div class="flex items-center gap-4"><div id="examTimer" class="text-lg font-mono font-bold text-amber-400 bg-black/50 px-4 py-2 rounded-full">⏱️ 0:00</div><button id="startExamBtn" class="start-exam-btn px-6 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 text-white font-bold shadow-lg transition hover:scale-105"><i class="fas fa-play mr-2"></i> পরীক্ষা শুরু করুন</button></div>
+                        </div>
+                        <div id="mcqExamPanel" style="display: none;">
+                            <div id="mcqQuestionsContainer" class="space-y-5 mb-6 max-h-[600px] overflow-y-auto pr-2"></div>
+                            <div class="flex gap-4 mt-6"><button id="submitMcqBtn" class="px-6 py-3 rounded-xl bg-green-600 text-white font-bold shadow-lg hover:bg-green-700 transition"><i class="fas fa-check-circle mr-2"></i> উত্তর জমা দিন</button><button id="resetMcqBtn" class="px-6 py-3 rounded-xl bg-gray-700 text-gray-300 font-bold hover:bg-gray-600 transition"><i class="fas fa-undo-alt mr-2"></i> রিসেট করুন</button></div>
+                        </div>
+                        <div id="mcqResultPanel" class="result-card rounded-xl p-5 mt-6 hidden"></div>
+                    </div>`;
+                container.innerHTML = html;
+
+                let mcqState = { questions: [], userAnswers: [], examStarted: false, examEnded: false, timerInterval: null,
+                    timeRemaining: 0 };
+                const TIME_PER_QUESTION = 60;
+
+                function shuffleQuestions() {
+                    mcqState.questions = examQuestions.map((originalQ, idx) => {
+                        const opts = [...originalQ.o];
+                        let correctIdx = originalQ.a;
+                        const indexed = opts.map((text, i) => ({ text, originalIndex: i }));
+                        const shuffled = shuffleArray([...indexed]);
+                        const newOpts = shuffled.map(item => item.text);
+                        const newCorrect = shuffled.findIndex(item => item.originalIndex === correctIdx);
+                        return { id: idx, text: originalQ.q, options: newOpts, correctIndex: newCorrect >= 0 ? newCorrect : 0 };
+                    });
+                    mcqState.userAnswers = new Array(mcqState.questions.length).fill(null);
+                }
+
+                function renderQuestions() {
+                    const div = document.getElementById('mcqQuestionsContainer');
+                    if (!div) return;
+                    div.innerHTML = mcqState.questions.map((q, qIdx) =>
+                            `<div class="glass rounded-xl p-4 border border-white/10" data-qidx="${qIdx}"><p class="font-semibold mb-3"><span class="text-amber-400">${qIdx+1}.</span> ${q.text}</p><div class="grid gap-2 ml-2">${q.options.map((opt, optIdx) => `<div class="mcq-option flex items-center gap-3 p-2 px-4 rounded-lg transition" data-qidx="${qIdx}" data-optidx="${optIdx}"><span class="w-6 h-6 rounded-full border border-amber-500/50 flex items-center justify-center text-xs font-bold option-letter">${String.fromCharCode(65+optIdx)}</span><span>${opt}</span></div>`).join('')}</div></div>`
+                        ).join('');
+                    document.querySelectorAll('.mcq-option').forEach(opt => opt.addEventListener('click', (e) => {
+                        if (mcqState.examEnded) { showToast('পরীক্ষা শেষ!', 'error'); return; }
+                        if (!mcqState.examStarted) { showToast('প্রথমে পরীক্ষা শুরু করুন', 'error'); return; }
+                        const qIdx = parseInt(opt.dataset.qidx);
+                        const selIdx = parseInt(opt.dataset.optidx);
+                        if (mcqState.userAnswers[qIdx] === selIdx) mcqState.userAnswers[qIdx] = null;
+                        else mcqState.userAnswers[qIdx] = selIdx;
+                        const all = document.querySelectorAll(`.mcq-option[data-qidx="${qIdx}"]`);
+                        all.forEach(opt2 => {
+                            const oi = parseInt(opt2.dataset.optidx);
+                            const span = opt2.querySelector('.option-letter');
+                            if (oi === mcqState.userAnswers[qIdx]) {
+                                opt2.classList.add('selected');
+                                if (span) { span.classList.add('bg-amber-500', 'text-black');
+                                    span.classList.remove('border-amber-500/50'); }
+                            } else {
+                                opt2.classList.remove('selected');
+                                if (span) { span.classList.remove('bg-amber-500', 'text-black');
+                                    span.classList.add('border-amber-500/50'); }
+                            }
+                        });
+                    }));
+                }
+
+                function stopTimer() { if (mcqState.timerInterval) { clearInterval(mcqState.timerInterval);
+                        mcqState.timerInterval = null; } if (activeExamTimer) activeExamTimer = null; }
+
+                function updateTimerDisplay() { const minutes = Math.floor(mcqState.timeRemaining / 60); const seconds =
+                        mcqState.timeRemaining % 60; const el = document.getElementById('examTimer'); if (el) el.innerHTML =
+                        `<i class="fas fa-hourglass-half mr-1"></i> ${minutes}:${seconds.toString().padStart(2, '0')}`; }
+
+                function startTimer() {
+                    stopTimer();
+                    mcqState.timeRemaining = mcqState.questions.length * TIME_PER_QUESTION;
+                    updateTimerDisplay();
+                    mcqState.timerInterval = setInterval(() => {
+                        if (mcqState.timeRemaining > 0 && mcqState.examStarted && !mcqState.examEnded) {
+                            mcqState.timeRemaining--;
+                            updateTimerDisplay();
+                            if (mcqState.timeRemaining === 0) {
+                                stopTimer();
+                                showToast('সময় শেষ!', 'error');
+                                calculateAndShowResult();
+                            }
+                        }
+                    }, 1000);
+                    activeExamTimer = mcqState.timerInterval;
+                }
+
+                function calculateAndShowResult() {
+                    if (mcqState.examEnded) return;
+                    stopTimer();
+                    mcqState.examEnded = true;
+                    isExamInProgress = false;
+                    let correct = 0;
+                    for (let i = 0; i < mcqState.questions.length; i++)
+                        if (mcqState.userAnswers[i] === mcqState.questions[i].correctIndex) correct++;
+                    const score = `${correct}/${mcqState.questions.length}`;
+                    const percent = Math.round((correct / mcqState.questions.length) * 100);
+                    const resultHtml =
+                        `<div class="text-center"><i class="fas fa-chart-simple text-4xl text-amber-400 mb-3"></i><h4 class="text-2xl font-bold">আপনার ফলাফল</h4><div class="text-4xl font-bold text-amber-400 my-3">${score}</div><div class="w-full bg-gray-700 rounded-full h-3 max-w-xs mx-auto"><div class="bg-gradient-to-r from-amber-500 to-orange-500 h-3 rounded-full" style="width: ${percent}%"></div></div><p class="mt-3 text-gray-300">সঠিক উত্তর: ${correct} / মোট: ${mcqState.questions.length}</p><div class="flex justify-center gap-3 mt-4"><button id="reviewAnswersBtn" class="px-4 py-2 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition"><i class="fas fa-eye mr-1"></i> সঠিক উত্তর দেখুন</button><button id="tryAgainBtn" class="px-4 py-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition"><i class="fas fa-redo-alt mr-1"></i> আবার চেষ্টা করুন</button></div></div>`;
+                    const resultPanel = document.getElementById('mcqResultPanel');
+                    resultPanel.innerHTML = resultHtml;
+                    resultPanel.classList.remove('hidden');
+                    document.getElementById('reviewAnswersBtn')?.addEventListener('click', () => {
+                        document.querySelectorAll('#mcqQuestionsContainer > div').forEach((div, idx) => {
+                            const correctIdx = mcqState.questions[idx].correctIndex;
+                            const userChoice = mcqState.userAnswers[idx];
+                            const opts = div.querySelectorAll('.mcq-option');
+                            opts.forEach((opt, oi) => {
+                                opt.classList.remove('correct', 'wrong');
+                                const span = opt.querySelector('.option-letter');
+                                if (oi === correctIdx) {
+                                    opt.classList.add('correct');
+                                    if (span) { span.classList.add('bg-green-500', 'text-white');
+                                        span.classList.remove('bg-amber-500', 'text-black'); }
+                                }
+                                if (userChoice !== null && oi === userChoice && userChoice !== correctIdx) {
+                                    opt.classList.add('wrong');
+                                    if (span) { span.classList.add('bg-red-500', 'text-white');
+                                        span.classList.remove('bg-amber-500', 'text-black'); }
+                                }
+                            });
+                        });
+                    });
+                    document.getElementById('tryAgainBtn')?.addEventListener('click', () => resetExam());
+                }
+
+                function resetExam() {
+                    stopTimer();
+                    mcqState.examStarted = false;
+                    mcqState.examEnded = false;
+                    isExamInProgress = false;
+                    mcqState.userAnswers.fill(null);
+                    const examPanel = document.getElementById('mcqExamPanel');
+                    if (examPanel) examPanel.style.display = 'none';
+                    const resultPanel = document.getElementById('mcqResultPanel');
+                    if (resultPanel) { resultPanel.classList.add('hidden');
+                        resultPanel.innerHTML = ''; }
+                    document.getElementById('examTimer').innerHTML = '⏱️ 0:00';
+                    const startBtn = document.getElementById('startExamBtn');
+                    if (startBtn) { startBtn.disabled = false;
+                        startBtn.classList.remove('opacity-50');
+                        startBtn.innerHTML = '<i class="fas fa-play mr-2"></i> পরীক্ষা শুরু করুন'; }
+                    if (mcqState.questions.length) renderQuestions();
+                    showToast('পরীক্ষা রিসেট হয়েছে', 'info');
+                }
+
+                const startBtn = document.getElementById('startExamBtn');
+                const examPanel = document.getElementById('mcqExamPanel');
+                const submitBtn = document.getElementById('submitMcqBtn');
+                const resetBtn = document.getElementById('resetMcqBtn');
+                if (startBtn) startBtn.onclick = () => {
+                    shuffleQuestions();
+                    mcqState.examStarted = true;
+                    isExamInProgress = true;
+                    if (examPanel) examPanel.style.display = 'block';
+                    startBtn.disabled = true;
+                    startBtn.classList.add('opacity-50');
+                    startBtn.innerHTML = '<i class="fas fa-check-circle mr-2"></i> পরীক্ষা শুরু হয়েছে';
+                    renderQuestions();
+                    startTimer();
+                };
+                if (submitBtn) submitBtn.onclick = () => {
+                    if (!mcqState.examStarted) { showToast('পরীক্ষা শুরু হয়নি', 'error'); return; }
+                    calculateAndShowResult();
+                };
+                if (resetBtn) resetBtn.onclick = () => resetExam();
+            } else {
+                html += `<div class="text-center text-gray-400 py-8"><i class="fas fa-flask text-2xl mb-2"></i><p>এই টপিকের জন্য MCQ পরীক্ষা শীঘ্রই যুক্ত হবে।</p></div>`;
+                container.innerHTML = html;
+            }
+
+            setTimeout(() => {
+                document.querySelectorAll('.sq-toggle, .cq-toggle, .math-toggle').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const ans = this.nextElementSibling;
+                        const icon = this.querySelector('.fa-chevron-down');
+                        if (ans) {
+                            ans.classList.toggle('hidden');
+                            if (icon) icon.style.transform = ans.classList.contains('hidden') ? 'rotate(0deg)' :
+                                'rotate(180deg)';
+                        }
+                    });
+                });
+            }, 100);
+        }
+
+        // ============================================================
+        // INIT
+        // ============================================================
+
+        async function init() {
+            try {
+                const res = await fetch('data/biology_extra_topics.json');
+                if (res.ok) {
+                    extraTopicsData = await res.json();
+                    console.log('✅ Extra topics loaded for Biology');
+                } else {
+                    console.warn('⚠️ Extra topics file not found.');
+                }
+            } catch (e) { console.warn('⚠️ Error loading extra topics:', e); }
+
+            renderChaptersGrid();
+            document.getElementById('backToChaptersBtn').onclick = () => {
+                if (isExamInProgress && !confirm('পরীক্ষা চলছে, ফিরে গেলে ডাটা হারাবে?')) return;
+                if (activeExamTimer) clearInterval(activeExamTimer);
+                isExamInProgress = false;
+                document.getElementById('chaptersView').classList.remove('hidden');
+                document.getElementById('chapterView').classList.add('hidden');
+                currentChapterId = null;
+            };
+
+            studyPlanData = generateStudyPlan();
+            updateExamDays();
+        }
+
+        window.openChapter = openChapter;
+        init();
+
+        // ============================================================
+        // THEME & DRAWER
+        // ============================================================
+
+        window.toggleTheme = function() {
+            const html = document.documentElement;
+            const cur = html.getAttribute('data-theme');
+            const sun = document.getElementById('sunIcon');
+            const moon = document.getElementById('moonIcon');
+            if (cur === 'light') {
+                html.removeAttribute('data-theme');
+                if (sun && moon) { sun.style.display = 'none';
+                    moon.style.display = 'inline-block'; }
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+                if (sun && moon) { sun.style.display = 'inline-block';
+                    moon.style.display = 'none'; }
+                localStorage.setItem('theme', 'light');
+            }
+        };
+        const savedTheme = localStorage.getItem('theme');
+        const sun = document.getElementById('sunIcon');
+        const moon = document.getElementById('moonIcon');
+        if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            if (sun && moon) { sun.style.display = 'inline-block';
+                moon.style.display = 'none'; }
+        } else {
+            if (sun && moon) { sun.style.display = 'none';
+                moon.style.display = 'inline-block'; }
+        }
+
+        function openDrawer() {
+            document.getElementById('sideDrawer').classList.add('open');
+            document.getElementById('drawerOverlay').classList.add('active');
+        }
+        window.openDrawer = openDrawer;
+
+        function closeDrawer() {
+            document.getElementById('sideDrawer').classList.remove('open');
+            document.getElementById('drawerOverlay').classList.remove('active');
+        }
+        window.closeDrawer = closeDrawer;
+
+        window.toggleStudyPlan = toggleStudyPlan;
+        window.closeStudyPlan = closeStudyPlan;
+    </script>
+</body>
+</html>
